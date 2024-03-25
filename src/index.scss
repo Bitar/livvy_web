@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "assets/fonts/neueHaasDisplay.scss";
+
+* {
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+}
