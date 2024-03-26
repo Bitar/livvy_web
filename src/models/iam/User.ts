@@ -7,8 +7,8 @@ export type User = {
     first_name: string,
     last_name: string,
     email: string,
-    is_email_verified: boolean,
-    source: UserSource,
+    is_email_verified?: boolean,
+    source?: UserSource,
     roles?: Role[]
 }
 

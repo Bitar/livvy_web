@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "assets/fonts/neueHaasDisplay.scss";
+@import "assets/fonts/neueHaasDisplay/neueHaasDisplay";
+@import "assets/fonts/ppEditorialNew/ppEditorialNew";
 
-* {
-  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+@layer base {
+  html {
+    font-family: 'Neue Haas Grotesk Display Pro', system-ui, sans-serif;
+  }
 }

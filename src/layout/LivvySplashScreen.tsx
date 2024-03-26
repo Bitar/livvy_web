@@ -7,7 +7,7 @@ import {
     SetStateAction,
     Dispatch,
 } from 'react'
-import {WithChildren} from "./WithChildren.ts";
+import {WithChildren} from "../helpers/WithChildren.ts";
 
 const LivvySplashScreenContext = createContext<Dispatch<SetStateAction<number>> | undefined>(
     undefined

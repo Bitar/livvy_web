@@ -12,9 +12,10 @@ import * as authHelper from '../../../helpers/auth.ts'
 import {User} from '../../../models/iam/User'
 import {Role} from '../../../models/iam/Role';
 import {LayoutSplashScreen} from "../../../layout/LivvySplashScreen.tsx";
-import {WithChildren} from "../../../layout/WithChildren.ts";
+import {WithChildren} from "../../../helpers/WithChildren.ts";
 import {AuthModel} from "../../../models/iam/Auth.tsx";
 import {getUserByToken} from "../../../requests/iam/auth.ts";
+import {user} from "../../../data/user.ts";
 
 type AuthContextProps = {
     auth: AuthModel | undefined
@@ -47,7 +48,8 @@ const useAuth = () => {
 
 const AuthProvider: FC<WithChildren> = ({children}) => {
     const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
-    const [currentUser, setCurrentUser] = useState<User | undefined>()
+    //TODO: Dummy Data 'user'
+    const [currentUser, setCurrentUser] = useState<User | undefined>(user)
     const saveAuth = (auth: AuthModel | undefined) => {
         setAuth(auth)
         if (auth) {
