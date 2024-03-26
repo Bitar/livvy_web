@@ -1,7 +1,34 @@
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import RoundedButton from "../../../components/buttons/RoundedButton.tsx";
+import {defaultLoginFormFields, LoginSchema} from "../core/form.ts";
+import {Form, Formik} from "formik";
+import {getUserByToken, login} from "../../../requests/iam/auth.ts";
+import {useAuth} from "../core/Auth.tsx";
+import {useState} from "react";
+import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 
 export const Login = () => {
+    const {saveAuth, setCurrentUser} = useAuth()
+    const [hasErrors, setHasErrors] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+
+    const handleSubmit = async (values: any, {setSubmitting}: any) => {
+        try {
+            const {data: auth} = await login(values.email, values.password)
+
+            saveAuth(auth)
+
+            const {data: user} = await getUserByToken(auth.token)
+
+            setCurrentUser(user)
+        } catch (error) {
+            saveAuth(undefined)
+            setHasErrors(true)
+            setErrorMessage('These credentials do not match our records.')
+            setSubmitting(false)
+        }
+    }
+
     return (
         <div id="wrapper" className="relative h-screen overflow-hidden">
             <div className="background">
@@ -40,14 +67,39 @@ export const Login = () => {
                     </div>
                 </div>
 
-                <div id="login-panel" className="absolute z-50 right-0 top-0 w-1/2 h-full bg-tan">
-                    <div id="login-form-container" className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                        <div>
-                            <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol" className="w-11"/>
-                        </div>
-                    </div>
-                    <div id="login-footer"></div>
-                </div>
+                {/*<div id="login-panel" className="absolute z-50 right-0 top-0 w-1/2 h-full bg-tan">*/}
+                {/*    <div id="login-form-container"*/}
+                {/*         className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">*/}
+                {/*        <div className="flex justify-center mb-5">*/}
+                {/*            <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"*/}
+                {/*                 className="w-11"/>*/}
+                {/*        </div>*/}
+
+                {/*        <h5 className="text-black font-medium text-3xl uppercase mb-7">log in</h5>*/}
+
+                {/*        {hasErrors && <p className="text-red-600">{errorMessage}</p>}*/}
+
+                {/*        <Formik initialValues={defaultLoginFormFields} onSubmit={handleSubmit}*/}
+                {/*                validationSchema={LoginSchema}>*/}
+                {/*            {(formik) => (*/}
+                {/*                <Form>*/}
+                {/*                    <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} props={formik.getFieldProps('email')}/>*/}
+
+                {/*                    <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} props={formik.getFieldProps('password')}/>*/}
+
+                {/*                    <div>*/}
+                {/*                        <button type='submit' disabled={formik.isSubmitting || !formik.isValid}>*/}
+                {/*                            {!formik.isSubmitting && <span>Login</span>}*/}
+                {/*                            {formik.isSubmitting && (<span className="block">Please wait...</span>)}*/}
+                {/*                        </button>*/}
+                {/*                    </div>*/}
+                {/*                </Form>*/}
+                {/*            )}*/}
+                {/*        </Formik>*/}
+
+                {/*    </div>*/}
+                {/*    <div id="login-footer"></div>*/}
+                {/*</div>*/}
             </div>
         </div>
     )
