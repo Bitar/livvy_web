@@ -94,6 +94,8 @@ export const Login = () => {
                                     </Form>
                                 )}
                             </Formik>
+
+                            <LivButton text={'continue with google'} borderColor={'border-black'} bgColor={'bg-transparent'} arrowIcon={false} textIcon={'assets/google-logo.png'} fullWidth={true}/>
                         </div>
                     </div>
                     <div id="login-footer"></div>
