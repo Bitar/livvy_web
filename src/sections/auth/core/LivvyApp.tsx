@@ -1,6 +1,6 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from "react";
 import toast, {Toaster, ToastOptions} from 'react-hot-toast'
-import {WithChildren} from "../../../layout/WithChildren.ts";
+import {WithChildren} from "../../../helpers/WithChildren.ts";
 import {LivvyToastType} from "../../../helpers/variables.ts";
 import PendingIcon from "../../../components/icons/Pending.tsx";
 
