@@ -113,11 +113,11 @@ const ButtonArrow = ({textColor, arrowIcon, arrowIconDirection}: {
                 </>
             ) : (
                 <>
-                    <img src={toAbsoluteUrl('assets/vector-white.png')} alt="vector"
+                    <img src={toAbsoluteUrl('assets/arrow-white.svg')} alt="arrow white"
                          className={clsx(`w-3 md:w-4 arrow-white ms-2`, {
                              hidden: textColor == "text-black"
                          })}/>
-                    <img src={toAbsoluteUrl('assets/vector-black.png')} alt="vector"
+                    <img src={toAbsoluteUrl('assets/arrow-black.svg')} alt="arrow black"
                          className={clsx(`w-3 md:w-4 arrow-black ms-2`, {
                              hidden: textColor == "text-white"
                          })}/>
