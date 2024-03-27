@@ -15,7 +15,7 @@ const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, props = {}}) =
                    {...props}
                    name={name}
                    placeholder={placeholder}
-                   className="bg-transparent py-4 border-b border-b-black min-w-80 text-center placeholder:text-gray-500 placeholder:font-medium outline-none"
+                   className="bg-transparent py-4 border-b border-b-black w-full text-center placeholder:text-gray-500 placeholder:font-medium outline-none"
             />
 
             <div className="text-red-600 text-sm mt-2">

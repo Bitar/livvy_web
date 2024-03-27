@@ -6,6 +6,7 @@ import {getUserByToken, login} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../core/Auth.tsx";
 import {useState} from "react";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
+import LivSubmitButton from "../../../components/form/LivSubmitButton.tsx";
 
 export const Login = () => {
     const {saveAuth, setCurrentUser} = useAuth()
@@ -67,39 +68,37 @@ export const Login = () => {
                     </div>
                 </div>
 
-                {/*<div id="login-panel" className="absolute z-50 right-0 top-0 w-1/2 h-full bg-tan">*/}
-                {/*    <div id="login-form-container"*/}
-                {/*         className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">*/}
-                {/*        <div className="flex justify-center mb-5">*/}
-                {/*            <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"*/}
-                {/*                 className="w-11"/>*/}
-                {/*        </div>*/}
+                <div id="login-panel" className="absolute z-50 right-0 top-0 w-1/2 h-full bg-tan">
+                    <div id="login-form-container"
+                         className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                        <div className="flex justify-center mb-5">
+                            <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
+                                 className="w-11"/>
+                        </div>
 
-                {/*        <h5 className="text-black font-medium text-3xl uppercase mb-7">log in</h5>*/}
+                        <h5 className="text-black font-medium text-3xl uppercase mb-7">log in</h5>
 
-                {/*        {hasErrors && <p className="text-red-600">{errorMessage}</p>}*/}
+                        {hasErrors && <p className="text-red-600">{errorMessage}</p>}
 
-                {/*        <Formik initialValues={defaultLoginFormFields} onSubmit={handleSubmit}*/}
-                {/*                validationSchema={LoginSchema}>*/}
-                {/*            {(formik) => (*/}
-                {/*                <Form>*/}
-                {/*                    <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} props={formik.getFieldProps('email')}/>*/}
+                        <div className="min-w-80 ">
+                            <Formik initialValues={defaultLoginFormFields} onSubmit={handleSubmit}
+                                    validationSchema={LoginSchema}>
+                                {(formik) => (
+                                    <Form>
+                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} props={formik.getFieldProps('email')}/>
 
-                {/*                    <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} props={formik.getFieldProps('password')}/>*/}
+                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} props={formik.getFieldProps('password')}/>
 
-                {/*                    <div>*/}
-                {/*                        <button type='submit' disabled={formik.isSubmitting || !formik.isValid}>*/}
-                {/*                            {!formik.isSubmitting && <span>Login</span>}*/}
-                {/*                            {formik.isSubmitting && (<span className="block">Please wait...</span>)}*/}
-                {/*                        </button>*/}
-                {/*                    </div>*/}
-                {/*                </Form>*/}
-                {/*            )}*/}
-                {/*        </Formik>*/}
-
-                {/*    </div>*/}
-                {/*    <div id="login-footer"></div>*/}
-                {/*</div>*/}
+                                        <div className="mt-6">
+                                            <LivSubmitButton text={"Log in"} formik={formik} />
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </div>
+                    </div>
+                    <div id="login-footer"></div>
+                </div>
             </div>
         </div>
     )
