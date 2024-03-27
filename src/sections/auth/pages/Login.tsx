@@ -85,9 +85,9 @@ export const Login = () => {
                                     validationSchema={LoginSchema}>
                                 {(formik) => (
                                     <Form>
-                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} props={formik.getFieldProps('email')}/>
+                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} />
 
-                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} props={formik.getFieldProps('password')}/>
+                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} />
 
                                         <div className="mt-6">
                                             <LivSubmitButton text={"Log in"} formik={formik} />

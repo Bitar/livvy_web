@@ -1,5 +1,4 @@
 import {toAbsoluteUrl} from "../helpers/toAbsoluteUrl.ts";
-import RoundedButton from "../components/buttons/RoundedButton.tsx";
 
 export const Home = () => {
     return (

@@ -5,14 +5,12 @@ interface Props {
     name: string,
     type: string,
     placeholder: string,
-    // eslint-disable-next-line
-    props?:  any
+    margin?: string
 }
-const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, props = {}}) => {
+const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-2.5"}) => {
     return (
-        <div className="mb-2.5">
+        <div className={margin}>
             <Field type={type}
-                   {...props}
                    name={name}
                    placeholder={placeholder}
                    className="bg-transparent py-4 border-b border-b-black w-full text-center placeholder:text-gray-500 placeholder:font-medium outline-none"
