@@ -17,8 +17,15 @@ export const Home = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center">
-                    <RoundedButton variant="white" text="sign up" style="md:me-4 me-0 mb-4 md:mb-0"/>
-                    <RoundedButton variant="transparent" text="login"/>
+                    <button
+                        className={`flex items-center justify-center min-w-32 md:min-w-40 uppercase text-center py-2 px-5 text-sm md:text-base bg-white text-black md:me-4 me-0 mb-4 md:mb-0`}>
+                        <span className="me-2">Add Inspiration</span> <img src={toAbsoluteUrl('assets/vector-black.png')} alt="vector" className="w-3 md:w-4"/>
+                    </button>
+
+                    <button
+                        className={`flex items-center justify-center min-w-32 md:min-w-40 uppercase text-center py-2 px-5 text-sm md:text-base bg-white text-black md:me-4 me-0 mb-4 md:mb-0`}>
+                        <span className="me-2">Work with a designer</span> <img src={toAbsoluteUrl('assets/vector-black.png')} alt="vector" className="w-3 md:w-4"/>
+                    </button>
                 </div>
             </div>
         </div>
