@@ -9,6 +9,7 @@ interface LivButtonProps {
     text: string,
     borderColor: string,
     bgColor: string,
+    textColor?: 'text-black' | 'text-white',
     arrowIcon?: boolean,
     arrowIconDirection?: string,
     rounded?: boolean,
@@ -36,6 +37,7 @@ export const LivButton = ({
                               text,
                               borderColor,
                               bgColor,
+                              textColor = 'text-black',
                               textIcon,
                               className = '',
                               arrowIconDirection = 'right',
@@ -46,9 +48,8 @@ export const LivButton = ({
                               isValid = true,
                               onClickHandler,
                               url,
-        style = 'thick'
+                              style = 'thick'
                           }: LivButtonProps & LivButtonConditionalProps) => {
-    const textColor = bgColor == 'bg-white' ? 'text-black' : 'text-white';
     const hoverAnimation = bgColor == 'bg-black' ? 'liv-white-hover' : 'liv-black-hover';
     const hoverBorder = hoverAnimation == 'liv-black-hover' ? 'hover:border-black' : 'hover:border-white'
 
