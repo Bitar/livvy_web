@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "node_modules/animate.css/animate.css";
 @import "assets/fonts/neueHaasDisplay/neueHaasDisplay";
 @import "assets/fonts/ppEditorialNew/ppEditorialNew";
-@import "assets/buttons.scss";
+@import "assets/animate";
 
 @layer base {
   html {
