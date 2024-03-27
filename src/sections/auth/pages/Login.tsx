@@ -1,12 +1,11 @@
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
-import RoundedButton from "../../../components/buttons/RoundedButton.tsx";
 import {defaultLoginFormFields, LoginSchema} from "../core/form.ts";
 import {Form, Formik} from "formik";
 import {getUserByToken, login} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../core/Auth.tsx";
 import {useState} from "react";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
-import LivSubmitButton from "../../../components/form/LivSubmitButton.tsx";
+import {LivButton} from "../../../components/buttons/LivButton.tsx";
 
 export const Login = () => {
     const {saveAuth, setCurrentUser} = useAuth()
@@ -50,18 +49,18 @@ export const Login = () => {
                             converts your dream space into reality using state-of-the-art AI technology.</p>
 
                         <div className="flex flex-col md:flex-row items-center justify-center">
-                            <RoundedButton variant="white" text="sign up" style="md:me-4 me-0 mb-4 md:mb-0"/>
-                            <RoundedButton variant="transparent" text="login"/>
+                            <LivButton as={'button'} text={'Sign up'} bgColor={'bg-white'} borderColor={'border-white'} rounded={true} style={'thin'} className="md:me-4 me-0 mb-4 md:mb-0"/>
+                            <LivButton as={'button'} type={'submit'} text={'Login'} bgColor={'bg-transparent'} borderColor={'border-white'} rounded={true} style={'thin'}/>
                         </div>
                     </div>
 
                     <div className="z-40 absolute w-full bottom-0 left-0 hidden md:block">
                         <div className="flex justify-between px-9 pb-8">
                             <span
-                                className="text-white text-base uppercase font-medium">Aesthetic <br/> Intelligence</span>
-                            <span className="text-white text-base uppercase font-medium">Established <br/> 2023</span>
-                            <span className="text-white text-base uppercase font-medium">Livvy.com <br/> @livvy</span>
-                            <span className="text-white text-base uppercase font-medium"><img
+                                className="text-white text-base uppercase">Aesthetic <br/> Intelligence</span>
+                            <span className="text-white text-base uppercase">Established <br/> 2023</span>
+                            <span className="text-white text-base uppercase">Livvy.com <br/> @livvy</span>
+                            <span className="text-white text-base uppercase"><img
                                 src={toAbsoluteUrl('assets/logo-symbol-white.png')} alt="Livvy logo symbol"
                                 className="w-8"/></span>
                         </div>
@@ -85,12 +84,12 @@ export const Login = () => {
                                     validationSchema={LoginSchema}>
                                 {(formik) => (
                                     <Form>
-                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} />
+                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} align='center'/>
 
-                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} />
+                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} align='center'/>
 
                                         <div className="mt-6">
-                                            <LivSubmitButton text={"Log in"} formik={formik} />
+                                            <LivButton as={'button'} type={'submit'} text={'Log in'} bgColor={'bg-black'} borderColor={'border-black'} isSubmitting={formik.isSubmitting} isValid={formik.isValid} fullWidth={true}/>
                                         </div>
                                     </Form>
                                 )}

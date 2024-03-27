@@ -1,4 +1,5 @@
-button.liv-black-hover {
+button.liv-black-hover, a.liv-black-hover,
+button.liv-white-hover, a.liv-white-hover {
   z-index: 1;
   transition: all .3s;
   position: relative;
@@ -25,6 +26,10 @@ button.liv-black-hover {
   &:hover {
     color: #ffffff;
 
+    svg {
+      color: #ffffff;
+    }
+
     &:before {
       width: 100%;
     }
@@ -39,35 +44,39 @@ button.liv-black-hover {
   }
 }
 
-button.liv-white-hover {
-  z-index: 1;
-  transition: all .3s;
-  position: relative;
-  overflow: hidden;
 
+button.liv-black-hover, a.liv-black-hover {
   &:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scaleY(0);
-    transform-origin: bottom center;
-    background: #ffffff;
-    z-index: -1;
-    transition: transform 0.3s;
+    background: #000000;
   }
 
-  &:hover::after {
-    transform: scaleY(1);
+  &:hover {
+    color: #ffffff;
+
+    svg {
+      color: #ffffff;
+    }
+
+    .arrow-black {
+      display: none !important;
+    }
+
+    .arrow-white {
+      display: inline !important;
+    }
+  }
+}
+
+button.liv-white-hover, a.liv-white-hover {
+  &:after {
+    background: #ffffff;
   }
 
   &:hover {
     color: #000000;
 
-    &:before {
-      width: 100%;
+    svg {
+      color: #000000;
     }
 
     .arrow-white {

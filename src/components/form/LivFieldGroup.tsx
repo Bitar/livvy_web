@@ -6,14 +6,15 @@ interface Props {
     type: string,
     placeholder: string,
     margin?: string
+    align?: 'left' | 'center' | 'right'
 }
-const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-2.5"}) => {
+const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-2.5", align = 'left'}) => {
     return (
         <div className={margin}>
             <Field type={type}
                    name={name}
                    placeholder={placeholder}
-                   className="bg-transparent py-4 border-b border-b-black w-full text-center placeholder:text-gray-500 placeholder:font-medium outline-none"
+                   className={`bg-transparent py-4 border-b border-b-black w-full text-${align} placeholder:text-gray-500 outline-none`}
             />
 
             <div className="text-red-600 text-sm mt-2">
