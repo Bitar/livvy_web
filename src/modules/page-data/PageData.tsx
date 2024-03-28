@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import {WithChildren} from "../helpers/WithChildren.ts";
+import {WithChildren} from "../../helpers/WithChildren.ts";
 import {PageDataContext} from "./PageDataContext.tsx";
 
 export const PageDataProvider: FC<WithChildren> = ({children}) => {

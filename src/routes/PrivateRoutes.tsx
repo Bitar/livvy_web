@@ -1,7 +1,8 @@
 import {Navigate, Route, Routes} from 'react-router-dom'
 import {MasterLayout} from "../layout/MasterLayout.tsx";
-import {Home} from "../pages/Home.tsx";
+import {Home} from "../sections/home/Home.tsx";
 import {Test} from "../Test.tsx";
+import {Onboarding} from "../sections/onboarding/pages/Onboarding.tsx";
 
 const PrivateRoutes = () => {
 
@@ -9,6 +10,8 @@ const PrivateRoutes = () => {
         <Routes>
             <Route element={<MasterLayout/>}>
                 <Route path='/' index element={<Home/>}/>
+
+                <Route path='/onboarding' index element={<Onboarding/>}/>
 
                 <Route path='/test' index element={<Test/>}/>
 
