@@ -50,7 +50,7 @@ export const Login = () => {
 
                         <div className="flex flex-col md:flex-row items-center justify-center">
                             <LivButton as={'button'} text={'Sign up'} bgColor={'bg-white'} borderColor={'border-white'} rounded={true} style={'thin'} className="md:me-4 me-0 mb-4 md:mb-0"/>
-                            <LivButton as={'button'} type={'submit'} text={'Login'} bgColor={'bg-transparent'} borderColor={'border-white'} rounded={true} style={'thin'}/>
+                            <LivButton as={'button'} type={'submit'} text={'Login'} bgColor={'bg-transparent'} borderColor={'border-white'} rounded={true} style={'thin'} textColor={'text-white'}/>
                         </div>
                     </div>
 
