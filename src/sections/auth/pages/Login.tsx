@@ -1,5 +1,5 @@
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
-import {defaultLoginFormFields, LoginSchema} from "../core/form.ts";
+import {defaultLoginFormFields, defaultRegisterFormFields, LoginSchema, RegisterSchema} from "../core/form.ts";
 import {Form, Formik} from "formik";
 import {getUserByToken, login} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../core/Auth.tsx";
@@ -32,6 +32,10 @@ export const Login = () => {
             setLoginErrorMessage('These credentials do not match our records.')
             setSubmitting(false)
         }
+    }
+
+    const handleRegisterSubmit = () => {
+        console.log('submit registration');
     }
 
     const openLoginPanel = () => {
@@ -152,7 +156,7 @@ export const Login = () => {
                     </div>
                 </div>
 
-                <div id="register-panel"
+                <div id="register-panel-f"
                      className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan", {
                          "animate__animated animate__slideInRight": showRegisterPanel,
                          "hidden": !showRegisterPanel
@@ -165,6 +169,49 @@ export const Login = () => {
                         </div>
 
                         <h5 className="text-black font-medium text-3xl uppercase mb-7">sign up for livvy</h5>
+
+                        <div className="sm:min-w-80 ">
+                            <Formik initialValues={defaultRegisterFormFields} onSubmit={handleRegisterSubmit}
+                                    validationSchema={RegisterSchema}>
+                                {(formik) => (
+                                    <Form>
+                                        <LivFieldGroup name={"full_name"} type={"text"} placeholder={"FULL NAME"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
+                                                       align='center'/>
+
+                                        {/*<LivFieldGroup name={"password_confirmation"} type={"password"} placeholder={"CONFIRM PASSWORD"}*/}
+                                        {/*               align='center'/>*/}
+
+                                        <div className="mt-6">
+                                            <LivButton as={'button'} type={'submit'} text={'create account'}
+                                                       textColor={'text-white'} bgColor={'bg-black'}
+                                                       borderColor={'border-black'}
+                                                       isSubmitting={formik.isSubmitting}
+                                                       isValid={formik.isValid} fullWidth={true}
+                                                       className={'mb-4'}/>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+
+                            <div className="text-center mb-4">
+                                <span className="uppercase">or</span>
+                            </div>
+
+                            <LivButton text={'continue with google'} borderColor={'border-black'}
+                                       bgColor={'bg-transparent'} arrowIcon={false}
+                                       textIcon={'assets/google-icon.svg'}
+                                       fullWidth={true} className={'mb-4'}/>
+
+                            <LivButton text={'continue with pinterest'} borderColor={'border-black'}
+                                       bgColor={'bg-transparent'} arrowIcon={false}
+                                       textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
+                        </div>
                     </div>
 
                     <div id="register-footer">

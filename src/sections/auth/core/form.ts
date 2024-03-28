@@ -23,12 +23,22 @@ export const defaultLoginFormFields: LoginFormFields = {
 // Register Form
 // ---------------------------------------------------------------------------------------------------------------------
 export const RegisterSchema = Yup.object().shape({
+    full_name: Yup.string().required(),
     email: Yup.string().email().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
-    password: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required()
+    password: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
+    password_confirmation: Yup.string().required().oneOf([Yup.ref('password')], 'Passwords do not match.')
 })
 
-// export const resetPasswordSchema = Yup.object().shape({
-//     email: Yup.string().email().min(3, 'The email must be at least 3 characters.').max(50, 'The email must be at most 50 characters.').required(),
-//     password: Yup.string().required().min(6, 'The password must be at least 6 characters.'),
-//     password_confirmation: Yup.string().required().oneOf([Yup.ref('password')], 'Passwords do not match.'),
-// })
+export interface RegisterFormFields {
+    full_name: string,
+    email: string,
+    password: string,
+    password_confirmation: string
+}
+
+export const defaultRegisterFormFields: RegisterFormFields = {
+    full_name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+}
