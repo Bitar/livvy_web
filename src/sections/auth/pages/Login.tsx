@@ -156,19 +156,20 @@ export const Login = () => {
                     </div>
                 </div>
 
-                <div id="register-panel-f"
-                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan", {
-                         "animate__animated animate__slideInRight": showRegisterPanel,
-                         "hidden": !showRegisterPanel
-                     })}>
+                <div id="register-panel"
+                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan",
+                         {
+                             "animate__animated animate__slideInRight": showRegisterPanel,
+                             "hidden": !showRegisterPanel
+                         })}>
                     <div id="register-form-container"
                          className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto px-5">
                         <div className="flex justify-center mb-5">
                             <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
-                                 className="w-11"/>
+                                 className="w-9 md:w-11"/>
                         </div>
 
-                        <h5 className="text-black font-medium text-3xl uppercase mb-7">sign up for livvy</h5>
+                        <h5 className="text-black font-medium text-2xl md:text-3xl uppercase mb-2 md:mb-7">sign up for livvy</h5>
 
                         <div className="sm:min-w-80 ">
                             <Formik initialValues={defaultRegisterFormFields} onSubmit={handleRegisterSubmit}
@@ -184,8 +185,9 @@ export const Login = () => {
                                         <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
                                                        align='center'/>
 
-                                        {/*<LivFieldGroup name={"password_confirmation"} type={"password"} placeholder={"CONFIRM PASSWORD"}*/}
-                                        {/*               align='center'/>*/}
+                                        <LivFieldGroup name={"password_confirmation"} type={"password"}
+                                                       placeholder={"CONFIRM PASSWORD"}
+                                                       align='center'/>
 
                                         <div className="mt-6">
                                             <LivButton as={'button'} type={'submit'} text={'create account'}
