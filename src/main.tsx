@@ -6,7 +6,6 @@ import {AuthProvider} from "./sections/auth/core/Auth.tsx";
 import {AppRoutes} from "./routes/AppRoutes.tsx";
 import './index.scss'
 
-
 setupAxios(axios)
 
 const container = document.getElementById('root')

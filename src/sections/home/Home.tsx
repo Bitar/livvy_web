@@ -6,7 +6,7 @@ export const Home = () => {
         <div
             className="absolute w-11/12 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
 
-            <div className='italic font-extralight text-white text-4xl text-' style={{fontFamily: "PP Editorial New"}}>Welcome to</div>
+            <div className='italic font-extralight text-white text-4xl' style={{fontFamily: "PP Editorial New"}}>Welcome to</div>
 
             <img src={toAbsoluteUrl('assets/livvy-logo-white.png')} alt="Livvy Logo White"
                  className='h-auto inline-block py-5 w-56 md:w-72'/>

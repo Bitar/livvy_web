@@ -14,7 +14,7 @@ export const Background: FC<BackgroundProps> = ({type, url, poster}) => {
             <div className="h-screen w-full bg-black opacity-40 absolute top-0 left-0"/>
             {type == 'video' && (
                 <video src={toAbsoluteUrl(`${url}`)} autoPlay={true} controls={false} loop={true}
-                       muted={true} poster={poster && toAbsoluteUrl('assets/livvy-intro-poster.jpg')}
+                       muted={true} poster={poster && toAbsoluteUrl(`${poster}`)}
                        className="absolute w-auto min-w-full min-h-full max-w-none -z-20"/>
             )}
             {type == 'image' && (

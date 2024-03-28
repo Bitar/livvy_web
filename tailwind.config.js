@@ -14,6 +14,9 @@ export default {
         blue: "#a4b3b8"
       }
     },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 }

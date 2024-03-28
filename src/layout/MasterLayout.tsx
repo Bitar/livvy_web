@@ -8,8 +8,7 @@ export const MasterLayout = () => {
     return (
         <PageDataProvider>
             <div id="wrapper">
-
-                <Background type='image' url={'assets/livvy-intro-poster.jpg'}/>
+                <Background type='video' url={'assets/livvy-intro.mp4'}/>
 
                 <Header/>
 
