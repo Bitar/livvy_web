@@ -9,7 +9,7 @@ export const Test = () => {
                 <LivButton as={'button'} onClickHandler={() => {}} text={'Login'} borderColor={'border-white'} bgColor={'bg-white'} fullWidth={true}/>
                 <LivButton as={'button'} onClickHandler={() => {}} text={'Login'} borderColor={'border-white'} bgColor={'bg-transparent'} fullWidth={true}/>
                 <LivButton as={'button'} onClickHandler={() => {}} text={'Login'} borderColor={'border-black'} bgColor={'bg-white'} fullWidth={true}/>
-                <LivButton as={'button'} onClickHandler={() => {}} text={'Login'} borderColor={'border-black'} bgColor={'bg-white'} fullWidth={true}/>
+                <LivButton as={'button'} onClickHandler={() => {}} text={'Login'} borderColor={'border-black'} bgColor={'bg-white'} fullWidth={true} className={'mb-4'}/>
                 <LivButton as={'a'} url={'https://google.com'} text={'Login'} borderColor={'border-black'} bgColor={'bg-white'} fullWidth={true}/>
             </div>
         </div>

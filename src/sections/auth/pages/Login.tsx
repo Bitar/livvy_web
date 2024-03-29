@@ -1,20 +1,30 @@
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
-import {defaultLoginFormFields, LoginSchema} from "../core/form.ts";
+import {defaultLoginFormFields, defaultRegisterFormFields, LoginSchema, RegisterSchema} from "../core/form.ts";
 import {Form, Formik} from "formik";
-import {getUserByToken, login} from "../../../requests/iam/auth.ts";
+import {getUserByToken, login, register} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../core/Auth.tsx";
 import {useState} from "react";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
+import clsx from "clsx";
+import {Link} from "react-router-dom";
+import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 
 export const Login = () => {
     const {saveAuth, setCurrentUser} = useAuth()
-    const [hasErrors, setHasErrors] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
+    const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
 
-    const handleSubmit = async (values: any, {setSubmitting}: any) => {
+    const [hasRegisterErrors, setHasRegisterErrors] = useState<boolean>(true);
+    const [registerErrorMessage, setRegisterErrorMessage] = useState<string>('Something went wrong!');
+
+    const [showLoginPanel, setShowLoginPanel] = useState<boolean>(false);
+    const [showRegisterPanel, setShowRegisterPanel] = useState<boolean>(false);
+    const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
+
+    const handleLoginSubmit = async (values: any, {setSubmitting}: any) => {
         try {
-            const {data: auth} = await login(values.email, values.password)
+            const auth = await login(values.email, values.password)
 
             saveAuth(auth)
 
@@ -23,10 +33,34 @@ export const Login = () => {
             setCurrentUser(user)
         } catch (error) {
             saveAuth(undefined)
-            setHasErrors(true)
-            setErrorMessage('These credentials do not match our records.')
+            setHasLoginErrors(true)
+            setLoginErrorMessage('These credentials do not match our records.')
             setSubmitting(false)
         }
+    }
+
+    const handleRegisterSubmit = async (values: any, {setSubmitting}: any) => {
+        try {
+            const {data} = await register(values.email, values.first_name, values.last_name, values.password, values.password_confirmation);
+
+            // now we need to hide the current content of the register panel and show the content that tells us that the user needs to confirm
+            // his account
+        } catch (error) {
+            setHasRegisterErrors(true);
+            setRegisterErrorMessage('Something went wrong!');
+            setSubmitting(false);
+        }
+    }
+
+    const openLoginPanel = () => {
+        setIsPanelOpen(true);
+        setShowLoginPanel(true);
+    }
+
+    const openRegisterPanel = () => {
+        setShowLoginPanel(false);
+        setIsPanelOpen(true);
+        setShowRegisterPanel(true);
     }
 
     return (
@@ -41,7 +75,10 @@ export const Login = () => {
             <div id="content">
                 <div id="main-content">
                     <div
-                        className="z-40 absolute w-11/12 md:w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                        className={clsx("z-40 absolute w-11/12 md:w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center", {
+                            'animate__animated animate__fadeOut': isPanelOpen,
+                            'animate__animated animate__fadeIn': !isPanelOpen
+                        })}>
                         <img src={toAbsoluteUrl('assets/livvy-logo-white.png')} alt="Livvy Logo White"
                              className='h-auto inline-block mb-6 w-56 md:w-72'/>
 
@@ -49,8 +86,12 @@ export const Login = () => {
                             converts your dream space into reality using state-of-the-art AI technology.</p>
 
                         <div className="flex flex-col md:flex-row items-center justify-center">
-                            <LivButton as={'button'} text={'Sign up'} bgColor={'bg-white'} borderColor={'border-white'} rounded={true} style={'thin'} className="md:me-4 me-0 mb-4 md:mb-0"/>
-                            <LivButton as={'button'} type={'submit'} text={'Login'} bgColor={'bg-transparent'} borderColor={'border-white'} rounded={true} style={'thin'} textColor={'text-white'}/>
+                            <LivButton as={'button'} text={'Sign up'} bgColor={'bg-white'} borderColor={'border-white'}
+                                       rounded={true} style={'thin'} className="md:me-4 me-0 mb-4 md:mb-0"
+                                       onClickHandler={openRegisterPanel}/>
+                            <LivButton as={'button'} type={'submit'} text={'Login'} bgColor={'bg-transparent'}
+                                       borderColor={'border-white'} rounded={true} style={'thin'}
+                                       textColor={'text-white'} onClickHandler={openLoginPanel}/>
                         </div>
                     </div>
 
@@ -67,9 +108,13 @@ export const Login = () => {
                     </div>
                 </div>
 
-                <div id="login-panel" className="absolute z-50 right-0 top-0 w-1/2 h-full bg-tan">
+                <div id="login-panel"
+                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan", {
+                         "animate__animated animate__slideInRight": showLoginPanel,
+                         "hidden": !showLoginPanel
+                     })}>
                     <div id="login-form-container"
-                         className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto">
                         <div className="flex justify-center mb-5">
                             <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
                                  className="w-11"/>
@@ -77,26 +122,128 @@ export const Login = () => {
 
                         <h5 className="text-black font-medium text-3xl uppercase mb-7">log in</h5>
 
-                        {hasErrors && <p className="text-red-600">{errorMessage}</p>}
+                        {hasLoginErrors && <p className="text-red-600">{loginErrorMessage}</p>}
 
-                        <div className="min-w-80 ">
-                            <Formik initialValues={defaultLoginFormFields} onSubmit={handleSubmit}
-                                    validationSchema={LoginSchema}>
+                        <div className="sm:min-w-80 ">
+                            <Formik initialValues={defaultLoginFormFields} onSubmit={handleLoginSubmit}
+                                    validationSchema={LoginSchema} enableReinitialize>
                                 {(formik) => (
                                     <Form>
-                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"} align='center'/>
+                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"}
+                                                       align='center'/>
 
-                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"} align='center'/>
+                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
+                                                       align='center'/>
 
                                         <div className="mt-6">
-                                            <LivButton as={'button'} type={'submit'} text={'Log in'} bgColor={'bg-black'} borderColor={'border-black'} isSubmitting={formik.isSubmitting} isValid={formik.isValid} fullWidth={true}/>
+                                            <LivButton as={'button'} type={'submit'} text={'Log in'}
+                                                       textColor={'text-white'} bgColor={'bg-black'}
+                                                       borderColor={'border-black'}
+                                                       isSubmitting={formik.isSubmitting}
+                                                       isValid={formik.isValid} fullWidth={true}
+                                                       className={'mb-4'}/>
                                         </div>
                                     </Form>
                                 )}
                             </Formik>
+
+                            <LivButton text={'continue with google'} borderColor={'border-black'}
+                                       bgColor={'bg-transparent'} arrowIcon={false}
+                                       textIcon={'assets/google-icon.svg'}
+                                       fullWidth={true} className={'mb-4'}/>
+
+                            <LivButton text={'continue with pinterest'} borderColor={'border-black'}
+                                       bgColor={'bg-transparent'} arrowIcon={false}
+                                       textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
+
+                            <div>
+                                <button className="uppercase text-xs border border-b-black">reset password</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="login-footer"></div>
+
+                    <div id="login-footer" className="absolute z-60 left-0 bottom-3 sm:bottom-7 w-full">
+                        <div className="flex justify-center align-middle">
+                            <span className="uppercase me-1">no account?</span>
+                            <button className="uppercase border border-b-black">create one</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="register-panel"
+                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan overflow-y-scroll md:overflow-auto",
+                         {
+                             "animate__animated animate__slideInRight": showRegisterPanel,
+                             "hidden": !showRegisterPanel
+                         })}>
+                    <div id="register-form-container"
+                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5">
+                        <div className="flex justify-center mb-5">
+                            <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
+                                 className="w-9 md:w-11"/>
+                        </div>
+
+                        <h5 className="text-black font-medium text-2xl md:text-3xl uppercase mb-2 md:mb-7">sign up for
+                            livvy</h5>
+
+                        {hasRegisterErrors && <LivFormErrors errors={[registerErrorMessage, registerErrorMessage]} />}
+
+                        <div className="sm:min-w-80 ">
+                            <Formik initialValues={defaultRegisterFormFields} onSubmit={handleRegisterSubmit}
+                                    validationSchema={RegisterSchema} enableReinitialize>
+                                {(formik) => (
+                                    <Form>
+                                        <LivFieldGroup name={"first_name"} type={"text"} placeholder={"FIRST NAME"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"last_name"} type={"text"} placeholder={"LAST NAME"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"password_confirmation"} type={"password"}
+                                                       placeholder={"CONFIRM PASSWORD"}
+                                                       align='center'/>
+
+                                        <div className="mt-6">
+                                            <LivButton as={'button'} type={'submit'} text={'create account'}
+                                                       textColor={'text-white'} bgColor={'bg-black'}
+                                                       borderColor={'border-black'}
+                                                       isSubmitting={formik.isSubmitting}
+                                                       isValid={formik.isValid} fullWidth={true}
+                                                       className={'mb-4'}/>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+
+                            <div className="text-center mb-4">
+                                <span className="uppercase">or</span>
+                            </div>
+
+                            <LivButton text={'continue with google'} borderColor={'border-black'}
+                                       bgColor={'bg-transparent'} arrowIcon={false}
+                                       textIcon={'assets/google-icon.svg'}
+                                       fullWidth={true} className={'mb-4'}/>
+
+                            <LivButton text={'continue with pinterest'} borderColor={'border-black'}
+                                       bgColor={'bg-transparent'} arrowIcon={false}
+                                       textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
+                        </div>
+                    </div>
+
+                    <div id="register-footer" className="md:absolute md:z-60 md:left-0 bottom-3 sm:bottom-7 w-full">
+                        <div className="text-xs px-5 text-center">
+                            By continuing, you agree to LIVVY’s <Link to={'#'}
+                                                                      className="border border-b-black me-1 ms-1">Terms
+                            of Service</Link> and <Link to={'#'} className="border border-b-black me-1 ms-1">Privacy
+                            Policy</Link>.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

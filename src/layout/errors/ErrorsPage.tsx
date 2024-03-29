@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import {Route, Routes, Outlet} from 'react-router-dom'
 import TemplateErrorPage from './TemplateErrorPage';
 
