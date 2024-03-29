@@ -9,7 +9,7 @@ const PrivateRoutes = () => {
     return (
         <Routes>
             <Route element={<MasterLayout/>}>
-                <Route path='auth/*' index element={<Navigate to={'/'}/>}/>
+                <Route path='auth/*' index element={<Navigate to={'/onboarding'}/>}/>
 
                 <Route path='/' index element={<Home/>}/>
 
