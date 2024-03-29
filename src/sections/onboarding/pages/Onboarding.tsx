@@ -75,11 +75,11 @@ export const Onboarding = () => {
                     </div>
 
                     <Slider {...settings} ref={sliderRef} className={'relative'}>
-                        <Slide index={1} title={'Capture'} subTitle={'Your Space'} video={'assets/demo_video_1.mp4'}
+                        <Slide index={1} title={'Capture'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_1.mp4'}
                                description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
-                        <Slide index={2} title={'Add Your'} subTitle={'Inspiration'} video={'assets/demo_video_2.mp4'}
+                        <Slide index={2} title={'Add Your'} subTitle={'Inspiration'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_2.mp4'}
                                description={'TK Upload your inspiration, add your favorite styles, or preferred color palette. Add your ideal budget.'}/>
-                        <Slide index={3} title={'Shop'} subTitle={'Your Space'} video={'assets/demo_video.mp4'}
+                        <Slide index={3} title={'Shop'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video.mp4'}
                                description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
                     </Slider>
                 </div>

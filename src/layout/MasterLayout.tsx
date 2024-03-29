@@ -19,7 +19,7 @@ export const MasterLayout = () => {
                 setShowFooter
             }}>
                 <div id="wrapper">
-                    <Background type='video' url={'assets/livvy-intro.mp4'}/>
+                    <Background type='video' url={'https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4'}/>
 
                     {showHeader && <Header/>}
 
