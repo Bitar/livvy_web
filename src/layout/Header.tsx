@@ -1,12 +1,15 @@
 import {toAbsoluteUrl} from "../helpers/toAbsoluteUrl.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faBars, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
+import {faBars, faUser, faShoppingBag} from '@fortawesome/free-solid-svg-icons'
+import {Link} from "react-router-dom";
 
 export const Header = () => {
     return (
         <div id="header" className='flex flex-wrap items-center justify-between mx-auto border-b border-white/50 px-10'>
             <div className="logo-container py-5 w-20">
-                <img src={toAbsoluteUrl('assets/livvy-logo-white.png')} alt="Livvy logo symbol" className='w-full'/>
+                <Link to={'/'}>
+                    <img src={toAbsoluteUrl('assets/livvy-logo-white.png')} alt="Livvy logo symbol" className='w-full'/>
+                </Link>
             </div>
 
             <div className="hidden w-full md:block md:w-auto" id="navbar-default">
