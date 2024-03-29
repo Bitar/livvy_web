@@ -1,17 +1,22 @@
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import {defaultLoginFormFields, defaultRegisterFormFields, LoginSchema, RegisterSchema} from "../core/form.ts";
 import {Form, Formik} from "formik";
-import {getUserByToken, login} from "../../../requests/iam/auth.ts";
+import {getUserByToken, login, register} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../core/Auth.tsx";
 import {useState} from "react";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import clsx from "clsx";
+import {Link} from "react-router-dom";
+import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 
 export const Login = () => {
     const {saveAuth, setCurrentUser} = useAuth()
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
+
+    const [hasRegisterErrors, setHasRegisterErrors] = useState<boolean>(true);
+    const [registerErrorMessage, setRegisterErrorMessage] = useState<string>('Something went wrong!');
 
     const [showLoginPanel, setShowLoginPanel] = useState<boolean>(false);
     const [showRegisterPanel, setShowRegisterPanel] = useState<boolean>(false);
@@ -19,7 +24,7 @@ export const Login = () => {
 
     const handleLoginSubmit = async (values: any, {setSubmitting}: any) => {
         try {
-            const {data: auth} = await login(values.email, values.password)
+            const auth = await login(values.email, values.password)
 
             saveAuth(auth)
 
@@ -34,8 +39,17 @@ export const Login = () => {
         }
     }
 
-    const handleRegisterSubmit = () => {
-        console.log('submit registration');
+    const handleRegisterSubmit = async (values: any, {setSubmitting}: any) => {
+        try {
+            const {data} = await register(values.email, values.first_name, values.last_name, values.password, values.password_confirmation);
+
+            // now we need to hide the current content of the register panel and show the content that tells us that the user needs to confirm
+            // his account
+        } catch (error) {
+            setHasRegisterErrors(true);
+            setRegisterErrorMessage('Something went wrong!');
+            setSubmitting(false);
+        }
     }
 
     const openLoginPanel = () => {
@@ -100,7 +114,7 @@ export const Login = () => {
                          "hidden": !showLoginPanel
                      })}>
                     <div id="login-form-container"
-                         className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto px-5">
+                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto">
                         <div className="flex justify-center mb-5">
                             <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
                                  className="w-11"/>
@@ -112,7 +126,7 @@ export const Login = () => {
 
                         <div className="sm:min-w-80 ">
                             <Formik initialValues={defaultLoginFormFields} onSubmit={handleLoginSubmit}
-                                    validationSchema={LoginSchema}>
+                                    validationSchema={LoginSchema} enableReinitialize>
                                 {(formik) => (
                                     <Form>
                                         <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"}
@@ -157,26 +171,32 @@ export const Login = () => {
                 </div>
 
                 <div id="register-panel"
-                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan",
+                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan overflow-y-scroll md:overflow-auto",
                          {
                              "animate__animated animate__slideInRight": showRegisterPanel,
                              "hidden": !showRegisterPanel
                          })}>
                     <div id="register-form-container"
-                         className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto px-5">
+                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5">
                         <div className="flex justify-center mb-5">
                             <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
                                  className="w-9 md:w-11"/>
                         </div>
 
-                        <h5 className="text-black font-medium text-2xl md:text-3xl uppercase mb-2 md:mb-7">sign up for livvy</h5>
+                        <h5 className="text-black font-medium text-2xl md:text-3xl uppercase mb-2 md:mb-7">sign up for
+                            livvy</h5>
+
+                        {hasRegisterErrors && <LivFormErrors errors={[registerErrorMessage, registerErrorMessage]} />}
 
                         <div className="sm:min-w-80 ">
                             <Formik initialValues={defaultRegisterFormFields} onSubmit={handleRegisterSubmit}
-                                    validationSchema={RegisterSchema}>
+                                    validationSchema={RegisterSchema} enableReinitialize>
                                 {(formik) => (
                                     <Form>
-                                        <LivFieldGroup name={"full_name"} type={"text"} placeholder={"FULL NAME"}
+                                        <LivFieldGroup name={"first_name"} type={"text"} placeholder={"FIRST NAME"}
+                                                       align='center'/>
+
+                                        <LivFieldGroup name={"last_name"} type={"text"} placeholder={"LAST NAME"}
                                                        align='center'/>
 
                                         <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"}
@@ -216,8 +236,13 @@ export const Login = () => {
                         </div>
                     </div>
 
-                    <div id="register-footer">
-
+                    <div id="register-footer" className="md:absolute md:z-60 md:left-0 bottom-3 sm:bottom-7 w-full">
+                        <div className="text-xs px-5 text-center">
+                            By continuing, you agree to LIVVY’s <Link to={'#'}
+                                                                      className="border border-b-black me-1 ms-1">Terms
+                            of Service</Link> and <Link to={'#'} className="border border-b-black me-1 ms-1">Privacy
+                            Policy</Link>.
+                        </div>
                     </div>
                 </div>
             </div>

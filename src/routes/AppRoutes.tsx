@@ -17,7 +17,7 @@ const AppRoutes: FC = () => {
             <Routes>
                 <Route element={<App/>}>
                     <Route path='error/*' element={<ErrorsPage/>}/>
-                    <Route path='logout' element={<Logout/>}/>
+                    <Route path='logout/*' element={<Logout/>}/>
                     {currentUser ? (
                         <>
                             <Route path='/*' element={<PrivateRoutes/>}/>

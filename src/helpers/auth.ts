@@ -1,6 +1,6 @@
 import {AuthModel} from "../models/iam/Auth.tsx";
 
-const AUTH_LOCAL_STORAGE_KEY = 'livvy-auth-react-v'
+const AUTH_LOCAL_STORAGE_KEY = 'livvy-local-configs'
 
 const getAuth = (): AuthModel | undefined => {
     if (!localStorage) {

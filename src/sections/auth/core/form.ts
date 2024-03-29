@@ -30,14 +30,16 @@ export const RegisterSchema = Yup.object().shape({
 })
 
 export interface RegisterFormFields {
-    full_name: string,
+    first_name: string,
+    last_name: string,
     email: string,
     password: string,
     password_confirmation: string
 }
 
 export const defaultRegisterFormFields: RegisterFormFields = {
-    full_name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password_confirmation: ''

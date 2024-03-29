@@ -2,6 +2,7 @@ import axios, {AxiosError} from 'axios'
 import {AuthModel} from "../../models/iam/Auth.tsx";
 import {User} from "../../models/iam/User.ts";
 import {createFormData} from "../../helpers/requests.ts";
+import {user} from "../../data/user.ts";
 
 const API_URL = import.meta.env.VITE_APP_API_URL
 
@@ -14,10 +15,14 @@ export const RESET_PASSWORD_URL = `${API_URL}/reset_password`
 
 // Server should return AuthModel
 export function login(email: string, password: string) {
-    return axios.post<AuthModel>(LOGIN_URL, {
-        email,
-        password,
-    })
+    return {
+        data: user,
+        token: 'test-access-token'
+    }
+    // return axios.post<AuthModel>(LOGIN_URL, {
+    //     email,
+    //     password,
+    // })
 }
 
 // Server should return AuthModel
@@ -28,13 +33,16 @@ export function register(
     password: string,
     password_confirmation: string
 ) {
-    return axios.post(REGISTER_URL, {
-        email,
-        first_name: firstname,
-        last_name: lastname,
-        password,
-        password_confirmation,
-    })
+    return {
+        data: user
+    }
+    // return axios.post(REGISTER_URL, {
+    //     email,
+    //     first_name: firstname,
+    //     last_name: lastname,
+    //     password,
+    //     password_confirmation,
+    // })
 }
 
 export const requestPassword = async (form: any): Promise<string | AxiosError | undefined> => {
@@ -62,14 +70,15 @@ export const resetPassword = async (form: any): Promise<string | AxiosError | un
 }
 
 export function getUserByToken(token: string) {
-    return axios.get<User>(GET_USER_PROFILE, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        transformResponse: [
-            function (data) {
-                return JSON.parse(data).data
-            },
-        ],
-    })
+    return {data: user};
+    // `return axios.get<User>(GET_USER_PROFILE, {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    //     transformResponse: [
+    //         function (data) {
+    //             return JSON.parse(data).data
+    //         },
+    //     ],
+    // })`
 }
