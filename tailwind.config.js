@@ -8,10 +8,10 @@ export default {
     extend: {
       colors: {
         tan: "#e8e6e0",
-        green: "#838b64",
-        orange: "#986954",
+        "brand-green": "#838b64",
+        "brand-orange": "#986954",
         "brand-grey": "#2E2A2B",
-        blue: "#a4b3b8"
+        "brand-blue": "#a4b3b8"
       }
     },
     container: {

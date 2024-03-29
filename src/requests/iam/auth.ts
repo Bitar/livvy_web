@@ -48,13 +48,14 @@ export function register(
 export const requestPassword = async (form: any): Promise<string | AxiosError | undefined> => {
     const formData = createFormData(form);
 
-    return await axios.post(REQUEST_PASSWORD_URL, formData)
-        .then(res => res.data)
-        .catch((error) => {
-            error = error as AxiosError;
-
-            return error;
-        });
+    return 'OK';
+    // return await axios.post(REQUEST_PASSWORD_URL, formData)
+    //     .then(res => res.data)
+    //     .catch((error) => {
+    //         error = error as AxiosError;
+    //
+    //         return error;
+    //     });
 }
 
 export const resetPassword = async (form: any): Promise<string | AxiosError | undefined> => {
