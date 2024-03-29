@@ -15,8 +15,8 @@ export const Login = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
 
-    const [hasRegisterErrors, setHasRegisterErrors] = useState<boolean>(true);
-    const [registerErrorMessage, setRegisterErrorMessage] = useState<string>('Something went wrong!');
+    const [hasRegisterErrors, setHasRegisterErrors] = useState<boolean>(false);
+    const [registerErrorMessage, setRegisterErrorMessage] = useState<string>('');
 
     const [showLoginPanel, setShowLoginPanel] = useState<boolean>(false);
     const [showRegisterPanel, setShowRegisterPanel] = useState<boolean>(false);
