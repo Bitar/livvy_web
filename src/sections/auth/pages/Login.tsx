@@ -9,6 +9,7 @@ import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import clsx from "clsx";
 import {Link} from "react-router-dom";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
+import {Background} from "../../../modules/background/Background.tsx";
 
 export const Login = () => {
     const {saveAuth, setCurrentUser} = useAuth()
@@ -68,12 +69,14 @@ export const Login = () => {
 
     return (
         <div id="wrapper" className="relative h-screen overflow-hidden">
-            <div className="background">
-                <div className="h-full w-full bg-black opacity-40 absolute top-0 left-0 z-20"/>
-                <video src={toAbsoluteUrl('assets/livvy-intro.mp4')} autoPlay={true} controls={false} loop={true}
-                       muted={true} poster={toAbsoluteUrl('assets/livvy-intro-poster.jpg')}
-                       className="absolute w-auto min-w-full min-h-full max-w-none z-10"></video>
-            </div>
+            {/*<div className="background">*/}
+            {/*    <div className="h-full w-full bg-black opacity-40 absolute top-0 left-0 z-20"/>*/}
+            {/*    <video src={toAbsoluteUrl('assets/livvy-intro.mp4')} autoPlay={true} controls={false} loop={true}*/}
+            {/*           muted={true} poster={toAbsoluteUrl('assets/livvy-intro-poster.jpg')}*/}
+            {/*           className="absolute w-auto min-w-full min-h-full max-w-none z-10"></video>*/}
+            {/*</div>*/}
+
+            <Background type='video' url={'https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4'} poster={'assets/livvy-intro-poster.jpg'}/>
 
             <div id="content">
                 <div id="main-content">
