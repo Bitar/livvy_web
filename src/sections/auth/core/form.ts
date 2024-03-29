@@ -23,7 +23,8 @@ export const defaultLoginFormFields: LoginFormFields = {
 // Register Form
 // ---------------------------------------------------------------------------------------------------------------------
 export const RegisterSchema = Yup.object().shape({
-    full_name: Yup.string().required(),
+    first_name: Yup.string().required(),
+    last_name: Yup.string().required(),
     email: Yup.string().email().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
     password: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
     password_confirmation: Yup.string().required().oneOf([Yup.ref('password')], 'Passwords do not match.')

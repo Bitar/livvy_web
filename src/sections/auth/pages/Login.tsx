@@ -15,12 +15,14 @@ export const Login = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
 
-    const [hasRegisterErrors, setHasRegisterErrors] = useState<boolean>(true);
-    const [registerErrorMessage, setRegisterErrorMessage] = useState<string>('Something went wrong!');
+    const [hasRegisterErrors, setHasRegisterErrors] = useState<boolean>(false);
+    const [registerErrorMessage, setRegisterErrorMessage] = useState<string>('');
 
     const [showLoginPanel, setShowLoginPanel] = useState<boolean>(false);
     const [showRegisterPanel, setShowRegisterPanel] = useState<boolean>(false);
     const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false);
+
+    const [registeredEmail, setRegisteredEmail] = useState<string | null>('test@email.com');
 
     const handleLoginSubmit = async (values: any, {setSubmitting}: any) => {
         try {
@@ -43,6 +45,7 @@ export const Login = () => {
         try {
             const {data} = await register(values.email, values.first_name, values.last_name, values.password, values.password_confirmation);
 
+            setRegisteredEmail(data.email);
             // now we need to hide the current content of the register panel and show the content that tells us that the user needs to confirm
             // his account
         } catch (error) {
@@ -109,7 +112,7 @@ export const Login = () => {
                 </div>
 
                 <div id="login-panel"
-                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan", {
+                     className={clsx("liv-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan", {
                          "animate__animated animate__slideInRight": showLoginPanel,
                          "hidden": !showLoginPanel
                      })}>
@@ -120,7 +123,7 @@ export const Login = () => {
                                  className="w-11"/>
                         </div>
 
-                        <h5 className="text-black font-medium text-3xl uppercase mb-7">log in</h5>
+                        <h5 className="text-black text-3xl uppercase mb-7">log in</h5>
 
                         {hasLoginErrors && <p className="text-red-600">{loginErrorMessage}</p>}
 
@@ -171,22 +174,22 @@ export const Login = () => {
                 </div>
 
                 <div id="register-panel"
-                     className={clsx("live-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan overflow-y-scroll md:overflow-auto",
+                     className={clsx("liv-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan overflow-y-scroll md:overflow-auto",
                          {
                              "animate__animated animate__slideInRight": showRegisterPanel,
                              "hidden": !showRegisterPanel
                          })}>
                     <div id="register-form-container"
-                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5">
+                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5 hidden">
                         <div className="flex justify-center mb-5">
                             <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
                                  className="w-9 md:w-11"/>
                         </div>
 
-                        <h5 className="text-black font-medium text-2xl md:text-3xl uppercase mb-2 md:mb-7">sign up for
+                        <h5 className="text-black text-2xl md:text-3xl uppercase mb-2 md:mb-7">sign up for
                             livvy</h5>
 
-                        {hasRegisterErrors && <LivFormErrors errors={[registerErrorMessage, registerErrorMessage]} />}
+                        {hasRegisterErrors && <LivFormErrors errors={[registerErrorMessage]} />}
 
                         <div className="sm:min-w-80 ">
                             <Formik initialValues={defaultRegisterFormFields} onSubmit={handleRegisterSubmit}
@@ -234,6 +237,19 @@ export const Login = () => {
                                        bgColor={'bg-transparent'} arrowIcon={false}
                                        textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
                         </div>
+                    </div>
+
+                    <div id="activate-account-container"
+                         className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5">
+                        <div className="flex justify-center mb-5">
+                            <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
+                                 className="w-9 md:w-11"/>
+                        </div>
+
+                        <h5 className="text-black text-2xl md:text-3xl uppercase mb-2 md:mb-3">activate account</h5>
+                        <p className="text-sm max-w-72">We have sent a verification email to the below address to set up your account.</p>
+
+                        <p>{registeredEmail}</p>
                     </div>
 
                     <div id="register-footer" className="md:absolute md:z-60 md:left-0 bottom-3 sm:bottom-7 w-full">

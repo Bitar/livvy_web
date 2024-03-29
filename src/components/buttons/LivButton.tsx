@@ -57,7 +57,7 @@ export const LivButton = ({
         <>
             {as == 'button' && (
                 <button type={type}
-                        className={clsx(`flex items-center justify-center uppercase px-5 border min-w-32 md:min-w-40 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
+                        className={clsx(`flex items-center justify-center uppercase px-5 border min-w-32 md:min-w-40 disabled:opacity-45 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
                             'rounded-full': rounded,
                             'w-full': fullWidth,
                             'py-4': style == 'thick',
