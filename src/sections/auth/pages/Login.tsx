@@ -62,7 +62,7 @@ export const Login = () => {
                      closePanels()
                  }
              }}
-             className={clsx("liv-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-tan animate__animated", {
+             className={clsx("liv-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-liv-tan animate__animated", {
                  "animate__slideInRight": !isClosing,
                  "animate__slideOutRight": isClosing
 

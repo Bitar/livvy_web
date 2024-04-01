@@ -12,10 +12,12 @@ export const Onboarding = () => {
     const slideCount = 3
     const [currentIndex, setCurrentIndex] = useState<number>(0)
     const navigate = useNavigate()
-    const {setShowFooter} = useMasterLayout()
+    const {setShowFooter, setBackgroundType, setBackgroundUrl} = useMasterLayout()
 
     useEffect(() => {
-        setShowFooter(false)
+        setShowFooter(false);
+        setBackgroundType('video');
+        setBackgroundUrl('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4');
     }, [])
 
     const settings = {
