@@ -8,5 +8,12 @@ export const Membership = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
     }, []);
-    return <>sdfd</>
+
+    return (
+        <div>
+            <div>
+                <h1 className={'text-7xl uppercase'}>select your <br/> <span style={{fontFamily: "PP Editorial New"}} className="font-thin italic capitalize">membership</span></h1>
+            </div>
+        </div>
+    )
 }
