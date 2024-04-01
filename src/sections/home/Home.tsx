@@ -1,7 +1,17 @@
 import {toAbsoluteUrl} from "../../helpers/toAbsoluteUrl.ts";
 import {LivButton} from "../../components/buttons/LivButton.tsx";
+import {useMasterLayout} from "../../layout/MasterLayoutProvider.tsx";
+import {useEffect} from "react";
 
 export const Home = () => {
+    const {setShowFooter, setBackgroundType, setBackgroundUrl} = useMasterLayout()
+
+    useEffect(() => {
+        setShowFooter(false);
+        setBackgroundType('video');
+        setBackgroundUrl('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4');
+    }, [])
+
     return (
         <div
             className="absolute w-11/12 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
