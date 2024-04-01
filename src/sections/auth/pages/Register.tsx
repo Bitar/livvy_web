@@ -155,8 +155,10 @@ export const Register = () => {
                 </div>
 
                 <h5 className="text-black text-2xl md:text-3xl uppercase mb-2 md:mb-3">activate account</h5>
-                <p className="text-sm max-w-72 mb-11">We have sent a verification email to the below address to
-                    set up your account.</p>
+                <div className="flex align-middle justify-center mb-11">
+                    <p className="text-sm max-w-72">We have sent a verification email to the below address to
+                        set up your account.</p>
+                </div>
 
                 <div className="mb-6">
                     <span
@@ -186,9 +188,20 @@ export const Register = () => {
                 })}>
                     <LivFormSuccess text={'Email has been sent'}/>
                 </div>
+
+                <div className={"absolute z-60 left-0 bottom-3 sm:bottom-7 w-full mb-5 md:mb-0 md:hidden"}>
+                    <div className="text-xs px-5 text-center">
+                        By continuing, you agree to LIVVY’s <Link to={'#'}
+                                                                  className="border border-b-black me-1 ms-1">Terms
+                        of Service</Link> and <Link to={'#'} className="border border-b-black me-1 ms-1">Privacy
+                        Policy</Link>.
+                    </div>
+                </div>
             </div>
 
-            <div className="md:absolute md:z-60 md:left-0 bottom-3 sm:bottom-7 w-full mb-5 md:mb-0">
+            <div className={clsx("md:absolute md:z-60 md:left-0 bottom-3 sm:bottom-7 w-full mb-5 md:mb-0", {
+                "hidden md:block": registerStage == 'verify'
+            })}>
                 <div className="text-xs px-5 text-center">
                     By continuing, you agree to LIVVY’s <Link to={'#'}
                                                               className="border border-b-black me-1 ms-1">Terms
