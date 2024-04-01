@@ -70,21 +70,19 @@ export const Onboarding = () => {
     return (
         <>
             <div id='onboarding' className='text-white pb-12'>
-                <div className="container pt-10 relative md:px-0 px-6">
-                    <div className='next-arrow absolute right-6 w-10 bottom-0 lg:bottom-auto lg:top-2/4 z-10 cursor-pointer'
-                         onClick={nextArrowHandler}>
-                        <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
-                    </div>
-
-                    <Slider {...settings} ref={sliderRef} className={'relative'}>
-                        <Slide index={1} title={'Capture'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_1.mp4'}
-                               description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
-                        <Slide index={2} title={'Add Your'} subTitle={'Inspiration'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_2.mp4'}
-                               description={'TK Upload your inspiration, add your favorite styles, or preferred color palette. Add your ideal budget.'}/>
-                        <Slide index={3} title={'Shop'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video.mp4'}
-                               description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
-                    </Slider>
+                <div className='next-arrow absolute right-6 w-10 bottom-0 lg:bottom-auto lg:top-2/4 z-10 cursor-pointer'
+                     onClick={nextArrowHandler}>
+                    <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                 </div>
+
+                <Slider {...settings} ref={sliderRef} className={'relative'}>
+                    <Slide index={1} title={'Capture'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_1.mp4'}
+                           description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
+                    <Slide index={2} title={'Add Your'} subTitle={'Inspiration'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_2.mp4'}
+                           description={'TK Upload your inspiration, add your favorite styles, or preferred color palette. Add your ideal budget.'}/>
+                    <Slide index={3} title={'Shop'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video.mp4'}
+                           description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
+                </Slider>
             </div>
         </>
     )
