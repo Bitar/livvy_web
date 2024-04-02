@@ -48,9 +48,7 @@ export const MasterLayout = () => {
                     {showHeader && <Header textColor={headerTextColor}/>}
 
                     <div id="content">
-                        <div className="container py-10 relative px-6">
                             <Outlet/>
-                        </div>
                     </div>
 
                     {showFooter && <Footer/>}

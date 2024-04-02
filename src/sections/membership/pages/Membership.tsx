@@ -11,7 +11,7 @@ export const Membership = () => {
     }, []);
 
     return (
-        <div>
+        <div className="container liv-container">
             <div className="flex justify-between items-center sm:mb-20 mb-8">
                 <h1 className={'text-4xl md:text-5xl lg:text-7xl uppercase'}>select your <br/> <span style={{fontFamily: "PP Editorial New"}}
                                                                              className="font-thin italic capitalize">membership</span>

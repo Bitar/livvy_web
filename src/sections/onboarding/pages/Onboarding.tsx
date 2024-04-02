@@ -68,7 +68,7 @@ export const Onboarding = () => {
     }
 
     return (
-        <>
+        <div className="container liv-container">
             <div id='onboarding' className='text-white pb-12'>
                 <div className='next-arrow absolute right-6 w-10 bottom-0 lg:bottom-auto lg:top-2/4 z-10 cursor-pointer'
                      onClick={nextArrowHandler}>
@@ -84,7 +84,7 @@ export const Onboarding = () => {
                            description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>
                 </Slider>
             </div>
-        </>
+        </div>
     )
 }
 
