@@ -1,5 +1,5 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import Slider from "react-slick";
@@ -10,18 +10,30 @@ import {faCircle as faCircleReg} from "@fortawesome/free-regular-svg-icons";
 export const CelebrityDesignerAll = () => {
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout()
 
+    const howItWorksSliderRef = useRef<any>(null);
+    const featuredSliderRef = useRef<any>(null);
+
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
     }, []);
 
-    const settings = {
+    const howItWorksSettings = {
         arrows: false,
         dots: false,
         infinite: false,
         speed: 500,
         slidesToShow: 2.5,
+        slidesToScroll: 1
+    };
+
+    const featuredSettings = {
+        arrows: false,
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
         slidesToScroll: 1
     };
 
@@ -78,22 +90,70 @@ export const CelebrityDesignerAll = () => {
             <div id="how-it-works" className="bg-black">
                 <div className="container liv-container">
                     <div className="flex justify-between items-center sm:mb-20 mb-8">
-                        <h1 className={'text-4xl md:text-5xl lg:text-7xl uppercase text-white'}>how it <br/> <span
+                        <h2 className={'text-4xl md:text-5xl lg:text-7xl uppercase text-white'}>how it <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
                             className="font-thin italic capitalize">works</span>
-                        </h1>
+                        </h2>
 
                         <p className="max-w-sm text-sm text-white">Lorem ipsum dolor sit amet, consectetur adipisicing
                             elit. Accusamus atque blanditiis ducimus iusto, nam quis ratione tenetur vero. Ad aliquid
                             cum deleniti dolore, ipsa libero perspiciatis provident quos unde velit.</p>
                     </div>
 
-                    <div>
-                        <Slider {...settings}>
-                            <Slide title={'Discover Your Celebrity Inspiration'} image={'/assets/celebrities/interior-1.jpeg'} description={'Explore our library to find your perfect style match! Whether you love cozy vibes, modern elegance, or something in between, you will be able to find a Celebrity Designer that speaks to your aesthetic.'}/>
-                            <Slide title={'Share Your Preferences'} image={'/assets/celebrities/interior-2.jpg'} description={'You\'ll have the opportunity to share your own design preferences with us and share what makes your dream home unique. You can input your preferred color schemes, furniture styles, and any specific elements you admire from your chosen celebrity\'s style.'}/>
-                            <Slide title={'Personalized Design Recommendations'} image={'/assets/celebrities/interior-3.jpeg'} description={'From this information, our AI technology will create customized design recommendations and apply them to your existing space, encompassing furniture pieces, decor items, color palettes, and layout options that perfectly blend the iconic style of your chosen celebrity with your individual tastes.'}/>
-                            <Slide title={'Lorem ipsum dolor sit amet'} image={'/assets/celebrities/interior-4.jpg'} description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto autem earum eveniet officia omnis quaerat sit. A adipisci cum, dolor eos excepturi odit quae qui totam. Exercitationem nisi, quos.'}/>
+                    <div className="relative">
+                        <button className="w-10 inline-block absolute -right-20 top-1/2 -translate-y-1/2 z-10" onClick={() => howItWorksSliderRef?.current?.slickNext()}>
+                            <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
+                        </button>
+
+                        <button className="w-10 inline-block absolute -left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100" onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
+                            <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
+                        </button>
+
+                        <Slider {...howItWorksSettings} ref={howItWorksSliderRef}>
+                            <Slide title={'Discover Your Celebrity Inspiration'}
+                                   image={'/assets/celebrities/interior-1.jpeg'}
+                                   description={'Explore our library to find your perfect style match! Whether you love cozy vibes, modern elegance, or something in between, you will be able to find a Celebrity Designer that speaks to your aesthetic.'}
+                                   index={1}/>
+                            <Slide title={'Share Your Preferences'} image={'/assets/celebrities/interior-2.jpg'}
+                                   description={'You\'ll have the opportunity to share your own design preferences with us and share what makes your dream home unique. You can input your preferred color schemes, furniture styles, and any specific elements you admire from your chosen celebrity\'s style.'}
+                                   index={2}/>
+                            <Slide title={'Personalized Design Recommendations'}
+                                   image={'/assets/celebrities/interior-3.jpeg'}
+                                   description={'From this information, our AI technology will create customized design recommendations and apply them to your existing space, encompassing furniture pieces, decor items, color palettes, and layout options that perfectly blend the iconic style of your chosen celebrity with your individual tastes.'}
+                                   index={3}/>
+                            <Slide title={'Lorem ipsum dolor sit amet'} image={'/assets/celebrities/interior-4.jpg'}
+                                   description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto autem earum eveniet officia omnis quaerat sit. A adipisci cum, dolor eos excepturi odit quae qui totam. Exercitationem nisi, quos.'}
+                                   index={4}/>
+                        </Slider>
+                    </div>
+                </div>
+            </div>
+
+            <div id="featured-interiors">
+                <div className="container liv-container">
+                    <h2 className={'text-4xl lg:text-5xl uppercase text-black text-center mb-12 mt-16'}>featured <span
+                        style={{fontFamily: "PP Editorial New"}}
+                        className="font-thin italic capitalize">interiors</span>
+                    </h2>
+
+                    <div className="relative mb-28">
+                        <button
+                            className="w-12 h-12 inline-block absolute right-0 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full"
+                            onClick={() => featuredSliderRef?.current?.slickNext()}>
+                            <img src="/assets/arrow-black.svg" alt="next nav arrow"
+                                 className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
+                        </button>
+
+                        <button
+                            className="w-12 h-12 inline-block absolute left-0 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full"
+                            onClick={() => featuredSliderRef?.current?.slickPrev()}>
+                            <img src="/assets/arrow-black.svg" alt="prev nav arrow" className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
+                        </button>
+
+                        <Slider {...featuredSettings} ref={featuredSliderRef}>
+                            <FeaturedSlide image={'/assets/celebrities/featured-interior-1.webp'} title={'crest house'} signature={'/assets/celebrities/signature.svg'}/>
+                            <FeaturedSlide image={'/assets/celebrities/featured-interior-2.jpeg'} title={'tree house'} signature={'/assets/celebrities/signature.svg'}/>
+                            <FeaturedSlide image={'/assets/celebrities/featured-interior-3.jpeg'} title={'other house'} signature={'/assets/celebrities/signature.svg'}/>
                         </Slider>
                     </div>
                 </div>
@@ -125,13 +185,39 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
     )
 }
 
-const Slide = ({image, title, description} : {image: string, title: string, description: string}) => {
+const Slide = ({image, title, description, index} : {image: string, title: string, description: string, index: number}) => {
     return (
-        <div className="mx-7">
-            <div className="w-full h-[600px] bg-cover bg-no-repeat bg-center mb-6" style={{backgroundImage: `url('${image}')`}}></div>
+        <div className="relative p-11">
+            <span className="text-7xl text-white absolute top-4 left-4 z-20">{`${index}`.padStart(2, '0')}</span>
+            <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
+
+            <div className="w-full h-[600px] bg-cover bg-no-repeat bg-center mb-6"
+                 style={{backgroundImage: `url('${image}')`}}></div>
 
             <p className="uppercase text-lg text-white mb-4">{title}</p>
             <p className="text-xs text-white">{description}</p>
         </div>
+    )
+}
+
+const FeaturedSlide = ({image, title, signature}: {image: string, title: string, signature: string }) => {
+    return (
+        <div className="px-32">
+            <div className="w-full h-[700px] bg-cover bg-no-repeat bg-center relative"
+                 style={{backgroundImage: `url('${image}')`}}>
+                <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-40 bg-black"></span>
+
+                <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 border border-white w-72 h-44">
+                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-full">
+                        <p className="text-center text-white uppercase text-2xl mb-2">{title}</p>
+
+                        <p className="uppercase text-white text-xs text-center flex justify-center items-baseline">
+                            <span className="me-2">designed by</span> <span className="border-b border-b-white"><img className="w-16 h-auto" src={signature} alt="signature"/></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     )
 }
