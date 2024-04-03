@@ -25,13 +25,29 @@ export const CelebrityDesignerAll = () => {
         infinite: false,
         speed: 500,
         slidesToShow: 2.5,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1.5,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
 
     const featuredSettings = {
         arrows: false,
         dots: false,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
@@ -41,13 +57,13 @@ export const CelebrityDesignerAll = () => {
         <>
             <div id="designers-list">
                 <div className="container liv-container">
-                    <div className="flex justify-between items-center sm:mb-20 mb-8">
-                        <h1 className={'text-4xl md:text-5xl lg:text-7xl uppercase'}>designer with <br/> <span
+                    <div className="md:flex md:justify-between md:items-center mb-8 mb:mb-20">
+                        <h1 className={'text-4xl lg:text-5xl xl:text-7xl uppercase mb-2 md:mb-0'}>designer with <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
                             className="font-thin italic capitalize">an expert</span>
                         </h1>
 
-                        <p className="max-w-sm text-sm">By partnering with some of the most well known industry icons, you
+                        <p className="md:max-w-sm text-sm">By partnering with some of the most well known industry icons, you
                             can
                             replicate their personalized style in your own home. Livvy’s technology has the ability to
                             mirror
@@ -55,7 +71,7 @@ export const CelebrityDesignerAll = () => {
                             preferences.</p>
                     </div>
 
-                    <div className="grid xl:grid-cols-4 xl:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-4">
                         <CelebrityCard name={'shea mcgee'} bio={'Interior Designer, Media Personality'} slug={'shea-mcgee'}
                                        image={'/assets/celebrities/shea-mcgee.png'} rate={'$100'}/>
                         <CelebrityCard name={'kim kardashian'} bio={'Entrepreneur, Media Personality'}
@@ -86,26 +102,25 @@ export const CelebrityDesignerAll = () => {
                 </div>
             </div>
 
-
             <div id="how-it-works" className="bg-black">
                 <div className="container liv-container">
-                    <div className="flex justify-between items-center sm:mb-20 mb-8">
-                        <h2 className={'text-4xl md:text-5xl lg:text-7xl uppercase text-white'}>how it <br/> <span
+                    <div className="md:flex md:justify-between md:items-center mb-20">
+                        <h2 className={'text-5xl lg:text-7xl uppercase text-white mb-4 md:mb-0'}>how it <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
                             className="font-thin italic capitalize">works</span>
                         </h2>
 
-                        <p className="max-w-sm text-sm text-white">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        <p className="md:max-w-sm text-sm text-white">Lorem ipsum dolor sit amet, consectetur adipisicing
                             elit. Accusamus atque blanditiis ducimus iusto, nam quis ratione tenetur vero. Ad aliquid
                             cum deleniti dolore, ipsa libero perspiciatis provident quos unde velit.</p>
                     </div>
 
-                    <div className="relative">
-                        <button className="w-10 inline-block absolute -right-20 top-1/2 -translate-y-1/2 z-10" onClick={() => howItWorksSliderRef?.current?.slickNext()}>
+                    <div className="relative w-4/5 m-auto">
+                        <button className="w-10 hidden sm:inline-block absolute sm:-right-4 lg:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10" onClick={() => howItWorksSliderRef?.current?.slickNext()}>
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
-                        <button className="w-10 inline-block absolute -left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100" onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
+                        <button className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100" onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
@@ -131,7 +146,7 @@ export const CelebrityDesignerAll = () => {
 
             <div id="featured-interiors">
                 <div className="container liv-container">
-                    <h2 className={'text-4xl lg:text-5xl uppercase text-black text-center mb-12 mt-16'}>featured <span
+                    <h2 className={'text-5xl uppercase text-black text-center mb-12 mt-16'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
                     </h2>
@@ -170,12 +185,12 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
     rate: string
 }) => {
     return (
-        <div className="mb-12">
+        <div className="mb-6 md:mb-12">
             <div
                 className={`w-full aspect-[3/4] bg-cover bg-no-repeat bg-center rounded-lg relative mb-2.5`}
                 style={{backgroundImage: `url(${image})`}}>
                 <span
-                    className="uppercase px-3 py-2 min-w-24 rounded-full border border-black absolute z-10 right-3 top-3 text-xs bg-liv-tan">{rate}/design</span>
+                    className="uppercase px-2 py-1 lg:px-3 lg:py-2 min-w-24 rounded-full border border-black absolute z-10 right-3 top-3 text-xs bg-liv-tan">{rate}/design</span>
                 <Link to={`/celebrities-designers/${slug}`} className="absolute top-0 left-0 h-full w-full z-20"/>
             </div>
 
@@ -187,7 +202,7 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
 
 const Slide = ({image, title, description, index} : {image: string, title: string, description: string, index: number}) => {
     return (
-        <div className="relative p-11">
+        <div className="relative md:p-11 sm:p-8 p-0">
             <span className="text-7xl text-white absolute top-4 left-4 z-20">{`${index}`.padStart(2, '0')}</span>
             <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
 
@@ -202,7 +217,7 @@ const Slide = ({image, title, description, index} : {image: string, title: strin
 
 const FeaturedSlide = ({image, title, signature}: {image: string, title: string, signature: string }) => {
     return (
-        <div className="px-32">
+        <div className="md:px-24 lg:px-32">
             <div className="w-full h-[700px] bg-cover bg-no-repeat bg-center relative"
                  style={{backgroundImage: `url('${image}')`}}>
                 <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-40 bg-black"></span>
