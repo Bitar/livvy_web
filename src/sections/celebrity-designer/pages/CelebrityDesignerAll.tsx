@@ -35,8 +35,16 @@ export const CelebrityDesignerAll = () => {
                 }
             },
             {
-                breakpoint: 768,
+                breakpoint: 890,
                 settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 640,
+                settings: {
+                    autoplay: true,
                     slidesToShow: 1,
                     slidesToScroll: 1
                 }
@@ -50,7 +58,15 @@ export const CelebrityDesignerAll = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 640,
+                settings: {
+                    autoplay: true
+                }
+            }
+        ]
     };
 
     return (
@@ -58,12 +74,14 @@ export const CelebrityDesignerAll = () => {
             <div id="designers-list">
                 <div className="container liv-container">
                     <div className="md:flex md:justify-between md:items-center mb-8 mb:mb-20">
-                        <h1 className={'text-4xl lg:text-5xl xl:text-7xl uppercase mb-2 md:mb-0'}>designer with <br/> <span
-                            style={{fontFamily: "PP Editorial New"}}
-                            className="font-thin italic capitalize">an expert</span>
+                        <h1 className={'text-4xl lg:text-5xl xl:text-7xl uppercase mb-2 md:mb-0'}>designer with <br/>
+                            <span
+                                style={{fontFamily: "PP Editorial New"}}
+                                className="font-thin italic capitalize">an expert</span>
                         </h1>
 
-                        <p className="md:max-w-sm text-sm">By partnering with some of the most well known industry icons, you
+                        <p className="md:max-w-sm text-sm">By partnering with some of the most well known industry
+                            icons, you
                             can
                             replicate their personalized style in your own home. Livvy’s technology has the ability to
                             mirror
@@ -72,7 +90,8 @@ export const CelebrityDesignerAll = () => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-4">
-                        <CelebrityCard name={'shea mcgee'} bio={'Interior Designer, Media Personality'} slug={'shea-mcgee'}
+                        <CelebrityCard name={'shea mcgee'} bio={'Interior Designer, Media Personality'}
+                                       slug={'shea-mcgee'}
                                        image={'/assets/celebrities/shea-mcgee.png'} rate={'$100'}/>
                         <CelebrityCard name={'kim kardashian'} bio={'Entrepreneur, Media Personality'}
                                        slug={'kim-kardashian'} image={'/assets/celebrities/kim-kardashian.jpg'}
@@ -81,7 +100,8 @@ export const CelebrityDesignerAll = () => {
                                        slug={'scott-brothers'} image={'/assets/celebrities/drew-and-jonathan-scott.jpg'}
                                        rate={'$100'}/>
                         <CelebrityCard name={'nate berkus'} bio={'Interior Designer, Media Personality'}
-                                       slug={'nate-berkus'} image={'/assets/celebrities/nate-berkus.jpg'} rate={'$100'}/>
+                                       slug={'nate-berkus'} image={'/assets/celebrities/nate-berkus.jpg'}
+                                       rate={'$100'}/>
                         <CelebrityCard name={'joanna gaines'} bio={'Interior Designer, Media Personality'}
                                        slug={'joanna-gaines'} image={'/assets/celebrities/joanna-gaines.png'}
                                        rate={'$100'}/>
@@ -91,7 +111,8 @@ export const CelebrityDesignerAll = () => {
                         <CelebrityCard name={'bridgette romanek'} bio={'Interior Designer, Media Personality'}
                                        slug={'bridgette-romanek'} image={'/assets/celebrities/bridgette-romanek.png'}
                                        rate={'$100'}/>
-                        <CelebrityCard name={'galey alix'} bio={'Interior Designer, Media Personality'} slug={'galey-alix'}
+                        <CelebrityCard name={'galey alix'} bio={'Interior Designer, Media Personality'}
+                                       slug={'galey-alix'}
                                        image={'/assets/celebrities/galey-alix.jpg'} rate={'$100'}/>
                     </div>
 
@@ -104,23 +125,28 @@ export const CelebrityDesignerAll = () => {
 
             <div id="how-it-works" className="bg-black">
                 <div className="container liv-container">
-                    <div className="md:flex md:justify-between md:items-center mb-20">
+                    <div className="md:flex md:justify-between md:items-center mb-8 md:mb-16 lg:mb-20">
                         <h2 className={'text-5xl lg:text-7xl uppercase text-white mb-4 md:mb-0'}>how it <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
                             className="font-thin italic capitalize">works</span>
                         </h2>
 
-                        <p className="md:max-w-sm text-sm text-white">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        <p className="md:max-w-sm text-sm text-white">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing
                             elit. Accusamus atque blanditiis ducimus iusto, nam quis ratione tenetur vero. Ad aliquid
                             cum deleniti dolore, ipsa libero perspiciatis provident quos unde velit.</p>
                     </div>
 
-                    <div className="relative w-4/5 m-auto">
-                        <button className="w-10 hidden sm:inline-block absolute sm:-right-4 lg:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10" onClick={() => howItWorksSliderRef?.current?.slickNext()}>
+                    <div className="relative lg:w-4/5 m-auto">
+                        <button
+                            className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10"
+                            onClick={() => howItWorksSliderRef?.current?.slickNext()}>
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
-                        <button className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100" onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
+                        <button
+                            className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100"
+                            onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
@@ -146,29 +172,33 @@ export const CelebrityDesignerAll = () => {
 
             <div id="featured-interiors">
                 <div className="container liv-container">
-                    <h2 className={'text-5xl uppercase text-black text-center mb-12 mt-16'}>featured <span
+                    <h2 className={'text-5xl uppercase text-black text-center mt-6 mb-6 md:mb-12 md:mt-16'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
                     </h2>
 
-                    <div className="relative mb-28">
+                    <div className="relative mb-8 md:mb-28">
                         <button
-                            className="w-12 h-12 inline-block absolute right-0 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full"
+                            className="w-12 h-12 absolute hidden md:inline-block -right-16 md:right-0 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full"
                             onClick={() => featuredSliderRef?.current?.slickNext()}>
                             <img src="/assets/arrow-black.svg" alt="next nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
                         <button
-                            className="w-12 h-12 inline-block absolute left-0 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full"
+                            className="w-12 h-12 hidden md:inline-block absolute -left-16 md:left-0 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full"
                             onClick={() => featuredSliderRef?.current?.slickPrev()}>
-                            <img src="/assets/arrow-black.svg" alt="prev nav arrow" className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
+                            <img src="/assets/arrow-black.svg" alt="prev nav arrow"
+                                 className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
                         <Slider {...featuredSettings} ref={featuredSliderRef}>
-                            <FeaturedSlide image={'/assets/celebrities/featured-interior-1.webp'} title={'crest house'} signature={'/assets/celebrities/signature.svg'}/>
-                            <FeaturedSlide image={'/assets/celebrities/featured-interior-2.jpeg'} title={'tree house'} signature={'/assets/celebrities/signature.svg'}/>
-                            <FeaturedSlide image={'/assets/celebrities/featured-interior-3.jpeg'} title={'other house'} signature={'/assets/celebrities/signature.svg'}/>
+                            <FeaturedSlide image={'/assets/celebrities/featured-interior-1.webp'} title={'crest house'}
+                                           signature={'/assets/celebrities/signature.svg'}/>
+                            <FeaturedSlide image={'/assets/celebrities/featured-interior-2.jpeg'} title={'tree house'}
+                                           signature={'/assets/celebrities/signature.svg'}/>
+                            <FeaturedSlide image={'/assets/celebrities/featured-interior-3.jpeg'} title={'other house'}
+                                           signature={'/assets/celebrities/signature.svg'}/>
                         </Slider>
                     </div>
                 </div>
@@ -200,13 +230,18 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
     )
 }
 
-const Slide = ({image, title, description, index} : {image: string, title: string, description: string, index: number}) => {
+const Slide = ({image, title, description, index}: {
+    image: string,
+    title: string,
+    description: string,
+    index: number
+}) => {
     return (
         <div className="relative md:p-11 sm:p-8 p-0">
             <span className="text-7xl text-white absolute top-4 left-4 z-20">{`${index}`.padStart(2, '0')}</span>
             <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
 
-            <div className="w-full h-[600px] bg-cover bg-no-repeat bg-center mb-6"
+            <div className="w-full h-[400px] md:h-[600px] bg-cover bg-no-repeat bg-center mb-6"
                  style={{backgroundImage: `url('${image}')`}}></div>
 
             <p className="uppercase text-lg text-white mb-4">{title}</p>
@@ -215,19 +250,21 @@ const Slide = ({image, title, description, index} : {image: string, title: strin
     )
 }
 
-const FeaturedSlide = ({image, title, signature}: {image: string, title: string, signature: string }) => {
+const FeaturedSlide = ({image, title, signature}: { image: string, title: string, signature: string }) => {
     return (
         <div className="md:px-24 lg:px-32">
-            <div className="w-full h-[700px] bg-cover bg-no-repeat bg-center relative"
+            <div className="w-full h-[400px] md:h-[700px] bg-cover bg-no-repeat bg-center relative"
                  style={{backgroundImage: `url('${image}')`}}>
                 <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-40 bg-black"></span>
 
-                <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 border border-white w-72 h-44">
+                <div
+                    className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 border border-white w-56 sm:w-72 h-44">
                     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-full">
                         <p className="text-center text-white uppercase text-2xl mb-2">{title}</p>
 
                         <p className="uppercase text-white text-xs text-center flex justify-center items-baseline">
-                            <span className="me-2">designed by</span> <span className="border-b border-b-white"><img className="w-16 h-auto" src={signature} alt="signature"/></span>
+                            <span className="me-2">designed by</span> <span className="border-b border-b-white"><img
+                            className="w-16 h-auto" src={signature} alt="signature"/></span>
                         </p>
                     </div>
                 </div>
