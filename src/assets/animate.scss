@@ -93,3 +93,16 @@ button.liv-white-hover, a.liv-white-hover {
     }
   }
 }
+
+// Animate the pause button over video in celebrity profile
+#celebrity-profile-intro-video {
+  .pause-button {
+    display: none;
+  }
+
+  &:hover {
+    .pause-button.active {
+      display: block;
+    }
+  }
+}

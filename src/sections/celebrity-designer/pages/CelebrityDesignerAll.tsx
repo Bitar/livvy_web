@@ -1,11 +1,8 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import Slider from "react-slick";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircle} from "@fortawesome/free-solid-svg-icons";
-import {faCircle as faCircleReg} from "@fortawesome/free-regular-svg-icons";
 
 export const CelebrityDesignerAll = () => {
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout()
@@ -221,10 +218,10 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
                 style={{backgroundImage: `url(${image})`}}>
                 <span
                     className="uppercase px-2 py-1 lg:px-3 lg:py-2 min-w-24 rounded-full border border-black absolute z-10 right-3 top-3 text-xs bg-liv-tan">{rate}/design</span>
-                <Link to={`/celebrities-designers/${slug}`} className="absolute top-0 left-0 h-full w-full z-20"/>
+                <Link to={`/celebrity-designers/${slug}`} className="absolute top-0 left-0 h-full w-full z-20"/>
             </div>
 
-            <Link to={`/celebrities-designers/${slug}`} className="uppercase block">{name}</Link>
+            <Link to={`/celebrity-designers/${slug}`} className="uppercase block">{name}</Link>
             <p className="text-xs">{bio}</p>
         </div>
     )
