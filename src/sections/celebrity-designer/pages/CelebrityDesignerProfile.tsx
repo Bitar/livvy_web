@@ -3,10 +3,9 @@ import React, {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInstagram, faPinterest, faTiktok} from "@fortawesome/free-brands-svg-icons";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {faPause, faPlay, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faMinus, faPause, faPlay, faPlus} from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import Slider from "react-slick";
-import {act} from "react-dom/test-utils";
 
 export const CelebrityDesignerProfile = () => {
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout()
@@ -23,10 +22,23 @@ export const CelebrityDesignerProfile = () => {
         arrows: false,
         centerMode: true,
         infinite: true,
-        centerPadding: "500px",
+        centerPadding: "200px",
         slidesToShow: 1,
         speed: 500,
-        adaptiveHeight: true
+        responsive: [
+            {
+                breakpoint: 1023,
+                settings: {
+                    centerPadding: '100px'
+                }
+            },
+            {
+                breakpoint: 890,
+                settings: {
+                    centerPadding: '70px'
+                }
+            }
+        ]
     };
 
     useEffect(() => {
@@ -59,35 +71,37 @@ export const CelebrityDesignerProfile = () => {
     return (
         <div>
             <div id="intro">
-                <div className="grid grid-cols-2">
+                <div className="md:grid md:grid-cols-2">
                     <div
-                        className="bg-[url('/assets/celebrities/shea-mcgee.png')] bg-cover bg-no-repeat bg-center w-full h-screen"></div>
+                        className="bg-[url('/assets/celebrities/shea-mcgee.png')] bg-cover bg-no-repeat bg-center w-full h-[460px] md:h-screen"></div>
 
                     <div className="relative">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-full px-16">
-                            <h1 className="uppercase text-7xl">studio <br/> <span
+                        <div className="md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:z-20 w-full px-8 lg:px-16 py-10 md:py-28 lg:py-36">
+                            <h1 className="uppercase text-5xl lg:text-7xl">studio <br/> <span
                                 style={{fontFamily: "PP Editorial New"}}
-                                className="font-thin italic capitalize text-6xl">McGee</span></h1>
-                            <div className="flex justify-start items-center mb-3.5">
-                                <h2 className="text-sm border-e border-e-black inline-block pe-2 me-2">Interior
+                                className="font-thin italic capitalize text-5xl lg:text-6xl">McGee</span></h1>
+                            <div className="lg:flex lg:justify-start lg:items-center mb-3.5">
+                                <h2 className="text-sm lg:border-e lg:border-e-black inline-block lg:pe-2 lg:me-2">Interior
                                     Designer,
                                     Media Personality</h2>
-                                <div className="inline-block">
+                                <div className="lg:inline-block">
                                     <div className="flex justify-start items-center">
-                                        <FontAwesomeIcon icon={faInstagram} className="text-lg me-2.5"/>
-                                        <FontAwesomeIcon icon={faTiktok} className="text-lg me-2.5"/>
-                                        <FontAwesomeIcon icon={faPinterest} className="text-lg"/>
+                                        <a href="https://www.instagram.com/" target={'_blank'}><FontAwesomeIcon icon={faInstagram} className="text-lg me-2.5"/></a>
+
+                                        <a href="https://www.tiktok.com/" target={'_blank'}><FontAwesomeIcon icon={faTiktok} className="text-lg me-2.5"/></a>
+
+                                        <a href="https://pinterest.com/" target={'_blank'}><FontAwesomeIcon icon={faPinterest} className="text-lg"/></a>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div className="mb-8">
+                            <div className="mb-6 md:mb-8">
                                 <span
                                     className="uppercase px-2 py-1 lg:px-3 lg:py-2 min-w-24 rounded-full border border-black text-xs bg-liv-tan">$100/design</span>
                             </div>
 
-                            <p className="mb-8 text-sm">
+                            <p className="mb-4 md:mb-8 text-sm">
                                 Led by husband-and-wife team Syd (Chief Executive Officer) and Shea (Chief Creative
                                 Officer), Studio McGee Inc. is involved in both the interior design and product sides of
                                 the home design business with the company’s portfolio of brands, Studio McGee and McGee
@@ -95,7 +109,7 @@ export const CelebrityDesignerProfile = () => {
                                 multi-disciplinary design house and content hub since its inception in 2014.
                             </p>
 
-                            <p className="mb-8 text-sm">
+                            <p className="mb-4 md:mb-8 text-sm">
                                 In addition to our portfolio of luxury design clients both domestic and international,
                                 Studio McGee creates thoughtful, guide-focused design and lifestyle content for fans to
                                 replicate the Studio McGee aesthetic on their own, the Netflix-based television series
@@ -108,7 +122,7 @@ export const CelebrityDesignerProfile = () => {
                                 <div className="inline-block">
                                     <LivButton as={'a'} text={'create a custom design'} textColor={'text-white'}
                                                borderColor={'border-black'} bgColor={'bg-black'} url={'#'}
-                                               style={'thin'}/>
+                                               style={'thin'} className="text-sm md:text-base"/>
                                 </div>
                             </div>
 
@@ -144,9 +158,9 @@ export const CelebrityDesignerProfile = () => {
                        className="w-full h-auto"/>
             </div>
 
-            <div id="featured-interiors" className="py-20">
-                <div className="mb-16">
-                    <h3 className={'text-4xl uppercase mb-2 md:mb-0 text-center'}>featured <span
+            <div id="featured-interiors" className="py-14 lg:py-20">
+                <div className="mb-8 lg:mb-16">
+                    <h3 className={'text-2xl md:text-4xl uppercase mb-2 md:mb-0 text-center'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
                     </h3>
@@ -165,8 +179,9 @@ export const CelebrityDesignerProfile = () => {
                     </div>
                 </div>
 
-                <div id="tab-portfolio" className={clsx({
-                    "hidden": activeTab == 'livvy'
+                <div id="tab-portfolio" className={clsx("animate__animated", {
+                    "hidden": activeTab != 'portfolio',
+                    "animate__fadeIn": activeTab == 'portfolio'
                 })}>
                     <Slider {...settings}>
                         <Slide image={'/assets/celebrities/featured-interior-1.webp'}/>
@@ -176,8 +191,9 @@ export const CelebrityDesignerProfile = () => {
                     </Slider>
                 </div>
 
-                <div id="tab-livvy" className={clsx({
-                    "hidden": activeTab == 'portfolio'
+                <div id="tab-livvy" className={clsx("animate__animated", {
+                    "hidden": activeTab != 'livvy',
+                    "animate__fadeIn": activeTab == 'livvy'
                 })}>
                     <Slider {...settings}>
                         <Slide image={'/assets/celebrities/featured-interior-1.webp'}/>
@@ -188,71 +204,37 @@ export const CelebrityDesignerProfile = () => {
                 </div>
             </div>
 
-            <div id="how-we-make-expert" className="bg-black p-20">
-                <div className="grid grid-cols-2">
-                    <div>
-                        <img src="/assets/celebrities/interior-5.png" alt="" className="w-full h-auto"/>
-                    </div>
+            <div id="how-we-make-expert" className="bg-black py-10">
+                <div className="container liv-container">
+                    <div className="md:grid md:grid-cols-2">
+                        <div
+                            className="w-full h-[400px] md:h-full bg-[url('/assets/celebrities/interior-5.png')] bg-cover bg-no-repeat bg-center"></div>
 
-                    <div className="ps-24 relative">
-                        <div className="mb-14">
-                            <span className="uppercase text-lg text-white">how we</span>
-                            <h3 className="uppercase text-7xl text-white">make expert <br/> <span
-                                style={{fontFamily: "PP Editorial New"}}
-                                className="font-thin italic capitalize text-6xl">design accessible</span></h3>
-                        </div>
-
-                        <div>
-                            <div className="border-t border-t-white text-white py-5">
-                                <div className="flex justify-between items-center">
-                                    <span className="uppercase me-2.5 text-sm">Our AI learns from thousands of images of
-                                        the
-                                        designer’s work</span>
-                                    <button><FontAwesomeIcon icon={faPlus}/></button>
-                                </div>
-
-                                <p className="">
-                                    You will need a minimum of four photos to create your 3D model. To take the photo,
-                                    stand against the opposing wall on all four room walls or room boundaries. The more
-                                    photos you include, the more details and precision will be allowed to process the
-                                    accurate scaling and size. A video is also acceptable. To take a video of your
-                                    space, turn your camera or smart device so the image is horizontal then slowly move
-                                    about your space capturing floor to ceiling range as you move. Again, the slower you
-                                    move and the more detail that is captured, the easier it will be for our system to
-                                    process the precision of your space.
-                                </p>
+                        <div className="md:ps-10 xl:ps-24 relative mt-6 md:mt-64">
+                            <div className="mb-8 xl:mb-14">
+                                <span className="uppercase text-lg text-white">how we</span>
+                                <h3 className="uppercase text-4xl lg:text-5xl xl:text-7xl text-white">make expert <br/> <span
+                                    style={{fontFamily: "PP Editorial New"}}
+                                    className="font-thin italic capitalize text-3xl lg:text-6xl">design accessible</span></h3>
                             </div>
 
-                            <div className="border-t border-t-white text-white py-5">
-                                <div className="flex justify-between items-center">
-                                    <span className="uppercase me-2.5 text-sm">Our technology takes those images and
-                                        creates a curated design</span>
-                                    <button><FontAwesomeIcon icon={faPlus}/></button>
-                                </div>
-                            </div>
+                            <div>
+                                <FAQ title={'Our AI learns from thousands of images of the designer’s work'}
+                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                            <div className="border-t border-t-white text-white py-5">
-                                <div className="flex justify-between items-center">
-                                    <span className="uppercase me-2.5 text-sm">The design is sent to the designer’s
-                                        team</span>
-                                    <button><FontAwesomeIcon icon={faPlus}/></button>
-                                </div>
-                            </div>
+                                <FAQ title={'Our technology takes those images and creates a curated design'}
+                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                            <div className="border-t border-t-white text-white py-5">
-                                <div className="flex justify-between items-center">
-                                    <span className="uppercase me-2.5 text-sm">Get the designer’s stamp of
-                                        approval</span>
-                                    <button><FontAwesomeIcon icon={faPlus}/></button>
-                                </div>
-                            </div>
+                                <FAQ title={'The design is sent to the designer’s team'}
+                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                            <div className="border-t border-t-white border-b border-b-white text-white py-5">
-                                <div className="flex justify-between items-center">
-                                    <span className="uppercase me-2.5 text-sm">Receive a beautiful space without
-                                        breaking the bank</span>
-                                    <button><FontAwesomeIcon icon={faPlus}/></button>
-                                </div>
+                                <FAQ title={'Get the designer’s stamp of approval'}
+                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
+
+                                <FAQ title={'Receive a beautiful space without breaking the bank'}
+                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}
+                                     isLast={true}
+                                />
                             </div>
                         </div>
                     </div>
@@ -264,10 +246,32 @@ export const CelebrityDesignerProfile = () => {
 
 const Slide = ({image}: { image: string }) => {
     return (
-        <div className="px-16">
-            <div className="w-full h-[700px] bg-cover bg-no-repeat bg-center"
+        <div className="px-4 md:px-8 lg:px-16">
+            <div className="w-full h-[260px] md:h-[500px] lg:h-[700px] bg-cover bg-no-repeat bg-center"
                  style={{backgroundImage: `url('${image}')`}}></div>
         </div>
 
+    )
+}
+
+const FAQ = ({title, text, isLast = false}: { title: string, text: string, isLast?: boolean }) => {
+    const [show, setShow] = useState<boolean>(false);
+
+    return (
+        <div className={clsx("border-t border-t-white text-white py-4 xl:py-5", {
+            'border-b border-b-white': isLast
+        })}>
+            <div className="flex justify-between items-center">
+                <span className="uppercase me-2.5 text-xs lg:text-sm">{title}</span>
+                <button><FontAwesomeIcon icon={show ? faMinus : faPlus} onClick={() => setShow(!show)}/></button>
+            </div>
+
+            <p className={clsx("mt-4 me-6 text-sm animate__animated", {
+                'hidden': !show,
+                'animate__fadeIn': show
+            })}>
+                {text}
+            </p>
+        </div>
     )
 }
