@@ -18,7 +18,8 @@ interface LivButtonProps {
     className?: string
     isSubmitting?: boolean
     isValid?: boolean
-    style?: "thick" | "thin"
+    style?: "thick" | "thin",
+    onWhiteBg?: boolean
 }
 
 type LivButtonConditionalProps = | {
@@ -48,10 +49,11 @@ export const LivButton = ({
                               isValid = true,
                               onClickHandler,
                               url,
-                              style = 'thick'
+                              style = 'thick',
+                              onWhiteBg = false
                           }: LivButtonProps & LivButtonConditionalProps) => {
     const hoverAnimation = bgColor == 'bg-black' ? 'liv-white-hover' : 'liv-black-hover';
-    const hoverBorder = hoverAnimation == 'liv-black-hover' ? 'hover:border-black' : 'hover:border-white'
+    const hoverBorder = hoverAnimation == 'liv-black-hover' ? 'hover:border-black' : (onWhiteBg ? 'hover:border-black' : 'hover:border-white')
 
     return (
         <>
@@ -79,7 +81,7 @@ export const LivButton = ({
 
             {as == 'a' && url && (
                 <Link to={url}
-                      className={clsx(`flex items-center justify-center uppercase px-5 border min-w-32 md:min-w-40 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
+                      className={clsx(`inline-flex items-center justify-center uppercase px-5 border min-w-32 md:min-w-40 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
                           'rounded-full': rounded,
                           'w-full': fullWidth,
                           'py-4': style == 'thick',

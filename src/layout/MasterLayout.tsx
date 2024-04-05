@@ -5,6 +5,7 @@ import {Footer} from "./Footer.tsx";
 import {Background} from "../modules/background/Background.tsx";
 import {MasterLayoutProvider} from "./MasterLayoutProvider.tsx";
 import {useEffect, useState} from "react";
+import {ModalProvider} from "./ModalProvider.tsx";
 
 export const MasterLayout = () => {
     const [showHeader, setShowHeader] = useState<boolean>(true)
@@ -15,8 +16,10 @@ export const MasterLayout = () => {
     const [backgroundColor, setBackgroundColor] = useState<string | null>(null);
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
 
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
     useEffect(() => {
-        if(backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
+        if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
             // the header text should be black
             setHeaderTextColor('black');
         } else {
@@ -38,21 +41,26 @@ export const MasterLayout = () => {
                 backgroundColor,
                 setBackgroundColor
             }}>
-                <div id="wrapper">
-                    {
-                        backgroundType === "image" || backgroundType == "video" ?
-                            <Background type={`${backgroundType}`} url={backgroundUrl}/> :
-                            <Background type={`${backgroundType}`} color={backgroundColor}/>
-                    }
+                <ModalProvider.Provider value={{
+                    isOpen: isModalOpen,
+                    setIsOpen: setIsModalOpen
+                }}>
+                    <div id="wrapper">
+                        {
+                            backgroundType === "image" || backgroundType == "video" ?
+                                <Background type={`${backgroundType}`} url={backgroundUrl}/> :
+                                <Background type={`${backgroundType}`} color={backgroundColor}/>
+                        }
 
-                    {showHeader && <Header textColor={headerTextColor}/>}
+                        {showHeader && <Header textColor={headerTextColor}/>}
 
-                    <div id="content">
+                        <div id="content">
                             <Outlet/>
-                    </div>
+                        </div>
 
-                    {showFooter && <Footer/>}
-                </div>
+                        {showFooter && <Footer/>}
+                    </div>
+                </ModalProvider.Provider>
             </MasterLayoutProvider.Provider>
         </PageDataProvider>
     )
