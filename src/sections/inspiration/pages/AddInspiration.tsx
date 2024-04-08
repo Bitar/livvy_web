@@ -92,7 +92,7 @@ export const AddInspiration = () => {
                                            bgColor={'bg-white'} textColor={'text-black'} style={'thin'}
                                            className={"text-sm xl:text-base mb-4 lg:mb-0"}
                                            onClickHandler={() => setIsOpen(true)}/>
-                                <LivButton as={'a'} url={'/inspiration/library'} text={'browse our library'}
+                                <LivButton as={'a'} url={'/inspiration/browse'} text={'browse our library'}
                                            borderColor={'border-black'} bgColor={'bg-white'} textColor={'text-black'}
                                            style={'thin'} className={'lg:ms-4 text-sm xl:text-base'}/>
                             </div>
