@@ -18,6 +18,8 @@ import {
 } from "../core/form.ts";
 import Select from "react-select";
 import {useNavigate} from "react-router-dom";
+import FormErrorMessage from "rsuite/FormErrorMessage";
+import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 
 const preferenceOptions = [
     {
@@ -124,7 +126,7 @@ export const AddInspiration = () => {
                                             {({getRootProps, getInputProps}) => (
                                                 <section>
                                                     <div {...getRootProps()}
-                                                         className="h-80 w-full sm:w-[400px] relative rounded-3xl border-2 border-dashed border-slate-300 cursor-pointer">
+                                                         className="h-80 w-full lg:w-[400px] relative rounded-3xl border-2 border-dashed border-slate-300 cursor-pointer">
                                                         <input {...getInputProps()} />
 
                                                         <div
