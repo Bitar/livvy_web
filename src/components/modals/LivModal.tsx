@@ -24,7 +24,7 @@ export const LivModal: FC<Props> = ({children}) => {
                 'animate__fadeOut': isClosing,
                 'animate__fadeIn': isOpen
             })}>
-            <div className='absolute z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white h-full w-full sm:h-auto sm:w-auto px-12 py-8'>
+            <div className='fixed top-0 left-0 overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 bg-white h-full w-full sm:h-auto sm:w-4/5 lg:w-auto px-12 py-8'>
                 <button className="absolute top-1.5 right-2 z-50" onClick={() => setIsClosing(true)}><FontAwesomeIcon icon={faXmark} /></button>
 
                 {children}
