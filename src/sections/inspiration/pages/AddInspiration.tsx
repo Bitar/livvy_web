@@ -1,5 +1,5 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
-import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {LivModal} from "../../../components/modals/LivModal.tsx";
 import Dropzone from "react-dropzone";
@@ -8,33 +8,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
 import {useModal} from "../../../layout/ModalProvider.tsx";
-import {ErrorMessage, Form, Formik, FormikProps} from "formik";
+import {ErrorMessage, Form, Formik} from "formik";
 import {
     defaultInspirationPreferenceFields,
     defaultUploadInspirationFields,
-    InspirationPreferenceFormFields, InspirationPreferenceSchema,
+    InspirationPreferenceFormFields,
     UploadInspirationFormFields,
     UploadInspirationSchema
 } from "../core/form.ts";
-import Select from "react-select";
 import {useNavigate} from "react-router-dom";
-import FormErrorMessage from "rsuite/FormErrorMessage";
-import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
-
-const preferenceOptions = [
-    {
-        id: 1,
-        name: "furniture"
-    },
-    {
-        id: 2,
-        name: "color palette"
-    },
-    {
-        id: 3,
-        name: "design style"
-    }
-]
+import {InspirationFeedback} from "../partials/InspirationFeedback.tsx";
 
 export const AddInspiration = () => {
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout();
@@ -172,69 +155,10 @@ export const AddInspiration = () => {
                 <div className={clsx({
                     'hidden': step != 'details'
                 })}>
-                    <h3 className='text-2xl italic capitalize font-thin mb-7'
-                        style={{fontFamily: "PP Editorial New"}}>What do you like about these images?</h3>
-
-                    <Formik initialValues={preferenceForm} onSubmit={handleSubmit}
-                            validationSchema={InspirationPreferenceSchema} enableReinitialize>
-                        {
-                            (formik) => (
-                                <Form>
-                                    <div className='sm:grid sm:grid-cols-2 lg:grid-cols-none lg:flex justify-between items-center gap-6'>
-                                        {
-                                            uploadForm.files?.map((inspiration, idx) => <InspirationDetail
-                                                image={URL.createObjectURL(inspiration)} index={idx + 1} key={idx}
-                                                formik={formik} form={preferenceForm} setForm={setPreferenceForm}/>)
-                                        }
-                                    </div>
-
-                                    <div className="mt-16 flex justify-end">
-                                        <LivButton as={'button'} type={'submit'} text={'next'}
-                                                   borderColor={'border-black'} bgColor={'bg-black'}
-                                                   textColor={'text-white'} onWhiteBg={true}
-                                                   className={'w-full sm:w-auto'}
-                                                   isSubmitting={formik.isSubmitting}
-                                                   isValid={formik.isValid}
-                                        />
-                                    </div>
-                                </Form>
-                            )
-                        }
-                    </Formik>
+                    <InspirationFeedback form={preferenceForm} setForm={setPreferenceForm} files={uploadForm.files} handleSubmit={handleSubmit} />
                 </div>
             </LivModal>
         </div>
 
-    )
-}
-
-const InspirationDetail = ({image, index, formik, form, setForm}: {
-    image: string,
-    index: number,
-    formik: FormikProps<InspirationPreferenceFormFields>,
-    form: InspirationPreferenceFormFields,
-    setForm: Dispatch<SetStateAction<InspirationPreferenceFormFields>>
-}) => {
-    return (
-        <div className="w-full lg:w-52 mb-10 sm:mb-0">
-            <div
-                className={`w-full h-72 bg-cover bg-no-repeat bg-center mb-4`}
-                style={{background: `url(${image})`}}></div>
-
-            <Select name={`preference${index}`}
-                    className={'liv-select'}
-                    classNamePrefix={'liv-select'}
-                    isSearchable={false}
-                    options={preferenceOptions}
-                    getOptionLabel={(preference) => preference.name}
-                    getOptionValue={(preference) => preference.id.toString()}
-                    placeholder={'choose an option'}
-                    onChange={(e) => setForm({...form, [`preference${index}`]: e.id})}
-            />
-
-            <div className={`text-red-600 text-sm mt-2 text-left`}>
-                {formik.errors[`preference${index}`] ? formik.errors[`preference${index}`] : null}
-            </div>
-        </div>
     )
 }

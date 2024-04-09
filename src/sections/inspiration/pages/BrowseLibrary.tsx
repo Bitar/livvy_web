@@ -1,27 +1,32 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
-import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
+import React, {Dispatch, ReactNode, SetStateAction, useEffect, useState} from "react";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import clsx from "clsx";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 import {LivvyToastType} from "../../../helpers/variables.ts";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXmark} from "@fortawesome/free-solid-svg-icons";
+import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {LivModal} from "../../../components/modals/LivModal.tsx";
+import {defaultInspirationPreferenceFields, InspirationPreferenceFormFields} from "../core/form.ts";
 import {useModal} from "../../../layout/ModalProvider.tsx";
+import {InspirationFeedback} from "../partials/InspirationFeedback.tsx";
+import {useNavigate} from "react-router-dom";
 
 
 export const BrowseLibrary = () => {
-    // TODO work on image enlargment
-    // TODO work on infinite scroll
-    // TODO add next button
-    // TODO navigate to loading page
-
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout();
     const [selected, setSelected] = useState<string[]>([]);
     const [invalidSelection, setInvalidSelection] = useState<boolean>(false);
-    const [enlargedCard, setEnlargedCard] = useState<string | null>(null);
 
-    const {setIsOpen} = useModal();
+    const [enlargedCard, setEnlargedCard] = useState<string | null>(null);
+    const [openEnlarged, setOpenEnlarged] = useState<boolean>(false);
+
+    const [preferenceForm, setPreferenceForm] = useState<InspirationPreferenceFormFields>(defaultInspirationPreferenceFields);
 
     const livApp = useLivvyApp();
+    const navigate = useNavigate();
+    const {setIsOpen, isOpen} = useModal();
 
     useEffect(() => {
         setBackgroundType('color');
@@ -40,6 +45,27 @@ export const BrowseLibrary = () => {
         }
     }, [invalidSelection]);
 
+    useEffect(() => {
+        setPreferenceForm({...preferenceForm, totalInspirations: selected.length})
+    }, [selected]);
+
+    const handleSubmit = () => {
+        // TODO handle submit
+        navigate('/inspiration/loading')
+    }
+
+    const handleNext = () => {
+        // check if there are any images selected
+        if(selected.length > 0) {
+            setIsOpen(true);
+        } else {
+            livApp.setAlert({
+                message: "You need to select at least 1 image before proceeding",
+                type: LivvyToastType.ERROR
+            });
+        }
+    }
+
     return (
         <div>
             <div className="container liv-container">
@@ -51,50 +77,68 @@ export const BrowseLibrary = () => {
                         <Masonry gutter={'16px'}>
                             <InspirationCard image={'/assets/inspiration/pinterest/img1.webp'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img2.jpeg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img3.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img4.jpeg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img5.png'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img6.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img7.webp'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img8.jpeg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img9.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen}/>
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                         </Masonry>
                     </ResponsiveMasonry>
                 </div>
             </div>
 
             {
-                enlargedCard && <LivModal withBackground={false}>
+                enlargedCard &&
+                <EnlargedInspiration isOpen={openEnlarged} setIsOpen={setOpenEnlarged}>
                     <InspirationCard image={enlargedCard} selected={selected}
                                      setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                     setEnlargedCard={setEnlargedCard} setIsOpen={setIsOpen} viewOnly={true}/>
-                </LivModal>
+                                     setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged} viewOnly={true}/>
+                </EnlargedInspiration>
             }
 
+            <LivModal>
+                <InspirationFeedback form={preferenceForm} setForm={setPreferenceForm} urls={selected}
+                                     handleSubmit={handleSubmit}/>
+            </LivModal>
+
+            <div className="w-full left-0 sm:w-auto fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20">
+                <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
+                           textColor={'text-white'} style={'thick'} arrowIcon={false} onClickHandler={handleNext} className={"w-full sm:w-auto"}/>
+            </div>
         </div>
 
     )
 }
 
-const InspirationCard = ({image, selected, setSelected, setInvalidSelection, setEnlargedCard, setIsOpen, viewOnly = false}: {
+const InspirationCard = ({
+                             image,
+                             selected,
+                             setSelected,
+                             setInvalidSelection,
+                             setEnlargedCard,
+                             setIsOpen,
+                             viewOnly = false
+                         }: {
     image: string,
     selected: string[],
     setSelected: Dispatch<SetStateAction<string[]>>,
@@ -153,7 +197,7 @@ const InspirationCard = ({image, selected, setSelected, setInvalidSelection, set
             <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
                 "cursor-pointer": !viewOnly
             })} onClick={() => {
-                if(!viewOnly) {
+                if (!viewOnly) {
                     setEnlargedCard(`${image}`);
                     setIsOpen(true);
                 }
@@ -168,6 +212,38 @@ const InspirationCard = ({image, selected, setSelected, setInvalidSelection, set
                     'invisible': !active,
                     'visible': active
                 })}>{cardCount}</span>
+            </div>
+        </div>
+    )
+}
+
+const EnlargedInspiration = ({isOpen, setIsOpen, children}: {
+    isOpen: boolean,
+    setIsOpen: Dispatch<SetStateAction<boolean>>,
+    children: ReactNode
+}) => {
+    const [isClosing, setIsClosing] = useState<boolean>(false)
+
+    return (
+        <div onAnimationEnd={() => {
+            // To filter open animation
+            if (isClosing) {
+                setIsOpen(false)
+                setIsClosing(false)
+            }
+        }}
+             className={clsx('fixed w-full h-full z-30 top-0 left-0 bg-black bg-opacity-50 animate__animated', {
+                 'hidden': !isOpen,
+                 'animate__fadeOut': isClosing,
+                 'animate__fadeIn': isOpen
+             })}>
+            <div
+                className={clsx('fixed overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 top-1/2 left-0 translate-x-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 w-full h-auto sm:w-4/5 lg:w-auto')}>
+                <button className={clsx("absolute left-1.5 top-1.5 z-50 bg-white px-1")}
+                        onClick={() => setIsClosing(true)}>
+                    <FontAwesomeIcon icon={faXmark}/></button>
+
+                {children}
             </div>
         </div>
     )

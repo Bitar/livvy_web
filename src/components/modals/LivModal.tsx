@@ -5,10 +5,9 @@ import {useModal} from "../../layout/ModalProvider.tsx";
 import clsx from "clsx";
 
 interface Props {
-    withBackground?: boolean,
     children: ReactNode
 }
-export const LivModal: FC<Props> = ({withBackground = true, children}) => {
+export const LivModal: FC<Props> = ({children}) => {
     const {isOpen, setIsOpen} = useModal();
     const [isClosing, setIsClosing] = useState<boolean>(false)
 
@@ -25,13 +24,8 @@ export const LivModal: FC<Props> = ({withBackground = true, children}) => {
                 'animate__fadeOut': isClosing,
                 'animate__fadeIn': isOpen
             })}>
-            <div className={clsx('fixed top-0 left-0 overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 h-full w-full sm:h-auto sm:w-4/5 lg:w-auto px-12 py-8', {
-                'bg-white': withBackground
-            })}>
-                <button className={clsx("absolute top-1.5 z-50", {
-                    "right-2": withBackground,
-                    "left-2 bg-white px-1.5": !withBackground
-                })} onClick={() => setIsClosing(true)}><FontAwesomeIcon icon={faXmark} /></button>
+            <div className={clsx('fixed top-0 left-0 overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 h-full w-full sm:h-auto sm:w-4/5 lg:w-auto bg-white px-12 py-8')}>
+                <button className={clsx("absolute top-1.5 z-50 right-2")} onClick={() => setIsClosing(true)}><FontAwesomeIcon icon={faXmark} /></button>
 
                 {children}
             </div>
