@@ -6,16 +6,19 @@ import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {faMinus, faPause, faPlay, faPlus} from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import Slider from "react-slick";
+import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 
 export const CelebrityDesignerProfile = () => {
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout()
 
     const [showPlayButton, setShowPlayButton] = useState<boolean>(true);
     const [showPauseButton, setShowPauseButton] = useState<boolean>(false);
+    const [showStickyButton, setShowStickyButton] = useState<boolean>(false);
 
     const [activeTab, setActiveTab] = useState<'portfolio' | 'livvy'>('portfolio');
 
     const videoRef = useRef<any>(null);
+    const purchaseButtonRef = useRef<any>(null);
 
     const settings = {
         className: "center",
@@ -45,6 +48,28 @@ export const CelebrityDesignerProfile = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
+
+        const handleScroll = () => {
+            if (purchaseButtonRef.current) {
+                const rect = purchaseButtonRef.current.getBoundingClientRect();
+                const isVisible = (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+
+                setShowStickyButton(!isVisible);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        // Initial check on component mount
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     const playVideo = () => {
@@ -76,7 +101,8 @@ export const CelebrityDesignerProfile = () => {
                         className="bg-[url('/assets/celebrities/shea-mcgee.png')] bg-cover bg-no-repeat bg-center w-full h-[460px] md:h-screen"></div>
 
                     <div className="relative">
-                        <div className="md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:z-20 w-full px-8 lg:px-16 py-10 md:py-28 lg:py-36">
+                        <div
+                            className="md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:z-20 w-full px-8 lg:px-16 py-10 md:py-28 lg:py-36">
                             <h1 className="uppercase text-5xl lg:text-7xl">studio <br/> <span
                                 style={{fontFamily: "PP Editorial New"}}
                                 className="font-thin italic capitalize text-5xl lg:text-6xl">McGee</span></h1>
@@ -86,11 +112,14 @@ export const CelebrityDesignerProfile = () => {
                                     Media Personality</h2>
                                 <div className="lg:inline-block">
                                     <div className="flex justify-start items-center">
-                                        <a href="https://www.instagram.com/" target={'_blank'}><FontAwesomeIcon icon={faInstagram} className="text-lg me-2.5"/></a>
+                                        <a href="https://www.instagram.com/" target={'_blank'}><FontAwesomeIcon
+                                            icon={faInstagram} className="text-lg me-2.5"/></a>
 
-                                        <a href="https://www.tiktok.com/" target={'_blank'}><FontAwesomeIcon icon={faTiktok} className="text-lg me-2.5"/></a>
+                                        <a href="https://www.tiktok.com/" target={'_blank'}><FontAwesomeIcon
+                                            icon={faTiktok} className="text-lg me-2.5"/></a>
 
-                                        <a href="https://pinterest.com/" target={'_blank'}><FontAwesomeIcon icon={faPinterest} className="text-lg"/></a>
+                                        <a href="https://pinterest.com/" target={'_blank'}><FontAwesomeIcon
+                                            icon={faPinterest} className="text-lg"/></a>
                                     </div>
                                 </div>
 
@@ -119,8 +148,8 @@ export const CelebrityDesignerProfile = () => {
                             </p>
 
                             <div>
-                                <div className="inline-block">
-                                    <LivButton as={'a'} text={'create a custom design'} textColor={'text-white'}
+                                <div className="inline-block" ref={purchaseButtonRef}>
+                                    <LivButton as={'a'} text={'purchase a custom design'} textColor={'text-white'}
                                                borderColor={'border-black'} bgColor={'bg-black'} url={'#'}
                                                style={'thin'} className="text-sm md:text-base"/>
                                 </div>
@@ -213,9 +242,11 @@ export const CelebrityDesignerProfile = () => {
                         <div className="md:ps-10 xl:ps-24 relative mt-6 md:mt-64">
                             <div className="mb-8 xl:mb-14">
                                 <span className="uppercase text-lg text-white">how we</span>
-                                <h3 className="uppercase text-4xl lg:text-5xl xl:text-7xl text-white">make expert <br/> <span
-                                    style={{fontFamily: "PP Editorial New"}}
-                                    className="font-thin italic capitalize text-3xl lg:text-6xl">design accessible</span></h3>
+                                <h3 className="uppercase text-4xl lg:text-5xl xl:text-7xl text-white">make expert <br/>
+                                    <span
+                                        style={{fontFamily: "PP Editorial New"}}
+                                        className="font-thin italic capitalize text-3xl lg:text-6xl">design
+                                        accessible</span></h3>
                             </div>
 
                             <div>
@@ -238,6 +269,20 @@ export const CelebrityDesignerProfile = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className={clsx("fixed z-30 left-0 w-full bottom-6 text-center", {
+                "hidden": !showStickyButton
+            })}>
+                <div className="inline-block backdrop-blur-md rounded-full">
+                    <button
+                        className="inline-flex items-center justify-center uppercase text-white bg-black bg-opacity-60 py-4 px-16 rounded-full hover:bg-opacity-70">
+                        <span>purchase a custom design</span>
+                        <img src={toAbsoluteUrl('assets/arrow-white.svg')}
+                             alt="arrow white"
+                             className={clsx(`w-3 md:w-4 arrow-white ms-2`)}/>
+                    </button>
                 </div>
             </div>
         </div>
