@@ -6,6 +6,7 @@ import {App} from "../App.tsx";
 import {Logout} from "../sections/auth/core/Logout.tsx";
 import {AuthRoutes} from "./AuthRoutes.tsx";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
+import {Membership} from "../sections/membership/pages/Membership.tsx";
 
 // const {BASE_URL} = import.meta.env
 
@@ -18,6 +19,9 @@ const AppRoutes: FC = () => {
                 <Route element={<App/>}>
                     <Route path='error/*' element={<ErrorsPage/>}/>
                     <Route path='logout/*' element={<Logout/>}/>
+
+                    <Route path='/membership' element={<Membership/>}/>
+
                     {currentUser ? (
                         <>
                             <Route path='/*' element={<PrivateRoutes/>}/>
