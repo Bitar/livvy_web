@@ -242,7 +242,7 @@ const EnlargedInspiration = ({isOpen, setIsOpen, children}: {
                 setIsClosing(false)
             }
         }}
-             className={clsx('fixed w-full h-full z-30 top-0 left-0 bg-black bg-opacity-50 animate__animated', {
+             className={clsx('fixed w-full h-full z-30 top-0 left-0 bg-black bg-opacity-50 animate__animated backdrop-blur-md', {
                  'hidden': !isOpen,
                  'animate__fadeOut': isClosing,
                  'animate__fadeIn': isOpen
