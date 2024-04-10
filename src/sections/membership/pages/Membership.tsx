@@ -45,7 +45,7 @@ const Plan = ({name, perMonth, perYear, perks} : {name: string, perMonth: string
                 <p className="uppercase text-lg">or {perYear} yearly</p>
             </div>
 
-            <ul className="list-image-[url(./assets/check.svg)] list-inside py-5 sm:py-7 lg:mb-20 md:mb-16">
+            <ul className="list-image-[url(/assets/check.svg)] list-inside py-5 sm:py-7 lg:mb-20 md:mb-16">
                 {
                     perks.map((perk, index) => <li className="marker:me-1 capitalize" key={index}>{perk}</li>)
                 }
