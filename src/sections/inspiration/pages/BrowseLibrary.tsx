@@ -133,7 +133,7 @@ export const BrowseLibrary = () => {
 
             <div className="w-full left-0 sm:w-auto fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20">
                 <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
-                           textColor={'text-white'} style={'thick'} arrowIcon={false} onClickHandler={handleNext} className={"w-full sm:w-auto"}/>
+                           textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={"w-full sm:w-auto"} onWhiteBg={true}/>
             </div>
         </div>
 

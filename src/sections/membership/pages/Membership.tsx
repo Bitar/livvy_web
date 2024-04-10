@@ -52,7 +52,7 @@ const Plan = ({name, perMonth, perYear, perks} : {name: string, perMonth: string
             </ul>
 
             <div>
-                <LivButton as="button" text={'select'} borderColor={'border-black'} bgColor={'bg-black'} onClickHandler={() => console.log('chose membership')} textColor={'text-white'} fullWidth={true}/>
+                <LivButton as="button" text={'select'} borderColor={'border-black'} bgColor={'bg-black'} onClickHandler={() => console.log('chose membership')} textColor={'text-white'} fullWidth={true} onWhiteBg={true}/>
             </div>
         </div>
     )
