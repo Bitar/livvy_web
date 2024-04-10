@@ -1,7 +1,7 @@
 import {Form, Formik, FormikProps} from "formik";
 import {InspirationPreferenceFormFields, InspirationPreferenceSchema} from "../core/form.ts";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import React, {Dispatch, SetStateAction} from "react";
+import React, {Dispatch, SetStateAction, useEffect, useRef} from "react";
 import Select from "react-select";
 
 export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: {
@@ -58,6 +58,15 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
     form: InspirationPreferenceFormFields,
     setForm: Dispatch<SetStateAction<InspirationPreferenceFormFields>>
 }) => {
+    const selectRef = useRef<any>(null);
+
+    useEffect(() => {
+        // if the current input name is not in form OR its value is '' then we need to reset
+        if (!(`preference${index}` in form) || form[`preference${index}`] == '') {
+            selectRef.current?.clearValue();
+        }
+    }, [form]);
+
     return (
         <div className="w-full lg:w-52 mb-10 sm:mb-0">
             <div
@@ -65,6 +74,7 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
                 style={{background: `url(${image})`}}></div>
 
             <Select name={`preference${index}`}
+                    ref={selectRef}
                     className={'liv-select'}
                     classNamePrefix={'liv-select'}
                     isSearchable={false}
@@ -72,7 +82,11 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
                     getOptionLabel={(preference) => preference.name}
                     getOptionValue={(preference) => preference.id.toString()}
                     placeholder={'choose an option'}
-                    onChange={(e) => setForm({...form, [`preference${index}`]: e.id})}
+                    onChange={(e) => {
+                        if (e) {
+                            setForm({...form, [`preference${index}`]: e.id});
+                        }
+                    }}
             />
 
             <div className={`text-red-600 text-sm mt-2 text-left`}>

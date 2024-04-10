@@ -38,6 +38,9 @@ export const AddInspiration = () => {
 
     const handleSubmit = () => {
         // TODO submit preferenceForm
+        // mark the modal as closed before navigating away
+        setIsOpen(false);
+
         navigate('/inspiration/loading')
     }
 

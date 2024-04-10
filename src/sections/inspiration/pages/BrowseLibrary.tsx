@@ -49,8 +49,18 @@ export const BrowseLibrary = () => {
         setPreferenceForm({...preferenceForm, totalInspirations: selected.length})
     }, [selected]);
 
+    useEffect(() => {
+        if(!isOpen) {
+            // if we have selected then we need to update the preference form total
+            setPreferenceForm({...defaultInspirationPreferenceFields, totalInspirations: selected.length});
+        }
+    }, [isOpen]);
+
     const handleSubmit = () => {
         // TODO handle submit
+        // mark the modal as closed
+        setIsOpen(false);
+
         navigate('/inspiration/loading')
     }
 
