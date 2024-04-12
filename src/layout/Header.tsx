@@ -2,9 +2,11 @@ import {toAbsoluteUrl} from "../helpers/toAbsoluteUrl.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faUser, faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
+import {useCart} from "./CartProvider.tsx";
 
-export const Header = ({textColor} : {textColor: 'white' | 'black'}) => {
+export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
+    const {setIsCartOpen} = useCart();
 
     return (
         <div id="header" className='flex flex-wrap items-center justify-between mx-auto border-b border-white/50 px-10'>
@@ -22,9 +24,9 @@ export const Header = ({textColor} : {textColor: 'white' | 'black'}) => {
                         </a>
                     </li>
                     <li>
-                        <a href="#" className={`block py-2 text-${textColor}`}>
+                        <button className={`block py-2 text-${textColor}`} onClick={() => setIsCartOpen(true)}>
                             <FontAwesomeIcon icon={faShoppingBag}/>
-                        </a>
+                        </button>
                     </li>
                     <li>
                         <a href="#" className={`block py-2 text-${textColor}`}>
