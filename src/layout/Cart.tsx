@@ -51,6 +51,9 @@ export const Cart = () => {
                 <CartSection/>
             </div>
 
+            <div id="cart-footer">
+                <div></div>
+            </div>
 
         </div>
     )
@@ -66,6 +69,10 @@ const CartSection = () => {
 
             <div>
                 <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
+                <CartItem />
             </div>
         </div>
     )
@@ -73,35 +80,34 @@ const CartSection = () => {
 
 const CartItem = () => {
     return (
-        <div className="flex justify-between items-center">
-            <input type="checkbox" className="w-4 h-4 accent-white outline outline-1"/>
+        <div className="flex justify-between items-end border-b border-b-black py-6 last:border-b-0">
+            <div className="flex justify-between items-center">
+                <input type="checkbox" className="w-4 h-4 accent-white outline outline-1"/>
 
-            <div className="relative w-20 h-20 bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url('/assets/cart/furniture-1.jpg')`}}>
-                <Link to={'#'} className="absolute top-0 left-0 w-full h-full z-10"></Link>
-            </div>
-
-            <div className="flex justify-between items-end">
-                <div>
-                    <span className="uppercase text-xs">rove concepts</span>
-                    <p className="uppercase text-lg mb-4">maria coffee table</p>
-
-                    <div className="flex justify-start items-end">
-                        <LivQuantityPicker/>
-                        <button className="uppercase underline text-sm ms-4">remove</button>
-                    </div>
-                </div>
-
-                <div className="text-right">
-                    <div className="mb-3">
-                        <span className="text-lg">$1,234</span>
-                    </div>
-
-                    <LivButton as={'a'} url={'#'} text={'find similar item'} borderColor={'border-black'}
-                               bgColor={'bg-transparent'} style={'thin'} rounded={true}/>
+                <div className="relative w-20 h-20 bg-cover bg-no-repeat bg-center ms-8"
+                     style={{backgroundImage: `url('/assets/cart/furniture-1.jpg')`}}>
+                    <Link to={'#'} className="absolute top-0 left-0 w-full h-full z-10"></Link>
                 </div>
             </div>
 
+            <div>
+                <span className="uppercase text-xs">rove concepts</span>
+                <p className="uppercase text-lg mb-4">maria coffee table</p>
 
+                <div className="flex justify-start items-end">
+                    <LivQuantityPicker/>
+                    <button className="uppercase underline text-sm ms-4">remove</button>
+                </div>
+            </div>
+
+            <div className="text-right">
+                <div className="mb-3">
+                    <span className="text-lg">$1,234</span>
+                </div>
+
+                <LivButton as={'a'} url={'#'} text={'find similar item'} borderColor={'border-black'}
+                           bgColor={'bg-transparent'} style={'thin'} rounded={true}/>
+            </div>
         </div>
     )
 }
