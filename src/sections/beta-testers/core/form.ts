@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import {UserSourceEnum} from "../../../enums/UserSourceEnum.ts";
 
 // Register
 export const BetaRegisterSchema = Yup.object().shape({
@@ -14,7 +15,8 @@ export interface BetaRegisterFormFields {
     last_name: string,
     email: string,
     password: string,
-    password_confirmation: string
+    password_confirmation: string,
+    source: string
 }
 
 export const defaultBetaRegisterFormFields: BetaRegisterFormFields = {
@@ -22,7 +24,8 @@ export const defaultBetaRegisterFormFields: BetaRegisterFormFields = {
     last_name: '',
     email: '',
     password: '',
-    password_confirmation: ''
+    password_confirmation: '',
+    source: UserSourceEnum.REGISTRATION
 }
 
 

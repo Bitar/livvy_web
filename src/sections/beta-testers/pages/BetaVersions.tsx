@@ -52,7 +52,7 @@ export const BetaVersions = () => {
                 <img src="/assets/livvy-logo-black.png" alt="livvy logo black" className="w-20 m-auto"/>
             </div>
 
-            <div>
+            <div className="container">
                 <video src={video} autoPlay={false}
                        controls={true} loop={false}
                        muted={true} poster={`/assets/livvy-intro-poster.jpg`}

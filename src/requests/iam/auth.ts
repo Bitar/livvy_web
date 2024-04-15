@@ -1,28 +1,26 @@
 import axios, {AxiosError} from 'axios'
 import {AuthModel} from "../../models/iam/Auth.tsx";
-import {User} from "../../models/iam/User.ts";
 import {createFormData} from "../../helpers/requests.ts";
 import {user} from "../../data/user.ts";
+import {User} from "../../models/iam/User.ts";
 
 const API_URL = import.meta.env.VITE_APP_API_URL
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`
-export const GET_USER_PROFILE = `${API_URL}/profile`
+export const GET_USER_PROFILE = `${API_URL}/iam/profile`
 export const LOGIN_URL = `${API_URL}/login`
 export const REGISTER_URL = `${API_URL}/register`
+export const BETA_REGISTER_URL = `${API_URL}/beta/register`
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
 export const RESET_PASSWORD_URL = `${API_URL}/reset_password`
+export const RESEND_VERIFICATION_URL = `${API_URL}/email/verification-notification`
 
 // Server should return AuthModel
 export function login(email: string, password: string) {
-    return {
-        data: user,
-        token: 'test-access-token'
-    }
-    // return axios.post<AuthModel>(LOGIN_URL, {
-    //     email,
-    //     password,
-    // })
+    return axios.post<AuthModel>(LOGIN_URL, {
+        email,
+        password,
+    })
 }
 
 // Server should return AuthModel
@@ -43,6 +41,14 @@ export function register(
     //     password,
     //     password_confirmation,
     // })
+}
+
+export const betaRegister = async (form: any): Promise<any | AxiosError | undefined> => {
+    const formData = createFormData(form);
+
+    return await axios.post(BETA_REGISTER_URL, formData).then(res => res.data.data).catch((error) => {
+        return error;
+    });
 }
 
 export const requestPassword = async (form: any): Promise<string | AxiosError | undefined> => {
@@ -71,15 +77,26 @@ export const resetPassword = async (form: any): Promise<string | AxiosError | un
 }
 
 export function getUserByToken(token: string) {
-    return {data: user};
-    // `return axios.get<User>(GET_USER_PROFILE, {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    //     transformResponse: [
-    //         function (data) {
-    //             return JSON.parse(data).data
-    //         },
-    //     ],
-    // })`
+    return axios.get<User>(GET_USER_PROFILE, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        transformResponse: [
+            function (data) {
+                return JSON.parse(data).data
+            },
+        ],
+    })
+}
+
+export const resendAccountActivationEmail = async (form: any): Promise<any | AxiosError | undefined> => {
+    const formData = createFormData(form);
+
+    return await axios.post(RESEND_VERIFICATION_URL, formData)
+        .then(res => res.data)
+        .catch((error) => {
+            error = error as AxiosError;
+
+            return error;
+        });
 }

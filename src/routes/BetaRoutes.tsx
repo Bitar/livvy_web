@@ -7,7 +7,6 @@ import {BetaVersions} from "../sections/beta-testers/pages/BetaVersions.tsx";
 export const BetaRoutes = () => {
     const {currentUser} = useAuth()
 
-    console.log(currentUser);
     return (
         <Routes>
             {
