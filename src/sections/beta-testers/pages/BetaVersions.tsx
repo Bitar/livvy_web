@@ -22,12 +22,6 @@ export const BetaVersions = () => {
                     slidesToShow: 3
                 }
             },
-            // {
-            //     breakpoint: 767,
-            //     settings: {
-            //         slidesToShow: 2
-            //     }
-            // },
             {
                 breakpoint: 640,
                 settings: {
@@ -39,7 +33,7 @@ export const BetaVersions = () => {
 
     // TODO get all videos from backend and set the video to the first one
     const switchVideo = (newVideo: string) => {
-        if(newVideo != video) {
+        if (newVideo != video) {
             setVideo(newVideo);
         }
     }
@@ -68,7 +62,8 @@ export const BetaVersions = () => {
                             className="capitalize me-4">- capture your space</span>
                         </div>
 
-                        <LivButton as={'a'} url={'#'}
+                        <LivButton as={'a'} url={'https://form.typeform.com/to/FFMbaQjU'}
+                                   newTab={true}
                                    text={'survey'}
                                    borderColor={'border-black'}
                                    bgColor={'bg-black'}
@@ -80,23 +75,29 @@ export const BetaVersions = () => {
 
             <div className="container py-7 px-4">
                 <Slider {...settings}>
-                    <VideoPreview clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')}/>
-                    <VideoPreview clickHandler={() => switchVideo('/assets/bed-1.mp4')} />
-                    <VideoPreview clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')} />
-                    <VideoPreview clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')} />
-                    <VideoPreview clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')} />
+                    <VideoPreview
+                        clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')}/>
+                    <VideoPreview clickHandler={() => switchVideo('/assets/bed-1.mp4')}/>
+                    <VideoPreview
+                        clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')}/>
+                    <VideoPreview
+                        clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')}/>
+                    <VideoPreview
+                        clickHandler={() => switchVideo('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4')}/>
                 </Slider>
             </div>
         </div>
     )
 }
 
-const VideoPreview = ({clickHandler} : {clickHandler : () => void}) => {
+const VideoPreview = ({clickHandler}: { clickHandler: () => void }) => {
     return (
         <div>
-            <div className="relative bg-no-repeat bg-cover bg-center w-full h-32 sm:w-48 sm:h-28 lg:w-72 lg:h-36 rounded-lg"
-                 style={{backgroundImage: "url('/assets/livvy-intro-poster.jpg')"}}>
-                <button className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20 rounded-lg" onClick={clickHandler}>
+            <div
+                className="relative bg-no-repeat bg-cover bg-center w-full h-32 sm:w-48 sm:h-28 lg:w-72 lg:h-36 rounded-lg"
+                style={{backgroundImage: "url('/assets/livvy-intro-poster.jpg')"}}>
+                <button className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20 rounded-lg"
+                        onClick={clickHandler}>
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full">
                         <FontAwesomeIcon icon={faPlay}

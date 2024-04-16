@@ -24,11 +24,13 @@ interface LivButtonProps {
 
 type LivButtonConditionalProps = | {
     as?: 'button'
-    url?: never
+    url?: never,
+    newTab?: never,
     onClickHandler?: any
 } | {
     as?: 'a'
-    url: string
+    url: string,
+    newTab: boolean,
     onClickHandler?: never
 }
 
@@ -49,6 +51,7 @@ export const LivButton = ({
                               isValid = true,
                               onClickHandler,
                               url,
+                              newTab = false,
                               style = 'thick',
                               onWhiteBg = false
                           }: LivButtonProps & LivButtonConditionalProps) => {
@@ -87,7 +90,7 @@ export const LivButton = ({
                           'py-4': style == 'thick',
                           'py-2': style == 'thin'
 
-                      })}>
+                      })} target={newTab ? '_blank' : '_self'}>
                     {textIcon &&
                         <img src={toAbsoluteUrl(textIcon)} alt="Text Icon" className="me-2 w-4"/>
                     }

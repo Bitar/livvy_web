@@ -3,8 +3,8 @@ import {BetaLoginFormFields, BetaLoginSchema, defaultBetaLoginFormFields} from "
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {Link} from "react-router-dom";
-import {useState} from "react";
+import {Link, useSearchParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {getUserByToken, login, resendAccountActivationEmail} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
@@ -20,8 +20,16 @@ export const BetaLogin = () => {
     const [showResendLoading, setShowResendLoading] = useState<boolean>(false);
     const [showResendDone, setShowResendDone] = useState<boolean>(false);
     const [verificationError, setVerificationError] = useState<boolean>(false);
+    const [showVerified, setShowVerified] = useState<boolean>(false);
 
     const {saveAuth, setCurrentUser} = useAuth();
+    const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        if(searchParams.get('verified') === 'success') {
+            setShowVerified(true);
+        }
+    }, []);
 
     const handleSubmit = async (values: any, {setSubmitting}: any) => {
         try {
@@ -35,8 +43,8 @@ export const BetaLogin = () => {
                 setCurrentUser(user)
             } else {
                 saveAuth(undefined)
-                setHasLoginErrors(true)
-                setLoginErrorMessage('The account is not verified.')
+                setHasLoginErrors(false)
+                setLoginErrorMessage('')
                 setVerificationError(true);
                 setSubmitting(false)
             }
@@ -44,6 +52,7 @@ export const BetaLogin = () => {
             saveAuth(undefined)
             setHasLoginErrors(true)
             setLoginErrorMessage('These credentials do not match our records.')
+            setVerificationError(false);
             setSubmitting(false)
         }
     }
@@ -65,7 +74,7 @@ export const BetaLogin = () => {
                 setHasLoginErrors(false);
                 setLoginErrorMessage('');
                 setShowResendDone(false);
-            }, 3000);
+            }, 4000);
         })
     }
 
@@ -77,12 +86,14 @@ export const BetaLogin = () => {
 
             <h1 className="text-center uppercase text-3xl">sign in</h1>
 
+            {showVerified && <div className="mt-2"><LivFormSuccess text={'Your email has been verified. Login below.'}/></div>}
+
             {hasLoginErrors && <LivFormErrors errors={[loginErrorMessage]}/>}
 
-            <div className={clsx("bg-red-50 border border-red-300 text-red-800 rounded-md py-3 px-5 text-left flex justify-center align-middle", {
+            <div className={clsx("bg-red-50 border border-red-300 text-red-800 rounded-md py-3 px-5 text-left flex justify-center align-middle mt-2", {
                 "hidden": !verificationError
             })}>
-                <span className="me-2">Click <button className="underline" onClick={resendVerification}>here</button> to resend verification
+                <span className="me-2">Your account has not been verified. Click <button className="underline" onClick={resendVerification}>here</button> to resend verification
                     email.</span> <svg className={clsx("animate-spin h-4 w-4 text-brand-green mt-0.5", {
                 'animate__animated animate__fadeIn': showResendLoading,
                 'hidden': !showResendLoading
