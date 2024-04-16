@@ -12,7 +12,7 @@ export const Footer = () => {
             'footer-black': color === 'black',
         })}>
             <div className="container liv-container">
-                <div className="grid grid-cols-1 gap-8 py-6 lg:py-8 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-8 py-6 lg:py-8 lg:grid-cols-2">
                     <div className="left-side max-w-md">
                         <div className="logo mb-10">
                             {
@@ -109,12 +109,12 @@ export const Footer = () => {
                                 <ul className="flex">
                                     <li className='me-2'>
                                         <a href="#">
-                                            <img src="/assets/apple-store-download.png" alt="Livvy Apple Store Download Link"/>
+                                            <img src="/assets/apple-store-download.png" alt="Livvy Apple Store Download Link" className='max-md:max-w-32'/>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <img src="/assets/google-play-download.png" alt="Livvy Google Store Download Link"/>
+                                            <img src="/assets/google-play-download.png" alt="Livvy Google Store Download Link" className='max-md:max-w-32'/>
                                         </a>
                                     </li>
                                 </ul>
