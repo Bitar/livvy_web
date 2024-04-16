@@ -30,7 +30,7 @@ type LivButtonConditionalProps = | {
 } | {
     as?: 'a'
     url: string,
-    newTab: boolean,
+    newTab?: boolean,
     onClickHandler?: never
 }
 
