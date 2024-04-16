@@ -13,7 +13,7 @@ export const CelebrityDesignerAll = () => {
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
-        setShowFooter(false);
+        // setShowFooter(false);
     }, []);
 
     const howItWorksSettings = {
@@ -41,7 +41,7 @@ export const CelebrityDesignerAll = () => {
             {
                 breakpoint: 640,
                 settings: {
-                    autoplay: true,
+                    // autoplay: true,
                     slidesToShow: 1,
                     slidesToScroll: 1
                 }
