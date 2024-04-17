@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import React, {FC} from 'react'
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import {useAuth} from "../sections/auth/core/Auth.tsx";
 import {ErrorsPage} from "../layout/errors/ErrorsPage.tsx";
@@ -7,6 +7,7 @@ import {Logout} from "../sections/auth/core/Logout.tsx";
 import {AuthRoutes} from "./AuthRoutes.tsx";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
 import {Membership} from "../sections/membership/pages/Membership.tsx";
+import {BetaRoutes} from "./BetaRoutes.tsx";
 
 // const {BASE_URL} = import.meta.env
 
@@ -21,6 +22,8 @@ const AppRoutes: FC = () => {
                     <Route path='logout/*' element={<Logout/>}/>
 
                     <Route path='/membership' element={<Membership/>}/>
+
+                    <Route path='/beta/*' element={<BetaRoutes />} />
 
                     {currentUser ? (
                         <>

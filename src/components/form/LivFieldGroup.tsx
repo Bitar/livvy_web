@@ -9,11 +9,11 @@ interface Props {
     margin?: string
     align?: 'left' | 'center' | 'right'
 }
-const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-2.5", align = 'left'}) => {
+const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-6", align = 'left'}) => {
     const formik = useFormikContext();
 
     return (
-        <div className={margin}>
+        <div className={clsx(margin, 'relative w-full')}>
             <Field type={type}
                    name={name}
                    placeholder={placeholder}
@@ -22,7 +22,7 @@ const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-2
                    })}
             />
 
-            <div className={`text-red-600 text-sm mt-2 text-${align}`}>
+            <div className={`text-red-600 text-sm mt-2 text-${align} absolute -bottom-6`}>
                 <ErrorMessage name={name}/>
             </div>
         </div>
