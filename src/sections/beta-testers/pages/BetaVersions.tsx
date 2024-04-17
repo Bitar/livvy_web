@@ -39,6 +39,7 @@ export const BetaVersions = () => {
                 setHasMore(false);
             }
         });
+
     }
 
     return (
