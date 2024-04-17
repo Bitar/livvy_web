@@ -1,3 +1,5 @@
+import {Response} from "../../helpers/response.ts";
+
 export type AppVersion = {
     id: number,
     title: string,
@@ -9,3 +11,5 @@ export type AppVersion = {
 export type AppVersionList = {
     data: AppVersion[]
 }
+
+export type AppVersionPaginate = Response<AppVersion[]>;

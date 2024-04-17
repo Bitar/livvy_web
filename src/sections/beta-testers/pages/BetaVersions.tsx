@@ -1,13 +1,14 @@
 import {Background} from "../../../modules/background/Background.tsx";
 import React, {useEffect, useState} from "react";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import Slider from "react-slick";
 import {faPlay} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {AppVersion} from "../../../models/beta/AppVersion.ts";
 import {submitRequest} from "../../../helpers/requests.ts";
-import {getAllAppVersions} from "../../../requests/beta/AppVersion.ts";
+import {getAppVersions} from "../../../requests/beta/AppVersion.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
+import InfiniteScroll from 'react-infinite-scroller';
+
 
 export const BetaVersions = () => {
     const {currentUser} = useAuth();
@@ -15,35 +16,24 @@ export const BetaVersions = () => {
     const [selected, setSelected] = useState<AppVersion | null>(null);
     const [appVersions, setAppVersions] = useState<AppVersion[]>([]);
 
-    const settings = {
-        arrows: false,
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 1439,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    };
+    const [hasMore, setHasMore] = useState<boolean>(true);
 
-    useEffect(() => {
-        submitRequest(getAllAppVersions, [], (response) => {
-            setAppVersions(response);
-            setSelected(response[0]);
+    const loadMore = (page: number) => {
+        submitRequest(getAppVersions, [`page=${page}`], (response) => {
+            console.log(page);
+            setAppVersions(appVersions.concat(response.data));
+
+            if (selected === null) {
+                setSelected(response.data[0]);
+            }
+
+            if (response.meta.current_page != response.meta.last_page) {
+                setHasMore(true);
+            } else {
+                setHasMore(false);
+            }
         });
-    }, []);
+    }
 
     return (
         <div>
@@ -54,21 +44,26 @@ export const BetaVersions = () => {
             </div>
 
             <div className="container">
-                <video src={selected?.url} autoPlay={false}
-                       controls={true} loop={false}
-                       muted={true} poster={selected?.poster}
-                       className="w-full h-auto"/>
+                <div style={{padding: "56.25% 0 0 0"}} className="relative">
+                    <iframe
+                        src={selected?.url}
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                        className="absolute top-0 left-0 w-full h-full"
+                        title="Livvy Alpha App Tutorial"></iframe>
+                </div>
+                <script src="https://player.vimeo.com/api/player.js"></script>
             </div>
 
             <div className='border-b border-b-black'>
                 <div className="container p-4">
                     <div className="sm:flex sm:justify-start sm:items-center">
                         <div className="text-md block sm:inline-block sm:text-xl mb-2 sm:mb-0">
-                            <span className="font-semibold uppercase me-1">version {selected?.version}</span> <span
+                            <span className="font-semibold uppercase me-1">{selected?.version}</span> <span
                             className="capitalize me-4">- {selected?.title}</span>
                         </div>
 
-                        <LivButton as={'a'} url={`https://form.typeform.com/to/FFMbaQjU#email=${currentUser.email}&name=${currentUser.first_name + ' ' + currentUser.last_name}&version_id=${currentUser.apple_build_version_id}`}
+                        <LivButton as={'a'}
+                                   url={`https://form.typeform.com/to/FFMbaQjU#email=${currentUser.email}&name=${currentUser.first_name + ' ' + currentUser.last_name}&version_id=${currentUser.apple_build_version_id}`}
                                    newTab={true}
                                    text={'survey'}
                                    borderColor={'border-black'}
@@ -79,16 +74,23 @@ export const BetaVersions = () => {
                 </div>
             </div>
 
-            <div className="container py-7 px-4">
-                {
-                    appVersions.length > 0 && <Slider {...settings}>
+            <InfiniteScroll
+                pageStart={0}
+                loadMore={loadMore}
+                hasMore={hasMore}
+                loader={<div className="loader" key={0}>Loading ...</div>}
+            >
+                <div className="container py-7 px-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
                         {
                             appVersions.map((appVersion, idx) => <VideoPreview
                                 clickHandler={() => setSelected(appVersion)} appVersion={appVersion} key={idx}/>)
                         }
-                    </Slider>
-                }
-            </div>
+
+                    </div>
+                </div>
+            </InfiniteScroll>
         </div>
     )
 }
@@ -97,7 +99,7 @@ const VideoPreview = ({appVersion, clickHandler}: { appVersion: AppVersion, clic
     return (
         <div>
             <div
-                className="relative bg-no-repeat bg-cover bg-center w-full h-32 sm:w-48 sm:h-28 lg:w-72 lg:h-36 rounded-lg"
+                className="relative bg-no-repeat bg-cover bg-center aspect-video rounded-lg"
                 style={{backgroundImage: `url('${appVersion.poster}')`}}>
                 <button className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20 rounded-lg"
                         onClick={clickHandler}>
@@ -110,7 +112,8 @@ const VideoPreview = ({appVersion, clickHandler}: { appVersion: AppVersion, clic
             </div>
 
             <div className="mt-2">
-                <span className="text-sm"><span className="uppercase">Version {appVersion.version}</span> - {appVersion.title}</span>
+                <span className="text-sm"><span className="uppercase">{appVersion.version}</span> - {appVersion.title}
+                </span>
             </div>
         </div>
     )
