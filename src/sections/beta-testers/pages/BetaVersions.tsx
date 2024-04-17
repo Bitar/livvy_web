@@ -8,6 +8,7 @@ import {submitRequest} from "../../../helpers/requests.ts";
 import {getAppVersions} from "../../../requests/beta/AppVersion.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
 import InfiniteScroll from 'react-infinite-scroller';
+import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 
 
 export const BetaVersions = () => {
@@ -18,9 +19,14 @@ export const BetaVersions = () => {
 
     const [hasMore, setHasMore] = useState<boolean>(true);
 
+    const livvyApp = useLivvyApp();
+
+    useEffect(() => {
+        livvyApp.setPageTitle('App Versions | Livvy')
+    }, []);
+
     const loadMore = (page: number) => {
         submitRequest(getAppVersions, [`page=${page}`], (response) => {
-            console.log(page);
             setAppVersions(appVersions.concat(response.data));
 
             if (selected === null) {

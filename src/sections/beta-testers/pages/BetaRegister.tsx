@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {BetaRegisterFormFields, BetaRegisterSchema, defaultBetaRegisterFormFields} from "../core/form.ts";
 import {Form, Formik} from "formik";
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
@@ -13,6 +13,7 @@ import {submitRequest} from "../../../helpers/requests.ts";
 import clsx from "clsx";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
+import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 
 export const BetaRegister = () => {
     const [form, setForm] = useState<BetaRegisterFormFields>(defaultBetaRegisterFormFields)
@@ -23,6 +24,12 @@ export const BetaRegister = () => {
     const [registeredEmail, setRegisteredEmail] = useState<string>('');
     const [showResendLoading, setShowResendLoading] = useState<boolean>(false);
     const [showResendDone, setShowResendDone] = useState<boolean>(false);
+
+    const livvyApp = useLivvyApp();
+
+    useEffect(() => {
+        livvyApp.setPageTitle('Register | Beta User | Livvy')
+    }, []);
 
     const handleResendVerificationEmail = async () => {
         // first we need to show the loading icon

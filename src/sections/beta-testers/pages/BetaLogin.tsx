@@ -11,6 +11,7 @@ import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 import clsx from "clsx";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
 import {submitRequest} from "../../../helpers/requests.ts";
+import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 
 export const BetaLogin = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
@@ -24,11 +25,14 @@ export const BetaLogin = () => {
 
     const {saveAuth, setCurrentUser} = useAuth();
     const [searchParams] = useSearchParams();
+    const livvyApp = useLivvyApp();
 
     useEffect(() => {
         if(searchParams.get('verified') === 'success') {
             setShowVerified(true);
         }
+
+        livvyApp.setPageTitle('Login | Beta User | Livvy')
     }, []);
 
     const handleSubmit = async (values: any, {setSubmitting}: any) => {
