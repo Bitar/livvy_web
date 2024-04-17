@@ -12,6 +12,8 @@ import {BetaRoutes} from "./BetaRoutes.tsx";
 // const {BASE_URL} = import.meta.env
 
 const AppRoutes: FC = () => {
+    const APP_ENV = import.meta.env.VITE_APP_ENV;
+
     const {currentUser} = useAuth()
 
     return (
@@ -21,20 +23,31 @@ const AppRoutes: FC = () => {
                     <Route path='error/*' element={<ErrorsPage/>}/>
                     <Route path='logout/*' element={<Logout/>}/>
 
-                    <Route path='/membership' element={<Membership/>}/>
+                    <Route path='beta/*' element={<BetaRoutes />} />
 
-                    <Route path='/beta/*' element={<BetaRoutes />} />
+                    {
+                        APP_ENV === 'production' && (
+                            <Route path='*' element={<Navigate to='/beta/auth'/>}/>
+                        )
+                    }
 
-                    {currentUser ? (
-                        <>
-                            <Route path='/*' element={<PrivateRoutes/>}/>
-                        </>
-                    ) : (
-                        <>
-                            <Route path='auth/*' element={<AuthRoutes/>}/>
-                            <Route path='*' element={<Navigate to='/auth'/>}/>
-                        </>
-                    )}
+                    {
+                        APP_ENV !== 'production' && (
+                            <>
+                                <Route path='membership' element={<Membership/>}/>
+                                {currentUser ? (
+                                    <>
+                                        <Route path='*' element={<PrivateRoutes/>}/>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Route path='auth/*' element={<AuthRoutes/>}/>
+                                        <Route path='*' element={<Navigate to='/auth'/>}/>
+                                    </>
+                                )}
+                            </>
+                        )
+                    }
                 </Route>
             </Routes>
         </BrowserRouter>
