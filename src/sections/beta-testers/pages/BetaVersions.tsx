@@ -5,9 +5,8 @@ import {faPlay} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {AppVersion} from "../../../models/beta/AppVersion.ts";
 import {submitRequest} from "../../../helpers/requests.ts";
-import {getAppVersions} from "../../../requests/beta/AppVersion.ts";
+import {getAllAppVersions} from "../../../requests/beta/AppVersion.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
-import InfiniteScroll from 'react-infinite-scroller';
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 
 
@@ -17,30 +16,35 @@ export const BetaVersions = () => {
     const [selected, setSelected] = useState<AppVersion | null>(null);
     const [appVersions, setAppVersions] = useState<AppVersion[]>([]);
 
-    const [hasMore, setHasMore] = useState<boolean>(true);
-
     const livvyApp = useLivvyApp();
 
     useEffect(() => {
         livvyApp.setPageTitle('App Versions | Livvy')
     }, []);
 
-    const loadMore = (page: number) => {
-        submitRequest(getAppVersions, [`page=${page}`], (response) => {
-            setAppVersions(appVersions.concat(response.data));
+    // const loadMore = (page: number) => {
+    //     submitRequest(getAppVersions, [`page=${page}`], (response) => {
+    //         setAppVersions([...appVersions, ...response.data]);
+    //
+    //         if (selected === null) {
+    //             setSelected(response.data[0]);
+    //         }
+    //
+    //         if (response.meta.current_page < response.meta.last_page) {
+    //             setHasMore(true);
+    //         } else {
+    //             setHasMore(false);
+    //         }
+    //     });
+    // }
 
-            if (selected === null) {
-                setSelected(response.data[0]);
-            }
+    useEffect(() => {
+        submitRequest(getAllAppVersions, [], (response) => {
+            setAppVersions(response);
 
-            if (response.meta.current_page != response.meta.last_page) {
-                setHasMore(true);
-            } else {
-                setHasMore(false);
-            }
+            setSelected(response[0]);
         });
-
-    }
+    }, []);
 
     return (
         <div>
@@ -81,23 +85,14 @@ export const BetaVersions = () => {
                 </div>
             </div>
 
-            <InfiniteScroll
-                pageStart={0}
-                loadMore={loadMore}
-                hasMore={hasMore}
-                loader={<div className="loader" key={0}>Loading ...</div>}
-            >
-                <div className="container py-7 px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-
-                        {
-                            appVersions.map((appVersion, idx) => <VideoPreview
-                                clickHandler={() => setSelected(appVersion)} appVersion={appVersion} key={idx}/>)
-                        }
-
-                    </div>
+            <div className="container py-7 px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {
+                        appVersions.map((appVersion, idx) => <VideoPreview
+                            clickHandler={() => setSelected(appVersion)} appVersion={appVersion} key={idx}/>)
+                    }
                 </div>
-            </InfiniteScroll>
+            </div>
         </div>
     )
 }
