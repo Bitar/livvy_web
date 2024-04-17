@@ -9,7 +9,8 @@ export type User = {
     email: string,
     is_email_verified?: boolean,
     source?: UserSource,
-    roles?: Role[]
+    roles?: Role[],
+    apple_build_version_id: string | null,
 }
 
 export type UserList = {
