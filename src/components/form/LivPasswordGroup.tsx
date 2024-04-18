@@ -22,7 +22,7 @@ export const LivPasswordGroup: FC<Props> = ({name, placeholder, margin = "mb-5",
                 <Field type={showPassword ? "text" : "password"}
                        name={name}
                        placeholder={placeholder}
-                       className={clsx(`bg-transparent py-4 border-b border-b-black w-full text-${align} placeholder:text-gray-500 outline-none px-5`, {
+                       className={clsx(`bg-transparent py-4 border-b border-b-black w-full text-${align} placeholder:text-gray-500 px-5 outline-0 rounded-none`, {
                            'border-b-red-600': formik.errors[name] !== undefined
                        })}
                 />
