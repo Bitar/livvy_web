@@ -1,19 +1,20 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BetaRegisterFormFields, BetaRegisterSchema, defaultBetaRegisterFormFields} from "../core/form.ts";
-import {Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik, useFormikContext} from "formik";
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
-import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+import {faCircleInfo, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
-import {betaRegister, login, resendAccountActivationEmail} from "../../../requests/iam/auth.ts";
+import {betaRegister, resendAccountActivationEmail} from "../../../requests/iam/auth.ts";
 import {submitRequest} from "../../../helpers/requests.ts";
 import clsx from "clsx";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import {LivPasswordGroup} from "../../../components/form/LivPasswordGroup.tsx";
 
 export const BetaRegister = () => {
     const [form, setForm] = useState<BetaRegisterFormFields>(defaultBetaRegisterFormFields)
@@ -28,7 +29,7 @@ export const BetaRegister = () => {
     const livvyApp = useLivvyApp();
 
     useEffect(() => {
-        livvyApp.setPageTitle('Register | Beta User | Livvy')
+        livvyApp.setPageTitle('Register | Livvy | Alpha')
     }, []);
 
     const handleResendVerificationEmail = async () => {
@@ -45,8 +46,34 @@ export const BetaRegister = () => {
         })
     }
 
+    const buildSubmitForm = () => {
+        const fullNameArr = form.full_name.split(' ');
+
+        let first_name: string;
+        let last_name = '';
+
+        if (fullNameArr.length > 1) {
+            first_name = fullNameArr[0];
+            last_name = fullNameArr[1];
+        } else {
+            first_name = fullNameArr[0];
+        }
+
+        return{
+            first_name : first_name,
+            last_name: last_name,
+            email: form.email,
+            password: form.password,
+            password_confirmation: form.password,
+            source: form.source
+        }
+    }
+
     const handleSubmit = (e: any, fns: any) => {
-        submitRequest(betaRegister, [form], (response) => {
+        // need to modify the form to fit what we need to send to server
+        const correctForm = buildSubmitForm();
+
+        submitRequest(betaRegister, [correctForm], (response) => {
             setRegisteredEmail(response.email);
             setRegisterStage('verify');
         }, setFormErrors, fns);
@@ -61,7 +88,7 @@ export const BetaRegister = () => {
                     <img src="/assets/logo-symbol-black.png" alt="livvy logo symbol" className="w-11 m-auto"/>
                 </div>
 
-                <h1 className="text-center uppercase text-3xl">sign up</h1>
+                <h1 className="text-center uppercase text-3xl mb-4">sign up</h1>
 
                 <LivFormErrors errors={formErrors}/>
 
@@ -71,13 +98,9 @@ export const BetaRegister = () => {
                         {
                             (formik) => (
                                 <Form onChange={(e) => genericOnChangeHandler(e, form, setForm)}>
-                                    <div
-                                        className="flex justify-between items-center w-full sm:gap-4 flex-col sm:flex-row">
-                                        <LivFieldGroup name={"first_name"} type={"text"} placeholder={"FIRST NAME"}
-                                                       align='center'/>
-                                        <LivFieldGroup name={"last_name"} type={"text"} placeholder={"LAST NAME"}
-                                                       align='center'/>
-                                    </div>
+                                    <LivFieldGroup name={"full_name"} type={"text"}
+                                                   placeholder={"FIRST NAME AND LAST NAME"}
+                                                   align='center'/>
 
                                     <LivFieldGroup name="email" type="email" placeholder="EMAIL ADDRESS"
                                                    align="center" margin='mb-4'/>
@@ -96,23 +119,16 @@ export const BetaRegister = () => {
                                         </button>
                                     </p>
 
-                                    <div
-                                        className="flex justify-between items-center w-full sm:gap-4 flex-col sm:flex-row">
-                                        <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
-                                                       align='center'/>
-                                        <LivFieldGroup name={"password_confirmation"} type={"password"}
-                                                       placeholder={"CONFIRM PASSWORD"}
-                                                       align='center'/>
-                                    </div>
+                                    <LivPasswordGroup name={'password'} placeholder={'PASSWORD'} align={'center'} margin={'mt-2'}/>
 
-                                    <div className="mt-6 mb-4">
-                                        <div className="w-[300px] m-auto">
-                                            <LivButton as={'button'} type={'submit'} text={'sign up'}
-                                                       textColor={'text-white'} bgColor={'bg-black'}
-                                                       borderColor={'border-black'}
-                                                       isSubmitting={formik.isSubmitting}
-                                                       isValid={formik.isValid} fullWidth={true}/>
+                                    <div className="mt-10 mb-4">
+                                        <LivButton as={'button'} type={'submit'} text={'sign up'}
+                                                   textColor={'text-white'} bgColor={'bg-black'}
+                                                   borderColor={'border-black'}
+                                                   isSubmitting={formik.isSubmitting}
+                                                   isValid={formik.isValid} fullWidth={true}/>
 
+                                        <div className="text-center">
                                             <span className="text-xs">Already have an account? <Link
                                                 to={'/beta/auth/login'} className="underline uppercase">Sign
                                                 in</Link></span>

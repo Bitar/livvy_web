@@ -32,7 +32,7 @@ export const BetaLogin = () => {
             setShowVerified(true);
         }
 
-        livvyApp.setPageTitle('Login | Beta User | Livvy')
+        livvyApp.setPageTitle('Login | Livvy | Alpha')
     }, []);
 
     const handleSubmit = async (values: any, {setSubmitting}: any) => {
@@ -131,13 +131,13 @@ export const BetaLogin = () => {
                                                align='center'/>
 
                                 <div className="mt-10 mb-4">
-                                    <div className="w-[300px] m-auto">
-                                        <LivButton as={'button'} type={'submit'} text={'sign in'}
-                                                   textColor={'text-white'} bgColor={'bg-black'}
-                                                   borderColor={'border-black'}
-                                                   isSubmitting={formik.isSubmitting}
-                                                   isValid={formik.isValid} fullWidth={true}/>
+                                    <LivButton as={'button'} type={'submit'} text={'sign in'}
+                                               textColor={'text-white'} bgColor={'bg-black'}
+                                               borderColor={'border-black'}
+                                               isSubmitting={formik.isSubmitting}
+                                               isValid={formik.isValid} fullWidth={true}/>
 
+                                    <div className="text-center">
                                         <span className="text-xs">Don't have an account? <Link
                                             to={'/beta/auth/register'} className="underline uppercase">Sign
                                             up</Link></span>

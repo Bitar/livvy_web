@@ -19,24 +19,8 @@ export const BetaVersions = () => {
     const livvyApp = useLivvyApp();
 
     useEffect(() => {
-        livvyApp.setPageTitle('App Versions | Livvy')
+        livvyApp.setPageTitle('Livvy | Alpha')
     }, []);
-
-    // const loadMore = (page: number) => {
-    //     submitRequest(getAppVersions, [`page=${page}`], (response) => {
-    //         setAppVersions([...appVersions, ...response.data]);
-    //
-    //         if (selected === null) {
-    //             setSelected(response.data[0]);
-    //         }
-    //
-    //         if (response.meta.current_page < response.meta.last_page) {
-    //             setHasMore(true);
-    //         } else {
-    //             setHasMore(false);
-    //         }
-    //     });
-    // }
 
     useEffect(() => {
         submitRequest(getAllAppVersions, [], (response) => {
