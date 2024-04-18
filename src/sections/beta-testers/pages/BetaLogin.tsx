@@ -139,7 +139,7 @@ export const BetaLogin = () => {
 
                                     <div className="text-center">
                                         <span className="text-xs">Don't have an account? <Link
-                                            to={'/beta/auth/register'} className="underline uppercase">Sign
+                                            to={'/alpha/auth/register'} className="underline uppercase">Sign
                                             up</Link></span>
                                     </div>
                                 </div>

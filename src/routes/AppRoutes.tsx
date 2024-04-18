@@ -23,11 +23,11 @@ const AppRoutes: FC = () => {
                     <Route path='error/*' element={<ErrorsPage/>}/>
                     <Route path='logout/*' element={<Logout/>}/>
 
-                    <Route path='beta/*' element={<BetaRoutes />} />
+                    <Route path='alpha/*' element={<BetaRoutes />} />
 
                     {
                         APP_ENV === 'production' && (
-                            <Route path='*' element={<Navigate to='/beta/auth'/>}/>
+                            <Route path='*' element={<Navigate to='/alpha/'/>}/>
                         )
                     }
 

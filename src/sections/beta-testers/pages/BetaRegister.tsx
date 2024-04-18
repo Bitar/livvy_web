@@ -130,7 +130,7 @@ export const BetaRegister = () => {
 
                                         <div className="text-center">
                                             <span className="text-xs">Already have an account? <Link
-                                                to={'/beta/auth/login'} className="underline uppercase">Sign
+                                                to={'/alpha/auth/login'} className="underline uppercase">Sign
                                                 in</Link></span>
                                         </div>
                                     </div>

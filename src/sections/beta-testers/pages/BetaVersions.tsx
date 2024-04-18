@@ -34,8 +34,13 @@ export const BetaVersions = () => {
         <div>
             <Background type='color' color='liv-tan'/>
 
-            <div className="py-3.5">
-                <img src="/assets/livvy-logo-black.png" alt="livvy logo black" className="w-20 m-auto"/>
+            <div className="py-3.5 flex justify-center items-center">
+                <img src="/assets/livvy-logo-black.png" alt="livvy logo black" className="w-[68px] me-3.5"/>
+
+                <span className="h-5 w-px border-s border-s-black"></span>
+
+                <span style={{fontFamily: "PP Editorial New"}}
+                      className="font-thin italic ms-3.5 capitalize text-[22px] mt-1">alpha</span>
             </div>
 
             <div className="container">
@@ -53,8 +58,7 @@ export const BetaVersions = () => {
                 <div className="container p-4">
                     <div className="sm:flex sm:justify-start sm:items-center">
                         <div className="text-md block sm:inline-block sm:text-xl mb-2 sm:mb-0">
-                            <span className="font-semibold uppercase me-1">{selected?.version}</span> <span
-                            className="capitalize me-4">- {selected?.title}</span>
+                            <span className="font-medium capitalize me-4">{selected?.version}</span>
                         </div>
 
                         <LivButton as={'a'}
@@ -98,7 +102,7 @@ const VideoPreview = ({appVersion, clickHandler}: { appVersion: AppVersion, clic
             </div>
 
             <div className="mt-2">
-                <span className="text-sm"><span className="uppercase">{appVersion.version}</span> - {appVersion.title}
+                <span className="text-sm"><span className="capitalize">{appVersion.version}</span>
                 </span>
             </div>
         </div>
