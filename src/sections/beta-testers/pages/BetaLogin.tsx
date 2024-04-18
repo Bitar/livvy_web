@@ -5,7 +5,7 @@ import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link, useSearchParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {getUserByToken, login, resendAccountActivationEmail} from "../../../requests/iam/auth.ts";
+import {getUserByToken, login, resendAccountActivationEmail, verifyAccount} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 import clsx from "clsx";
@@ -13,15 +13,17 @@ import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
 import {submitRequest} from "../../../helpers/requests.ts";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 import {LivPasswordGroup} from "../../../components/form/LivPasswordGroup.tsx";
+import {Role} from "../../../models/iam/Role.ts";
 
 export const BetaLogin = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
     const [form, setForm] = useState<BetaLoginFormFields>(defaultBetaLoginFormFields);
+    const [verificationErrors, setVerificationErrors] = useState<string []>([]);
 
     const [showResendLoading, setShowResendLoading] = useState<boolean>(false);
     const [showResendDone, setShowResendDone] = useState<boolean>(false);
-    const [verificationError, setVerificationError] = useState<boolean>(false);
+    const [notVerifiedError, setNotVerifiedError] = useState<boolean>(false);
     const [showVerified, setShowVerified] = useState<boolean>(false);
 
     const {saveAuth, setCurrentUser} = useAuth();
@@ -29,8 +31,13 @@ export const BetaLogin = () => {
     const livvyApp = useLivvyApp();
 
     useEffect(() => {
-        if(searchParams.get('verified') === 'success') {
-            setShowVerified(true);
+        if(searchParams.has('email') && searchParams.has('token')) {
+            // we need to verify the account
+            // do api call
+            submitRequest(verifyAccount, [searchParams.get('email'), searchParams.get('token')], (response) => {
+                // the account has been verified
+                setShowVerified(true);
+            }, setVerificationErrors);
         }
 
         livvyApp.setPageTitle('Login | Livvy | Alpha')
@@ -41,23 +48,33 @@ export const BetaLogin = () => {
             const {data: auth} = await login(form.email, form.password)
 
             if (auth.data.is_email_verified) {
-                saveAuth(auth)
+                const roles = auth.data.roles.map((role: Role) => role.name);
 
-                const {data: user} = await getUserByToken(auth.token)
+                if(roles.includes('Beta tester') || roles.includes('Administrator')) {
+                    saveAuth(auth)
 
-                setCurrentUser(user)
+                    const {data: user} = await getUserByToken(auth.token)
+
+                    setCurrentUser(user)
+                } else {
+                    saveAuth(undefined)
+                    setHasLoginErrors(true)
+                    setLoginErrorMessage("You don't have the right permissions to proceed.")
+                    setNotVerifiedError(false);
+                    setSubmitting(false)
+                }
             } else {
                 saveAuth(undefined)
                 setHasLoginErrors(false)
                 setLoginErrorMessage('')
-                setVerificationError(true);
+                setNotVerifiedError(true);
                 setSubmitting(false)
             }
         } catch (error) {
             saveAuth(undefined)
             setHasLoginErrors(true)
             setLoginErrorMessage('These credentials do not match our records.')
-            setVerificationError(false);
+            setNotVerifiedError(false);
             setSubmitting(false)
         }
     }
@@ -75,7 +92,7 @@ export const BetaLogin = () => {
             setShowResendDone(true);
 
             setTimeout(() => {
-                setVerificationError(false);
+                setNotVerifiedError(false);
                 setHasLoginErrors(false);
                 setLoginErrorMessage('');
                 setShowResendDone(false);
@@ -95,8 +112,10 @@ export const BetaLogin = () => {
 
             {hasLoginErrors && <LivFormErrors errors={[loginErrorMessage]}/>}
 
+            {verificationErrors.length > 0 && <LivFormErrors errors={verificationErrors}/>}
+
             <div className={clsx("bg-red-50 border border-red-300 text-red-800 rounded-md py-3 px-5 text-left flex justify-center align-middle mt-2", {
-                "hidden": !verificationError
+                "hidden": !notVerifiedError
             })}>
                 <span className="me-2">Your account has not been verified. Click <button className="underline" onClick={resendVerification}>here</button> to resend verification
                     email.</span> <svg className={clsx("animate-spin h-4 w-4 text-brand-green mt-0.5", {

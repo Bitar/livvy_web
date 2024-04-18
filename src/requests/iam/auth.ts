@@ -13,6 +13,7 @@ export const REGISTER_URL = `${API_URL}/register`
 export const BETA_REGISTER_URL = `${API_URL}/beta/register`
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`
 export const RESET_PASSWORD_URL = `${API_URL}/reset_password`
+export const VERIFY_ACCOUNT_URL = `${API_URL}/email/verify`
 export const RESEND_VERIFICATION_URL = `${API_URL}/email/verification-notification`
 
 // Server should return AuthModel
@@ -68,6 +69,16 @@ export const resetPassword = async (form: any): Promise<string | AxiosError | un
     const formData = createFormData(form);
 
     return await axios.post(RESET_PASSWORD_URL, formData)
+        .then(res => res.data)
+        .catch((error) => {
+            error = error as AxiosError;
+
+            return error;
+        });
+}
+
+export const verifyAccount = async (email: string, token: string): Promise<string | AxiosError | undefined> => {
+    return await axios.get(`${VERIFY_ACCOUNT_URL}?email=${email}&token=${token}`)
         .then(res => res.data)
         .catch((error) => {
             error = error as AxiosError;
