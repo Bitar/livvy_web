@@ -18,7 +18,7 @@ const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-5
             <Field type={type}
                    name={name}
                    placeholder={placeholder}
-                   className={clsx(`bg-transparent py-4 border-b border-b-black w-full text-${align} placeholder:text-gray-500 outline-none`, {
+                   className={clsx(`bg-transparent py-4 border-b border-b-black w-full text-${align} placeholder:text-gray-500 outline-0 rounded-none`, {
                        'border-b-red-600': formik.errors[name] !== undefined
                    })}
             />
