@@ -4,7 +4,7 @@ import {genericOnChangeHandler} from "../../../helpers/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link, useSearchParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getUserByToken, login, resendAccountActivationEmail} from "../../../requests/iam/auth.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
@@ -12,6 +12,7 @@ import clsx from "clsx";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
 import {submitRequest} from "../../../helpers/requests.ts";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import {LivPasswordGroup} from "../../../components/form/LivPasswordGroup.tsx";
 
 export const BetaLogin = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
@@ -127,8 +128,7 @@ export const BetaLogin = () => {
                                 <LivFieldGroup name="email" type="email" placeholder="EMAIL ADDRESS"
                                                align="center" margin='mb-4'/>
 
-                                <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
-                                               align='center'/>
+                                <LivPasswordGroup name={'password'} placeholder={'PASSWORD'} align={'center'} />
 
                                 <div className="mt-10 mb-4">
                                     <LivButton as={'button'} type={'submit'} text={'sign in'}
