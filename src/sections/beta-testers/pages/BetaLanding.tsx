@@ -20,7 +20,7 @@ export const BetaLanding = () => {
                 <img src={'/assets/livvy-logo-white.png'} alt="Livvy Logo White"
                      className='h-auto mb-7 inline-block w-56 md:w-80'/>
 
-                <p className="text-white md:max-w-lg w-full m-auto mb-7">Welcome to our alpha testing site! Here, we
+                <p className="text-white md:max-w-lg w-full m-auto mb-7 font-light">Welcome to our alpha testing site! Here, we
                     invite you to be among the first to experience our product and share your valuable feedback.</p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center">

@@ -7,9 +7,10 @@ interface Props {
     type: string,
     placeholder: string,
     margin?: string
-    align?: 'left' | 'center' | 'right'
+    align?: 'left' | 'center' | 'right',
+    errorMessagePosition?: string
 }
-const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-5", align = 'left'}) => {
+const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-5", align = 'left', errorMessagePosition = '-bottom-6'}) => {
     const formik = useFormikContext();
 
     return (
@@ -22,7 +23,7 @@ const LivFieldGroup: React.FC<Props> = ({name, type, placeholder, margin = "mb-5
                    })}
             />
 
-            <div className={`text-red-600 text-sm mt-2 text-${align} absolute -bottom-6 w-full`}>
+            <div className={`text-red-600 text-sm text-${align} absolute ${errorMessagePosition} w-full`}>
                 <ErrorMessage name={name}/>
             </div>
         </div>

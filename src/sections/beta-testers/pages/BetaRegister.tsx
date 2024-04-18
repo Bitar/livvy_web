@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {BetaRegisterFormFields, BetaRegisterSchema, defaultBetaRegisterFormFields} from "../core/form.ts";
-import {ErrorMessage, Field, Form, Formik, useFormikContext} from "formik";
+import {Form, Formik} from "formik";
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
-import {faCircleInfo, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
@@ -103,7 +103,7 @@ export const BetaRegister = () => {
                                                    align='center'/>
 
                                     <LivFieldGroup name="email" type="email" placeholder="EMAIL ADDRESS"
-                                                   align="center" margin='mb-4'/>
+                                                   align="center" margin='mb-2' errorMessagePosition={"-bottom-11"}/>
 
                                     <p className="text-xs text-center flex justify-center items-center">
                                         <span className="me-1">Use the email address associated with your
@@ -119,7 +119,7 @@ export const BetaRegister = () => {
                                         </button>
                                     </p>
 
-                                    <LivPasswordGroup name={'password'} placeholder={'PASSWORD'} align={'center'} margin={'mt-2'}/>
+                                    <LivPasswordGroup name={'password'} placeholder={'PASSWORD'} align={'center'} margin={'mt-3.5'}/>
 
                                     <div className="mt-10 mb-4">
                                         <LivButton as={'button'} type={'submit'} text={'sign up'}
