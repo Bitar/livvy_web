@@ -66,10 +66,10 @@ const AuthLayout = () => {
                         <div className="z-40 absolute w-full bottom-0 left-0 hidden md:block">
                             <div className="flex justify-between px-9 pb-8">
                                 <span
-                                    className="text-white text-base uppercase">Aesthetic <br/> Intelligence</span>
-                                <span className="text-white text-base uppercase">Established <br/> 2023</span>
-                                <span className="text-white text-base uppercase">Livvy.com <br/> @livvy</span>
-                                <span className="text-white text-base uppercase"><img
+                                    className="text-white text-sm uppercase">Aesthetic <br/> Intelligence</span>
+                                <span className="text-white text-sm uppercase">Established <br/> 2023</span>
+                                <span className="text-white text-sm uppercase">Livvy.com <br/> @livvy</span>
+                                <span className="text-white text-sm uppercase"><img
                                     src={toAbsoluteUrl('assets/logo-symbol-white.png')} alt="Livvy logo symbol"
                                     className="w-8"/></span>
                             </div>
