@@ -7,11 +7,23 @@ export const BetaLanding = () => {
         <div>
             <Helmet>
                 <title>Welcome | Livvy | Alpha</title>
+                <meta name="description"
+                      content="Welcome to our alpha testing site! Here, we invite you to be among the first to experience our product and share your valuable feedback."/>
+
                 <meta name="title" property="og:title" content="Welcome | Livvy | Alpha"/>
                 <meta name="type" property="og:type" content="website"/>
-                <meta name="image" property="og:image" content="https://storage.googleapis.com/livvy-app/assets/livvy-thumb.gif"/>
+                <meta name="image" property="og:image"
+                      content="https://storage.googleapis.com/livvy-app/assets/livvy-thumb.gif"/>
                 <meta name="url" property="og:url" content="https://app.livvy.com/alpha/"/>
-                <meta name="description" property="og:description" content="Welcome to our alpha testing site! Here, we invite you to be among the first to experience our product and share your valuable feedback."/>
+                <meta name="description" property="og:description"
+                      content="Welcome to our alpha testing site! Here, we invite you to be among the first to experience our product and share your valuable feedback."/>
+
+                <meta name="twitter:card" content="summary_large_image"/>
+                <meta property="twitter:domain" content="app.livvy.com"/>
+                <meta property="twitter:url" content="https://app.livvy.com/alpha/"/>
+                <meta name="twitter:title" content="Welcome | Livvy | Alpha"/>
+                <meta name="twitter:description" content="Welcome to our alpha testing site! Here, we invite you to be among the first to experience our product and share your valuable feedback."/>
+                <meta name="twitter:image" content="https://storage.googleapis.com/livvy-app/assets/livvy-thumb.gif"/>
             </Helmet>
 
             <Background type={'image'} url={'/assets/beta/beta-bg.jpeg'}/>
