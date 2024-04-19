@@ -7,7 +7,7 @@ export const BetaLanding = () => {
     const livvyApp = useLivvyApp();
 
     useEffect(() => {
-        livvyApp.setPageTitle('Login | Livvy | Alpha')
+        livvyApp.setPageTitle('Welcome | Livvy | Alpha')
     }, []);
 
     return (
