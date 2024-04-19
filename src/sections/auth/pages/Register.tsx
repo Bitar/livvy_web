@@ -34,7 +34,19 @@ export const Register = () => {
 
     const handleRegisterSubmit = async (values: any, {setSubmitting}: any) => {
         try {
-            const {data} = await register(values.email, values.first_name, values.last_name, values.password, values.password_confirmation);
+            const fullNameArr = values.full_name.split(' ');
+
+            let first_name: string;
+            let last_name = '';
+
+            if (fullNameArr.length > 1) {
+                first_name = fullNameArr[0];
+                last_name = fullNameArr[1];
+            } else {
+                first_name = fullNameArr[0];
+            }
+
+            const {data} = await register(values.email, first_name, last_name, values.password, values.password);
 
             setRegisteredEmail(data.email);
             // now we need to hide the current content of the register panel and show the content that tells us that the user needs to confirm
@@ -101,20 +113,13 @@ export const Register = () => {
                             validationSchema={RegisterSchema} enableReinitialize>
                         {(formik) => (
                             <Form>
-                                <LivFieldGroup name={"first_name"} type={"text"} placeholder={"FIRST NAME"}
-                                               align='center'/>
-
-                                <LivFieldGroup name={"last_name"} type={"text"} placeholder={"LAST NAME"}
+                                <LivFieldGroup name={"full_name"} type={"text"} placeholder={"FULL NAME"}
                                                align='center'/>
 
                                 <LivFieldGroup name={"email"} type={"email"} placeholder={"EMAIL"}
                                                align='center'/>
 
                                 <LivFieldGroup name={"password"} type={"password"} placeholder={"PASSWORD"}
-                                               align='center'/>
-
-                                <LivFieldGroup name={"password_confirmation"} type={"password"}
-                                               placeholder={"CONFIRM PASSWORD"}
                                                align='center'/>
 
                                 <div className="mt-6">
@@ -204,8 +209,8 @@ export const Register = () => {
             })}>
                 <div className="text-xs px-5 text-center">
                     By continuing, you agree to LIVVY’s <Link to={'#'}
-                                                              className="border border-b-black me-1 ms-1">Terms
-                    of Service</Link> and <Link to={'#'} className="border border-b-black me-1 ms-1">Privacy
+                                                              className="border border-b-black">Terms
+                    of Service</Link> and <Link to={'#'} className="border border-b-black">Privacy
                     Policy</Link>.
                 </div>
             </div>

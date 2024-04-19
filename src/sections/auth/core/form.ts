@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 // ---------------------------------------------------------------------------------------------------------------------
 
 export const LoginSchema = Yup.object().shape({
-    email: Yup.string().email().min(3, 'minimum 3 characters').max(50, 'maximum 50 characters').required(),
-    password: Yup.string().min(3, 'minimum 3 characters').max(50, 'maximum 50 characters').required()
+    email: Yup.string().email().min(3, 'minimum 6 characters').max(50, 'maximum 50 characters').required(),
+    password: Yup.string().min(3, 'minimum 6 characters').max(50, 'maximum 50 characters').required()
 })
 
 export interface LoginFormFields {
@@ -23,35 +23,29 @@ export const defaultLoginFormFields: LoginFormFields = {
 // Register Form
 // ---------------------------------------------------------------------------------------------------------------------
 export const RegisterSchema = Yup.object().shape({
-    first_name: Yup.string().required(),
-    last_name: Yup.string().required(),
-    email: Yup.string().email().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
-    password: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
-    password_confirmation: Yup.string().required().oneOf([Yup.ref('password')], 'Passwords do not match.')
+    full_name: Yup.string().required(),
+    email: Yup.string().email().min(3, 'Minimum 6 symbols').max(50, 'Maximum 50 symbols').required(),
+    password: Yup.string().min(3, 'Minimum 6 symbols').max(50, 'Maximum 50 symbols').required()
 })
 
 export interface RegisterFormFields {
-    first_name: string,
-    last_name: string,
+    full_name: string,
     email: string,
-    password: string,
-    password_confirmation: string
+    password: string
 }
 
 export const defaultRegisterFormFields: RegisterFormFields = {
-    first_name: '',
-    last_name: '',
+    full_name: '',
     email: '',
-    password: '',
-    password_confirmation: ''
+    password: ''
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Reset Password Form
 // ---------------------------------------------------------------------------------------------------------------------
 export const ResetPasswordSchema = Yup.object().shape({
-    email: Yup.string().email().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
-    password: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
+    email: Yup.string().email().min(3, 'Minimum 6 symbols').max(50, 'Maximum 50 symbols').required(),
+    password: Yup.string().min(3, 'Minimum 6 symbols').max(50, 'Maximum 50 symbols').required(),
     password_confirmation: Yup.string().required().oneOf([Yup.ref('password')], 'Passwords do not match.')
 });
 
