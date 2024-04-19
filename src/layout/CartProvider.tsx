@@ -1,5 +1,6 @@
 import {Cart} from "../models/layout/Cart.ts";
 import {createContext, Dispatch, SetStateAction, useContext} from "react";
+import {cartObject} from "../data/cart.ts";
 
 interface CartProps {
     cart: Cart,
@@ -10,9 +11,7 @@ interface CartProps {
     setBlurContent: Dispatch<SetStateAction<boolean>>
 }
 
-export const defaultCart : Cart = {
-    items: []
-}
+export const defaultCart = cartObject;
 
 export const CartProvider = createContext<CartProps>({
     cart: defaultCart,

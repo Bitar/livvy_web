@@ -1,17 +1,20 @@
 export type Cart = {
-    items: CartItem[]
+    sections: CartItemSection[]
 }
 
 export type CartItemSection = {
     id: number,
-    name: string
+    name: string,
+    items: CartItem[]
 }
 
 export type CartItem = {
     id: number,
     name: string,
     brand: string,
-    price: string,
-    category: CartItemSection,
+    price: number,
+    currency: string,
+    image: string,
+    category: string,
     quantity: number
 }
