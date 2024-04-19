@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 // ---------------------------------------------------------------------------------------------------------------------
 
 export const LoginSchema = Yup.object().shape({
-    email: Yup.string().email().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required(),
-    password: Yup.string().min(3, 'Minimum 3 symbols').max(50, 'Maximum 50 symbols').required()
+    email: Yup.string().email().min(3, 'minimum 3 characters').max(50, 'maximum 50 characters').required(),
+    password: Yup.string().min(3, 'minimum 3 characters').max(50, 'maximum 50 characters').required()
 })
 
 export interface LoginFormFields {

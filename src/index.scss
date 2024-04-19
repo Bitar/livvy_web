@@ -11,9 +11,10 @@
 @import "assets/animate";
 @import "assets/layout";
 @import "assets/form";
+@import "assets/footer";
 
 @layer base {
-  html {
+  html, .container {
     font-family: 'Neue Haas Grotesk Display Pro', system-ui, sans-serif;
   }
 }

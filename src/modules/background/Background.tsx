@@ -25,7 +25,7 @@ export const Background: FC<BackgroundProps> = ({type, url, poster, color}) => {
         <div className="fixed min-w-full min-h-full -z-10 overflow-hidden">
             {
                 (type == 'video' || type == 'image') &&
-                <div className="h-full w-full bg-black opacity-40 absolute top-0 left-0"/>
+                <div className="h-full w-full bg-black opacity-50 absolute top-0 left-0"/>
             }
 
             {type == 'video' && url !== null && (

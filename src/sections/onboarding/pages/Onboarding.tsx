@@ -101,10 +101,10 @@ const Slide: FC<SliderProps> = ({index, title, subTitle, description, video}) =>
 
 
     return (
-        <div>
+        <div className='overflow-hidden'>
             <div className="lg:flex flex-col lg:flex-row font-sans">
-                <div className='lg:flex-auto onboarding-text-container relative pb-6'>
-                    <div className='lg:absolute bottom-0 w-full'>
+                <div className='lg:flex-auto onboarding-text-container relative'>
+                    <div className='lg:absolute bottom-0 w-full ps-2'>
                         <p className='text-xl uppercase'>Step 0{index}</p>
                         <h1 className='text-6xl sm:text-8xl uppercase'>{title}</h1>
                         <h1 className='italic text-6xl sm:text-8xl font-thin mt-1'

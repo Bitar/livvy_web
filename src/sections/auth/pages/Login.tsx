@@ -31,7 +31,7 @@ export const Login = () => {
 
     const handleLoginSubmit = async (values: any, {setSubmitting}: any) => {
         try {
-            const auth = await login(values.email, values.password)
+            const {data: auth} = await login(values.email, values.password)
 
             saveAuth(auth)
 
