@@ -7,14 +7,14 @@ export const cartObject: Cart = {
             name: 'Celebrity Designer',
             items: [
                 {
-                    id: 2,
-                    name: "Bespoke chair",
-                    brand: "West Elm",
-                    price: 300,
+                    id: 6,
+                    name: "Celebrity Design",
+                    brand: "Studio Mcgee",
+                    price: 50,
                     currency: '$',
-                    category: 'chair',
+                    category: 'design',
                     quantity: 1,
-                    image: '/assets/cart/furniture-2.jpg'
+                    image: '/assets/celebrities/shea-mcgee.png'
                 }
             ]
         },
@@ -31,6 +31,26 @@ export const cartObject: Cart = {
                     category: 'table',
                     quantity: 2,
                     image: '/assets/cart/furniture-1.jpg'
+                },
+                {
+                    id: 3,
+                    name: "Arm Chair",
+                    brand: "West Elm",
+                    price: 198,
+                    currency: '$',
+                    category: 'chair',
+                    quantity: 1,
+                    image: '/assets/cart/furniture-3.jpg'
+                },
+                {
+                    id: 2,
+                    name: "Bespoke chair",
+                    brand: "Pottery Barn",
+                    price: 300,
+                    currency: '$',
+                    category: 'chair',
+                    quantity: 1,
+                    image: '/assets/cart/furniture-2.jpg'
                 }
             ]
         },

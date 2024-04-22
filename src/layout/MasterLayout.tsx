@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 import {ModalProvider} from "./ModalProvider.tsx";
 import {CartProvider, defaultCart} from "./CartProvider.tsx";
 import {Cart} from "../models/layout/Cart.ts";
-import { Cart as CartPanel } from "./Cart.tsx";
+import {Cart as CartPanel} from "./Cart.tsx";
 import clsx from "clsx";
 
 export const MasterLayout = () => {
@@ -25,6 +25,7 @@ export const MasterLayout = () => {
     const [cart, setCart] = useState<Cart>(defaultCart);
     const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
+    const [selected, setSelected] = useState<number[]>([]);
 
     useEffect(() => {
         if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
@@ -59,7 +60,9 @@ export const MasterLayout = () => {
                         isCartOpen,
                         setIsCartOpen,
                         blurContent,
-                        setBlurContent
+                        setBlurContent,
+                        selected,
+                        setSelected
                     }}>
                         <div id="wrapper">
                             {

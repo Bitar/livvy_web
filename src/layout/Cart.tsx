@@ -1,24 +1,62 @@
-import {useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import clsx from "clsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
 import {useCart} from "./CartProvider.tsx";
 import {Link} from "react-router-dom";
-import {LivQuantityPicker} from "../components/form/LivQuantityPicker.tsx";
 import {LivButton} from "../components/buttons/LivButton.tsx";
-import {LivCheckbox} from "../components/form/LivCheckbox.tsx";
 import {CartItem, CartItemSection} from "../models/layout/Cart.ts";
 
-// interface Props {
-//     isOpen: boolean,
-//     setIsOpen: Dispatch<SetStateAction<boolean>>
-// }
-
 export const Cart = () => {
-    const {cart} = useCart();
+    const {cart, setCart, isCartOpen, setIsCartOpen, setBlurContent, selected, setSelected} = useCart();
 
     const [isClosing, setIsClosing] = useState<boolean>(false);
-    const {isCartOpen, setIsCartOpen, setBlurContent} = useCart();
+
+    const selectAllHandler = () => {
+        const tempSelected = [];
+
+        cart.sections.forEach((section) => {
+            section.items.forEach((item) => {
+                tempSelected.push(item.id);
+            })
+        })
+
+        setSelected(tempSelected);
+    }
+
+    const saveHandler = () => {
+        setSelected([]);
+    }
+
+    const removeHandler = () => {
+        // remove everything that is selected
+        // selected contains all the item ids that we need to delete
+        const toDelete = {}; // map section id to the items to delete
+
+        cart.sections.forEach((section: CartItemSection, sectionIndex: number) => {
+            section.items.forEach((item: CartItem, itemIndex: number) => {
+                if (selected.includes(item.id)) {
+                    if (sectionIndex in toDelete) {
+                        toDelete[sectionIndex].push(itemIndex);
+                    } else {
+                        toDelete[sectionIndex] = [itemIndex];
+                    }
+                }
+            });
+        });
+
+        const newCart = {...cart};
+
+        for (const sectionIndex in toDelete) {
+            const itemIndices = toDelete[sectionIndex];
+
+            itemIndices.forEach((index: number) => {
+                newCart[sectionIndex].splice(index, 1);
+            });
+        }
+
+        setCart(newCart);
+    }
 
     return (
         <div id="cart-container"
@@ -40,7 +78,21 @@ export const Cart = () => {
             <div id="cart-header" className="p-10 flex justify-between items-center border-b border-b-black">
                 <div>
                     <h6 className="uppercase text-black text-4xl mb-2.5">your cart</h6>
-                    <button className="text-sm uppercase underline">select all</button>
+
+                    <div className="flex justify-start items-center">
+                        {
+                            (selected.length === 0) && <button className="text-sm uppercase underline" onClick={selectAllHandler}>select all</button>
+                        }
+
+                        {
+                            (selected.length > 0) && (
+                                <>
+                                    <button className="text-sm uppercase underline me-4" onClick={removeHandler}>remove</button>
+                                    <button className="text-sm uppercase underline" onClick={saveHandler}>save</button>
+                                </>
+                            )
+                        }
+                    </div>
                 </div>
 
                 <button onClick={() => {
@@ -53,9 +105,9 @@ export const Cart = () => {
 
             <div id="cart-content" className="p-10">
                 {
-                    cart.sections.map((cartSection: CartItemSection, idx) => {
-                        if(cartSection.items.length > 0) {
-                            return <CartSection section={cartSection} key={idx}/>
+                    cart.sections.map((cartSection: CartItemSection) => {
+                        if (cartSection.items.length > 0) {
+                            return <CartSection section={cartSection} key={cartSection.id}/>
                         }
                     })
                 }
@@ -68,11 +120,9 @@ export const Cart = () => {
                     <span className="text-xl">$3,360</span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2.5">
-                    <LivButton as={'button'} text={'add all to cart'} borderColor={'border-black'}
-                               bgColor={'bg-transparent'} hasArrow={false}/>
+                <div>
                     <LivButton as={'button'} text={'checkout'} borderColor={'border-black'}
-                               bgColor={'bg-black'} hasArrow={false} textColor={'text-white'}
+                               bgColor={'bg-black'} hasArrow={false} textColor={'text-white'} fullWidth={true} onWhiteBg={true}
                     />
                 </div>
             </div>
@@ -122,8 +172,8 @@ const CartSection = ({section}: { section: CartItemSection }) => {
                  })}>
 
                 {
-                    section.items.map((item : CartItem, idx) => (
-                        <Item item={item} key={idx}/>
+                    section.items.map((item: CartItem) => (
+                        <Item item={item} sectionId={section.id} key={item.id}/>
                     ))
                 }
             </div>
@@ -131,31 +181,117 @@ const CartSection = ({section}: { section: CartItemSection }) => {
     )
 }
 
-const Item = ({item} : {item: CartItem}) => {
+const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
+    const {cart, setCart, selected, setSelected} = useCart();
+
+    const [sectionIndex, setSectionIndex] = useState<number>(-1);
+    const [itemIndex, setItemIndex] = useState<number>(-1);
     const [quantity, setQuantity] = useState<number>(item.quantity);
-    const {cart, setCart} = useCart()
+
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+
+    useEffect(() => {
+        if(selected.includes(item.id)) {
+            setIsChecked(true);
+        } else {
+            setIsChecked(false);
+        }
+    }, [selected]);
+
+    useEffect(() => {
+        const tempSectionIndex = cart.sections.findIndex((section) => section.id === sectionId);
+        const tempItemIndex = cart.sections[tempSectionIndex].items.findIndex((itm) => itm.id === item.id);
+
+        // find the section index
+        setSectionIndex(tempSectionIndex);
+
+        // in section index find the item ID
+        setItemIndex(tempItemIndex);
+    }, [cart, item, sectionId]);
 
     const increment = () => {
-        let newCart = cart
-        console.log(newCart)
+        if (sectionIndex != -1 && itemIndex != -1 && quantity < 98) {
+            const newCart = {...cart};
 
-        // newCart.sections[0].items[1].quantity++
+            newCart.sections[sectionIndex].items[itemIndex].quantity = newCart.sections[sectionIndex].items[itemIndex].quantity + 1;
 
-        setCart(newCart)
+            setCart(newCart)
+
+            setQuantity(newCart.sections[sectionIndex].items[itemIndex].quantity);
+        }
     }
+
     const decrement = () => {
-        let newCart = cart
-        // console.log(newCart)
-        setCart(newCart)
+        if (sectionIndex != -1 && itemIndex != -1 && quantity > 1) {
+            const newCart = {...cart};
+
+            newCart.sections[sectionIndex].items[itemIndex].quantity = newCart.sections[sectionIndex].items[itemIndex].quantity - 1;
+
+            setCart(newCart);
+
+            setQuantity(newCart.sections[sectionIndex].items[itemIndex].quantity);
+        }
+    }
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setQuantity(Number(e.target.value));
+
+        const newCart = {...cart};
+
+        newCart.sections[sectionIndex].items[itemIndex].quantity = Number(e.target.value);
+
+        setCart(newCart);
+    }
+
+    const onRemoveHandler = () => {
+        if (itemIndex > -1) {
+            const newCart = {...cart};
+
+            newCart.sections[sectionIndex].items.splice(itemIndex, 1);
+
+            setCart(newCart);
+
+            // remove from selected if it's there
+            if (selected.includes(item.id)) {
+                const idx = selected.findIndex((id) => id === item.id);
+
+                if (idx > -1) {
+                    const tempSelected = [...selected];
+                    tempSelected.splice(idx, 1);
+                    setSelected(tempSelected);
+                }
+            }
+        }
+    }
+
+    const onCheckHandler = () => {
+        const tempSelected = [...selected];
+
+        if(isChecked) {
+            // uncheck
+            const idx = tempSelected.findIndex((id) => id === item.id);
+            tempSelected.splice(idx, 1);
+        } else {
+            // check
+            if (!tempSelected.includes(item.id)) {
+                tempSelected.push(item.id);
+            }
+        }
+
+        setIsChecked(!isChecked);
+        setSelected(tempSelected);
     }
 
     return (
         <div className="flex justify-between items-end border-b border-b-black py-6 last:border-b-0">
             <div className="flex justify-between items-center">
-                <LivCheckbox/>
+                <label className="liv-checkbox">
+                    <input type="checkbox" checked={isChecked} onChange={onCheckHandler}/>
+                    <span className="checkmark"></span>
+                </label>
 
                 <div className="relative w-20 h-20 bg-cover bg-no-repeat bg-center ms-8"
-                     style={{backgroundImage: `url('/assets/cart/furniture-1.jpg')`}}>
+                     style={{backgroundImage: `url('${item.image}')`}}>
                     <Link to={'#'} className="absolute top-0 left-0 w-full h-full z-10"></Link>
                 </div>
             </div>
@@ -165,21 +301,18 @@ const Item = ({item} : {item: CartItem}) => {
                 <p className="uppercase text-lg mb-4">{item.name}</p>
 
                 <div className="flex justify-start items-end">
-                    {/*<LivQuantityPicker/>*/}
-
                     <div className="flex justify-start items-center">
                         <button className="w-8 h-8 relative border border-black" onClick={decrement}>
                             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">-</span>
                         </button>
-                        <input type='text'
-                               className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm"/>
-                        <button className="w-8 h-8 relative border border-black">
-                            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                                  onClick={increment}>+</span>
+                        <input type='number'
+                               className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm" value={quantity} onChange={onChangeHandler} onFocus={(e) => e.target.select()}/>
+                        <button className="w-8 h-8 relative border border-black" onClick={increment}>
+                            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">+</span>
                         </button>
                     </div>
 
-                    <button className="uppercase underline text-sm ms-4">remove</button>
+                    <button className="uppercase underline text-sm ms-4" onClick={onRemoveHandler}>remove</button>
                 </div>
             </div>
 

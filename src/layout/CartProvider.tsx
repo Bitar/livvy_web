@@ -8,7 +8,9 @@ interface CartProps {
     isCartOpen: boolean,
     setIsCartOpen: Dispatch<SetStateAction<boolean>>,
     blurContent: boolean,
-    setBlurContent: Dispatch<SetStateAction<boolean>>
+    setBlurContent: Dispatch<SetStateAction<boolean>>,
+    selected: number[],
+    setSelected: Dispatch<SetStateAction<number[]>>
 }
 
 export const defaultCart = cartObject;
@@ -18,9 +20,14 @@ export const CartProvider = createContext<CartProps>({
     setCart: () => {
     },
     isCartOpen: false,
-    setIsCartOpen: () => {},
+    setIsCartOpen: () => {
+    },
     blurContent: false,
-    setBlurContent: () => {}
+    setBlurContent: () => {
+    },
+    selected: [],
+    setSelected: () => {
+    }
 })
 
 
