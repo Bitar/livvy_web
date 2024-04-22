@@ -6,7 +6,7 @@ import {useCart} from "./CartProvider.tsx";
 
 export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
-    const {setIsCartOpen} = useCart();
+    const {setIsCartOpen, setBlurContent} = useCart();
 
     return (
         <div id="header" className='flex flex-wrap items-center justify-between mx-auto border-b border-white/50 px-10'>
@@ -24,7 +24,10 @@ export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
                         </a>
                     </li>
                     <li>
-                        <button className={`block py-2 text-${textColor}`} onClick={() => setIsCartOpen(true)}>
+                        <button className={`block py-2 text-${textColor}`} onClick={() => {
+                            setIsCartOpen(true);
+                            setBlurContent(true);
+                        }}>
                             <FontAwesomeIcon icon={faShoppingBag}/>
                         </button>
                     </li>

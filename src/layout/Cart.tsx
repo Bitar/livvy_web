@@ -64,9 +64,6 @@ export const Cart = () => {
                  if (isClosing) {
                      setIsCartOpen(false);
                      setIsClosing(false);
-                 } else {
-                     // we just opened the cart
-                     setBlurContent(true);
                  }
              }}
              className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full md:w-2/5 sm:w-3/4 h-full bg-white animate__animated", {
@@ -96,8 +93,8 @@ export const Cart = () => {
                 </div>
 
                 <button onClick={() => {
-                    setIsClosing(true);
                     setBlurContent(false);
+                    setIsClosing(true);
                 }}>
                     <img src="/assets/close.svg" alt="close icon" className="w-5 h-5"/>
                 </button>
