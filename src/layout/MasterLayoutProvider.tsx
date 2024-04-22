@@ -10,7 +10,9 @@ interface MasterLayoutProviderProps {
     backgroundUrl: string | null,
     setBackgroundUrl: Dispatch<SetStateAction<string | null>>,
     backgroundColor: string | null,
-    setBackgroundColor: Dispatch<SetStateAction<string | null>>
+    setBackgroundColor: Dispatch<SetStateAction<string | null>>,
+    blurContent: boolean,
+    setBlurContent: Dispatch<SetStateAction<boolean>>
 }
 
 export const MasterLayoutProvider = createContext<MasterLayoutProviderProps>({
@@ -28,6 +30,9 @@ export const MasterLayoutProvider = createContext<MasterLayoutProviderProps>({
     },
     backgroundColor: null,
     setBackgroundColor: () => {
+    },
+    blurContent: false,
+    setBlurContent: () => {
     }
 })
 

@@ -6,8 +6,7 @@ import {Background} from "../modules/background/Background.tsx";
 import {MasterLayoutProvider} from "./MasterLayoutProvider.tsx";
 import {useEffect, useState} from "react";
 import {ModalProvider} from "./ModalProvider.tsx";
-import {CartProvider, defaultCart} from "./CartProvider.tsx";
-import {Cart} from "../models/layout/Cart.ts";
+import {CartProvider} from "./CartProvider.tsx";
 import {Cart as CartPanel} from "./Cart.tsx";
 import clsx from "clsx";
 
@@ -21,11 +20,7 @@ export const MasterLayout = () => {
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-    const [cart, setCart] = useState<Cart>(defaultCart);
-    const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
-    const [selected, setSelected] = useState<number[]>([]);
 
     useEffect(() => {
         if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
@@ -48,22 +43,15 @@ export const MasterLayout = () => {
                 backgroundUrl,
                 setBackgroundUrl,
                 backgroundColor,
-                setBackgroundColor
+                setBackgroundColor,
+                blurContent,
+                setBlurContent
             }}>
                 <ModalProvider.Provider value={{
                     isOpen: isModalOpen,
                     setIsOpen: setIsModalOpen
                 }}>
-                    <CartProvider.Provider value={{
-                        cart,
-                        setCart,
-                        isCartOpen,
-                        setIsCartOpen,
-                        blurContent,
-                        setBlurContent,
-                        selected,
-                        setSelected
-                    }}>
+                    <CartProvider>
                         <div id="wrapper">
                             {
                                 backgroundType === "image" || backgroundType == "video" ?
@@ -83,7 +71,7 @@ export const MasterLayout = () => {
 
                             {showFooter && <Footer/>}
                         </div>
-                    </CartProvider.Provider>
+                    </CartProvider>
                 </ModalProvider.Provider>
             </MasterLayoutProvider.Provider>
         </PageDataProvider>

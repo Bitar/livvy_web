@@ -5,12 +5,27 @@ import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
 import {useCart} from "./CartProvider.tsx";
 import {Link} from "react-router-dom";
 import {LivButton} from "../components/buttons/LivButton.tsx";
-import {CartItem, CartItemSection} from "../models/layout/Cart.ts";
+import {Cart as CartModel, CartItem, CartItemSection} from "../models/layout/Cart.ts";
+import {useMasterLayout} from "./MasterLayoutProvider.tsx";
 
 export const Cart = () => {
-    const {cart, setCart, isCartOpen, setIsCartOpen, setBlurContent, selected, setSelected} = useCart();
+    const {cart, setCart, isCartOpen, setIsCartOpen, selected, setSelected} = useCart();
+    const {setBlurContent} = useMasterLayout();
+    const [subtotal, setSubtotal] = useState<number>(0);
 
     const [isClosing, setIsClosing] = useState<boolean>(false);
+
+    useEffect(() => {
+        let total = 0;
+
+        cart.sections.forEach((section) => {
+            section.items.forEach((item) => {
+                total += item.price;
+            });
+        });
+
+        setSubtotal(total);
+    }, [cart]);
 
     const selectAllHandler = () => {
         const tempSelected = [];
@@ -28,34 +43,32 @@ export const Cart = () => {
         setSelected([]);
     }
 
-    const removeHandler = () => {
+    const removeAllHandler = () => {
         // remove everything that is selected
         // selected contains all the item ids that we need to delete
-        const toDelete = {}; // map section id to the items to delete
+        const newCart: CartModel = {sections: []};
 
-        cart.sections.forEach((section: CartItemSection, sectionIndex: number) => {
-            section.items.forEach((item: CartItem, itemIndex: number) => {
-                if (selected.includes(item.id)) {
-                    if (sectionIndex in toDelete) {
-                        toDelete[sectionIndex].push(itemIndex);
-                    } else {
-                        toDelete[sectionIndex] = [itemIndex];
-                    }
+        cart.sections.forEach((section: CartItemSection) => {
+            const newItems = [];
+
+            section.items.forEach((item) => {
+                if (!selected.includes(item.id)) {
+                    newItems.push(item);
                 }
-            });
-        });
+            })
 
-        const newCart = {...cart};
+            if (newItems.length > 0) {
+                // remove the section
+                const newSection = {...section};
 
-        for (const sectionIndex in toDelete) {
-            const itemIndices = toDelete[sectionIndex];
+                newSection.items = newItems;
 
-            itemIndices.forEach((index: number) => {
-                newCart[sectionIndex].splice(index, 1);
-            });
-        }
+                newCart.sections.push(newSection);
+            }
+        })
 
         setCart(newCart);
+        setSelected([]);
     }
 
     return (
@@ -78,13 +91,13 @@ export const Cart = () => {
 
                     <div className="flex justify-start items-center">
                         {
-                            (selected.length === 0) && <button className="text-sm uppercase underline" onClick={selectAllHandler}>select all</button>
+                            (cart.sections.length > 0) && (selected.length === 0) && <button className="text-sm uppercase underline" onClick={selectAllHandler}>select all</button>
                         }
 
                         {
-                            (selected.length > 0) && (
+                            (cart.sections.length > 0) && (selected.length > 0) && (
                                 <>
-                                    <button className="text-sm uppercase underline me-4" onClick={removeHandler}>remove</button>
+                                    <button className="text-sm uppercase underline me-4" onClick={removeAllHandler}>remove</button>
                                     <button className="text-sm uppercase underline" onClick={saveHandler}>save</button>
                                 </>
                             )
@@ -100,7 +113,7 @@ export const Cart = () => {
                 </button>
             </div>
 
-            <div id="cart-content" className="p-10">
+            <div id="cart-content" className="p-10 relative h-[calc(100vh-338px)] overflow-y-auto overflow-x-hidden">
                 {
                     cart.sections.map((cartSection: CartItemSection) => {
                         if (cartSection.items.length > 0) {
@@ -108,13 +121,17 @@ export const Cart = () => {
                         }
                     })
                 }
+
+                {
+                    cart.sections.length == 0 && <p className={"absolute left-0 top-1/2 -translate-y-1/2 z-20 w-full text-center"}>Your cart is empty.</p>
+                }
             </div>
 
             <div id="cart-footer"
-                 className="p-10 border-t border-t-black absolute w-full bottom-0 left-0 z-10">
+                 className="p-10 border-t border-t-black absolute w-full bottom-0 left-0 z-10 bg-white">
                 <div className="flex justify-between items-center mb-5">
                     <span className="uppercase text-xl">subtotal</span>
-                    <span className="text-xl">$3,360</span>
+                    <span className="text-xl">$ {subtotal.toLocaleString(undefined, {maximumFractionDigits:2})}</span>
                 </div>
 
                 <div>
@@ -188,7 +205,7 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
     useEffect(() => {
-        if(selected.includes(item.id)) {
+        if (selected.includes(item.id)) {
             setIsChecked(true);
         } else {
             setIsChecked(false);
@@ -231,13 +248,18 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setQuantity(Number(e.target.value));
+        // const oldValue = e.target.defaultValue;
+        const value = Number(e.target.value);
 
-        const newCart = {...cart};
+        if(value !== 0) {
+            setQuantity(value);
 
-        newCart.sections[sectionIndex].items[itemIndex].quantity = Number(e.target.value);
+            const newCart = {...cart};
 
-        setCart(newCart);
+            newCart.sections[sectionIndex].items[itemIndex].quantity = value;
+
+            setCart(newCart);
+        }
     }
 
     const onRemoveHandler = () => {
@@ -245,6 +267,11 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
             const newCart = {...cart};
 
             newCart.sections[sectionIndex].items.splice(itemIndex, 1);
+
+            if(newCart.sections[sectionIndex].items.length === 0) {
+                // remove the section too
+                newCart.sections.splice(sectionIndex, 1);
+            }
 
             setCart(newCart);
 
@@ -264,7 +291,7 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
     const onCheckHandler = () => {
         const tempSelected = [...selected];
 
-        if(isChecked) {
+        if (isChecked) {
             // uncheck
             const idx = tempSelected.findIndex((id) => id === item.id);
             tempSelected.splice(idx, 1);
@@ -315,7 +342,7 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
 
             <div className="text-right">
                 <div className="mb-3">
-                    <span className="text-lg">{item.currency}{item.price}</span>
+                    <span className="text-lg">{item.currency}{item.price.toLocaleString(undefined, {maximumFractionDigits:2})}</span>
                 </div>
 
                 <LivButton as={'a'} url={'#'} text={'find similar item'} borderColor={'border-black'}

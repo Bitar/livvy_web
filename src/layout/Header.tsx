@@ -3,10 +3,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faUser, faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 import {useCart} from "./CartProvider.tsx";
+import {useMasterLayout} from "./MasterLayoutProvider.tsx";
 
 export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
-    const {setIsCartOpen, setBlurContent} = useCart();
+    const {setIsCartOpen} = useCart();
+    const {setBlurContent} = useMasterLayout();
 
     return (
         <div id="header" className='flex flex-wrap items-center justify-between mx-auto border-b border-white/50 px-10'>
