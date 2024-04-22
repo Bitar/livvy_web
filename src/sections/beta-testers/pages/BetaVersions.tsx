@@ -90,7 +90,7 @@ const VideoPreview = ({appVersion, clickHandler}: { appVersion: AppVersion, clic
         <div>
             <div
                 className="relative bg-no-repeat bg-cover bg-center aspect-video rounded-lg"
-                style={{backgroundImage: `url('${appVersion.poster}')`}}>
+                style={{backgroundImage: `url(${appVersion.poster})`}}>
                 <button className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20 rounded-lg"
                         onClick={clickHandler}>
                     <div

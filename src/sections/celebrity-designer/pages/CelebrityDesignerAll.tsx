@@ -134,7 +134,7 @@ export const CelebrityDesignerAll = () => {
                             cum deleniti dolore, ipsa libero perspiciatis provident quos unde velit.</p>
                     </div>
 
-                    <div className="relative lg:w-4/5 m-auto">
+                    <div className="relative mb-8 md:mb-28">
                         <button
                             className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10"
                             onClick={() => howItWorksSliderRef?.current?.slickNext()}>
