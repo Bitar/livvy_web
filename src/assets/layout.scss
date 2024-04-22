@@ -2,3 +2,10 @@
   padding: 40px 24px;
   position: relative;
 }
+
+#wrapper {
+  #content {
+    -webkit-transition: filter 0.5s ease-in; //HERE
+    transition: filter 0.5s ease-in; //HERE
+  }
+}
