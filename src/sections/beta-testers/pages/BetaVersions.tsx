@@ -63,7 +63,7 @@ export const BetaVersions = () => {
 
             <div className="container">
                 <div style={{padding: "56.25% 0 0 0"}} className="relative">
-                    <span className={clsx("absolute text-xs top-2 left-2 py-1 md:text-base md:top-5 md:left-6 z-20 px-3 md:py-2 bg-white rounded-lg", {
+                    <span className={clsx("absolute rounded-md text-xs top-2 left-2 py-1 md:text-base md:top-5 md:left-6 z-20 px-3 md:py-2 bg-white md:rounded-lg", {
                         hidden: !showNotice
                     })}>
                         <span className="font-medium">Note</span>: An iPad Pro is necessary for this version of the app
