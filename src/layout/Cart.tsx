@@ -79,26 +79,26 @@ export const Cart = () => {
                      setIsClosing(false);
                  }
              }}
-             className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full md:w-2/5 sm:w-3/4 h-full bg-white animate__animated", {
+             className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full lg:w-4/5 xl:w-3/5 h-full bg-white animate__animated", {
                  "animate__slideInRight": !isClosing,
                  "animate__slideOutRight": isClosing,
                  "hidden": !isCartOpen
              })}>
 
-            <div id="cart-header" className="p-10 flex justify-between items-center border-b border-b-black">
+            <div id="cart-header" className="p-5 flex justify-between items-center border-b border-b-black">
                 <div>
-                    <h6 className="uppercase text-black text-4xl mb-2.5">your cart</h6>
+                    <h6 className="uppercase text-black text-2xl lg:text-4xl mb-2.5">your cart</h6>
 
                     <div className="flex justify-start items-center">
                         {
-                            (cart.sections.length > 0) && (selected.length === 0) && <button className="text-sm uppercase underline" onClick={selectAllHandler}>select all</button>
+                            (cart.sections.length > 0) && (selected.length === 0) && <button className="text-xs lg:text-sm uppercase underline" onClick={selectAllHandler}>select all</button>
                         }
 
                         {
                             (cart.sections.length > 0) && (selected.length > 0) && (
                                 <>
-                                    <button className="text-sm uppercase underline me-4" onClick={removeAllHandler}>remove</button>
-                                    <button className="text-sm uppercase underline" onClick={saveHandler}>save</button>
+                                    <button className="text-xs lg:text-sm uppercase underline me-4" onClick={removeAllHandler}>remove</button>
+                                    <button className="text-xs lg:text-sm uppercase underline" onClick={saveHandler}>save</button>
                                 </>
                             )
                         }
@@ -113,7 +113,7 @@ export const Cart = () => {
                 </button>
             </div>
 
-            <div id="cart-content" className="p-10 relative h-[calc(100vh-338px)] overflow-y-auto overflow-x-hidden">
+            <div id="cart-content" className="p-10 relative h-[calc(100vh-298px)] overflow-y-auto overflow-x-hidden">
                 {
                     cart.sections.map((cartSection: CartItemSection) => {
                         if (cartSection.items.length > 0) {

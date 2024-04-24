@@ -135,17 +135,17 @@ export const CelebrityDesignerAll = () => {
                     </div>
 
                     <div className="relative mb-8 md:mb-28">
-                        <button
-                            className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10"
-                            onClick={() => howItWorksSliderRef?.current?.slickNext()}>
-                            <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
-                        </button>
+                        {/*<button*/}
+                        {/*    className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10"*/}
+                        {/*    onClick={() => howItWorksSliderRef?.current?.slickNext()}>*/}
+                        {/*    <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>*/}
+                        {/*</button>*/}
 
-                        <button
-                            className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100"
-                            onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
-                            <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
-                        </button>
+                        {/*<button*/}
+                        {/*    className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100"*/}
+                        {/*    onClick={() => howItWorksSliderRef?.current?.slickPrev()}>*/}
+                        {/*    <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>*/}
+                        {/*</button>*/}
 
                         <Slider {...howItWorksSettings} ref={howItWorksSliderRef}>
                             <Slide title={'Discover Your Celebrity Inspiration'}
