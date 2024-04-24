@@ -3,7 +3,7 @@ import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 import {useEffect} from "react";
 
-export const BetaLanding = () => {
+export const AlphaLanding = () => {
     const livvyApp = useLivvyApp();
 
     useEffect(() => {

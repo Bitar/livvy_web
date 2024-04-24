@@ -12,7 +12,7 @@ import Player from '@vimeo/player'
 import clsx from "clsx";
 
 
-export const BetaVersions = () => {
+export const AlphaVersions = () => {
     const {currentUser} = useAuth();
 
     const [selected, setSelected] = useState<AppVersion | null>(null);
@@ -35,7 +35,7 @@ export const BetaVersions = () => {
             });
 
             player.on('pause', function () {
-               setShowNotice(true);
+                setShowNotice(true);
             });
         }
     }, [selected]);
@@ -52,16 +52,31 @@ export const BetaVersions = () => {
         <div>
             <Background type='color' color='liv-tan'/>
 
-            <div className="py-3.5 flex justify-center items-center">
-                <img src="/assets/livvy-logo-black.png" alt="livvy logo black" className="w-[68px] me-3.5"/>
+            <div className="container">
+                <div className='flex justify-between'>
+                    <div className="py-3.5 flex justify-start items-center">
+                        <img src="/assets/livvy-logo-black.png" alt="livvy logo black" className="w-[68px] me-3.5"/>
 
-                <span className="h-5 w-px border-s border-s-black"></span>
+                        <span className="h-5 w-px border-s border-s-black"></span>
 
-                <span style={{fontFamily: "PP Editorial New"}}
-                      className="font-thin italic ms-3.5 capitalize text-[22px] mt-1">alpha</span>
+                        <span style={{fontFamily: "PP Editorial New"}}
+                              className="font-thin italic ms-3.5 capitalize text-[22px] mt-1">alpha</span>
+                    </div>
+                    <div className='py-3.5'>
+                        <LivButton as={'button'} onClickHandler={() => {
+                        }} text={'TESTING FEEDBACK FORM'} borderColor={'border-black'} bgColor={'bg-black'} textColor={'text-white'} arrowIcon={false} rounded={true} style={'thin'}/>
+                    </div>
+                </div>
             </div>
 
             <div className="container">
+
+                <div className="card">
+                    
+                </div>
+
+
+
                 <div style={{padding: "56.25% 0 0 0"}} className="relative">
                     <span className={clsx("absolute rounded-md text-xs top-2 left-2 py-1 md:text-base md:top-5 md:left-6 z-20 px-3 md:py-2 bg-white md:rounded-lg", {
                         hidden: !showNotice
