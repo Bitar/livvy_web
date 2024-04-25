@@ -4,6 +4,7 @@ import {useAuth} from "../sections/auth/core/Auth.tsx";
 import {AlphaAuthRoutes} from "./AlphaAuthRoutes.tsx";
 import {AlphaVersions} from "../sections/beta-testers/pages/AlphaVersions.tsx";
 import {AlphaLanding} from "../sections/beta-testers/pages/AlphaLanding.tsx";
+import {AlphaVersionsRoutes} from "./AlphaVersionsRoutes.tsx";
 
 export const AlphaRoutes = () => {
     const {currentUser} = useAuth()
@@ -14,7 +15,7 @@ export const AlphaRoutes = () => {
                 currentUser ? (
                     <>
                         <Route path='auth/*' element={<Navigate to={'/alpha/'}/>}/>
-                        <Route path='/*' element={<AlphaVersions />}/>
+                        <Route path='/*' element={<AlphaVersionsRoutes />}/>
                     </>
                 ) : (
                     <>
