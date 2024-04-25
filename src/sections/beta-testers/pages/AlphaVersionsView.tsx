@@ -67,15 +67,11 @@ export const AlphaVersionsView = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mt-10">
                             <div className="key-points">
                                 <h2 className='text-3xl uppercase mb-4'>Key Points</h2>
-                                {appVersion?.description}
+                                <p>{appVersion?.key_points}</p>
                             </div>
                             <div className="devices">
                                 <h2 className='text-3xl uppercase mb-4'>Devices</h2>
-                                <ul>
-                                    <li>iPad Pro</li>
-                                    <li>iPad Pro w/ LIDAR</li>
-                                    <li>Random Device</li>
-                                </ul>
+                                <p>{appVersion?.devices}</p>
                             </div>
                             <div className="feedback-form">
                                 <h2 className='text-3xl uppercase mb-4'>Feedback Form</h2>

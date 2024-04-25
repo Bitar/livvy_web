@@ -4,6 +4,8 @@ export type AppVersion = {
     id: number,
     title: string,
     description: string,
+    key_points: string,
+    devices: string,
     version: string,
     url: string,
     poster: string,
