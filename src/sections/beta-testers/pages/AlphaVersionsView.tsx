@@ -8,8 +8,10 @@ import Player from '@vimeo/player'
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {useAuth} from "../../auth/core/Auth.tsx";
 import {AppVersionCard} from "./AlphaVersions.tsx";
+import {useAppVersion} from "./AlphaVersionsLayout.tsx";
 
 export const AlphaVersionsView = () => {
+    const {setShowTypeForm} = useAppVersion()
     const {currentUser} = useAuth();
     const params = useParams();
     const [appVersion, setAppVersion] = useState<AppVersion | null>(null)
@@ -75,16 +77,17 @@ export const AlphaVersionsView = () => {
                             </div>
                             <div className="feedback-form">
                                 <h2 className='md:text-3xl text-2xl uppercase mb-4'>Feedback Form</h2>
-                                <LivButton as={'a'}
+                                <LivButton as={'button'}
                                            borderColor={'border-black'}
-                                           newTab={true}
                                            bgColor={'bg-white'}
                                            textColor={'text-black'}
                                            arrowIcon={false}
                                            rounded={true}
                                            text={'Click Here'}
                                            style={'thin'}
-                                           url={`https://form.typeform.com/to/FFMbaQjU#email=${currentUser.email}&name=${currentUser.first_name + ' ' + currentUser.last_name}&version_id=${currentUser.apple_build_version_id}`}
+                                           onClickHandler={() => {
+                                               setShowTypeForm(true)
+                                           }}
                                 />
                             </div>
                         </div>
