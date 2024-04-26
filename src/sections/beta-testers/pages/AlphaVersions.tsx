@@ -5,6 +5,7 @@ import {getAllAppVersions} from "../../../requests/beta/AppVersion.ts";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
+import moment from 'moment'
 
 
 export const AlphaVersions = () => {
@@ -75,12 +76,15 @@ export const AppVersionCard = ({appVersion, isHero, isThumbnail = false}: { appV
                     isHero &&
                     <span className='rounded-full bg-white py-4 px-5 sm:text-sm text-xs me-4'>New Release</span>
                 }
-                <span className='text-white sm:text-sm text-xs'>{appVersion.created_at}</span>
+                <span className='text-white sm:text-sm text-xs'>{moment.unix(appVersion.created_at).format('MMM DD, YYYY')}</span>
             </div>
             <div className={clsx("content relative mb-10 px-10 text-white", {
                 "lg:absolute lg:bottom-10 ": !isThumbnail
             })}>
-                <h1 className="title lg:text-6xl sm:text-4xl text-3xl uppercase mb-5">Version ({appVersion.version})</h1>
+                <h1 className={clsx("title sm:text-4xl text-3xl uppercase mb-5", {
+                    'lg:text-6xl sm:text-4xl text-3xl': !isThumbnail,
+                    'sm:text-4xl text-3xl': isThumbnail
+                })}>Version ({appVersion.version})</h1>
                 <div
                     className={clsx("description mb-5", {
                         "max-w-2xl": isHero

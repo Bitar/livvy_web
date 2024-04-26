@@ -61,20 +61,20 @@ export const AlphaVersionsView = () => {
                         </div>
                     </div>
 
-                    <div className="container mt-10">
-                        <h1 className='text-6xl uppercase'>Version ({appVersion?.version})</h1>
-                        <p className='md:max-w-3xl mt-5'>{appVersion?.description}</p>
+                    <div className="container mt-10 md:px-0 px-5">
+                        <h1 className='lg:text-6xl sm:text-4xl text-3xl  uppercase'>Version ({appVersion?.version})</h1>
+                        <p className='md:max-w-3xl mt-5 whitespace-pre-line'>{appVersion?.description}</p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mt-10">
                             <div className="key-points">
-                                <h2 className='text-3xl uppercase mb-4'>Key Points</h2>
-                                <p>{appVersion?.key_points}</p>
+                                <h2 className='md:text-3xl text-2xl uppercase mb-4'>Key Points</h2>
+                                <p className='whitespace-pre-line'>{appVersion?.key_points}</p>
                             </div>
                             <div className="devices">
-                                <h2 className='text-3xl uppercase mb-4'>Devices</h2>
-                                <p>{appVersion?.devices}</p>
+                                <h2 className='md:text-3xl text-2xl uppercase mb-4'>Devices</h2>
+                                <p className='whitespace-pre-line'>{appVersion?.devices}</p>
                             </div>
                             <div className="feedback-form">
-                                <h2 className='text-3xl uppercase mb-4'>Feedback Form</h2>
+                                <h2 className='md:text-3xl text-2xl uppercase mb-4'>Feedback Form</h2>
                                 <LivButton as={'a'}
                                            borderColor={'border-black'}
                                            newTab={true}
@@ -90,8 +90,8 @@ export const AlphaVersionsView = () => {
                         </div>
                     </div>
 
-                    <div className="container mt-10 mb-20">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+                    <div className="container mt-10 mb-20 md:px-0 px-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
                             {
                                 latestAppVersions.map((appVersion, idx) => <AppVersionCard key={idx} appVersion={appVersion} isHero={false} isThumbnail={true}/>)
                             }

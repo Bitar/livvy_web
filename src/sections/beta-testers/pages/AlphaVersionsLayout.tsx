@@ -11,7 +11,7 @@ export const AlphaVersionsLayout = () => {
         <div>
             <Background type='color' color='liv-tan'/>
 
-            <div className="container px-4 sm:px-0">
+            <div className="container md:px-0 px-4">
                 <div className='sm:flex justify-between'>
                     <div className="py-3.5 flex justify-center items-center">
                         <img src="/assets/livvy-logo-black.png" alt="livvy logo black" className="w-[68px] me-3.5"/>
