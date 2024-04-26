@@ -99,7 +99,7 @@ export const cartObject: Cart = {
                 {
                     id: 10,
                     name: "Bespoke chair",
-                    brand: "Pottery Barn",
+                    brand: "Pottery Barn jkwere",
                     price: 300,
                     currency: '$',
                     category: 'chair',

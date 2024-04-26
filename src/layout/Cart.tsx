@@ -1,4 +1,4 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useRef, useState} from "react";
 import clsx from "clsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +14,32 @@ export const Cart = () => {
     const [subtotal, setSubtotal] = useState<number>(0);
 
     const [isClosing, setIsClosing] = useState<boolean>(false);
+    const [cartContentHeight, setCartContentHeight] = useState<number>(0);
+
+    const cartHeader = useRef<HTMLDivElement>(null);
+    const cartFooter = useRef<HTMLDivElement>(null);
+
+    const updateCartContentHeight = () => {
+        if(cartHeader && cartFooter) {
+            setCartContentHeight(window.innerHeight - (cartHeader.current?.offsetHeight + cartFooter.current?.offsetHeight));
+        }
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            updateCartContentHeight();
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        updateCartContentHeight();
+    }, [isCartOpen, cartHeader, cartFooter]);
 
     useEffect(() => {
         let total = 0;
@@ -85,7 +111,7 @@ export const Cart = () => {
                  "hidden": !isCartOpen
              })}>
 
-            <div id="cart-header" className="p-5 flex justify-between items-center border-b border-b-black">
+            <div id="cart-header" className="p-5 flex justify-between items-center border-b border-b-black" ref={cartHeader}>
                 <div>
                     <h6 className="uppercase text-black text-2xl lg:text-4xl mb-2.5">your cart</h6>
 
@@ -113,7 +139,7 @@ export const Cart = () => {
                 </button>
             </div>
 
-            <div id="cart-content" className="p-10 relative h-[calc(100vh-298px)] overflow-y-auto overflow-x-hidden">
+            <div id="cart-content" style={{height: cartContentHeight}} className={clsx(`p-5 relative overflow-y-auto overflow-x-hidden`)}>
                 {
                     cart.sections.map((cartSection: CartItemSection) => {
                         if (cartSection.items.length > 0) {
@@ -128,7 +154,7 @@ export const Cart = () => {
             </div>
 
             <div id="cart-footer"
-                 className="p-10 border-t border-t-black absolute w-full bottom-0 left-0 z-10 bg-white">
+                 className="p-5 border-t border-t-black absolute w-full bottom-0 left-0 z-10 bg-white" ref={cartFooter}>
                 <div className="flex justify-between items-center mb-5">
                     <span className="uppercase text-xl">subtotal</span>
                     <span className="text-xl">$ {subtotal.toLocaleString(undefined, {maximumFractionDigits:2})}</span>
@@ -161,7 +187,7 @@ const CartSection = ({section}: { section: CartItemSection }) => {
     return (
         <div>
             <div className="flex justify-start items-center">
-                <span className="uppercase text-xl text-black me-2">{section.name}</span>
+                <span className="uppercase sm:text-xl text-black me-2">{section.name}</span>
                 <button onClick={handleClick} type="button">
                     {
                         isSectionOpen && <FontAwesomeIcon icon={faCaretDown}/>
@@ -307,46 +333,48 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
     }
 
     return (
-        <div className="flex justify-between items-end border-b border-b-black py-6 last:border-b-0">
-            <div className="flex justify-between items-center">
-                <label className="liv-checkbox">
-                    <input type="checkbox" checked={isChecked} onChange={onCheckHandler}/>
-                    <span className="checkmark"></span>
-                </label>
+        <div className="sm:flex sm:flex-row sm:justify-between sm:items-end border-b border-b-black py-6 last:border-b-0">
+            <div className="flex justify-start sm:justify-between items-center">
+                <div className="flex justify-start sm:justify-between items-center me-4 sm:me-8">
+                    <label className="liv-checkbox">
+                        <input type="checkbox" checked={isChecked} onChange={onCheckHandler}/>
+                        <span className="checkmark"></span>
+                    </label>
 
-                <div className="relative w-20 h-20 bg-cover bg-no-repeat bg-center ms-8"
-                     style={{backgroundImage: `url('${item.image}')`}}>
-                    <Link to={'#'} className="absolute top-0 left-0 w-full h-full z-10"></Link>
-                </div>
-            </div>
-
-            <div>
-                <span className="uppercase text-xs">{item.brand}</span>
-                <p className="uppercase text-lg mb-4">{item.name}</p>
-
-                <div className="flex justify-start items-end">
-                    <div className="flex justify-start items-center">
-                        <button className="w-8 h-8 relative border border-black" onClick={decrement}>
-                            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">-</span>
-                        </button>
-                        <input type='number'
-                               className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm" value={quantity} onChange={onChangeHandler} onFocus={(e) => e.target.select()}/>
-                        <button className="w-8 h-8 relative border border-black" onClick={increment}>
-                            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">+</span>
-                        </button>
+                    <div className="relative w-20 h-20 bg-cover bg-no-repeat bg-center sm:ms-8"
+                         style={{backgroundImage: `url('${item.image}')`}}>
+                        <Link to={'#'} className="absolute top-0 left-0 w-full h-full z-10"></Link>
                     </div>
+                </div>
 
-                    <button className="uppercase underline text-sm ms-4" onClick={onRemoveHandler}>remove</button>
+                <div>
+                    <span className="uppercase text-xs">{item.brand}</span>
+                    <p className="uppercase sm:text-lg mb-2.5 sm:mb-4">{item.name}</p>
+
+                    <div className="sm:flex sm:justify-start sm:items-end">
+                        <div className="flex justify-start items-center">
+                            <button className="w-8 h-8 relative border border-black" onClick={decrement}>
+                                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">-</span>
+                            </button>
+                            <input type='number'
+                                   className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm" value={quantity} onChange={onChangeHandler} onFocus={(e) => e.target.select()}/>
+                            <button className="w-8 h-8 relative border border-black" onClick={increment}>
+                                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">+</span>
+                            </button>
+                        </div>
+
+                        <button className="uppercase underline text-sm mt-2.5 sm:mt-0 sm:ms-4" onClick={onRemoveHandler}>remove</button>
+                    </div>
                 </div>
             </div>
 
-            <div className="text-right">
-                <div className="mb-3">
-                    <span className="text-lg">{item.currency}{item.price.toLocaleString(undefined, {maximumFractionDigits:2})}</span>
+            <div className="flex justify-between items-end text-right mt-4 sm:mt-0 sm:flex-col sm:justify-normal sm:items-end">
+                <div className="sm:mb-3">
+                    <span className="text-lg">{item.currency}{item.price.toLocaleString(undefined, {maximumFractionDigits: 2})}</span>
                 </div>
 
                 <LivButton as={'a'} url={'#'} text={'find similar item'} borderColor={'border-black'}
-                           bgColor={'bg-transparent'} style={'thin'} rounded={true}/>
+                           bgColor={'bg-transparent'} style={'thin'} rounded={true} className={"text-xs sm:text-base"}/>
             </div>
         </div>
     )
