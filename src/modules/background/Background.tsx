@@ -29,17 +29,9 @@ export const Background: FC<BackgroundProps> = ({type, url, poster, color}) => {
 
             {type == 'video' && url !== null && (
                 <div className="absolute w-auto min-w-full min-h-full max-w-none -z-20" dangerouslySetInnerHTML={{
-                    __html: `<video src=${url} autoPlay loop playsInline muted poster=${poster} style="position: absolute; top:0; left: 0; z-index: -20; height: 100%; width: 100%; object-fit: cover"/>`
+                    __html: `<video src=${url} autoPlay loop muted poster=${poster} style="position: absolute; top:0; left: 0; z-index: -20; height: 100%; width: 100%; object-fit: cover"/>`
                 }}>
-
                 </div>
-//                 <div className="absolute w-auto min-w-full min-h-full max-w-none -z-20" dangerouslySetInnerHTML={{
-//                     __html: `<video className="w-auto min-w-full min-h-full max-w-none" autoplay loop muted>
-//       <source src=${url} type="video/mp4" />
-// </video>`,
-//                 }}>
-//
-//                 </div>
 
             )}
             {type == 'image' && url !== null && (
