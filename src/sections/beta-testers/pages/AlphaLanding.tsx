@@ -1,6 +1,6 @@
 import {Background} from "../../../modules/background/Background.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
 import {useEffect} from "react";
 
 export const AlphaLanding = () => {
@@ -8,7 +8,7 @@ export const AlphaLanding = () => {
 
     useEffect(() => {
         livvyApp.setPageTitle('Welcome | Livvy | Alpha')
-    }, []);
+    }, [livvyApp]);
 
     return (
         <div>

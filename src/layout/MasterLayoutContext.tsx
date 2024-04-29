@@ -1,6 +1,6 @@
-import {createContext, Dispatch, SetStateAction, useContext} from "react";
+import {createContext, Dispatch, SetStateAction} from "react";
 
-interface MasterLayoutProviderProps {
+interface MasterLayoutContextProps {
     showHeader?: boolean
     setShowHeader?: (show: boolean) => void,
     headerTextColor?: 'white' | 'black',
@@ -19,7 +19,7 @@ interface MasterLayoutProviderProps {
     setBackgroundPoster: Dispatch<SetStateAction<string | null>>
 }
 
-export const MasterLayoutProvider = createContext<MasterLayoutProviderProps>({
+export const MasterLayoutContext = createContext<MasterLayoutContextProps>({
     showHeader: true,
     setShowHeader: () => {
     },
@@ -46,6 +46,3 @@ export const MasterLayoutProvider = createContext<MasterLayoutProviderProps>({
     }
 })
 
-export const useMasterLayout = () => {
-    return useContext(MasterLayoutProvider)
-}

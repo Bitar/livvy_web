@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
-import {useAuth} from "../sections/auth/core/Auth.tsx";
+import {useAuth} from "../sections/auth/core/Auth.loader.ts";
 import {ErrorsPage} from "../layout/errors/ErrorsPage.tsx";
 import {App} from "../App.tsx";
 import {Logout} from "../sections/auth/core/Logout.tsx";

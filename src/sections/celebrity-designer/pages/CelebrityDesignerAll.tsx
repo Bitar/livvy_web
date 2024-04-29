@@ -1,4 +1,4 @@
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import React, {useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
@@ -7,8 +7,8 @@ import Slider from "react-slick";
 export const CelebrityDesignerAll = () => {
     const {setBackgroundType, setBackgroundColor} = useMasterLayout()
 
-    const howItWorksSliderRef = useRef<any>(null);
-    const featuredSliderRef = useRef<any>(null);
+    const howItWorksSliderRef = useRef<HTMLDivElement>(null);
+    const featuredSliderRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setBackgroundType('color');
@@ -133,19 +133,20 @@ export const CelebrityDesignerAll = () => {
                             cum deleniti dolore, ipsa libero perspiciatis provident quos unde velit.</p>
                     </div>
 
-                    <div className="relative">
-                        <button
-                            className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10"
-                            onClick={() => howItWorksSliderRef?.current?.slickNext()}>
+                    <div className="relative mb-8 md:mb-28">
+                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
+                        <button onClick={() => howItWorksSliderRef?.current?.slickNext()}
+                            className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10">
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
-                        <button
-                            className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100"
-                            onClick={() => howItWorksSliderRef?.current?.slickPrev()}>
+                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
+                        <button onClick={() => howItWorksSliderRef?.current?.slickPrev()}
+                            className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100">
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
+                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <Slider {...howItWorksSettings} ref={howItWorksSliderRef}>
                             <Slide title={'Discover Your Celebrity Inspiration'}
                                    image={'/assets/celebrities/interior-1.jpeg'}
@@ -174,20 +175,21 @@ export const CelebrityDesignerAll = () => {
                     </h2>
 
                     <div className="relative mb-8 md:mb-28">
-                        <button
-                            className="w-12 h-12 absolute hidden md:inline-block right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full"
-                            onClick={() => featuredSliderRef?.current?.slickNext()}>
+                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
+                        <button onClick={() => featuredSliderRef?.current?.slickNext()}
+                            className="w-12 h-12 absolute hidden md:inline-block -right-16 md:right-0 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="next nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
-                        <button
-                            className="w-12 h-12 hidden md:inline-block absolute left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full"
-                            onClick={() => featuredSliderRef?.current?.slickPrev()}>
+                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
+                        <button onClick={() => featuredSliderRef?.current?.slickPrev()}
+                            className="w-12 h-12 hidden md:inline-block absolute -left-16 md:left-0 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="prev nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
+                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <Slider {...featuredSettings} ref={featuredSliderRef}>
                             <FeaturedSlide image={'/assets/celebrities/featured-interior-1.webp'} title={'crest house'}
                                            signature={'/assets/celebrities/signature.svg'}/>
@@ -266,6 +268,5 @@ const FeaturedSlide = ({image, title, signature}: { image: string, title: string
                 </div>
             </div>
         </div>
-
     )
 }

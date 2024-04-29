@@ -3,7 +3,7 @@ import {PageDataProvider} from "../modules/page-data/PageData.tsx";
 import {Header} from "./Header.tsx";
 import {Footer} from "./Footer.tsx";
 import {Background} from "../modules/background/Background.tsx";
-import {MasterLayoutProvider} from "./MasterLayoutProvider.tsx";
+import {MasterLayoutContext} from "./MasterLayoutContext.tsx";
 import {useEffect, useState} from "react";
 import {ModalProvider} from "./ModalProvider.tsx";
 
@@ -31,7 +31,7 @@ export const MasterLayout = () => {
 
     return (
         <PageDataProvider>
-            <MasterLayoutProvider.Provider value={{
+            <MasterLayoutContext.Provider value={{
                 showHeader,
                 setShowHeader,
                 headerTextColor,
@@ -75,7 +75,7 @@ export const MasterLayout = () => {
                         {showFooter && <Footer/>}
                     </div>
                 </ModalProvider.Provider>
-            </MasterLayoutProvider.Provider>
+            </MasterLayoutContext.Provider>
         </PageDataProvider>
     )
 }

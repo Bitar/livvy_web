@@ -1,17 +1,18 @@
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import {defaultLoginFormFields, LoginSchema} from "../core/form.ts";
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import {getUserByToken, login} from "../../../requests/iam/auth.ts";
-import {useAuth} from "../core/Auth.tsx";
 import {useEffect, useState} from "react";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import clsx from "clsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import {useAuthLayout} from "../../../layout/AuthLayoutProvider.tsx";
+import {useAuthLayout} from "../../../layout/AuthLayoutContext.loader.ts";
 import {useNavigate} from "react-router-dom";
 import {useOutsideClick} from "../../../helpers/outsideClick.ts";
+import {BetaRegisterFormFields} from "../../beta-testers/core/form.ts";
+import {useAuth} from "../core/Auth.loader.ts";
 
 export const Login = () => {
     const {closePanels, setIsPanelOpen} = useAuthLayout();
@@ -27,11 +28,12 @@ export const Login = () => {
 
     useEffect(() => {
         setIsPanelOpen(true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleLoginSubmit = async (values: any, {setSubmitting}: any) => {
+    const handleLoginSubmit = async (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         try {
-            const {data: auth} = await login(values.email, values.password)
+            const {data: auth} = await login(e.email, e.password)
 
             saveAuth(auth)
 
@@ -42,7 +44,7 @@ export const Login = () => {
             saveAuth(undefined)
             setHasLoginErrors(true)
             setLoginErrorMessage('These credentials do not match our records.')
-            setSubmitting(false)
+            fns.setSubmitting(false)
         }
     }
 

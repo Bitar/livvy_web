@@ -1,9 +1,8 @@
 import clsx from "clsx";
-import {useMasterLayout} from "./MasterLayoutProvider.tsx";
+import {useMasterLayout} from "./MasterLayoutContext.loader.ts";
 
 export const Footer = () => {
     const {footerVariant} = useMasterLayout();
-
     return (
         <div id='footer' className={clsx({
             'footer-tan': footerVariant === 'tan',
@@ -33,7 +32,7 @@ export const Footer = () => {
                                                 ? <img src="/assets/arrow-black.svg" alt=""/>
                                                 : <img src="/assets/arrow-white.svg" alt=""/>
                                         }
-                                    </div>
+                                    Cee</div>
                                 </button>
                             </div>
                         </div>

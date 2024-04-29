@@ -1,13 +1,13 @@
-import {Form, Formik, FormikProps} from "formik";
+import {Form, Formik, FormikHelpers, FormikProps} from "formik";
 import {InspirationPreferenceFormFields, InspirationPreferenceSchema} from "../core/form.ts";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import React, {Dispatch, SetStateAction, useEffect, useRef} from "react";
-import Select from "react-select";
+import Select, {GroupBase, SelectInstance} from "react-select";
 
 export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: {
     form: InspirationPreferenceFormFields,
     setForm: Dispatch<SetStateAction<InspirationPreferenceFormFields>>,
-    handleSubmit: any,
+    handleSubmit: (values: InspirationPreferenceFormFields, formikHelpers: FormikHelpers<InspirationPreferenceFormFields>) => void,
     files?: File[],
     urls?: string[]
 }) => {
@@ -51,6 +51,26 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
     )
 }
 
+interface PreferenceOptions {
+    id: number,
+    name: string
+}
+
+const preferenceOptions = [
+    {
+        id: 1,
+        name: "furniture"
+    },
+    {
+        id: 2,
+        name: "color palette"
+    },
+    {
+        id: 3,
+        name: "design style"
+    }
+]
+
 const InspirationDetail = ({image, index, formik, form, setForm}: {
     image: string,
     index: number,
@@ -58,14 +78,14 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
     form: InspirationPreferenceFormFields,
     setForm: Dispatch<SetStateAction<InspirationPreferenceFormFields>>
 }) => {
-    const selectRef = useRef<any>(null);
+    const selectRef = useRef<SelectInstance<PreferenceOptions, false, GroupBase<PreferenceOptions>>>(null);
 
     useEffect(() => {
         // if the current input name is not in form OR its value is '' then we need to reset
         if (!(`preference${index}` in form) || form[`preference${index}`] == '') {
             selectRef.current?.clearValue();
         }
-    }, [form]);
+    }, [form, index]);
 
     return (
         <div className="w-full lg:w-52 mb-10 sm:mb-0">
@@ -95,18 +115,3 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
         </div>
     )
 }
-
-const preferenceOptions = [
-    {
-        id: 1,
-        name: "furniture"
-    },
-    {
-        id: 2,
-        name: "color palette"
-    },
-    {
-        id: 3,
-        name: "design style"
-    }
-]

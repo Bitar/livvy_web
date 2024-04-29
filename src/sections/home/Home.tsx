@@ -1,16 +1,16 @@
 import {toAbsoluteUrl} from "../../helpers/toAbsoluteUrl.ts";
 import {LivButton} from "../../components/buttons/LivButton.tsx";
-import {useMasterLayout} from "../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../layout/MasterLayoutContext.loader.ts";
 import {useEffect} from "react";
 
 export const Home = () => {
-    const {setShowFooter, setBackgroundType, setBackgroundUrl, setBackgroundPoster} = useMasterLayout()
+    const {setShowFooter, setBackgroundType, setBackgroundUrl} = useMasterLayout()
 
     useEffect(() => {
         setShowFooter(false);
         setBackgroundType('video');
         setBackgroundUrl('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4');
-        setBackgroundPoster('https://storage.googleapis.com/livvy-app/assets/livvy-intro-poster.jpg');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
