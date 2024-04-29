@@ -46,7 +46,7 @@ export const Cart = () => {
 
         cart.sections.forEach((section) => {
             section.items.forEach((item) => {
-                total += item.price;
+                total += (item.price * item.quantity);
             });
         });
 
@@ -111,7 +111,7 @@ export const Cart = () => {
                  "hidden": !isCartOpen
              })}>
 
-            <div id="cart-header" className="p-5 flex justify-between items-center border-b border-b-black" ref={cartHeader}>
+            <div id="cart-header" className="p-5 xl:p-10 flex justify-between items-center border-b border-b-black" ref={cartHeader}>
                 <div>
                     <h6 className="uppercase text-black text-2xl lg:text-4xl mb-2.5">your cart</h6>
 
@@ -139,7 +139,7 @@ export const Cart = () => {
                 </button>
             </div>
 
-            <div id="cart-content" style={{height: cartContentHeight}} className={clsx(`p-5 relative overflow-y-auto overflow-x-hidden`)}>
+            <div id="cart-content" style={{height: cartContentHeight}} className={clsx(`p-5 xl:p-10 relative overflow-y-auto overflow-x-hidden`)}>
                 {
                     cart.sections.map((cartSection: CartItemSection) => {
                         if (cartSection.items.length > 0) {
@@ -154,7 +154,7 @@ export const Cart = () => {
             </div>
 
             <div id="cart-footer"
-                 className="p-5 border-t border-t-black absolute w-full bottom-0 left-0 z-10 bg-white" ref={cartFooter}>
+                 className="p-5 xl:p-10 border-t border-t-black absolute w-full bottom-0 left-0 z-10 bg-white" ref={cartFooter}>
                 <div className="flex justify-between items-center mb-5">
                     <span className="uppercase text-xl">subtotal</span>
                     <span className="text-xl">$ {subtotal.toLocaleString(undefined, {maximumFractionDigits:2})}</span>
@@ -172,23 +172,17 @@ export const Cart = () => {
 
 const CartSection = ({section}: { section: CartItemSection }) => {
     const [isSectionOpen, setIsSectionOpen] = useState<boolean>(true);
-    const [isClosing, setIsClosing] = useState<boolean>(false);
+    // const [isClosing, setIsClosing] = useState<boolean>(false);
 
     const handleClick = () => {
-        // if isSectionOpen => close it
-        if (isSectionOpen) {
-            setIsClosing(true);
-        } else {
-            // if section is closed, open it
-            setIsSectionOpen(true);
-        }
+        setIsSectionOpen(!isSectionOpen);
     }
 
     return (
         <div>
             <div className="flex justify-start items-center">
                 <span className="uppercase sm:text-xl text-black me-2">{section.name}</span>
-                <button onClick={handleClick} type="button">
+                <button onClick={handleClick} type="button" className="menu-btn">
                     {
                         isSectionOpen && <FontAwesomeIcon icon={faCaretDown}/>
                     }
@@ -199,18 +193,10 @@ const CartSection = ({section}: { section: CartItemSection }) => {
                 </button>
             </div>
 
-            <div onAnimationEnd={() => {
-                if (isClosing) {
-                    setIsClosing(false);
-                    setIsSectionOpen(false);
-                }
-            }}
-                 className={clsx("animate__animated", {
-                     "animate__fadeIn": !isClosing,
-                     "animate__fadeOut": isClosing,
-                     "hidden": !isSectionOpen
-                 })}>
-
+            <div className={clsx(`drop_container`, {
+                'show': isSectionOpen,
+                'hide': !isSectionOpen
+            })}>
                 {
                     section.items.map((item: CartItem) => (
                         <Item item={item} sectionId={section.id} key={item.id}/>
@@ -247,6 +233,11 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
 
         // in section index find the item ID
         setItemIndex(tempItemIndex);
+
+        // update the quantity of the item if necessary
+        if(tempSectionIndex > -1 && tempItemIndex > -1) {
+            setQuantity(cart.sections[tempSectionIndex].items[tempItemIndex].quantity);
+        }
     }, [cart, item, sectionId]);
 
     const increment = () => {
@@ -333,7 +324,7 @@ const Item = ({item, sectionId}: { item: CartItem, sectionId: number }) => {
     }
 
     return (
-        <div className="sm:flex sm:flex-row sm:justify-between sm:items-end border-b border-b-black py-6 last:border-b-0">
+        <div className="sm:flex sm:flex-row sm:justify-between sm:items-end border-b border-b-black py-6 last:border-b-0 item">
             <div className="flex justify-start sm:justify-between items-center">
                 <div className="flex justify-start sm:justify-between items-center me-4 sm:me-8">
                     <label className="liv-checkbox">

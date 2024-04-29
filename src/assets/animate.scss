@@ -108,16 +108,20 @@ button.liv-white-hover, a.liv-white-hover {
 }
 
 // Animate cart section open
-//.expandable {
-//  background: #fff;
-//  overflow: hidden;
-//  color: #000;
-//  line-height: 50px;
-//
-//  transition: all .5s ease-in-out;
-//  height: 0;
-//
-//  &:target {
-//    height: 50px;
-//  }
-//}
+#cart-content {
+  .drop_container {
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  .drop_container.show {
+    max-height: 100vh;
+    transition: max-height 0.3s ease-in;
+  }
+
+  .drop_container.hide {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+  }
+}

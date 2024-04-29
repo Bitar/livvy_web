@@ -7,8 +7,11 @@ import {faMinus, faPause, faPlay, faPlus} from "@fortawesome/free-solid-svg-icon
 import clsx from "clsx";
 import Slider from "react-slick";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
+import {useCart} from "../../../layout/CartProvider.tsx";
+import {CartItem} from "../../../models/layout/Cart.ts";
 
 export const CelebrityDesignerProfile = () => {
+    const {addToCart} = useCart();
     const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout()
 
     const [showPlayButton, setShowPlayButton] = useState<boolean>(true);
@@ -17,8 +20,23 @@ export const CelebrityDesignerProfile = () => {
 
     const [activeTab, setActiveTab] = useState<'portfolio' | 'livvy'>('portfolio');
 
-    const videoRef = useRef<any>(null);
-    const purchaseButtonRef = useRef<any>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const purchaseButtonRef = useRef<HTMLDivElement>(null);
+
+    const item : CartItem = {
+        id: 6,
+        name: "Celebrity Design",
+        brand: "Studio Mcgee",
+        price: 50,
+        currency: '$',
+        category: 'design',
+        quantity: 1,
+        image: '/assets/celebrities/shea-mcgee.png',
+        section: {
+            id: 1,
+            name: 'Celebrity Designer'
+        }
+    }
 
     const settings = {
         className: "center",
@@ -149,9 +167,9 @@ export const CelebrityDesignerProfile = () => {
 
                             <div>
                                 <div className="inline-block" ref={purchaseButtonRef}>
-                                    <LivButton as={'a'} text={'purchase a custom design'} textColor={'text-white'}
-                                               borderColor={'border-black'} bgColor={'bg-black'} url={'#'}
-                                               style={'thin'} className="text-sm md:text-base"/>
+                                    <LivButton as={'button'} text={'purchase a custom design'} textColor={'text-white'}
+                                               borderColor={'border-black'} bgColor={'bg-black'}
+                                               style={'thin'} className="text-sm md:text-base" onClickHandler={() => addToCart(item)}/>
                                 </div>
                             </div>
 
