@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "liv-tan": "#e8e6e0",
+        "liv-tan": "#EFEDE7",
         "liv-green": "#838b64",
         "liv-orange": "#986954",
         "liv-grey": "#2E2A2B",

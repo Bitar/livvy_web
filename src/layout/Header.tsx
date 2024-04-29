@@ -2,12 +2,16 @@ import {toAbsoluteUrl} from "../helpers/toAbsoluteUrl.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faUser, faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
+import clsx from "clsx";
 
 export const Header = ({textColor} : {textColor: 'white' | 'black'}) => {
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
 
     return (
-        <div id="header" className='flex flex-wrap items-center justify-between mx-auto border-b border-white/50 px-10'>
+        <div id="header" className={clsx('flex flex-wrap items-center justify-between mx-auto border-b px-10', {
+            'border-white/50': textColor == 'white',
+            'border-black': textColor == 'black'
+        })}>
 
             <div className="logo-container py-5 w-20">
                 <Link to={'/'}>

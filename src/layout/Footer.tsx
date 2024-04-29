@@ -1,22 +1,20 @@
-import {useState} from "react";
 import clsx from "clsx";
+import {useMasterLayout} from "./MasterLayoutProvider.tsx";
 
 export const Footer = () => {
-    const [color, setColor] = useState<string>('black')
-    //Tan
-    //Black
+    const {footerVariant} = useMasterLayout();
 
     return (
         <div id='footer' className={clsx({
-            'footer-tan': color === 'tan',
-            'footer-black': color === 'black',
+            'footer-tan': footerVariant === 'tan',
+            'footer-black': footerVariant === 'black',
         })}>
             <div className="container liv-container">
                 <div className="grid grid-cols-1 gap-8 py-6 lg:py-8 lg:grid-cols-2">
                     <div className="left-side max-w-md">
                         <div className="logo mb-10">
                             {
-                                color === 'black'
+                                footerVariant === 'black'
                                     ? <img src="/assets/livvy-logo-white.png" alt="Livvy Logo White" className='w-36'/>
                                     : <img src="/assets/livvy-logo-black.png" alt="Livvy Logo Black" className='w-36'/>
                             }
@@ -31,7 +29,7 @@ export const Footer = () => {
                                     <div className='flex justify-center'>
                                         <span className='me-2'>Sign Up</span>
                                         {
-                                            color === 'black'
+                                            footerVariant === 'black'
                                                 ? <img src="/assets/arrow-black.svg" alt=""/>
                                                 : <img src="/assets/arrow-white.svg" alt=""/>
                                         }

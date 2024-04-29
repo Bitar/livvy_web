@@ -8,8 +8,9 @@ import {useEffect, useState} from "react";
 import {ModalProvider} from "./ModalProvider.tsx";
 
 export const MasterLayout = () => {
-    const [showHeader, setShowHeader] = useState<boolean>(true)
-    const [showFooter, setShowFooter] = useState<boolean>(true)
+    const [showHeader, setShowHeader] = useState<boolean>(true);
+    const [showFooter, setShowFooter] = useState<boolean>(true);
+    const [footerVariant, setFooterVariant] = useState<'tan' | 'black'>('black');
 
     const [backgroundType, setBackgroundType] = useState<'video' | 'image' | 'color'>('video');
     const [backgroundUrl, setBackgroundUrl] = useState<string | null>(null);
@@ -33,8 +34,12 @@ export const MasterLayout = () => {
             <MasterLayoutProvider.Provider value={{
                 showHeader,
                 setShowHeader,
+                headerTextColor,
+                setHeaderTextColor,
                 showFooter,
                 setShowFooter,
+                footerVariant,
+                setFooterVariant,
                 backgroundType,
                 setBackgroundType,
                 backgroundUrl,
