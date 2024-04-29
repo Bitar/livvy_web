@@ -52,10 +52,10 @@ const AuthLayout = () => {
                                 that
                                 converts your dream space into reality using state-of-the-art AI technology.</p>
 
-                            <div className="flex flex-col md:flex-row items-center justify-center">
+                            <div className="flex flex-row items-center justify-center">
                                 <LivButton as={'a'} url={'/auth/register'} text={'Sign up'} borderColor={'border-white'}
                                            bgColor={'bg-white'} rounded={true} style={'thin'}
-                                           className="md:me-4 me-0 mb-4 md:mb-0"/>
+                                           className="me-4 mb-0"/>
 
                                 <LivButton as={'a'} url={'/auth/login'} type={'submit'} text={'Login'} bgColor={'bg-transparent'}
                                            borderColor={'border-white'} rounded={true} style={'thin'}
