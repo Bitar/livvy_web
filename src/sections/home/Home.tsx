@@ -4,12 +4,13 @@ import {useMasterLayout} from "../../layout/MasterLayoutProvider.tsx";
 import {useEffect} from "react";
 
 export const Home = () => {
-    const {setShowFooter, setBackgroundType, setBackgroundUrl} = useMasterLayout()
+    const {setShowFooter, setBackgroundType, setBackgroundUrl, setBackgroundPoster} = useMasterLayout()
 
     useEffect(() => {
         setShowFooter(false);
         setBackgroundType('video');
         setBackgroundUrl('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4');
+        setBackgroundPoster('https://storage.googleapis.com/livvy-app/assets/livvy-intro-poster.jpg');
     }, [])
 
     return (

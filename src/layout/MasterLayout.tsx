@@ -13,6 +13,7 @@ export const MasterLayout = () => {
 
     const [backgroundType, setBackgroundType] = useState<'video' | 'image' | 'color'>('video');
     const [backgroundUrl, setBackgroundUrl] = useState<string | null>(null);
+    const [backgroundPoster, setBackgroundPoster] = useState<string | null>(null);
     const [backgroundColor, setBackgroundColor] = useState<string | null>(null);
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
 
@@ -39,7 +40,9 @@ export const MasterLayout = () => {
                 backgroundUrl,
                 setBackgroundUrl,
                 backgroundColor,
-                setBackgroundColor
+                setBackgroundColor,
+                backgroundPoster,
+                setBackgroundPoster
             }}>
                 <ModalProvider.Provider value={{
                     isOpen: isModalOpen,
@@ -47,9 +50,15 @@ export const MasterLayout = () => {
                 }}>
                     <div id="wrapper">
                         {
-                            backgroundType === "image" || backgroundType == "video" ?
-                                <Background type={`${backgroundType}`} url={backgroundUrl}/> :
-                                <Background type={`${backgroundType}`} color={backgroundColor}/>
+                            backgroundType === "image" && <Background type={`${backgroundType}`} url={backgroundUrl}/>
+                        }
+
+                        {
+                            backgroundType == "video" && <Background type={`${backgroundType}`} url={backgroundUrl} poster={backgroundPoster}/>
+                        }
+
+                        {
+                            backgroundType === "color" && <Background type={`${backgroundType}`} color={backgroundColor}/>
                         }
 
                         {showHeader && <Header textColor={headerTextColor}/>}

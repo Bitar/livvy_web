@@ -36,12 +36,12 @@ const AuthLayout = () => {
         }}>
             <div id="wrapper" className="relative h-screen overflow-hidden">
                 <Background type='video' url={'https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4'}
-                            poster={'assets/livvy-intro-poster.jpg'}/>
+                            poster={'https://storage.googleapis.com/livvy-app/assets/livvy-intro-poster.jpg'}/>
 
                 <div id="content">
                     <div id="main-content">
                         <div
-                            className={clsx("z-40 absolute w-11/12 md:w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate__animated", {
+                            className={clsx("z-40 fixed w-11/12 md:w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate__animated", {
                                 'animate__fadeOut': isPanelOpen,
                                 'animate__fadeIn': !isPanelOpen
                             })}>
@@ -63,7 +63,7 @@ const AuthLayout = () => {
                             </div>
                         </div>
 
-                        <div className="z-40 absolute w-full bottom-0 left-0 hidden md:block">
+                        <div className="z-40 fixed w-full bottom-0 left-0 hidden md:block">
                             <div className="flex justify-between px-9 pb-8">
                                 <span
                                     className="text-white text-sm uppercase">Aesthetic <br/> Intelligence</span>
