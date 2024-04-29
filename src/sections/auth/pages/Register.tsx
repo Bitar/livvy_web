@@ -207,7 +207,7 @@ export const Register = () => {
                 <Disclaimer/>
             </div>
 
-            <button className="absolute z-60 left-3 top-2" onClick={triggerClosePanel}>
+            <button className="absolute z-60 right-3 top-2" onClick={triggerClosePanel}>
                 <FontAwesomeIcon icon={faXmark} size='lg'/>
             </button>
         </div>
