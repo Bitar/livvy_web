@@ -68,7 +68,7 @@ export const Login = () => {
 
              })} ref={ref}>
             <div id="login-form-container"
-                 className="absolute md:z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto">
+                 className="absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto">
                 <div className="flex justify-center mb-5">
                     <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
                          className="w-11"/>

@@ -88,13 +88,13 @@ export const Register = () => {
                      closePanels()
                  }
              }}
-             className={clsx("liv-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-liv-tan overflow-y-scroll md:overflow-auto animate__animated",
+             className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-liv-tan overflow-y-scroll md:overflow-auto animate__animated",
                  {
                      "animate__slideInRight": !isClosing,
                      "animate__slideOutRight": isClosing
                  })} ref={ref}>
             <div id="register-form-container"
-                 className={clsx("md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5",
+                 className={clsx("absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto",
                      {
                          'hidden': registerStage == 'verify'
                      })}>
@@ -128,13 +128,13 @@ export const Register = () => {
                                                borderColor={'border-black'}
                                                isSubmitting={formik.isSubmitting}
                                                isValid={formik.isValid} fullWidth={true}
-                                               className={'mb-4'}/>
+                                               className={'mb-2'}/>
                                 </div>
                             </Form>
                         )}
                     </Formik>
 
-                    <div className="text-center mb-4">
+                    <div className="text-center mb-2">
                         <span className="uppercase">or</span>
                     </div>
 
@@ -147,10 +147,14 @@ export const Register = () => {
                                bgColor={'bg-transparent'} arrowIcon={false}
                                textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
                 </div>
+
+                <div className={"block sm:hidden w-full mt-10"}>
+                    <Disclaimer/>
+                </div>
             </div>
 
             <div id="activate-account-container"
-                 className={clsx("md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5 mt-[20%] md:mt-0",
+                 className={clsx("absolute z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto p-5",
                      {
                          "hidden": registerStage == 'signup'
                      })}>
@@ -194,30 +198,29 @@ export const Register = () => {
                     <LivFormSuccess text={'Email has been sent'}/>
                 </div>
 
-                <div className={"absolute z-60 left-0 bottom-3 sm:bottom-7 w-full mb-5 md:mb-0 md:hidden"}>
-                    <div className="text-xs px-5 text-center">
-                        By continuing, you agree to LIVVY’s <Link to={'#'}
-                                                                  className="border border-b-black me-1 ms-1">Terms
-                        of Service</Link> and <Link to={'#'} className="border border-b-black me-1 ms-1">Privacy
-                        Policy</Link>.
-                    </div>
+                <div className={"block sm:hidden w-full mt-10"}>
+                    <Disclaimer/>
                 </div>
             </div>
 
-            <div className={clsx("md:absolute md:z-60 md:left-0 bottom-3 sm:bottom-7 w-full mb-5 md:mb-0", {
-                "hidden md:block": registerStage == 'verify'
-            })}>
-                <div className="text-xs px-5 text-center">
-                    By continuing, you agree to LIVVY’s <Link to={'#'}
-                                                              className="border border-b-black">Terms
-                    of Service</Link> and <Link to={'#'} className="border border-b-black">Privacy
-                    Policy</Link>.
-                </div>
+            <div className={clsx("hidden sm:block sm:absolute sm:z-60 sm:left-0 bottom-3 sm:bottom-7 w-full mb-5 sm:mb-0")}>
+                <Disclaimer/>
             </div>
 
             <button className="absolute z-60 left-3 top-2" onClick={triggerClosePanel}>
                 <FontAwesomeIcon icon={faXmark} size='lg'/>
             </button>
+        </div>
+    )
+}
+
+const Disclaimer = () => {
+    return (
+        <div className="text-xs px-5 text-center">
+            By continuing, you agree to LIVVY’s <Link to={'#'}
+                                                      className="border border-b-black">Terms
+            of Service</Link> and <Link to={'#'} className="border border-b-black">Privacy
+            Policy</Link>.
         </div>
     )
 }
