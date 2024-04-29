@@ -34,7 +34,7 @@ const AuthLayout = () => {
             setIsPanelOpen: setIsPanelOpen,
             closePanels: closePanels
         }}>
-            <div id="wrapper" className="relative h-screen overflow-hidden">
+            <div id="wrapper" className="relative overflow-hidden">
                 <Background type='video' url={'https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4'}
                             poster={'https://storage.googleapis.com/livvy-app/assets/livvy-intro-poster.jpg'}/>
 

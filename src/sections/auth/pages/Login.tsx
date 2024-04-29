@@ -62,13 +62,13 @@ export const Login = () => {
                      closePanels()
                  }
              }}
-             className={clsx("liv-side-panel absolute z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-liv-tan animate__animated", {
+             className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full md:w-1/2 sm:w-3/4 h-full bg-liv-tan animate__animated overflow-y-scroll", {
                  "animate__slideInRight": !isClosing,
                  "animate__slideOutRight": isClosing
 
              })} ref={ref}>
             <div id="login-form-container"
-                 className="md:absolute md:z-60 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto">
+                 className="absolute md:z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full sm:w-auto p-5 overflow-y-scroll md:overflow-auto">
                 <div className="flex justify-center mb-5">
                     <img src={toAbsoluteUrl('assets/logo-symbol-black.png')} alt="Livvy logo symbol"
                          className="w-11"/>
@@ -114,9 +114,17 @@ export const Login = () => {
                         <button className="uppercase text-xs border border-b-black" onClick={() => navigate('/auth/reset-password')}>reset password</button>
                     </div>
                 </div>
+
+                <div className="block mt-8 mb-4 sm:hidden sm:mt-0 sm:mb-0">
+                    <div className="flex justify-center align-middle">
+                        <span className="uppercase me-1">no account?</span>
+
+                        <button className="uppercase border border-b-black" onClick={() => navigate('/auth/register')}>create one</button>
+                    </div>
+                </div>
             </div>
 
-            <div id="login-footer" className="absolute z-60 left-0 bottom-3 sm:bottom-7 w-full">
+            <div id="login-footer" className="hidden sm:block absolute z-60 left-0 bottom-3 sm:bottom-7 w-full">
                 <div className="flex justify-center align-middle">
                     <span className="uppercase me-1">no account?</span>
 
