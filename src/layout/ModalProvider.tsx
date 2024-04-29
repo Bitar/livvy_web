@@ -1,4 +1,4 @@
-import {createContext, Dispatch, SetStateAction, useContext} from "react";
+import {createContext, Dispatch, SetStateAction} from "react";
 
 interface ModalProviderProps {
     isOpen: boolean,
@@ -10,7 +10,3 @@ export const ModalProvider = createContext<ModalProviderProps>({
     setIsOpen: () => {
     }
 })
-
-export const useModal = () => {
-    return useContext(ModalProvider);
-}

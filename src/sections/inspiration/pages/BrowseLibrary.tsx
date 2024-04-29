@@ -1,15 +1,15 @@
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import React, {Dispatch, ReactNode, SetStateAction, useEffect, useState} from "react";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import clsx from "clsx";
-import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
 import {LivvyToastType} from "../../../helpers/variables.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {LivModal} from "../../../components/modals/LivModal.tsx";
 import {defaultInspirationPreferenceFields, InspirationPreferenceFormFields} from "../core/form.ts";
-import {useModal} from "../../../layout/ModalProvider.tsx";
+import {useModal} from "../../../layout/ModalProvider.loader.ts";
 import {InspirationFeedback} from "../partials/InspirationFeedback.tsx";
 import {useNavigate} from "react-router-dom";
 
@@ -56,7 +56,7 @@ export const BrowseLibrary = () => {
             // if we have selected then we need to update the preference form total
             setPreferenceForm({...defaultInspirationPreferenceFields, totalInspirations: selected.length});
         }
-    }, [isOpen]);
+    }, [isOpen, selected]);
 
     const handleSubmit = () => {
         // TODO handle submit

@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import {useEffect, useState} from "react";
-import {useAuthLayout} from "../../../layout/AuthLayoutProvider.tsx";
+import {useAuthLayout} from "../../../layout/AuthLayoutContext.loader.ts";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 import {defaultResetPasswordFields, ResetPasswordFormFields, ResetPasswordSchema} from "../core/form.ts";
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
@@ -26,10 +26,12 @@ export const ResetPassword = () => {
 
     useEffect(() => {
         setIsPanelOpen(true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleResetPassword = (e: any, fns: any) => {
-        submitRequest(requestPassword, [form], (response) => {
+
+    const handleResetPassword = (e: ResetPasswordFormFields, fns: FormikHelpers<ResetPasswordFormFields>) => {
+        submitRequest(requestPassword, [form], () => {
             // we have success
             setTimeout(() => {
                 setResetStage('confirm');

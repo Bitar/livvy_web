@@ -1,13 +1,14 @@
 import {Outlet} from "react-router-dom";
 import {Background} from "../../../modules/background/Background.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import React, {createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState} from "react";
-import {useAuth} from "../../auth/core/Auth.tsx";
+import React, {useEffect, useRef, useState} from "react";
 import {PopupButton} from "@typeform/embed-react";
+import { AppVersionLayoutContext } from "../core/AlphaVersionContext.tsx";
+import {useAuth} from "../../auth/core/Auth.loader.ts";
 
 export const AlphaVersionsLayout = () => {
     const {currentUser} = useAuth();
-    const typeformPopup = useRef<any>(null)
+    const typeformPopup = useRef<HTMLDivElement>(null)
 
     const [trackingData, setTrackingData] = useState<Record<string, string>>(null)
 
@@ -25,6 +26,7 @@ export const AlphaVersionsLayout = () => {
 
     useEffect(() => {
         if (showTypeForm) {
+            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
             typeformPopup.current?.open();
         }
     }, [showTypeForm])
@@ -73,11 +75,3 @@ export const AlphaVersionsLayout = () => {
     )
 }
 
-const AppVersionLayoutContext = createContext<{ setShowTypeForm: Dispatch<SetStateAction<boolean>> }>({
-    setShowTypeForm: () => {
-    }
-})
-
-export const useAppVersion = () => {
-    return useContext(AppVersionLayoutContext)
-}

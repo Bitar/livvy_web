@@ -1,4 +1,3 @@
-import {toAbsoluteUrl} from "../../helpers/toAbsoluteUrl.ts";
 import {FC} from "react";
 
 // interface BackgroundProps {

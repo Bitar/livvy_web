@@ -1,6 +1,6 @@
 import {toAbsoluteUrl} from "../../helpers/toAbsoluteUrl.ts";
 import {LivButton} from "../../components/buttons/LivButton.tsx";
-import {useMasterLayout} from "../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../layout/MasterLayoutContext.loader.ts";
 import {useEffect} from "react";
 
 export const Home = () => {

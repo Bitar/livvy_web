@@ -1,4 +1,4 @@
-import {createContext, useContext} from "react";
+import {createContext} from "react";
 
 interface PageDataContextProps {
     pageTitle?: string
@@ -11,7 +11,3 @@ export const PageDataContext = createContext<PageDataContextProps>({
     setPageTitle: () => {},
     setPageDescription: () => {},
 })
-
-export const usePageData = () => {
-    return useContext(PageDataContext)
-}

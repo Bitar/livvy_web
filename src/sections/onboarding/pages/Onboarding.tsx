@@ -5,7 +5,7 @@ import {faCircle as faCircleReg} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Slider from "react-slick";
 import {useNavigate} from "react-router-dom";
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 
 export const Onboarding = () => {
     const sliderRef = useRef<HTMLDivElement>(null);

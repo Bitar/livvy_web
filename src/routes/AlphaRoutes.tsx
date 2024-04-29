@@ -1,10 +1,9 @@
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {useAuth} from "../sections/auth/core/Auth.tsx";
 import {AlphaAuthRoutes} from "./AlphaAuthRoutes.tsx";
-import {AlphaVersions} from "../sections/beta-testers/pages/AlphaVersions.tsx";
 import {AlphaLanding} from "../sections/beta-testers/pages/AlphaLanding.tsx";
 import {AlphaVersionsRoutes} from "./AlphaVersionsRoutes.tsx";
+import {useAuth} from "../sections/auth/core/Auth.loader.ts";
 
 export const AlphaRoutes = () => {
     const {currentUser} = useAuth()

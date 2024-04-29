@@ -1,4 +1,4 @@
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import React, {useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";

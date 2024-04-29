@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import {defaultRegisterFormFields, RegisterSchema} from "../core/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
@@ -10,9 +10,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {register} from "../../../requests/iam/auth.ts";
 import {useEffect, useState} from "react";
-import {useAuthLayout} from "../../../layout/AuthLayoutProvider.tsx";
+import {useAuthLayout} from "../../../layout/AuthLayoutContext.loader.ts";
 import {useOutsideClick} from "../../../helpers/outsideClick.ts";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
+import {BetaRegisterFormFields} from "../../beta-testers/core/form.ts";
 
 export const Register = () => {
     const {closePanels, setIsPanelOpen} = useAuthLayout();
@@ -30,11 +31,12 @@ export const Register = () => {
 
     useEffect(() => {
         setIsPanelOpen(true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleRegisterSubmit = async (values: any, {setSubmitting}: any) => {
+    const handleRegisterSubmit = async (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         try {
-            const fullNameArr = values.full_name.split(' ');
+            const fullNameArr = e.full_name.split(' ');
 
             let first_name: string;
             let last_name = '';
@@ -46,7 +48,7 @@ export const Register = () => {
                 first_name = fullNameArr[0];
             }
 
-            const {data} = await register(values.email, first_name, last_name, values.password, values.password);
+            const {data} = register(e.email, first_name, last_name, e.password, e.password);
 
             setRegisteredEmail(data.email);
             // now we need to hide the current content of the register panel and show the content that tells us that the user needs to confirm
@@ -55,7 +57,7 @@ export const Register = () => {
         } catch (error) {
             setHasRegisterErrors(true);
             setRegisterErrorMessage('Something went wrong!');
-            setSubmitting(false);
+            fns.setSubmitting(false);
         }
     }
 

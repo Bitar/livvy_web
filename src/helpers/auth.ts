@@ -56,7 +56,6 @@ export function setupAxios(axios: AxiosStatic) {
 
     axios.interceptors.request.use(
         (config: any) => {
-            console.log(typeof config);
             const auth = getAuth();
 
             if (auth && auth.token) {

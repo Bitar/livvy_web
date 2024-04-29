@@ -2,11 +2,7 @@ import {
     FC,
     useState,
     useEffect,
-    createContext,
-    useContext,
     useRef,
-    Dispatch,
-    SetStateAction,
 } from 'react'
 import * as authHelper from '../../../helpers/auth.ts'
 import {User} from '../../../models/iam/User'
@@ -15,35 +11,8 @@ import {LayoutSplashScreen} from "../../../layout/LivvySplashScreen.tsx";
 import {WithChildren} from "../../../helpers/WithChildren.ts";
 import {AuthModel} from "../../../models/iam/Auth.tsx";
 import {getUserByToken} from "../../../requests/iam/auth.ts";
-
-type AuthContextProps = {
-    auth: AuthModel | undefined
-    saveAuth: (auth: AuthModel | undefined) => void
-    currentUser: User | undefined
-    setCurrentUser: Dispatch<SetStateAction<User | undefined>>
-    logout: () => void,
-    hasRoles: (user: User | undefined, roles: string[]) => boolean,
-    hasAnyRoles: (user: User | undefined, roles: string[]) => boolean
-}
-
-const initAuthContextPropsState = {
-    auth: authHelper.getAuth(),
-    saveAuth: () => {
-    },
-    currentUser: undefined,
-    setCurrentUser: () => {
-    },
-    logout: () => {
-    },
-    hasRoles: () => false,
-    hasAnyRoles: () => false
-}
-
-const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
-
-const useAuth = () => {
-    return useContext(AuthContext)
-}
+import {AuthContext} from './AuthContext.tsx';
+import {useAuth} from "./Auth.loader.ts";
 
 const AuthProvider: FC<WithChildren> = ({children}) => {
     const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
@@ -148,4 +117,4 @@ const AuthInit: FC<WithChildren> = ({children}) => {
     return showSplashScreen ? <LayoutSplashScreen/> : <>{children}</>
 }
 
-export {AuthProvider, AuthInit, useAuth}
+export {AuthProvider, AuthInit}

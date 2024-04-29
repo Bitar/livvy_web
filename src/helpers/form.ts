@@ -127,7 +127,7 @@ export const genericCreatableSelectOnChangeHandler = (e: any, form: any, setForm
     }
 }
 
-export const genericFilterHandler = (setExportQuery: Dispatch<SetStateAction<string>>, filters: Object, updateState: (updates: Partial<QueryState>) => void, reset: boolean) => {
+export const genericFilterHandler = (setExportQuery: Dispatch<SetStateAction<string>>, filters: object, updateState: (updates: Partial<QueryState>) => void, reset: boolean) => {
     setExportQuery(createFilterQueryParam(filters));
 
     const cleanFilters = removeEmptyFromObject(filters);

@@ -1,35 +1,15 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import toast, {Toaster, ToastOptions} from 'react-hot-toast'
 import {WithChildren} from "../../../helpers/WithChildren.ts";
 import {LivvyToastType} from "../../../helpers/variables.ts";
 import PendingIcon from "../../../components/icons/Pending.tsx";
+import {LivvyContext} from "./LivvyAppContext.tsx";
 
 type Alert = {
     message: string
     type: LivvyToastType
 }
 
-type LivvyContextProps = {
-    alert: Alert | undefined
-    setAlert: Dispatch<SetStateAction<Alert | undefined>>
-    pageTitle: string | undefined
-    setPageTitle: Dispatch<SetStateAction<string>>
-}
-
-const initLivvyContextPropsState = {
-    alert: undefined,
-    setAlert: () => {
-    },
-    setPageTitle: () => {
-    },
-    pageTitle: undefined,
-}
-
-const LivvyContext = createContext<LivvyContextProps>(initLivvyContextPropsState)
-
-export const useLivvyApp = () => {
-    return useContext(LivvyContext)
-}
 
 export const LivvyApp: FC<WithChildren> = ({children}) => {
     const [alert, setAlert] = useState<Alert | undefined>(undefined)
@@ -65,18 +45,19 @@ export const LivvyApp: FC<WithChildren> = ({children}) => {
                     duration: 4000,
                     position: 'top-center',
                     style: {
-                        border: '1px solid ' + (color as any)[alert.type],
+                        border: '1px solid ' + color[alert.type],
                         padding: '16px',
                         color: '#000000',
                     },
                     iconTheme: {
-                        primary: (color as any)[alert.type],
+                        primary: color[alert.type],
                         secondary: '',
                     },
-                    ...(alert.type in icon ? {icon: (icon as any)[alert.type]} : {}),
+                    ...(alert.type in icon ? {icon: icon[alert.type]} : {}),
                 }
-            ;(toast as any)[(type as any)[alert.type]](alert.message, options)
+            ;toast[type[alert.type]](alert.message, options)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [alert])
 
     return (

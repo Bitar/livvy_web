@@ -1,4 +1,4 @@
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import {useEffect} from "react";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 

@@ -2,6 +2,7 @@ import {useState} from "react";
 import clsx from "clsx";
 
 export const Footer = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [color, setColor] = useState<string>('black')
     //Tan
     //Black

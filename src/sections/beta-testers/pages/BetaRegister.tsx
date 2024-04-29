@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {BetaRegisterFormFields, BetaRegisterSchema, defaultBetaRegisterFormFields} from "../core/form.ts";
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,7 @@ import {submitRequest} from "../../../helpers/requests.ts";
 import clsx from "clsx";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
-import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
 import {LivPasswordGroup} from "../../../components/form/LivPasswordGroup.tsx";
 
 export const BetaRegister = () => {
@@ -69,7 +69,7 @@ export const BetaRegister = () => {
         }
     }
 
-    const handleSubmit = (e: any, fns: any) => {
+    const handleSubmit = (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         // need to modify the form to fit what we need to send to server
         const correctForm = buildSubmitForm();
 
