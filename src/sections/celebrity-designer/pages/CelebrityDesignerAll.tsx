@@ -133,7 +133,7 @@ export const CelebrityDesignerAll = () => {
                             cum deleniti dolore, ipsa libero perspiciatis provident quos unde velit.</p>
                     </div>
 
-                    <div className="relative mb-8 md:mb-28">
+                    <div className="relative">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => howItWorksSliderRef?.current?.slickNext()}
                             className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10">
@@ -169,12 +169,12 @@ export const CelebrityDesignerAll = () => {
 
             <div id="featured-interiors">
                 <div className="container liv-container sm:!py-16">
-                    <h2 className={'text-5xl uppercase text-black text-center mt-6 mb-6 md:mb-12 md:mt-16'}>featured <span
+                    <h2 className={'text-5xl uppercase text-black text-center mb-6 md:mb-12'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
                     </h2>
 
-                    <div className="relative mb-8 md:mb-28">
+                    <div className="relative mb-8">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickNext()}
                             className="w-12 h-12 absolute hidden md:inline-block right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
