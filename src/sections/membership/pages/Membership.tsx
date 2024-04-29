@@ -1,6 +1,7 @@
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
-import {useEffect} from "react";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
+import {Background} from "../../../modules/background/Background.tsx";
+import {useEffect} from "react";
+import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
 
 export const Membership = () => {
     const {setBackgroundType, setBackgroundColor} = useMasterLayout()
@@ -14,7 +15,7 @@ export const Membership = () => {
         <div className="container liv-container">
             <div className="flex justify-between items-center sm:mb-20 mb-8">
                 <h1 className={'text-4xl md:text-5xl lg:text-7xl uppercase'}>select your <br/> <span style={{fontFamily: "PP Editorial New"}}
-                                                                             className="font-thin italic capitalize">membership</span>
+                                                                                                     className="font-thin italic capitalize">membership</span>
                 </h1>
 
                 <div className="bg-black rounded-full w-44 h-44 lg:w-48 lg:h-48 relative hidden sm:inline-block">
@@ -31,29 +32,31 @@ export const Membership = () => {
                 <Plan name={'diamond plan'} perMonth={'$20'} perYear={'$180'} perks={['All features of Platinum', 'Celebrity Designs', 'Exclusive discounts & early access to seasonal items']}/>
             </div>
         </div>
-
     )
 }
 
-const Plan = ({name, perMonth, perYear, perks} : {name: string, perMonth: string, perYear: string, perks: string[]}) => {
+const Plan = ({name, perMonth, perYear, perks}: { name: string, perMonth: string, perYear: string, perks: string[] }) => {
     return (
-        <div className="md:flex md:flex-col md:justify-between mb-10 sm:mb-16">
+        <div>
             <h3 className="uppercase text-xl pb-2.5 sm:pb-5 border-b border-b-black">{name}</h3>
 
-            <div className="py-2.5 sm:py-5 lg:py-7 border-b border-b-black">
+            <div className="py-2.5 sm:py-5 lg:py-7">
                 <h4 className="text-4xl lg:text-6xl mb-2.5">{perMonth}/mo</h4>
                 <p className="uppercase text-lg">or {perYear} yearly</p>
             </div>
 
-            <ul className="list-image-[url(/assets/check.svg)] list-inside py-5 sm:py-7 lg:mb-20 md:mb-16">
+            <div>
+                <LivButton as="button" text={'get started'} borderColor={'border-black'} bgColor={'bg-black'} onClickHandler={() => console.log('chose membership')} textColor={'text-white'} fullWidth={true} onWhiteBg={true}/>
+            </div>
+
+            <ul className="py-5 sm:py-7">
                 {
-                    perks.map((perk, index) => <li className="marker:me-1 capitalize" key={index}>{perk}</li>)
+                    perks.map((perk, index) => <li className="flex justify-start items-start capitalize mb-6" key={index}>
+                        <span className="me-2"><img src={`/assets/check.svg`} className="w-[20px] h-[20px]" alt={"checkmark"}/></span>
+                        <span>{perk}</span>
+                    </li>)
                 }
             </ul>
-
-            <div>
-                <LivButton as="button" text={'select'} borderColor={'border-black'} bgColor={'bg-black'} onClickHandler={() => console.log('chose membership')} textColor={'text-white'} fullWidth={true} onWhiteBg={true}/>
-            </div>
         </div>
     )
 }

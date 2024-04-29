@@ -5,6 +5,8 @@ import {Test} from "../Test.tsx";
 import {Onboarding} from "../sections/onboarding/pages/Onboarding.tsx";
 import {CelebrityDesignerRoutes} from "./CelebrityDesignerRoutes.tsx";
 import {InspirationRoutes} from "./InspirationRoutes.tsx";
+import {Membership} from "../sections/membership/pages/Membership.tsx";
+import React from "react";
 
 const PrivateRoutes = () => {
 
@@ -14,6 +16,8 @@ const PrivateRoutes = () => {
                 <Route path='auth/*' element={<Navigate to={'/onboarding'}/>}/>
 
                 <Route path='/' index element={<Home/>}/>
+
+                <Route path='/membership' element={<Membership/>}/>
 
                 <Route path='/onboarding' element={<Onboarding/>}/>
 

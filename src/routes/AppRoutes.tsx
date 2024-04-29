@@ -34,7 +34,6 @@ const AppRoutes: FC = () => {
                     {
                         APP_ENV !== 'production' && (
                             <>
-                                <Route path='membership' element={<Membership/>}/>
                                 {currentUser ? (
                                     <>
                                         <Route path='*' element={<PrivateRoutes/>}/>
