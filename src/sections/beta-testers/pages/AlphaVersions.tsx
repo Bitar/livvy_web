@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {AppVersion} from "../../../models/beta/AppVersion.ts";
 import {submitRequest} from "../../../helpers/requests.ts";
 import {getAllAppVersions} from "../../../requests/beta/AppVersion.ts";
-import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
 import moment from 'moment'
@@ -17,21 +17,7 @@ export const AlphaVersions = () => {
 
     useEffect(() => {
         livvyApp.setPageTitle('Livvy | Alpha');
-    }, []);
-
-    // useEffect(() => {
-    //     if (selected) {
-    //         const player = new Player(vimeoRef.current);
-    //
-    //         player.on('play', function () {
-    //             setShowNotice(false);
-    //         });
-    //
-    //         player.on('pause', function () {
-    //             setShowNotice(true);
-    //         });
-    //     }
-    // }, [selected]);
+    }, [livvyApp]);
 
     useEffect(() => {
         submitRequest(getAllAppVersions, [], (response) => {
@@ -90,7 +76,7 @@ export const AppVersionCard = ({appVersion, isHero, isThumbnail = false}: { appV
                         "max-w-2xl": isHero
                     })}>
 
-                    {appVersion.description.substring(0, 250)}{appVersion.description.length > 250 && "..."}
+                    {appVersion.description?.substring(0, 250)}{appVersion.description.length > 250 && "..."}
                 </div>
                 <Link to={`/alpha/${appVersion.slug}`} className='inline-block'>
                     <span style={{fontFamily: "PP Editorial New"}} className='cta italic border-b font-thin sm:text-2xl text-xl'>Explore Details</span>

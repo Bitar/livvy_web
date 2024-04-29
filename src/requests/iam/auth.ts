@@ -3,6 +3,8 @@ import {AuthModel} from "../../models/iam/Auth.tsx";
 import {createFormData} from "../../helpers/requests.ts";
 import {user} from "../../data/user.ts";
 import {User} from "../../models/iam/User.ts";
+import {BetaLoginFormFields, BetaRegisterFormFields} from "../../sections/beta-testers/core/form.ts";
+import {ResetPasswordFormFields} from "../../sections/auth/core/form.ts";
 
 const API_URL = import.meta.env.VITE_APP_API_URL
 
@@ -25,13 +27,10 @@ export function login(email: string, password: string) {
 }
 
 // Server should return AuthModel
-export function register(
-    email: string,
-    firstname: string,
-    lastname: string,
-    password: string,
-    password_confirmation: string
-) {
+
+// TODO: Remove eslint-disable
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function register(email: string, firstname: string, lastname: string, password: string, password_confirmation: string) {
     return {
         data: user
     }
@@ -44,7 +43,7 @@ export function register(
     // })
 }
 
-export const betaRegister = async (form: any): Promise<any | AxiosError | undefined> => {
+export const betaRegister = async (form: BetaRegisterFormFields): Promise<void | AxiosError | undefined> => {
     const formData = createFormData(form);
 
     return await axios.post(BETA_REGISTER_URL, formData).then(res => res.data.data).catch((error) => {
@@ -52,8 +51,10 @@ export const betaRegister = async (form: any): Promise<any | AxiosError | undefi
     });
 }
 
-export const requestPassword = async (form: any): Promise<string | AxiosError | undefined> => {
-    const formData = createFormData(form);
+// TODO: Remove eslint-disable
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const requestPassword = async (form: ResetPasswordFormFields): Promise<string | AxiosError | undefined> => {
+    // const formData = createFormData(form);
 
     return 'OK';
     // return await axios.post(REQUEST_PASSWORD_URL, formData)
@@ -100,7 +101,7 @@ export function getUserByToken(token: string) {
     })
 }
 
-export const resendAccountActivationEmail = async (form: any): Promise<any | AxiosError | undefined> => {
+export const resendAccountActivationEmail = async (form: BetaLoginFormFields|BetaRegisterFormFields): Promise<void | AxiosError | undefined> => {
     const formData = createFormData(form);
 
     return await axios.post(RESEND_VERIFICATION_URL, formData)

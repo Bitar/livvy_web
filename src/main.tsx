@@ -2,9 +2,9 @@ import {createRoot} from 'react-dom/client'
 // Axios
 import axios from 'axios'
 import {setupAxios} from "./helpers/auth.ts";
-import {AuthProvider} from "./sections/auth/core/Auth.tsx";
 import {AppRoutes} from "./routes/AppRoutes.tsx";
 import './index.scss'
+import {AuthProvider} from "./sections/auth/core/Auth.tsx";
 
 
 setupAxios(axios)

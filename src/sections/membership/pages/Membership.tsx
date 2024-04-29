@@ -1,7 +1,6 @@
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {Background} from "../../../modules/background/Background.tsx";
+import { useMasterLayout } from "../../../layout/MasterLayoutContext.loader.ts";
 import {useEffect} from "react";
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
 
 export const Membership = () => {
     const {setBackgroundType, setBackgroundColor} = useMasterLayout()

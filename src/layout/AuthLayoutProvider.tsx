@@ -1,4 +1,4 @@
-import {createContext, Dispatch, SetStateAction, useContext} from "react";
+import {createContext, Dispatch, SetStateAction} from "react";
 
 interface Props {
     isPanelOpen: boolean,
@@ -12,6 +12,3 @@ export const AuthLayoutProvider = createContext<Props>({
     closePanels: () => {}
 })
 
-export const useAuthLayout = () => {
-    return useContext(AuthLayoutProvider)
-}

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {useLivvyApp} from "../../sections/auth/core/LivvyApp.tsx";
+import {useLivvyApp} from "../../sections/auth/core/LivvyAppContext.loader.ts";
 
 interface Props {
     code: number;

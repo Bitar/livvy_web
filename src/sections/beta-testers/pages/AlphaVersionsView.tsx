@@ -6,13 +6,11 @@ import {getAppVersion, getAppVersions} from "../../../requests/beta/AppVersion.t
 import {useParams} from "react-router-dom";
 import Player from '@vimeo/player'
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {useAuth} from "../../auth/core/Auth.tsx";
 import {AppVersionCard} from "./AlphaVersions.tsx";
-import {useAppVersion} from "./AlphaVersionsLayout.tsx";
+import {useAppVersion} from "../core/AlphaVersionContext.loader.ts";
 
 export const AlphaVersionsView = () => {
     const {setShowTypeForm} = useAppVersion()
-    const {currentUser} = useAuth();
     const params = useParams();
     const [appVersion, setAppVersion] = useState<AppVersion | null>(null)
     const [latestAppVersions, setLatestAppVersions] = useState<AppVersion[]>([])
@@ -39,9 +37,9 @@ export const AlphaVersionsView = () => {
         });
 
         submitRequest(getAppVersions, ['per_page=3'], (response) => {
-            console.log(response)
             setLatestAppVersions(response)
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

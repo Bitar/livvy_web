@@ -1,4 +1,4 @@
-import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
+import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import React, {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInstagram, faPinterest, faTiktok} from "@fortawesome/free-brands-svg-icons";
@@ -15,7 +15,7 @@ export const CelebrityDesignerProfile = () => {
 
     const [activeTab, setActiveTab] = useState<'portfolio' | 'livvy'>('portfolio');
 
-    const videoRef = useRef<any>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     const settings = {
         className: "center",
@@ -45,6 +45,7 @@ export const CelebrityDesignerProfile = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const playVideo = () => {

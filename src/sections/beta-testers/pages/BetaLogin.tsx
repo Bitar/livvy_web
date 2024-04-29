@@ -1,19 +1,19 @@
-import {Form, Formik} from "formik";
-import {BetaLoginFormFields, BetaLoginSchema, defaultBetaLoginFormFields} from "../core/form.ts";
+import {Form, Formik, FormikHelpers} from "formik";
+import {BetaLoginFormFields, BetaLoginSchema, BetaRegisterFormFields, defaultBetaLoginFormFields} from "../core/form.ts";
 import {genericOnChangeHandler} from "../../../helpers/form.ts";
 import LivFieldGroup from "../../../components/form/LivFieldGroup.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link, useSearchParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {getUserByToken, login, resendAccountActivationEmail, verifyAccount} from "../../../requests/iam/auth.ts";
-import {useAuth} from "../../auth/core/Auth.tsx";
 import LivFormErrors from "../../../components/form/LivFormErrors.tsx";
 import clsx from "clsx";
 import {LivFormSuccess} from "../../../components/form/LivFormSuccess.tsx";
 import {submitRequest} from "../../../helpers/requests.ts";
-import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
 import {LivPasswordGroup} from "../../../components/form/LivPasswordGroup.tsx";
 import {Role} from "../../../models/iam/Role.ts";
+import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
+import { useAuth } from "../../auth/core/Auth.loader.ts";
 
 export const BetaLogin = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
@@ -34,16 +34,16 @@ export const BetaLogin = () => {
         if(searchParams.has('email') && searchParams.has('token')) {
             // we need to verify the account
             // do api call
-            submitRequest(verifyAccount, [searchParams.get('email'), searchParams.get('token')], (response) => {
+            submitRequest(verifyAccount, [searchParams.get('email'), searchParams.get('token')], () => {
                 // the account has been verified
                 setShowVerified(true);
             }, setVerificationErrors);
         }
 
         livvyApp.setPageTitle('Login | Livvy | Alpha')
-    }, []);
+    }, [livvyApp, searchParams]);
 
-    const handleSubmit = async (values: any, {setSubmitting}: any) => {
+    const handleSubmit = async (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         try {
             const {data: auth} = await login(form.email, form.password)
 
@@ -61,21 +61,21 @@ export const BetaLogin = () => {
                     setHasLoginErrors(true)
                     setLoginErrorMessage("You don't have the right permissions to proceed.")
                     setNotVerifiedError(false);
-                    setSubmitting(false)
+                    fns.setSubmitting(false)
                 }
             } else {
                 saveAuth(undefined)
                 setHasLoginErrors(false)
                 setLoginErrorMessage('')
                 setNotVerifiedError(true);
-                setSubmitting(false)
+                fns.setSubmitting(false)
             }
         } catch (error) {
             saveAuth(undefined)
             setHasLoginErrors(true)
             setLoginErrorMessage('These credentials do not match our records.')
             setNotVerifiedError(false);
-            setSubmitting(false)
+            fns.setSubmitting(false)
         }
     }
 
@@ -87,7 +87,7 @@ export const BetaLogin = () => {
 
         // do API call to trigger resend
 
-        submitRequest(resendAccountActivationEmail, [form], (response) => {
+        submitRequest(resendAccountActivationEmail, [form], () => {
             setShowResendLoading(false);
             setShowResendDone(true);
 

@@ -1,7 +1,7 @@
 import {FC, ReactNode, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import {useModal} from "../../layout/ModalProvider.tsx";
+import {useModal} from "../../layout/ModalProvider.loader.ts";
 import clsx from "clsx";
 
 interface Props {
