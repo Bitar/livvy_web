@@ -1,10 +1,10 @@
-import {ChangeEvent, Dispatch, SetStateAction} from 'react';
+import {Dispatch, FormEvent, SetStateAction} from 'react';
 
 export const genericOnChangeHandler = (
-    e: ChangeEvent<HTMLElement>,
+    e: FormEvent<HTMLFormElement>,
     // form: any,
-    form: Record<string, unknown>,
-    setForm: Dispatch<SetStateAction<typeof form>>) => {
+    form: any,
+    setForm: Dispatch<SetStateAction<any>>) => {
 
     const target = e.target as HTMLInputElement;
 
