@@ -41,7 +41,7 @@ const AuthLayout = () => {
                 <div id="content">
                     <div id="main-content">
                         <div
-                            className={clsx("z-40 fixed w-11/12 md:w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate__animated", {
+                            className={clsx("z-40 fixed w-10/12 md:w-auto top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate__animated", {
                                 'animate__fadeOut': isPanelOpen,
                                 'animate__fadeIn': !isPanelOpen
                             })}>

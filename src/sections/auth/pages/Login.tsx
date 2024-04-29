@@ -21,7 +21,7 @@ export const Login = () => {
     const [hasLoginErrors, setHasLoginErrors] = useState<boolean>(false);
     const [loginErrorMessage, setLoginErrorMessage] = useState<string>('');
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [isClosing, setIsClosing] = useState<boolean>(false)
 
@@ -116,25 +116,29 @@ export const Login = () => {
                 </div>
 
                 <div className="block mt-8 mb-4 sm:hidden sm:mt-0 sm:mb-0">
-                    <div className="flex justify-center align-middle">
-                        <span className="uppercase me-1">no account?</span>
-
-                        <button className="uppercase border border-b-black" onClick={() => navigate('/auth/register')}>create one</button>
-                    </div>
+                    <CreateAccount />
                 </div>
             </div>
 
             <div id="login-footer" className="hidden sm:block absolute z-60 left-0 bottom-3 sm:bottom-7 w-full">
-                <div className="flex justify-center align-middle">
-                    <span className="uppercase me-1">no account?</span>
-
-                    <button className="uppercase border border-b-black" onClick={() => navigate('/auth/register')}>create one</button>
-                </div>
+                <CreateAccount />
             </div>
 
             <button className="absolute z-60 left-3 top-2" onClick={triggerClosePanel}>
                 <FontAwesomeIcon icon={faXmark} size='lg'/>
             </button>
+        </div>
+    )
+}
+
+const CreateAccount = () => {
+    const navigate = useNavigate();
+
+    return (
+        <div className="flex justify-center align-middle">
+            <span className="uppercase me-1">no account?</span>
+
+            <button className="uppercase border border-b-black" onClick={() => navigate('/auth/register')}>create one</button>
         </div>
     )
 }
