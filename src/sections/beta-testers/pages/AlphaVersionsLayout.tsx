@@ -58,11 +58,8 @@ export const AlphaVersionsLayout = () => {
                                    }}
                         />
 
-                        <PopupButton id="FFMbaQjU"
-                                     onClose={() => setShowTypeForm(false)}
-                                     className="my-button hidden"
-                                     ref={typeformPopup}
-                                     tracking={trackingData}/>
+                        {/*@ts-expect-error: PopupButton Ref*/}
+                        <PopupButton id="FFMbaQjU" onClose={() => setShowTypeForm(false)} className="my-button hidden" ref={typeformPopup} tracking={trackingData}/>
                     </div>
                 </div>
             </div>
