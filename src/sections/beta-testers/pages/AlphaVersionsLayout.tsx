@@ -7,7 +7,7 @@ import {PopupButton} from "@typeform/embed-react";
 
 export const AlphaVersionsLayout = () => {
     const {currentUser} = useAuth();
-    const typeformPopup = useRef(null)
+    const typeformPopup = useRef<any>(null)
 
     const [trackingData, setTrackingData] = useState<Record<string, string>>(null)
 
@@ -58,11 +58,8 @@ export const AlphaVersionsLayout = () => {
                                    }}
                         />
 
-                        <PopupButton id="FFMbaQjU"
-                                     onClose={() => setShowTypeForm(false)}
-                                     className="my-button hidden"
-                                     ref={typeformPopup}
-                                     tracking={trackingData}/>
+                        {/*@ts-expect-error: PopupButton Ref*/}
+                        <PopupButton id="FFMbaQjU" onClose={() => setShowTypeForm(false)} className="my-button hidden" ref={typeformPopup} tracking={trackingData}/>
                     </div>
                 </div>
             </div>

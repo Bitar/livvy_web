@@ -1,3 +1,4 @@
+import {MouseEvent} from 'react'
 import {toAbsoluteUrl} from "../../helpers/toAbsoluteUrl.ts";
 import clsx from "clsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -26,7 +27,7 @@ type LivButtonConditionalProps = | {
     as?: 'button'
     url?: never,
     newTab?: never,
-    onClickHandler?: any
+    onClickHandler?: (event: MouseEvent<HTMLButtonElement>) => void
 } | {
     as?: 'a'
     url: string,
