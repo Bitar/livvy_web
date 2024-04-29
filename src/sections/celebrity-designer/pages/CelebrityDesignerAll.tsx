@@ -177,14 +177,14 @@ export const CelebrityDesignerAll = () => {
                     <div className="relative mb-8 md:mb-28">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickNext()}
-                            className="w-12 h-12 absolute hidden md:inline-block -right-16 md:right-0 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
+                            className="w-12 h-12 absolute hidden md:inline-block right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="next nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickPrev()}
-                            className="w-12 h-12 hidden md:inline-block absolute -left-16 md:left-0 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
+                            className="w-12 h-12 hidden md:inline-block absolute left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="prev nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
