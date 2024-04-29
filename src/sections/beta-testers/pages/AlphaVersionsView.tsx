@@ -39,9 +39,9 @@ export const AlphaVersionsView = () => {
         });
 
         submitRequest(getAppVersions, ['per_page=3'], (response) => {
-            console.log(response)
             setLatestAppVersions(response)
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
