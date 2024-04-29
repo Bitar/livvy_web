@@ -14,7 +14,7 @@ export const formatNumber = (amount: number) => {
     return amount.toLocaleString(undefined, {maximumFractionDigits: 2});
 }
 
-export const removeEmptyFromObject = (obj: Object) => {
+export const removeEmptyFromObject = (obj: object) => {
     return Object.fromEntries(Object.entries(obj).filter(([, value]) => value !== undefined && value !== null && value.length !== 0));
 }
 

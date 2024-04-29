@@ -90,7 +90,7 @@ export const AppVersionCard = ({appVersion, isHero, isThumbnail = false}: { appV
                         "max-w-2xl": isHero
                     })}>
 
-                    {appVersion.description.substring(0, 250)}{appVersion.description.length > 250 && "..."}
+                    {appVersion.description?.substring(0, 250)}{appVersion.description.length > 250 && "..."}
                 </div>
                 <Link to={`/alpha/${appVersion.slug}`} className='inline-block'>
                     <span style={{fontFamily: "PP Editorial New"}} className='cta italic border-b font-thin sm:text-2xl text-xl'>Explore Details</span>

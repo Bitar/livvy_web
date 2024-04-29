@@ -1,4 +1,5 @@
 import {AuthModel} from "../models/iam/Auth.tsx";
+import {AxiosError, AxiosStatic} from "axios";
 
 const AUTH_LOCAL_STORAGE_KEY = 'livvy-local-configs'
 
@@ -50,11 +51,12 @@ const removeAuth = () => {
     }
 }
 
-export function setupAxios(axios: any) {
+export function setupAxios(axios: AxiosStatic) {
     axios.defaults.headers.Accept = 'application/json';
 
     axios.interceptors.request.use(
         (config: any) => {
+            console.log(typeof config);
             const auth = getAuth();
 
             if (auth && auth.token) {
@@ -63,7 +65,7 @@ export function setupAxios(axios: any) {
 
             return config;
         },
-        (err: any) => Promise.reject(err)
+        (err: AxiosError) => Promise.reject(err)
     )
 }
 

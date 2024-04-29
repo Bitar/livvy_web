@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {useMasterLayout} from "../../../layout/MasterLayoutProvider.tsx";
 
 export const Onboarding = () => {
-    const sliderRef = useRef<any>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
     const slideCount = 3
     const [currentIndex, setCurrentIndex] = useState<number>(0)
     const navigate = useNavigate()
@@ -18,6 +18,7 @@ export const Onboarding = () => {
         setShowFooter(false);
         setBackgroundType('video');
         setBackgroundUrl('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const settings = {
@@ -49,6 +50,7 @@ export const Onboarding = () => {
         if (currentIndex + 1 >= slideCount) {
             navigate(`/`)
         } else {
+            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
             sliderRef?.current?.slickNext()
         }
     }
@@ -75,6 +77,7 @@ export const Onboarding = () => {
                     <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                 </div>
 
+                {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                 <Slider {...settings} ref={sliderRef} className={'relative'}>
                     <Slide index={1} title={'Capture'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_1.mp4'}
                            description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>

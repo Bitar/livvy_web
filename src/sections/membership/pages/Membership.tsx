@@ -8,6 +8,7 @@ export const Membership = () => {
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
