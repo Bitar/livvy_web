@@ -32,7 +32,7 @@ export const Footer = () => {
                                                 ? <img src="/assets/arrow-black.svg" alt=""/>
                                                 : <img src="/assets/arrow-white.svg" alt=""/>
                                         }
-                                    Cee</div>
+                                    </div>
                                 </button>
                             </div>
                         </div>
