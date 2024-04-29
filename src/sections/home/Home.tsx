@@ -10,6 +10,7 @@ export const Home = () => {
         setShowFooter(false);
         setBackgroundType('video');
         setBackgroundUrl('https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

@@ -30,7 +30,7 @@ export const BetaRegister = () => {
 
     useEffect(() => {
         livvyApp.setPageTitle('Register | Livvy | Alpha')
-    }, []);
+    }, [livvyApp]);
 
     const handleResendVerificationEmail = async () => {
         // first we need to show the loading icon
@@ -40,7 +40,7 @@ export const BetaRegister = () => {
 
         // do API call to trigger resend
 
-        submitRequest(resendAccountActivationEmail, [form], (response) => {
+        submitRequest(resendAccountActivationEmail, [form], () => {
             setShowResendLoading(false);
             setShowResendDone(true);
         })

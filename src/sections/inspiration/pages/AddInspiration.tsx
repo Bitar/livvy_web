@@ -34,6 +34,7 @@ export const AddInspiration = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSubmit = () => {

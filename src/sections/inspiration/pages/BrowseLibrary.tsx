@@ -32,6 +32,7 @@ export const BrowseLibrary = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -43,10 +44,11 @@ export const BrowseLibrary = () => {
 
             setInvalidSelection(false);
         }
-    }, [invalidSelection]);
+    }, [invalidSelection, livApp]);
 
     useEffect(() => {
         setPreferenceForm({...preferenceForm, totalInspirations: selected.length})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selected]);
 
     useEffect(() => {

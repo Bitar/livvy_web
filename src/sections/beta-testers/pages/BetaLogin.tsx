@@ -41,7 +41,7 @@ export const BetaLogin = () => {
         }
 
         livvyApp.setPageTitle('Login | Livvy | Alpha')
-    }, []);
+    }, [livvyApp, searchParams]);
 
     const handleSubmit = async (values: any, {setSubmitting}: any) => {
         try {
@@ -87,7 +87,7 @@ export const BetaLogin = () => {
 
         // do API call to trigger resend
 
-        submitRequest(resendAccountActivationEmail, [form], (response) => {
+        submitRequest(resendAccountActivationEmail, [form], () => {
             setShowResendLoading(false);
             setShowResendDone(true);
 

@@ -15,7 +15,7 @@ export const CelebrityDesignerProfile = () => {
 
     const [activeTab, setActiveTab] = useState<'portfolio' | 'livvy'>('portfolio');
 
-    const videoRef = useRef<any>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     const settings = {
         className: "center",
@@ -45,6 +45,7 @@ export const CelebrityDesignerProfile = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const playVideo = () => {
