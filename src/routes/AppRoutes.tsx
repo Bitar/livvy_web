@@ -7,7 +7,7 @@ import {Logout} from "../sections/auth/core/Logout.tsx";
 import {AuthRoutes} from "./AuthRoutes.tsx";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
 import {Membership} from "../sections/membership/pages/Membership.tsx";
-import {BetaRoutes} from "./BetaRoutes.tsx";
+import {AlphaRoutes} from "./AlphaRoutes.tsx";
 
 // const {BASE_URL} = import.meta.env
 
@@ -23,7 +23,7 @@ const AppRoutes: FC = () => {
                     <Route path='error/*' element={<ErrorsPage/>}/>
                     <Route path='logout/*' element={<Logout/>}/>
 
-                    <Route path='alpha/*' element={<BetaRoutes />} />
+                    <Route path='alpha/*' element={<AlphaRoutes />} />
 
                     {
                         APP_ENV === 'production' && (

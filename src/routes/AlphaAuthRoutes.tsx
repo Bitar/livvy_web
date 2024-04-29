@@ -4,7 +4,7 @@ import {BetaAuthLayout} from "../layout/BetaAuthLayout.tsx";
 import {BetaLogin} from "../sections/beta-testers/pages/BetaLogin.tsx";
 import React from "react";
 
-const BetaAuthRoutes = () => {
+const AlphaAuthRoutes = () => {
     return (
         <Routes>
             <Route element={<BetaAuthLayout />}>
@@ -17,4 +17,4 @@ const BetaAuthRoutes = () => {
     )
 }
 
-export {BetaAuthRoutes}
+export {AlphaAuthRoutes}
