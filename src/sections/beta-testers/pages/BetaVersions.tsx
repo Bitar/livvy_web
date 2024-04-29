@@ -1,5 +1,5 @@
 import {Background} from "../../../modules/background/Background.tsx";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {faPlay} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -8,6 +8,8 @@ import {submitRequest} from "../../../helpers/requests.ts";
 import {getAllAppVersions} from "../../../requests/beta/AppVersion.ts";
 import {useAuth} from "../../auth/core/Auth.tsx";
 import {useLivvyApp} from "../../auth/core/LivvyApp.tsx";
+import Player from '@vimeo/player'
+import clsx from "clsx";
 
 
 export const BetaVersions = () => {
@@ -15,12 +17,28 @@ export const BetaVersions = () => {
 
     const [selected, setSelected] = useState<AppVersion | null>(null);
     const [appVersions, setAppVersions] = useState<AppVersion[]>([]);
+    const [showNotice, setShowNotice] = useState<boolean>(true);
 
     const livvyApp = useLivvyApp();
+    const vimeoRef = useRef(null);
 
     useEffect(() => {
-        livvyApp.setPageTitle('Livvy | Alpha')
+        livvyApp.setPageTitle('Livvy | Alpha');
     }, []);
+
+    useEffect(() => {
+        if (selected) {
+            const player = new Player(vimeoRef.current);
+
+            player.on('play', function () {
+                setShowNotice(false);
+            });
+
+            player.on('pause', function () {
+               setShowNotice(true);
+            });
+        }
+    }, [selected]);
 
     useEffect(() => {
         submitRequest(getAllAppVersions, [], (response) => {
@@ -45,13 +63,17 @@ export const BetaVersions = () => {
 
             <div className="container">
                 <div style={{padding: "56.25% 0 0 0"}} className="relative">
+                    <span className={clsx("absolute rounded-md text-xs top-2 left-2 py-1 md:text-base md:top-5 md:left-6 z-20 px-3 md:py-2 bg-white md:rounded-lg", {
+                        hidden: !showNotice
+                    })}>
+                        <span className="font-medium">Note</span>: An iPad Pro is necessary for this version of the app
+                    </span>
                     <iframe
                         src={selected?.url}
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                         className="absolute top-0 left-0 w-full h-full"
-                        title="Livvy Alpha App Tutorial"></iframe>
+                        title="Livvy Alpha App Tutorial" ref={vimeoRef}></iframe>
                 </div>
-                <script src="https://player.vimeo.com/api/player.js"></script>
             </div>
 
             <div className='border-b border-b-black'>
@@ -90,7 +112,7 @@ const VideoPreview = ({appVersion, clickHandler}: { appVersion: AppVersion, clic
         <div>
             <div
                 className="relative bg-no-repeat bg-cover bg-center aspect-video rounded-lg"
-                style={{backgroundImage: `url('${appVersion.poster}')`}}>
+                style={{backgroundImage: `url(${appVersion.poster})`}}>
                 <button className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20 rounded-lg"
                         onClick={clickHandler}>
                     <div
