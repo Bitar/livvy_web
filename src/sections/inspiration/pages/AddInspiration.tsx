@@ -94,7 +94,7 @@ export const AddInspiration = () => {
             </div>
 
             <LivModal>
-                <div className={clsx({
+                <div className={clsx('relative h-full',{
                     'hidden': step != 'upload'
                 })}>
                     <h3 className='text-2xl italic capitalize font-thin mb-7'
@@ -108,7 +108,7 @@ export const AddInspiration = () => {
                         {
                             (formik) => (
                                 <Form>
-                                    <div>
+                                    <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full sm:static sm:translate-y-0">
                                         <Dropzone onDrop={acceptedFiles => setUploadForm({files: acceptedFiles})}>
                                             {({getRootProps, getInputProps}) => (
                                                 <section>
@@ -141,7 +141,7 @@ export const AddInspiration = () => {
                                     </div>
 
                                     <div
-                                        className='absolute bottom-6 left-1/2 -translate-x-1/2 w-4/5 sm:static sm:-translate-x-0 sm:bottom-0 sm:left-0 sm:w-auto sm:flex sm:justify-end sm:mt-6'>
+                                        className='absolute bottom-0 left-1/2 -translate-x-1/2 w-full sm:static sm:-translate-x-0 sm:bottom-0 sm:left-0 sm:w-auto sm:flex sm:justify-end sm:mt-6'>
                                         <LivButton as={'button'} type={'submit'} text={'next'}
                                                    borderColor={'border-black'} bgColor={'bg-black'}
                                                    textColor={'text-white'} onWhiteBg={true}

@@ -36,6 +36,8 @@
         font-size: 14px;
         color: #000000;
         cursor: pointer;
+        padding-left: 20px;
+        padding-right: 20px;
 
         &:hover {
           background-color: #838b64;
@@ -48,13 +50,17 @@
         }
 
         &.liv-select__option--is-selected {
-          background-color: #838b64 !important;
-          opacity: 100% !important;
-          color: #ffffff;
+          background-color: #ffffff;
+          color: #000000;
 
           &:before {
             content: '\2713';
             margin-right: 4px;
+          }
+
+          &:hover {
+            background-color: #838b64;
+            color: #ffffff;
           }
         }
       }
