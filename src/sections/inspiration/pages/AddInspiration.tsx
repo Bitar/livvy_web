@@ -56,7 +56,7 @@ export const AddInspiration = () => {
 
     return (
         <div>
-            <div className="container py-6 px-6 sm:py-10">
+            <div className="container liv-container">
                 <div className="grid grid-cols-1 gap-0 md:gap-10 md:grid-cols-2 xl:gap-20">
                     <div className="relative order-last md:order-first">
                         <div className="md:absolute md:bottom-0 md:left-0 md:z-10">

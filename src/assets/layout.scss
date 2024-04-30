@@ -1,6 +1,10 @@
 .container.liv-container {
   padding: 40px 24px;
   position: relative;
+
+  @media (max-width: 640px) {
+    padding: 24px;
+  }
 }
 
 #wrapper {
