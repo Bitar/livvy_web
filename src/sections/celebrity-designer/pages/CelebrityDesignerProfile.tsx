@@ -85,7 +85,7 @@ export const CelebrityDesignerProfile = () => {
                                 <h2 className="text-sm lg:border-e lg:border-e-black inline-block lg:pe-2 lg:me-2">Interior
                                     Designer,
                                     Media Personality</h2>
-                                <div className="lg:inline-block">
+                                <div className="lg:inline-block mt-3.5 lg:mt-0">
                                     <div className="flex justify-start items-center">
                                         <a href="https://www.instagram.com/" target={'_blank'}><FontAwesomeIcon icon={faInstagram} className="text-lg me-2.5"/></a>
 
