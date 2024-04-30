@@ -77,6 +77,8 @@ export const CelebrityDesignerProfile = () => {
                     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
                 );
 
+                console.log(isVisible);
+
                 setShowStickyButton(!isVisible);
             }
         };
