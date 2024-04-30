@@ -42,7 +42,7 @@ export const Footer = () => {
                             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                                 <div className='list-group'>
                                     <h2 className="mb-6 uppercase">Customers</h2>
-                                    <ul className="font-medium uppercase">
+                                    <ul className="uppercase">
                                         <li className="mb-4">
                                             <a href="#" className="hover:underline">Capture App</a>
                                         </li>
@@ -56,7 +56,7 @@ export const Footer = () => {
                                 </div>
                                 <div className='list-group'>
                                     <h2 className="mb-6 uppercase">Company</h2>
-                                    <ul className="font-medium uppercase">
+                                    <ul className="uppercase">
                                         <li className="mb-4">
                                             <a href="#" className="hover:underline">About</a>
                                         </li>
@@ -70,7 +70,7 @@ export const Footer = () => {
                                 </div>
                                 <div className='list-group'>
                                     <h2 className="mb-6 uppercase">Resources</h2>
-                                    <ul className="font-medium uppercase">
+                                    <ul className="uppercase">
                                         <li className="mb-4">
                                             <a href="#" className="hover:underline">Privacy Policy</a>
                                         </li>
@@ -84,7 +84,7 @@ export const Footer = () => {
                                 </div>
                                 <div className='list-group'>
                                     <h2 className="mb-6 uppercase">Socials</h2>
-                                    <ul className="font-medium uppercase">
+                                    <ul className="uppercase">
                                         <li className="mb-4">
                                             <a href="#" className="hover:underline">Instagram</a>
                                         </li>

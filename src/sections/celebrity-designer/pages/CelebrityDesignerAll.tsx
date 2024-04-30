@@ -40,8 +40,7 @@ export const CelebrityDesignerAll = () => {
             {
                 breakpoint: 640,
                 settings: {
-                    autoplay: true,
-                    slidesToShow: 1,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1
                 }
             }
@@ -54,15 +53,7 @@ export const CelebrityDesignerAll = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 640,
-                settings: {
-                    autoplay: true
-                }
-            }
-        ]
+        slidesToScroll: 1
     };
 
     return (
@@ -85,7 +76,7 @@ export const CelebrityDesignerAll = () => {
                             preferences.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-4">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 lg:gap-4">
                         <CelebrityCard name={'shea mcgee'} bio={'Interior Designer, Media Personality'}
                                        slug={'shea-mcgee'}
                                        image={'/assets/celebrities/shea-mcgee.png'} rate={'$100'}/>
@@ -120,7 +111,7 @@ export const CelebrityDesignerAll = () => {
             </div>
 
             <div id="how-it-works" className="bg-black">
-                <div className="container sm:!py-16 liv-container">
+                <div className="container !pb-0 sm:!py-16 liv-container">
                     <div className="md:flex md:justify-between md:items-center mb-6">
                         <h2 className={'text-5xl lg:text-7xl uppercase text-white mb-4 md:mb-0'}>how it <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
@@ -177,14 +168,14 @@ export const CelebrityDesignerAll = () => {
                     <div className="relative mb-8">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickNext()}
-                            className="w-12 h-12 absolute hidden md:inline-block right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
+                            className="w-12 h-12 absolute right-1 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="next nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickPrev()}
-                            className="w-12 h-12 hidden md:inline-block absolute left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
+                            className="w-12 h-12 absolute left-1 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="prev nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
@@ -218,12 +209,12 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
                 className={`w-full aspect-[3/4] bg-cover bg-no-repeat bg-center rounded-lg relative mb-2.5`}
                 style={{backgroundImage: `url(${image})`}}>
                 <span
-                    className="uppercase px-2 py-1 lg:px-3 lg:py-2 min-w-24 rounded-full border border-black absolute z-10 right-3 top-3 text-xs bg-liv-tan">{rate}/design</span>
+                    className="uppercase px-2 py-1 lg:px-3 lg:py-2 w-auto sm:min-w-24 rounded-full border border-black absolute z-10 right-3 top-3 text-[9px] sm:text-xs bg-liv-tan">{rate}/design</span>
                 <Link to={`/celebrity-designers/${slug}`} className="absolute top-0 left-0 h-full w-full z-20"/>
             </div>
 
-            <Link to={`/celebrity-designers/${slug}`} className="uppercase block">{name}</Link>
-            <p className="text-xs">{bio}</p>
+            <Link to={`/celebrity-designers/${slug}`} className="text-xs sm:text-base uppercase block">{name}</Link>
+            <p className="text-[10px] sm:text-xs">{bio}</p>
         </div>
     )
 }
@@ -235,7 +226,7 @@ const Slide = ({image, title, description, index}: {
     index: number
 }) => {
     return (
-        <div className="relative !pb-0 md:p-11 sm:p-8 p-0">
+        <div className="relative !pb-0 md:p-11 sm:p-8 p-0 me-5 sm:me-0 !ms-0">
             <span className="text-7xl text-white absolute top-4 left-4 z-20">{`${index}`.padStart(2, '0')}</span>
             <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
 
