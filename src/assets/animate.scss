@@ -114,16 +114,16 @@ button.liv-white-hover, a.liv-white-hover {
     max-height: 0;
   }
 
-  .drop_container.show {
-    max-height: 100vh;
-    transition: margin-top 0.1s ease-in, max-height 0.5s ease-in;
-    -webkit-transition: margin-top 0.1s ease-in, max-height 0.5s ease-in;
-  }
-
   .drop_container.hide {
     overflow: hidden;
     max-height: 0;
-    transition: margin-top 0.3s ease-out, max-height 0.3s ease-out;
-    -webkit-transition: margin-top 0.3s ease-out, max-height 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+  }
+
+  .drop_container.show {
+    max-height: 100vh;
+    transition: all 0.1s ease-in;
+    -webkit-transition: all 0.1s ease-in;
   }
 }

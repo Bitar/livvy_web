@@ -3,9 +3,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faUser, faShoppingBag} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 import clsx from "clsx";
+import {useCart} from "./CartProvider.tsx";
+import {useMasterLayout} from "./MasterLayoutContext.loader.ts";
 
-export const Header = ({textColor} : {textColor: 'white' | 'black'}) => {
+export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
+    const {setIsCartOpen} = useCart();
+    const {setBlurContent} = useMasterLayout();
 
     return (
         <div id="header" className={clsx('flex flex-wrap items-center justify-between mx-auto border-b px-10', {
@@ -27,9 +31,12 @@ export const Header = ({textColor} : {textColor: 'white' | 'black'}) => {
                         </a>
                     </li>
                     <li>
-                        <a href="#" className={`block py-2 text-${textColor}`}>
+                        <button className={`block py-2 text-${textColor}`} onClick={() => {
+                            setIsCartOpen(true);
+                            setBlurContent(true);
+                        }}>
                             <FontAwesomeIcon icon={faShoppingBag}/>
-                        </a>
+                        </button>
                     </li>
                     <li>
                         <a href="#" className={`block py-2 text-${textColor}`}>
