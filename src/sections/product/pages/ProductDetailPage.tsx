@@ -3,6 +3,8 @@ import React, {useEffect} from "react";
 import {LivTag} from "../../../components/tags/LivTag.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
+import {faPlus, faUser} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const ProductDetailPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
@@ -17,9 +19,7 @@ export const ProductDetailPage = () => {
         <div className="container">
             <div className="grid grid-cols-2 gap-5">
                 <div className="thumbnail-wrapper">
-                    <div className="main-image">
-                        <img src="/assets/product/4ddf573a73d59eae36b8b10ff5d4e340.png" alt="Product Name's Image"/>
-                    </div>
+                    <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')]"/>
                 </div>
                 <div className="details mt-9">
                     <div className="flex justify-end tag-list gap-1">
@@ -47,8 +47,11 @@ export const ProductDetailPage = () => {
                                     <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">-</span>
                                 </button>
                                 <input type='number'
-                                       className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm" value={0} onChange={() => console.log('onChangeHandler for Number')}
-                                       onFocus={(e) => e.target.select()}/>
+                                       className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm" value={0}
+                                       onChange={() => console.log('onChangeHandler for Number')}
+                                       onFocus={(e) => e.target.select()}
+                                       style={{lineHeight: 16}}
+                                />
                                 <button className="w-8 h-8 relative border border-black" onClick={() => console.log('increment')}>
                                     <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">+</span>
                                 </button>
@@ -58,7 +61,7 @@ export const ProductDetailPage = () => {
                         </div>
 
                     </div>
-                    <div className="flex items-center cta gap-4">
+                    <div className="flex items-center cta gap-4 mb-16">
                         <LivButton
                             as={'button'}
                             type={'submit'}
@@ -72,8 +75,22 @@ export const ProductDetailPage = () => {
                             fullWidth={true}
                         />
 
-                        <div>
-                            <span className='inline-block border-b border-b-black uppercase align-middle'><Link to={'/'}>See Similar Products</Link></span>
+                        <span className='inline-block border-b border-b-black uppercase align-middle'><Link to={'/'}>See Similar Products</Link></span>
+                    </div>
+
+                    <div>
+                        <div className="info border-b border-b-black pb-4">
+                            <div className="flex info-header justify-between">
+                                <div className="title uppercase">
+                                    Overview
+                                </div>
+                                <div>
+                                    <FontAwesomeIcon icon={faPlus}/>
+                                </div>
+                            </div>
+                            <div className="flex info-body">
+
+                            </div>
                         </div>
                     </div>
                 </div>
