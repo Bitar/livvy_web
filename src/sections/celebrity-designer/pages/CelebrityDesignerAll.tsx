@@ -127,13 +127,13 @@ export const CelebrityDesignerAll = () => {
                     <div className="relative">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => howItWorksSliderRef?.current?.slickNext()}
-                            className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10">
+                                className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10">
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => howItWorksSliderRef?.current?.slickPrev()}
-                            className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100">
+                                className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100">
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
@@ -168,14 +168,14 @@ export const CelebrityDesignerAll = () => {
                     <div className="relative mb-8">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickNext()}
-                            className="w-12 h-12 absolute right-1 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
+                                className="w-12 h-12 absolute right-1 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="next nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
 
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => featuredSliderRef?.current?.slickPrev()}
-                            className="w-12 h-12 absolute left-1 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
+                                className="w-12 h-12 absolute left-1 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
                             <img src="/assets/arrow-black.svg" alt="prev nav arrow"
                                  className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                         </button>
