@@ -204,7 +204,7 @@ export const CelebrityDesignerProfile = () => {
                 <video src={'https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4'} autoPlay={false}
                        controls={false} loop={false} ref={videoRef}
                        muted={true} poster={`/assets/celebrities/shea-mcgee-2.jpeg`}
-                       className="w-full h-auto"/>
+                       className="w-full h-auto object-cover"/>
             </div>
 
             <div id="featured-interiors" className="py-14 lg:py-20">
