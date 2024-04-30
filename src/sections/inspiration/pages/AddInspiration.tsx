@@ -56,7 +56,7 @@ export const AddInspiration = () => {
 
     return (
         <div>
-            <div className="container liv-container">
+            <div className="container py-6 px-6 sm:py-10">
                 <div className="grid grid-cols-1 gap-0 md:gap-10 md:grid-cols-2 xl:gap-20">
                     <div className="relative order-last md:order-first">
                         <div className="md:absolute md:bottom-0 md:left-0 md:z-10">
@@ -78,12 +78,12 @@ export const AddInspiration = () => {
 
                             <div className="mt-6 md:mt-8 lg:flex lg:justify-start lg:items-center">
                                 <LivButton as={'button'} text={'upload your images'} borderColor={'border-black'}
-                                           bgColor={'bg-white'} textColor={'text-black'} style={'thin'}
-                                           className={"text-sm xl:text-base mb-4 lg:mb-0"}
+                                           bgColor={'bg-white'} textColor={'text-black'} style={'mid'}
+                                           className={"text-xs xl:text-sm mb-4 lg:mb-0"}
                                            onClickHandler={() => setIsOpen(true)}/>
                                 <LivButton as={'a'} url={'/inspiration/browse'} text={'browse our library'}
                                            borderColor={'border-black'} bgColor={'bg-white'} textColor={'text-black'}
-                                           style={'thin'} className={'lg:ms-4 text-sm xl:text-base'}/>
+                                           style={'mid'} className={'lg:ms-4 text-xs xl:text-sm'}/>
                             </div>
                         </div>
                     </div>
