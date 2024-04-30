@@ -13,9 +13,6 @@ type BackgroundProps = | {
 }
 
 export const Background: FC<BackgroundProps> = ({type, url, poster, color}) => {
-    console.log(type);
-    console.log(color);
-
     return (
         <div className="fixed min-w-full min-h-full -z-10 overflow-hidden">
             {

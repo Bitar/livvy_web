@@ -6,13 +6,14 @@ import {App} from "../App.tsx";
 import {Logout} from "../sections/auth/core/Logout.tsx";
 import {AuthRoutes} from "./AuthRoutes.tsx";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
-import {Membership} from "../sections/membership/pages/Membership.tsx";
 import {AlphaRoutes} from "./AlphaRoutes.tsx";
 
 // const {BASE_URL} = import.meta.env
 
 const AppRoutes: FC = () => {
     const APP_ENV = import.meta.env.VITE_APP_ENV;
+
+    console.log(APP_ENV)
 
     const {currentUser} = useAuth()
 
