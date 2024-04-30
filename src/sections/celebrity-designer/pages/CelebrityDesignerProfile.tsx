@@ -85,7 +85,7 @@ export const CelebrityDesignerProfile = () => {
                                 <h2 className="text-sm lg:border-e lg:border-e-black inline-block lg:pe-2 lg:me-2">Interior
                                     Designer,
                                     Media Personality</h2>
-                                <div className="lg:inline-block">
+                                <div className="lg:inline-block mt-3.5 lg:mt-0">
                                     <div className="flex justify-start items-center">
                                         <a href="https://www.instagram.com/" target={'_blank'}><FontAwesomeIcon icon={faInstagram} className="text-lg me-2.5"/></a>
 
@@ -123,7 +123,7 @@ export const CelebrityDesignerProfile = () => {
                                 <div className="inline-block">
                                     <LivButton as={'a'} text={'create a custom design'} textColor={'text-white'}
                                                borderColor={'border-black'} bgColor={'bg-black'} url={'#'}
-                                               style={'thin'} className="text-sm md:text-base"/>
+                                               style={'thin'} className="text-sm"/>
                                 </div>
                             </div>
 
@@ -205,37 +205,39 @@ export const CelebrityDesignerProfile = () => {
                 </div>
             </div>
 
-            <div id="how-we-make-expert" className="bg-black py-10">
+            <div id="how-we-make-expert" className="bg-black py-10 overflow-y-hidden">
                 <div className="container liv-container">
-                    <div className="md:grid md:grid-cols-2">
+                    <div className="md:grid md:grid-cols-2 md:gap-x-10 xl:gap-x-24">
                         <div
-                            className="w-full h-[400px] md:h-full bg-[url('/assets/celebrities/interior-5.png')] bg-cover bg-no-repeat bg-center"></div>
+                            className="w-full h-[400px] md:h-[500px] lg:h-[750px] bg-[url('/assets/celebrities/interior-5.png')] bg-cover bg-no-repeat bg-center"></div>
 
-                        <div className="md:ps-10 xl:ps-24 relative mt-6 md:mt-64">
-                            <div className="mb-8 xl:mb-14">
-                                <span className="uppercase text-lg text-white">how we</span>
-                                <h3 className="uppercase text-4xl lg:text-5xl xl:text-7xl text-white">make expert <br/> <span
-                                    style={{fontFamily: "PP Editorial New"}}
-                                    className="font-thin italic capitalize text-3xl lg:text-6xl">design accessible</span></h3>
-                            </div>
+                        <div className="relative mt-6 md:mt-64">
+                            <div className="md:absolute md:left-0 md:bottom-0 z-10 w-full">
+                                <div className="mb-8 xl:mb-14">
+                                    <span className="uppercase text-lg text-white">how we</span>
+                                    <h3 className="uppercase text-4xl lg:text-5xl xl:text-7xl text-white">make expert <br/> <span
+                                        style={{fontFamily: "PP Editorial New"}}
+                                        className="font-thin italic capitalize text-3xl lg:text-6xl">design accessible</span></h3>
+                                </div>
 
-                            <div>
-                                <FAQ title={'Our AI learns from thousands of images of the designer’s work'}
-                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
+                                <div>
+                                    <FAQ title={'Our AI learns from thousands of images of the designer’s work'}
+                                         text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                <FAQ title={'Our technology takes those images and creates a curated design'}
-                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
+                                    <FAQ title={'Our technology takes those images and creates a curated design'}
+                                         text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                <FAQ title={'The design is sent to the designer’s team'}
-                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
+                                    <FAQ title={'The design is sent to the designer’s team'}
+                                         text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                <FAQ title={'Get the designer’s stamp of approval'}
-                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
+                                    <FAQ title={'Get the designer’s stamp of approval'}
+                                         text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                <FAQ title={'Receive a beautiful space without breaking the bank'}
-                                     text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}
-                                     isLast={true}
-                                />
+                                    <FAQ title={'Receive a beautiful space without breaking the bank'}
+                                         text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}
+                                         isLast={true}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -259,17 +261,17 @@ const FAQ = ({title, text, isLast = false}: { title: string, text: string, isLas
     const [show, setShow] = useState<boolean>(false);
 
     return (
-        <div className={clsx("border-t border-t-white text-white py-4 xl:py-5", {
+        <div className={clsx("smooth-slide-down-container border-t border-t-white text-white py-4 xl:py-5", {
             'border-b border-b-white': isLast
         })}>
             <div className="flex justify-between items-center">
-                <span className="uppercase me-2.5 text-xs lg:text-sm">{title}</span>
+                <button type="button" className="text-left uppercase me-2.5 text-xs lg:text-sm" onClick={() => setShow(!show)}>{title}</button>
                 <button><FontAwesomeIcon icon={show ? faMinus : faPlus} onClick={() => setShow(!show)}/></button>
             </div>
 
-            <p className={clsx("mt-4 me-6 text-sm animate__animated", {
-                'hidden': !show,
-                'animate__fadeIn': show
+            <p className={clsx("me-6 text-sm drop_container", {
+                'mt-0 hide': !show,
+                'mt-4 show': show
             })}>
                 {text}
             </p>
