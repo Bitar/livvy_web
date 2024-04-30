@@ -13,8 +13,6 @@ import {AlphaRoutes} from "./AlphaRoutes.tsx";
 const AppRoutes: FC = () => {
     const APP_ENV = import.meta.env.VITE_APP_ENV;
 
-    console.log(APP_ENV)
-
     const {currentUser} = useAuth()
 
     return (
