@@ -3,8 +3,7 @@ import React, {useEffect} from "react";
 import {LivTag} from "../../../components/tags/LivTag.tsx";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
-import {faPlus, faUser} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Collapse} from "../../../components/Collapse.tsx";
 
 export const ProductDetailPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
@@ -78,20 +77,34 @@ export const ProductDetailPage = () => {
                         <span className='inline-block border-b border-b-black uppercase align-middle'><Link to={'/'}>See Similar Products</Link></span>
                     </div>
 
-                    <div>
-                        <div className="info border-b border-b-black pb-4">
-                            <div className="flex info-header justify-between">
-                                <div className="title uppercase">
-                                    Overview
-                                </div>
-                                <div>
-                                    <FontAwesomeIcon icon={faPlus}/>
-                                </div>
-                            </div>
-                            <div className="flex info-body">
-
-                            </div>
+                    <div className="flex info-header justify-between">
+                        <div className="title uppercase">
+                            Overview
                         </div>
+                        <p className='text-sm max-w-sm pb-4'>
+                            Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined
+                            radiance.
+
+                            <span className='inline-block border-b border-b-black uppercase align-middle mt-4'><Link to={'/'}>See More</Link></span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <Collapse
+                            text={"Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance."}
+                            title={"Details"}></Collapse>
+                        <Collapse
+                            text={"Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance."}
+                            title={"Dimensions"}></Collapse>
+                        {/*<div className="info border-b border-b-black pb-4">*/}
+                        {/*    <div className="flex">*/}
+                        {/*        <div>Details</div>*/}
+
+                        {/*    </div>*/}
+                        {/*    <div className="flex info-body">*/}
+
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
