@@ -106,3 +106,24 @@ button.liv-white-hover, a.liv-white-hover {
     }
   }
 }
+
+// animate slide up and down reveal
+.smooth-slide-down-container {
+  .drop_container {
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  .drop_container.show {
+    max-height: 100vh;
+    transition: margin-top 0.1s ease-in, max-height 0.5s ease-in;
+    -webkit-transition: margin-top 0.1s ease-in, max-height 0.5s ease-in;
+  }
+
+  .drop_container.hide {
+    overflow: hidden;
+    max-height: 0;
+    transition: margin-top 0.3s ease-out, max-height 0.3s ease-out;
+    -webkit-transition: margin-top 0.3s ease-out, max-height 0.3s ease-out;
+  }
+}
