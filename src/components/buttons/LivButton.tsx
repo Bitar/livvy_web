@@ -12,6 +12,7 @@ interface LivButtonProps {
     borderColor: string,
     bgColor: string,
     textColor?: 'text-black' | 'text-white',
+    hasArrow?: boolean,
     arrowIcon?: boolean,
     arrowIconDirection?: string,
     rounded?: boolean,
@@ -46,6 +47,7 @@ export const LivButton = ({
                               textIcon,
                               className = '',
                               arrowIconDirection = 'right',
+                              hasArrow = true,
                               arrowIcon = true,
                               rounded = false,
                               fullWidth = false,
@@ -80,7 +82,9 @@ export const LivButton = ({
                     {!isSubmitting && <span>{text}</span>}
                     {isSubmitting && <span className="block">Please wait...</span>}
 
-                    <ButtonArrow arrowIconDirection={arrowIconDirection} arrowIcon={arrowIcon} textColor={textColor}/>
+                    {
+                        hasArrow && <ButtonArrow arrowIconDirection={arrowIconDirection} arrowIcon={arrowIcon} textColor={textColor}/>
+                    }
                 </button>
             )}
 
@@ -99,7 +103,9 @@ export const LivButton = ({
 
                     <span>{text}</span>
 
-                    <ButtonArrow arrowIconDirection={arrowIconDirection} arrowIcon={arrowIcon} textColor={textColor}/>
+                    {
+                        hasArrow && <ButtonArrow arrowIconDirection={arrowIconDirection} arrowIcon={arrowIcon} textColor={textColor}/>
+                    }
                 </Link>
             )}
         </>
