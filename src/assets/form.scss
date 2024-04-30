@@ -44,7 +44,6 @@
 
         &.liv-select__option--is-focused {
           background-color: #838b64;
-          opacity: 50%;
           color: #ffffff;
         }
 
@@ -52,6 +51,11 @@
           background-color: #838b64 !important;
           opacity: 100% !important;
           color: #ffffff;
+
+          &:before {
+            content: '\2713';
+            margin-right: 4px;
+          }
         }
       }
     }
