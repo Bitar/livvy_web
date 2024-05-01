@@ -15,7 +15,7 @@ import {useNavigate} from "react-router-dom";
 
 
 export const BrowseLibrary = () => {
-    const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor} = useMasterLayout();
     const [selected, setSelected] = useState<string[]>([]);
     const [invalidSelection, setInvalidSelection] = useState<boolean>(false);
 
@@ -31,7 +31,6 @@ export const BrowseLibrary = () => {
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
-        setShowFooter(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
