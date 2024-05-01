@@ -178,7 +178,7 @@ export const Register = () => {
 
                 <div className="text-sm flex justify-center align-middle">
                     <span className="me-1">Didn't receive an email?</span>
-                    <button className="border-b border-b-black me-2"
+                    <button className="border-0 border-b border-b-black me-2"
                             onClick={handleResendVerificationEmail}>Resend
                     </button>
                     <svg className={clsx("animate-spin h-4 w-4 text-brand-green", {

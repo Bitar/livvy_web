@@ -214,11 +214,11 @@ export const CelebrityDesignerProfile = () => {
 
                 <div className="text-center mb-12">
                     <div className='inline-block border-b border-b-[#D1CCC1]'>
-                        <button className={clsx("uppercase text-sm px-4 py-1.5 border-b-black hover:border-b-2", {
+                        <button className={clsx("uppercase text-sm px-4 py-1.5 border-0 border-b-black hover:border-b-2", {
                             'border-b-2': activeTab == 'portfolio'
                         })} onClick={() => toggleTab('portfolio')}>portfolio
                         </button>
-                        <button className={clsx("uppercase text-sm px-4 py-1.5 border-b-black hover:border-b-2", {
+                        <button className={clsx("uppercase text-sm px-4 py-1.5 border-0 border-b-black hover:border-b-2", {
                             'border-b-2': activeTab == 'livvy'
                         })} onClick={() => toggleTab('livvy')}>livvy created
                         </button>

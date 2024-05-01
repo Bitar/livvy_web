@@ -113,7 +113,7 @@ export const Login = () => {
                                textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
 
                     <div>
-                        <button className="uppercase text-xs border border-b-black" onClick={() => navigate('/auth/reset-password')}>reset password</button>
+                        <button className="uppercase text-xs border-0 border-b border-b-black" onClick={() => navigate('/auth/reset-password')}>reset password</button>
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@ const CreateAccount = () => {
         <div className="flex justify-center align-middle">
             <span className="uppercase me-1">no account?</span>
 
-            <button className="uppercase border border-b-black" onClick={() => navigate('/auth/register')}>create one</button>
+            <button className="uppercase border-0 border-b border-b-black" onClick={() => navigate('/auth/register')}>create one</button>
         </div>
     )
 }
