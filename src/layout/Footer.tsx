@@ -22,7 +22,7 @@ export const Footer = () => {
                             <p className='text-sm mb-6'>Signup for our newsletter for design inspiration, news, and promotions.</p>
                             <div className="newsletter-input-group flex">
                                 <input type="text" id="website-admin"
-                                       className="border border-r-0 text-gray-900 block flex-1 min-w-0 w-full text-sm p-2.5 outline-0"
+                                       className="border border-r-0 text-gray-900 block flex-1 min-w-0 w-full text-sm p-2.5 outline-0 placeholder:opacity-50"
                                        placeholder="enter your email"/>
                                 <button className='border px-5 uppercase'>
                                     <div className='flex justify-center'>
