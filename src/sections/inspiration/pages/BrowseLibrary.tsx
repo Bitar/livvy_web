@@ -81,11 +81,11 @@ export const BrowseLibrary = () => {
     return (
         <div>
             <div className="container liv-container">
-                <h1 className='text-2xl italic capitalize font-thin mb-7'
+                <h1 className='text-xl sm:text-2xl italic capitalize font-thin sm:mb-7'
                     style={{fontFamily: "PP Editorial New"}}>Please choose up to 4 inspiration images</h1>
 
                 <div className="mt-6">
-                    <ResponsiveMasonry columnsCountBreakPoints={{320: 1, 640: 2, 1024: 3, 1280: 4}}>
+                    <ResponsiveMasonry columnsCountBreakPoints={{640: 2, 1024: 3, 1280: 4}}>
                         <Masonry gutter={'16px'}>
                             <InspirationCard image={'/assets/inspiration/pinterest/img1.webp'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
@@ -114,8 +114,31 @@ export const BrowseLibrary = () => {
                             <InspirationCard image={'/assets/inspiration/pinterest/img9.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
                                              setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/img1.webp'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/img2.jpeg'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/img3.jpg'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/img6.jpg'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/img7.webp'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/img8.jpeg'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                         </Masonry>
                     </ResponsiveMasonry>
+                </div>
+
+                <div className="mobile-w-full left-0 fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20 px-6">
+                    <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
+                               textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={"w-full"} onWhiteBg={true}/>
                 </div>
             </div>
 
@@ -132,11 +155,6 @@ export const BrowseLibrary = () => {
                 <InspirationFeedback form={preferenceForm} setForm={setPreferenceForm} urls={selected}
                                      handleSubmit={handleSubmit}/>
             </LivModal>
-
-            <div className="w-full left-0 sm:w-auto fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20">
-                <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
-                           textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={"w-full sm:w-auto"} onWhiteBg={true}/>
-            </div>
         </div>
 
     )
@@ -205,7 +223,7 @@ const InspirationCard = ({
     }
 
     return (
-        <div className="relative mb-4">
+        <div className="relative">
             <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
                 "cursor-pointer": !viewOnly
             })} onClick={() => {
@@ -216,11 +234,11 @@ const InspirationCard = ({
             }}/>
 
             <div
-                className={clsx('absolute top-4 right-4 z-10 cursor-pointer w-7 h-7 border border-black rounded-full', {
+                className={clsx('absolute top-2 right-2 z-10 cursor-pointer w-4 h-4 sm:w-5 sm:h-5 border border-black rounded-full', {
                     'bg-liv-green': active,
                     'bg-white': !active
                 })} onClick={handleClick}>
-                <span className={clsx("absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white", {
+                <span className={clsx("text-xs absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white", {
                     'invisible': !active,
                     'visible': active
                 })}>{cardCount}</span>
