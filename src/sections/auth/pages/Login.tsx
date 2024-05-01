@@ -117,7 +117,7 @@ export const Login = () => {
                     </div>
                 </div>
 
-                <div className="block mt-8 mb-4 sm:hidden sm:mt-0 sm:mb-0">
+                <div className="block mt-[15%] mb-4 sm:hidden sm:mt-0 sm:mb-0">
                     <CreateAccount />
                 </div>
             </div>
