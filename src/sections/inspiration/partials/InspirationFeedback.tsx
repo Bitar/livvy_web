@@ -96,7 +96,7 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
     }, [form, index]);
 
     return (
-        <div className="w-full mb-10 sm:mb-0">
+        <div className="w-full">
             <div
                 className={`w-full h-72 bg-cover bg-no-repeat bg-center mb-4`}
                 style={{backgroundImage: `url(${image})`}}></div>
