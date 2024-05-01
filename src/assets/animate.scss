@@ -111,18 +111,19 @@ button.liv-white-hover, a.liv-white-hover {
 .smooth-slide-down-container {
   .drop_container {
     overflow: hidden;
-    max-height: 0;
+
+    //max-height: 0;
   }
 
   .drop_container.hide {
     overflow: hidden;
-    max-height: 0;
+    //max-height: 0;
     transition: all 0.3s ease-out;
     -webkit-transition: all 0.3s ease-out;
   }
 
   .drop_container.show {
-    max-height: 100vh;
+    //max-height: 100vh;
     transition: all 0.1s ease-in;
     -webkit-transition: all 0.1s ease-in;
   }
