@@ -94,7 +94,7 @@ export const AddInspiration = () => {
             </div>
 
             <LivModal>
-                <div className={clsx('relative h-full',{
+                <div className={clsx('relative h-full sm:min-w-[400px]',{
                     'hidden': step != 'upload'
                 })}>
                     <h3 className='text-2xl italic capitalize font-thin mb-7'

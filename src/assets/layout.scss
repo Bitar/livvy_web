@@ -13,3 +13,10 @@
     transition: filter 0.5s ease-in; //HERE
   }
 }
+
+.mobile-w-full {
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
