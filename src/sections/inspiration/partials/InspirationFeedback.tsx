@@ -42,7 +42,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
                                 }
                             </div>
 
-                            <div className="mt-16 flex justify-end">
+                            <div className="mt-10 sm:mt-16 flex justify-end">
                                 <LivButton as={'button'} type={'submit'} text={'next'}
                                            borderColor={'border-black'} bgColor={'bg-black'}
                                            textColor={'text-white'} onWhiteBg={true}
