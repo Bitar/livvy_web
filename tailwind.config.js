@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontSize: {
+        "2xs": ['10px', '14px'],
+      },
       colors: {
         "liv-tan": "#EFEDE7",
         "liv-green": "#838b64",
