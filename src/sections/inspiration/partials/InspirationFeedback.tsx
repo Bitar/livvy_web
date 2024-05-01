@@ -14,7 +14,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
 }) => {
     return (
         <div className="sm:w-[500px] md:w-[600px] lg:w-[800px] xl:w-[1000px]">
-            <h3 className='text-2xl italic capitalize font-thin mb-7'
+            <h3 className='text-2xl italic capitalize font-thin mb-7 text-center'
                 style={{fontFamily: "PP Editorial New"}}>What do you like about these images?</h3>
 
             <Formik initialValues={form} onSubmit={handleSubmit}

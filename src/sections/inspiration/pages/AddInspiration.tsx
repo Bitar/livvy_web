@@ -96,7 +96,7 @@ export const AddInspiration = () => {
                 <div className={clsx('relative h-full sm:min-w-[400px]',{
                     'hidden': step != 'upload'
                 })}>
-                    <h3 className='text-2xl italic capitalize font-thin mb-7'
+                    <h3 className='text-2xl italic capitalize font-thin mb-7 text-center'
                         style={{fontFamily: "PP Editorial New"}}>add up to 4 images</h3>
 
                     <Formik initialValues={uploadForm} onSubmit={() => {
