@@ -14,7 +14,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
 }) => {
     return (
         <div className="sm:w-[500px] md:w-[600px] lg:w-[800px] xl:w-[1000px]">
-            <h3 className='text-2xl italic capitalize font-thin mb-7 text-center'
+            <h3 className='text-xl md:text-2xl italic capitalize font-thin mb-7 text-center'
                 style={{fontFamily: "PP Editorial New"}}>What do you like about these images?</h3>
 
             <Formik initialValues={form} onSubmit={handleSubmit}
@@ -28,8 +28,8 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
                                         'gap-6': files ? files.length > 1 : urls.length > 1,
                                         'grid-cols-1': files ? files.length == 1 : urls.length == 1,
                                         'grid-cols-2': files ? files.length == 2 : urls.length == 2,
-                                        'sm:grid-cols-2 lg:grid-cols-3': files ? files.length == 3 : urls.length == 3,
-                                        'sm:grid-cols-2 lg:grid-cols-4': files ? files.length == 4 : urls.length == 4
+                                        'grid-cols-2 lg:grid-cols-3': files ? files.length == 3 : urls.length == 3,
+                                        'grid-cols-2 lg:grid-cols-4': files ? files.length == 4 : urls.length == 4
                                     })}>
                                 {
                                     files ?

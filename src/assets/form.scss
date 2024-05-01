@@ -14,17 +14,29 @@
       text-transform: uppercase;
       font-size: 12px;
       color: #000000;
+
+      @media (max-width: 640px) {
+        font-size: 10px;
+      }
+    }
+
+    .liv-select__indicator-separator {
+      display: none;
     }
 
     .liv-select__indicator {
       color: #000000;
-      padding: 4px;
+      padding: 0 4px 0 0;
     }
 
     .liv-select__placeholder {
       text-transform: uppercase;
       font-size: 12px;
       color: #000000;
+
+      @media (max-width: 640px) {
+        font-size: 10px;
+      }
     }
 
     .liv-select__value-container {
@@ -41,6 +53,10 @@
         font-size: 12px;
         color: #000000;
         cursor: pointer;
+
+        @media (max-width: 640px) {
+          font-size: 10px;
+        }
 
         &:hover {
           background-color: #838b64;
