@@ -1,9 +1,18 @@
 import clsx from "clsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
-import React, {useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 
-export const Collapse = ({text, title, isLast = false}: { text: string, title: string, isLast?: boolean }) => {
+interface CollapseProps {
+    text: string,
+    title: string,
+    borderColor: 'black' | 'white'
+    textColor: 'black' | 'white'
+    bgColor: 'black' | 'white'
+    isLast?: boolean
+}
+
+export const Collapse: FC<CollapseProps> = ({text, title, borderColor, textColor, bgColor, isLast = false}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const contentRef = useRef<HTMLDivElement>(null)
     const accordionItemRef = useRef<HTMLDivElement>(null)
@@ -39,9 +48,7 @@ export const Collapse = ({text, title, isLast = false}: { text: string, title: s
     }, []);
 
     return (
-        <div className={clsx("accordion-item smooth-slide-down-container border-t border-t-black py-4 xl:py-5", {
-            'border-b border-b-black': isLast,
-        })} ref={accordionItemRef}>
+        <div className={clsx(`bg-${bgColor} text-${textColor} accordion-item smooth-slide-down-container border-t border-t-${borderColor} py-4 xl:py-5 ${isLast ? `border-b border-${borderColor}` : ''} overflow-hidden..`)} ref={accordionItemRef}>
             <div className="flex justify-between items-center cursor-pointer" onClick={toggleAccordion}>
                 <button type="button" className="text-left uppercase me-2.5 text-xs lg:text-sm">{title}</button>
                 <button><FontAwesomeIcon icon={isOpen ? faMinus : faPlus}/></button>

@@ -91,9 +91,15 @@ export const ProductDetailPage = () => {
 
                     <div>
                         <Collapse
+                            borderColor={'black'}
+                            textColor={'black'}
+                            bgColor={'white'}
                             text={"Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance. Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance. Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance."}
                             title={"Details"}/>
                         <Collapse
+                            borderColor={'black'}
+                            textColor={'black'}
+                            bgColor={'white'}
                             text={"Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance."}
                             title={"Dimensions"}/>
                     </div>
