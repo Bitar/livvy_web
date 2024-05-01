@@ -21,7 +21,7 @@ interface LivButtonProps {
     className?: string
     isSubmitting?: boolean
     isValid?: boolean
-    style?: "thick" | "thin",
+    style?: "thick" | "thin" | "mid",
     onWhiteBg?: boolean
 }
 
@@ -70,6 +70,7 @@ export const LivButton = ({
                             'rounded-full': rounded,
                             'w-full': fullWidth,
                             'py-4': style == 'thick',
+                            'py-3': style == 'mid',
                             'py-2': style == 'thin'
                         })}
                         disabled={type == 'submit' && (isSubmitting || !isValid)}
@@ -94,8 +95,8 @@ export const LivButton = ({
                           'rounded-full': rounded,
                           'w-full': fullWidth,
                           'py-4': style == 'thick',
-                          'py-2': style == 'thin'
-
+                          'py-2': style == 'thin',
+                          'py-3': style == 'mid'
                       })} target={newTab ? '_blank' : '_self'}>
                     {textIcon &&
                         <img src={toAbsoluteUrl(textIcon)} alt="Text Icon" className="me-2 w-4"/>

@@ -30,7 +30,6 @@ const AppRoutes: FC = () => {
                         )
                     }
 
-
                     {
                         APP_ENV !== 'production' && (
                             <>

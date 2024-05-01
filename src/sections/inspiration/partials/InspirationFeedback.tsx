@@ -3,6 +3,7 @@ import {InspirationPreferenceFormFields, InspirationPreferenceSchema} from "../c
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import React, {Dispatch, SetStateAction, useEffect, useRef} from "react";
 import Select, {GroupBase, SelectInstance} from "react-select";
+import clsx from "clsx";
 
 export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: {
     form: InspirationPreferenceFormFields,
@@ -12,7 +13,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
     urls?: string[]
 }) => {
     return (
-        <>
+        <div className="sm:w-[500px] md:w-[600px] lg:w-[800px] xl:w-[1000px]">
             <h3 className='text-2xl italic capitalize font-thin mb-7'
                 style={{fontFamily: "PP Editorial New"}}>What do you like about these images?</h3>
 
@@ -22,7 +23,14 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
                     (formik) => (
                         <Form>
                             <div
-                                className='sm:grid sm:grid-cols-2 lg:grid-cols-none lg:flex justify-between items-center gap-6'>
+                                className={clsx('grid items-center',
+                                    {
+                                        'gap-6': files ? files.length > 1 : urls.length > 1,
+                                        'grid-cols-1': files ? files.length == 1 : urls.length == 1,
+                                        'grid-cols-2': files ? files.length == 2 : urls.length == 2,
+                                        'sm:grid-cols-2 lg:grid-cols-3': files ? files.length == 3 : urls.length == 3,
+                                        'sm:grid-cols-2 lg:grid-cols-4': files ? files.length == 4 : urls.length == 4
+                                    })}>
                                 {
                                     files ?
                                         files.map((inspiration, idx) => <InspirationDetail
@@ -34,7 +42,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
                                 }
                             </div>
 
-                            <div className="mt-16 flex justify-end">
+                            <div className="mt-10 sm:mt-16 flex justify-end">
                                 <LivButton as={'button'} type={'submit'} text={'next'}
                                            borderColor={'border-black'} bgColor={'bg-black'}
                                            textColor={'text-white'} onWhiteBg={true}
@@ -47,7 +55,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
                     )
                 }
             </Formik>
-        </>
+        </div>
     )
 }
 
@@ -88,7 +96,7 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
     }, [form, index]);
 
     return (
-        <div className="w-full lg:w-52 mb-10 sm:mb-0">
+        <div className="w-full">
             <div
                 className={`w-full h-72 bg-cover bg-no-repeat bg-center mb-4`}
                 style={{backgroundImage: `url(${image})`}}></div>

@@ -78,12 +78,12 @@ export const AddInspiration = () => {
 
                             <div className="mt-6 md:mt-8 lg:flex lg:justify-start lg:items-center">
                                 <LivButton as={'button'} text={'upload your images'} borderColor={'border-black'}
-                                           bgColor={'bg-white'} textColor={'text-black'} style={'thin'}
-                                           className={"text-sm xl:text-base mb-4 lg:mb-0"}
+                                           bgColor={'bg-white'} textColor={'text-black'} style={'mid'}
+                                           className={"text-xs xl:text-sm mb-4 lg:mb-0"}
                                            onClickHandler={() => setIsOpen(true)}/>
                                 <LivButton as={'a'} url={'/inspiration/browse'} text={'browse our library'}
                                            borderColor={'border-black'} bgColor={'bg-white'} textColor={'text-black'}
-                                           style={'thin'} className={'lg:ms-4 text-sm xl:text-base'}/>
+                                           style={'mid'} className={'lg:ms-4 text-xs xl:text-sm'}/>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@ export const AddInspiration = () => {
             </div>
 
             <LivModal>
-                <div className={clsx({
+                <div className={clsx('relative h-full sm:min-w-[400px]',{
                     'hidden': step != 'upload'
                 })}>
                     <h3 className='text-2xl italic capitalize font-thin mb-7'
@@ -108,7 +108,7 @@ export const AddInspiration = () => {
                         {
                             (formik) => (
                                 <Form>
-                                    <div>
+                                    <div className="absolute top-1/2 -translate-y-1/2 left-0 w-full sm:static sm:translate-y-0">
                                         <Dropzone onDrop={acceptedFiles => setUploadForm({files: acceptedFiles})}>
                                             {({getRootProps, getInputProps}) => (
                                                 <section>
@@ -141,7 +141,7 @@ export const AddInspiration = () => {
                                     </div>
 
                                     <div
-                                        className='absolute bottom-6 left-1/2 -translate-x-1/2 w-4/5 sm:static sm:-translate-x-0 sm:bottom-0 sm:left-0 sm:w-auto sm:flex sm:justify-end sm:mt-6'>
+                                        className='absolute bottom-0 left-1/2 -translate-x-1/2 w-full sm:static sm:-translate-x-0 sm:bottom-0 sm:left-0 sm:w-auto sm:flex sm:justify-end sm:mt-6'>
                                         <LivButton as={'button'} type={'submit'} text={'next'}
                                                    borderColor={'border-black'} bgColor={'bg-black'}
                                                    textColor={'text-white'} onWhiteBg={true}

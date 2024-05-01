@@ -71,10 +71,7 @@ export const CelebrityDesignerProfile = () => {
             if (purchaseButtonRef.current) {
                 const rect = purchaseButtonRef.current.getBoundingClientRect();
                 const isVisible = (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    (rect.bottom) >= 0
                 );
 
                 setShowStickyButton(!isVisible);
@@ -167,11 +164,11 @@ export const CelebrityDesignerProfile = () => {
                                 MasterClass.
                             </p>
 
-                            <div>
-                                <div className="inline-block" ref={purchaseButtonRef}>
+                            <div ref={purchaseButtonRef}>
+                                <div className="inline-block">
                                     <LivButton as={'button'} text={'purchase a custom design'} textColor={'text-white'}
                                                borderColor={'border-black'} bgColor={'bg-black'}
-                                               style={'thin'} className="text-sm" onClickHandler={() => addToCart(item)}/>
+                                               style={'thin'} className="text-xs sm:text-sm" onClickHandler={() => addToCart(item)}/>
                                 </div>
                             </div>
 
@@ -203,8 +200,8 @@ export const CelebrityDesignerProfile = () => {
 
                 <video src={'https://storage.googleapis.com/livvy-app/assets/livvy-intro.mp4'} autoPlay={false}
                        controls={false} loop={false} ref={videoRef}
-                       muted={true} poster={`/assets/celebrities/shea-mcgee-2.jpeg`}
-                       className="w-full h-auto"/>
+                       muted={true} poster={`/assets/celebrities/shea-mcgee-2.jpeg`} playsInline
+                       className="w-full h-auto object-cover"/>
             </div>
 
             <div id="featured-interiors" className="py-14 lg:py-20">
@@ -297,7 +294,7 @@ export const CelebrityDesignerProfile = () => {
                 <div className="inline-block backdrop-blur-md rounded-full">
                     <button
                         className="inline-flex items-center justify-center uppercase text-white bg-black bg-opacity-60 py-4 px-16 rounded-full hover:bg-opacity-70" onClick={() => addToCart(item)}>
-                        <span>purchase a custom design</span>
+                        <span className="text-xs sm:text-sm">purchase a custom design</span>
                         <img src={toAbsoluteUrl('assets/arrow-white.svg')}
                              alt="arrow white"
                              className={clsx(`w-3 md:w-4 arrow-white ms-2`)}/>
