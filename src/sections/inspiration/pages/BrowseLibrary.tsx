@@ -203,14 +203,23 @@ const InspirationCard = ({
 
     return (
         <div className="relative">
-            <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
-                "cursor-pointer": !viewOnly
-            })} onClick={() => {
-                if (!viewOnly) {
-                    setEnlargedCard(`${image}`);
-                    setIsOpen(true);
-                }
-            }}/>
+
+
+            {
+                viewOnly ?
+                    <div className="w-screen h-screen bg-url bg-no-repeat bg-center bg-contain" style={{backgroundImage: `url(${image})`}}>
+
+                    </div>
+                    :
+                    <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
+                        "cursor-pointer": !viewOnly
+                    })} onClick={() => {
+                        if (!viewOnly) {
+                            setEnlargedCard(`${image}`);
+                            setIsOpen(true);
+                        }
+                    }}/>
+            }
 
             {/*TODO Ayman try to find a different way for the counter to center vertically on mobile inside the white circle */}
             <div
