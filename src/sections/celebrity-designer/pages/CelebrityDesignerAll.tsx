@@ -228,7 +228,7 @@ const Slide = ({image, title, description, index}: {
     index: number
 }) => {
     return (
-        <div className="relative !pb-0 md:p-11 sm:p-8 p-0 me-5 sm:me-0 !ms-0">
+        <div className="relative !pb-0 md:p-11 sm:p-8 p-0 me-4 sm:me-0 !ms-0">
             <span className="text-5xl sm:text-7xl text-white absolute top-2.5 left-2.5 sm:top-4 sm:left-4 z-20">{`${index}`.padStart(2, '0')}</span>
             <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
 
