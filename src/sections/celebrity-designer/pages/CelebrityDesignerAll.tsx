@@ -76,7 +76,7 @@ export const CelebrityDesignerAll = () => {
                             preferences.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-4 lg:gap-4">
+                    <div className="grid grid-cols-2 gap-4 sm:gap-4 lg:grid-cols-4 lg:gap-4">
                         <CelebrityCard name={'shea mcgee'} bio={'Interior Designer, Media Personality'}
                                        slug={'shea-mcgee'}
                                        image={'/assets/celebrities/shea-mcgee.png'} rate={'$100'}/>
@@ -206,7 +206,7 @@ const CelebrityCard = ({name, bio, slug, image, rate}: {
     rate: string
 }) => {
     return (
-        <div className="mb-6 md:mb-12">
+        <div className="mb-0 md:mb-12">
             <div
                 className={`w-full aspect-[3/4] bg-cover bg-no-repeat bg-center rounded-lg relative mb-2.5`}
                 style={{backgroundImage: `url(${image})`}}>
