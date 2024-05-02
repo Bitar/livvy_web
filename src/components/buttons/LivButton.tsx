@@ -79,7 +79,7 @@ export const LivButton = ({
                         <img src={toAbsoluteUrl(textIcon)} alt="Text Icon" className="me-2 w-4"/>
                     }
 
-                    {!isSubmitting && <span>{text}</span>}
+                    {!isSubmitting && <span className="text-sm sm:text-base">{text}</span>}
                     {isSubmitting && <span className="block">Please wait...</span>}
 
                     {
@@ -101,7 +101,7 @@ export const LivButton = ({
                         <img src={toAbsoluteUrl(textIcon)} alt="Text Icon" className="me-2 w-4"/>
                     }
 
-                    <span>{text}</span>
+                    <span className="text-sm sm:text-base">{text}</span>
 
                     {
                         hasArrow && <ButtonArrow arrowIconDirection={arrowIconDirection} arrowIcon={arrowIcon} textColor={textColor}/>

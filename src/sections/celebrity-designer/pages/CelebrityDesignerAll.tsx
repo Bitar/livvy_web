@@ -33,14 +33,14 @@ export const CelebrityDesignerAll = () => {
             {
                 breakpoint: 890,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 640,
                 settings: {
-                    slidesToShow: 1.5,
+                    slidesToShow: 1.25,
                     slidesToScroll: 1
                 }
             }
@@ -103,9 +103,9 @@ export const CelebrityDesignerAll = () => {
                                        image={'/assets/celebrities/galey-alix.jpg'} rate={'$100'}/>
                     </div>
 
-                    <div className="flex justify-center">
-                        <LivButton text={'see more'} borderColor={'border-black'} bgColor={'bg-transparent'}
-                                   arrowIconDirection={'down'} style={'thick'}/>
+                    <div className="flex justify-center mt-8 sm:mt-0">
+                        <LivButton text={'show more'} borderColor={'border-black'} bgColor={'bg-transparent'}
+                                   arrowIconDirection={'down'} style={'mid'}/>
                     </div>
                 </div>
             </div>
@@ -159,7 +159,7 @@ export const CelebrityDesignerAll = () => {
             </div>
 
             <div id="featured-interiors">
-                <div className="container liv-container sm:!py-16">
+                <div className="container !py-6 sm:!py-10 lg:!py-16">
                     <h2 className={'text-3xl md:text-5xl uppercase text-black text-center mb-6 md:mb-12'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
@@ -229,14 +229,14 @@ const Slide = ({image, title, description, index}: {
 }) => {
     return (
         <div className="relative !pb-0 md:p-11 sm:p-8 p-0 me-5 sm:me-0 !ms-0">
-            <span className="text-7xl text-white absolute top-4 left-4 z-20">{`${index}`.padStart(2, '0')}</span>
+            <span className="text-5xl sm:text-7xl text-white absolute top-2.5 left-2.5 sm:top-4 sm:left-4 z-20">{`${index}`.padStart(2, '0')}</span>
             <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
 
-            <div className="w-full h-[400px] md:h-[600px] bg-cover bg-no-repeat bg-center mb-4 sm:mb-6"
+            <div className="w-full aspect-[3/4] bg-cover bg-no-repeat bg-center mb-4 sm:mb-6"
                  style={{backgroundImage: `url('${image}')`}}></div>
 
             <p className="uppercase text-base sm:text-lg text-white mb-2 sm:mb-4">{title}</p>
-            <p className="text-xs text-white">{description}</p>
+            <p className="text-xs text-white text-justify">{description}</p>
         </div>
     )
 }
@@ -244,7 +244,7 @@ const Slide = ({image, title, description, index}: {
 const FeaturedSlide = ({image, title, signature}: { image: string, title: string, signature: string }) => {
     return (
         <div className="md:px-24 lg:px-32">
-            <div className="w-full h-[400px] md:h-[700px] bg-cover bg-no-repeat bg-center relative"
+            <div className="w-full aspect-[4/3] bg-cover bg-no-repeat bg-center relative"
                  style={{backgroundImage: `url('${image}')`}}>
                 <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-40 bg-black"></span>
 
