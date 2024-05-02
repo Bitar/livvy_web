@@ -37,26 +37,26 @@ export const ProductDetailPage = () => {
         slidesToScroll: 1,
         responsive: [
             {
+                breakpoint: 1280,
+                settings: {
+                    slidesToShow: 4.5,
+                    slidesToScroll: 1
+                }
+            },
+            {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 1.5,
+                    slidesToShow: 3.5,
                     slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 890,
+                breakpoint: 425,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2.5,
                     slidesToScroll: 1
                 }
             },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1.5,
-                    slidesToScroll: 1
-                }
-            }
         ]
     };
 
@@ -84,38 +84,39 @@ export const ProductDetailPage = () => {
 
     return (
         <div className="container">
-            <div className="grid grid-cols-2 gap-12">
-                <div className="images-wrapper">
+            <div className="grid md:grid-cols-2 gap-6 xl:gap-12">
+                <div className="images-wrapper relative">
+                    <ProductTags className={'flex md:hidden absolute top-4 right-6'}/>
+
                     <div className="hero-image">
                         <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
                     </div>
-                    <div className="thumbnails mt-7 ml-5">
-                        <div className="flex items-center gap-2">
-                            {
-                                thumbnailProduct.map((thumbnailProduct) => (
-                                    <img src={thumbnailProduct.src} alt="Product Thumbnail" className='w-16 h-16 cursor-pointer' onClick={() => updateImage(thumbnailProduct.src)}/>
-                                ))
-                            }
-                            <Link to={'#'} className='flex items-center'>
+                    <div className="hidden md:block thumbnails mt-7 ml-5">
+                        <div className="flex gap-2">
+                            <div className="flex items-center gap-2">
+                                {
+                                    thumbnailProduct.map((thumbnailProduct, index) => (
+                                        <img key={`thumbnailProduct-${index}`} src={thumbnailProduct.src} alt="Product Thumbnail" className='w-16 h-16 cursor-pointer' onClick={() => updateImage(thumbnailProduct.src)}/>
+                                    ))
+                                }
+                            </div>
+                            <Link to={'#'} className='flex items-center ms-6'>
                                 <img src="/assets/product/view-space-icon.png" alt="View in your space." className='ms-6 me-2'/>
                                 <span className='inline-block border-b border-b-black uppercase text-xs'>View in your space</span>
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="details mt-9">
-                    <div className="flex justify-end tag-list gap-1">
-                        <LivTag backgroundColor='bg-transparent' text="Coffee Table"/>
-                        <LivTag backgroundColor='bg-transparent' text="Industrial"/>
-                    </div>
+                <div className="details md:mt-9 mx-6 md:mx-0">
+                    <ProductTags className={'hidden md:flex'}/>
 
-                    <div className="mt-5 mb-2.5">
+                    <div className="mb-1 md:mt-5 md:mb-2.5">
                         <span className='uppercase text-xs'>Rove Concepts</span>
                     </div>
 
-                    <h1 className='uppercase text-5xl mt-2.5 mb-3.5 max-w-sm'>Maria Coffee Table</h1>
+                    <h1 className='uppercase text-2xl md:text-4xl mb-2 xl:text-5xl xl:mt-2.5 xl:mb-3.5 max-w-sm'>Maria Coffee Table</h1>
 
-                    <div className="price text-xl italic font-extralight mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
+                    <div className="price text-xl italic font-extralight md:mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
 
                     <div className="colors flex flex-row gap-3 mb-4">
                         <div className={clsx('rounded-full p-0.5', {
@@ -133,8 +134,8 @@ export const ProductDetailPage = () => {
                             <div className='bg-[#986954] rounded-full w-6 h-6 cursor-pointer'/>
                         </div>
                     </div>
-                    <div className="counter mb-6">
 
+                    <div className="counter mb-6">
                         <div className="sm:flex sm:justify-start sm:items-end">
                             <div className="flex justify-start items-center">
                                 <button className="w-8 h-8 relative border border-black" onClick={decrement}>
@@ -151,9 +152,9 @@ export const ProductDetailPage = () => {
                                 </button>
                             </div>
                         </div>
-
                     </div>
-                    <div className="flex items-center cta gap-4 mb-16">
+
+                    <div className="flex items-center cta gap-4 mb-8 md:mb-16">
                         <LivButton
                             as={'button'}
                             type={'submit'}
@@ -163,23 +164,25 @@ export const ProductDetailPage = () => {
                             bgColor={'bg-white'}
                             textColor={'text-black'}
                             onWhiteBg={true}
-                            className={'max-w-sm'}
+                            className={'w-full md:max-w-56 xl:max-w-sm'}
                             fullWidth={true}
                         />
 
-                        <span className='inline-block border-b border-b-black uppercase align-middle'><Link to={'/'}>See Similar Products</Link></span>
+                        <span className='hidden md:inline-block border-b border-b-black uppercase align-middle'><Link to={'/'}>See Similar Products</Link></span>
                     </div>
 
                     <div className="flex info-header justify-between">
-                        <div className="title uppercase">
+                        <div className="uppercase text-sm">
                             Overview
                         </div>
-                        <p className='text-sm max-w-sm pb-7'>
-                            Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined
-                            radiance.
+                        <div className='pb-7 ps-6 sm:ps-0'>
+                            <p className='text-sm max-w-sm'>
+                                Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined
+                                radiance.
 
+                            </p>
                             <span className='inline-block border-b border-b-black uppercase align-middle mt-4'><Link to={'/'}>See More</Link></span>
-                        </p>
+                        </div>
                     </div>
 
                     <div>
@@ -200,18 +203,18 @@ export const ProductDetailPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="similar-products mt-14 mb-16">
+            <div className="similar-products mt-14 mb-16 mx-6 md:mx-0">
                 <h2 className='uppercase text-xl'>Shop Similar Products</h2>
 
                 {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                 <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef}>
                     {
-                        similarProductsSlider.map((similarProduct) => (
-                            <Slide
-                                title={similarProduct.title}
-                                description={similarProduct.description}
-                                image={similarProduct.image}
-                                price={similarProduct.price}/>
+                        similarProductsSlider.map((similarProduct, index) => (
+                            <Slide key={`similarProduct-${index}`}
+                                   title={similarProduct.title}
+                                   description={similarProduct.description}
+                                   image={similarProduct.image}
+                                   price={similarProduct.price}/>
                         ))
                     }
                 </Slider>
@@ -229,7 +232,7 @@ const Slide = ({image, title, description, price}: {
     const [hasLiked, setHasLiked] = useState<boolean>(false)
 
     return (
-        <div className="similar-product mt-4 max-w-52 text-xs relative">
+        <div className="similar-product mt-4 max-w-52 text-xs relative me-4 sm:me-0">
             <div className="like-btn absolute top-3 right-3 cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
                 {hasLiked ? (
                     <FontAwesomeIcon icon={faSolidHeart} className='text-base text-red-500'/>
@@ -239,8 +242,17 @@ const Slide = ({image, title, description, price}: {
             </div>
             <img src={image} alt=""/>
             <div className="name">{title}</div>
-            <div className="description">{description}</div>
+            <div className="description truncate">{description}</div>
             <div className="price">${price}</div>
+        </div>
+    )
+}
+
+const ProductTags = ({className}: { className?: string }) => {
+    return (
+        <div className={`justify-end tag-list gap-1 ${className}`}>
+            <LivTag backgroundColor='bg-white' text="Coffee Table"/>
+            <LivTag backgroundColor='bg-white' text="Industrial"/>
         </div>
     )
 }
