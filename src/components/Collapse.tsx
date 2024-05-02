@@ -39,6 +39,7 @@ export const Collapse: FC<CollapseProps> = ({text, title, borderColor, textColor
                 }, 300)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
     useEffect(() => {
@@ -48,7 +49,9 @@ export const Collapse: FC<CollapseProps> = ({text, title, borderColor, textColor
     }, []);
 
     return (
-        <div className={clsx(`bg-${bgColor} text-${textColor} accordion-item smooth-slide-down-container border-t border-t-${borderColor} py-4 xl:py-5 ${isLast ? `border-b border-${borderColor}` : ''} overflow-hidden..`)} ref={accordionItemRef}>
+        <div
+            className={clsx(`bg-${bgColor} text-${textColor} accordion-item smooth-slide-down-container border-t border-t-${borderColor} py-4 xl:py-5 ${isLast ? `border-b border-${borderColor}` : ''} overflow-hidden`)}
+            ref={accordionItemRef}>
             <div className="flex justify-between items-center cursor-pointer" onClick={toggleAccordion}>
                 <button type="button" className="text-left uppercase me-2.5 text-xs lg:text-sm">{title}</button>
                 <button><FontAwesomeIcon icon={isOpen ? faMinus : faPlus}/></button>

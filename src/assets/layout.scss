@@ -20,3 +20,11 @@
   }
 }
 
+
+.similar-product {
+  &:hover {
+    .like-btn {
+      @apply block
+    }
+  }
+}
