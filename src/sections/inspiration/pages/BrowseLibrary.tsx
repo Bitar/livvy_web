@@ -113,24 +113,6 @@ export const BrowseLibrary = () => {
                             <InspirationCard image={'/assets/inspiration/pinterest/img9.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
                                              setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
-                            <InspirationCard image={'/assets/inspiration/pinterest/img1.webp'} selected={selected}
-                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
-                            <InspirationCard image={'/assets/inspiration/pinterest/img2.jpeg'} selected={selected}
-                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
-                            <InspirationCard image={'/assets/inspiration/pinterest/img3.jpg'} selected={selected}
-                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
-                            <InspirationCard image={'/assets/inspiration/pinterest/img6.jpg'} selected={selected}
-                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
-                            <InspirationCard image={'/assets/inspiration/pinterest/img7.webp'} selected={selected}
-                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
-                            <InspirationCard image={'/assets/inspiration/pinterest/img8.jpeg'} selected={selected}
-                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                         </Masonry>
                     </ResponsiveMasonry>
                 </div>
@@ -237,7 +219,7 @@ const InspirationCard = ({
                     'bg-liv-green': active,
                     'bg-white': !active
                 })} onClick={handleClick}>
-                <span className={clsx("text-xs leading-[.5rem] absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white", {
+                <span className={clsx("text-xs absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white mt-px sm:mt-0", {
                     'invisible': !active,
                     'visible': active
                 })}>{cardCount}</span>
