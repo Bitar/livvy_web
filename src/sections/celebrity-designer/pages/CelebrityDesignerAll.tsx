@@ -111,7 +111,7 @@ export const CelebrityDesignerAll = () => {
             </div>
 
             <div id="how-it-works" className="bg-black">
-                <div className="container !pb-0 sm:!py-16 liv-container">
+                <div className="container sm:!py-16 liv-container">
                     <div className="md:flex md:justify-between md:items-center mb-6">
                         <h2 className={'text-4xl md:text-5xl lg:text-7xl uppercase text-white mb-4 md:mb-0'}>how it <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
@@ -144,14 +144,14 @@ export const CelebrityDesignerAll = () => {
                                    description={'Explore our library to find your perfect style match! Whether you love cozy vibes, modern elegance, or something in between, you will be able to find a Celebrity Designer that speaks to your aesthetic.'}
                                    index={1}/>
                             <Slide title={'Share Your Preferences'} image={'/assets/celebrities/interior-2.jpg'}
-                                   description={'You\'ll have the opportunity to share your own design preferences with us and share what makes your dream home unique. You can input your preferred color schemes, furniture styles, and any specific elements you admire from your chosen celebrity\'s style.'}
+                                   description={"You'll have the opportunity to share your own design preferences with us and share what makes your dream home unique. You can input your preferred color schemes, furniture styles, and any specific elements you admire from your chosen celebrity's style."}
                                    index={2}/>
                             <Slide title={'Personalized Design Recommendations'}
                                    image={'/assets/celebrities/interior-3.jpeg'}
                                    description={'From this information, our AI technology will create customized design recommendations and apply them to your existing space, encompassing furniture pieces, decor items, color palettes, and layout options that perfectly blend the iconic style of your chosen celebrity with your individual tastes.'}
                                    index={3}/>
-                            <Slide title={'Lorem ipsum dolor sit amet'} image={'/assets/celebrities/interior-4.jpg'}
-                                   description={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto autem earum eveniet officia omnis quaerat sit. A adipisci cum, dolor eos excepturi odit quae qui totam. Exercitationem nisi, quos.'}
+                            <Slide title={'Celebrity Approval'} image={'/assets/celebrities/interior-4.jpg'}
+                                   description={'Your design plan will be sent to the designer for their approval to ensure authenticity. Once your design is finalized, your one-of-a-kind space will be sent to you where you can adjust and purchase items, making your dream space a reality.'}
                                    index={4}/>
                         </Slider>
                     </div>
@@ -160,7 +160,7 @@ export const CelebrityDesignerAll = () => {
 
             <div id="featured-interiors">
                 <div className="container liv-container sm:!py-16">
-                    <h2 className={'text-4xl md:text-5xl uppercase text-black text-center mb-6 md:mb-12'}>featured <span
+                    <h2 className={'text-3xl md:text-5xl uppercase text-black text-center mb-6 md:mb-12'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
                     </h2>
@@ -232,10 +232,10 @@ const Slide = ({image, title, description, index}: {
             <span className="text-7xl text-white absolute top-4 left-4 z-20">{`${index}`.padStart(2, '0')}</span>
             <span className="absolute left-0 top-0 z-10 h-full w-full bg-opacity-20 bg-black"></span>
 
-            <div className="w-full h-[400px] md:h-[600px] bg-cover bg-no-repeat bg-center mb-6"
+            <div className="w-full h-[400px] md:h-[600px] bg-cover bg-no-repeat bg-center mb-4 sm:mb-6"
                  style={{backgroundImage: `url('${image}')`}}></div>
 
-            <p className="uppercase text-lg text-white mb-4">{title}</p>
+            <p className="uppercase text-base sm:text-lg text-white mb-2 sm:mb-4">{title}</p>
             <p className="text-xs text-white">{description}</p>
         </div>
     )
