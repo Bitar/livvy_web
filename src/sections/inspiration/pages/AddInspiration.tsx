@@ -78,11 +78,11 @@ export const AddInspiration = () => {
                             <div className="mt-6 md:mt-8 lg:flex lg:justify-start lg:items-center">
                                 <LivButton as={'button'} text={'upload your images'} borderColor={'border-black'}
                                            bgColor={'bg-white'} textColor={'text-black'} style={'mid'}
-                                           className={"text-xs xl:text-sm mb-4 lg:mb-0"}
+                                           className={"mb-4 lg:mb-0"} textSize={'text-xs xl:text-sm'}
                                            onClickHandler={() => setIsOpen(true)}/>
                                 <LivButton as={'a'} url={'/inspiration/browse'} text={'browse our library'}
                                            borderColor={'border-black'} bgColor={'bg-white'} textColor={'text-black'}
-                                           style={'mid'} className={'lg:ms-4 text-xs xl:text-sm'}/>
+                                           style={'mid'} className={'lg:ms-4'} textSize={'text-xs xl:text-sm'}/>
                             </div>
                         </div>
                     </div>

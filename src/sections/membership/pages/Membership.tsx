@@ -25,7 +25,7 @@ export const Membership = () => {
                 </div>
             </div>
 
-            <div className="grid xl:grid-cols-3 xl:gap-28 lg:gap-14 md:grid-cols-2 md:gap-12">
+            <div className="grid lg:grid-cols-3 xl:gap-28 lg:gap-14 sm:grid-cols-2 sm:gap-12">
                 <Plan name={'gold plan'} perMonth={'$15'} perYear={'$120'} perks={['Design up to 5 rooms a month', 'Unlimited Photo Uploads', 'Pinterest connect']}/>
                 <Plan name={'platinum plan'} perMonth={'$17'} perYear={'$160'} perks={['All features of Gold plus unlimited room designs', 'Unlimited Furniture Uploads', 'Share designs with others & sell designs on marketplace']}/>
                 <Plan name={'diamond plan'} perMonth={'$20'} perYear={'$180'} perks={['All features of Platinum', 'Celebrity Designs', 'Exclusive discounts & early access to seasonal items']}/>

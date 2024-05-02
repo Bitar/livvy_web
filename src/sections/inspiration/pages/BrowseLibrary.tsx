@@ -1,5 +1,5 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
-import React, {Dispatch, ReactNode, SetStateAction, useEffect, useState} from "react";
+import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import clsx from "clsx";
 import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
@@ -17,8 +17,10 @@ export const BrowseLibrary = () => {
     const [selected, setSelected] = useState<string[]>([]);
     const [invalidSelection, setInvalidSelection] = useState<boolean>(false);
 
-    const [enlargedCard, setEnlargedCard] = useState<string | null>(null);
+    const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
     const [openEnlarged, setOpenEnlarged] = useState<boolean>(false);
+
+    const [isNextSticky, setIsNextSticky] = useState<boolean>(false);
 
     const [preferenceForm, setPreferenceForm] = useState<InspirationPreferenceFormFields>(defaultInspirationPreferenceFields);
 
@@ -26,9 +28,35 @@ export const BrowseLibrary = () => {
     const navigate = useNavigate();
     const {setIsOpen, isOpen} = useModal();
 
+    const buttonContainerRef = useRef<HTMLDivElement>(null);
+
+    const updateButtonSticky = () => {
+        if (buttonContainerRef.current) {
+            const gridRect = buttonContainerRef.current.getBoundingClientRect();
+
+            if(gridRect.bottom >= window.innerHeight) {
+                // we are within and above grid section
+                setIsNextSticky(true);
+            } else {
+                // we are under grid section
+                setIsNextSticky(false);
+            }
+        }
+    }
+
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
+
+        const handleScroll = () => {
+            updateButtonSticky();
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -86,54 +114,55 @@ export const BrowseLibrary = () => {
                         <Masonry gutter={'16px'}>
                             <InspirationCard image={'/assets/inspiration/pinterest/img1.webp'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img2.jpeg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img3.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img4.jpeg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img5.png'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img6.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img7.webp'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img8.jpeg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/img9.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/test-small-1.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                             <InspirationCard image={'/assets/inspiration/pinterest/test-small-2.png'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                                             setEnlargedCard={setEnlargedImage} setIsOpen={setOpenEnlarged}/>
                         </Masonry>
                     </ResponsiveMasonry>
                 </div>
 
-                <div className="mobile-w-full left-0 fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20 px-6">
-                    <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
-                               textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={"w-full"} onWhiteBg={true}/>
+                <div className="relative mt-10 h-[58px] w-full" ref={buttonContainerRef}>
+                    <div className={clsx({
+                        "px-6 mobile-w-full left-0 fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20": isNextSticky,
+                        "px-6 mobile-w-full top-0 absolute left-1/2 -translate-x-1/2 z-20": !isNextSticky
+                    })}>
+                        <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
+                                   textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={isNextSticky ? "w-full" : "m-auto"} onWhiteBg={true}/>
+                    </div>
                 </div>
             </div>
 
             {
-                enlargedCard &&
-                <EnlargedInspiration isOpen={openEnlarged} setIsOpen={setOpenEnlarged}>
-                    <InspirationCard image={enlargedCard} selected={selected}
-                                     setSelected={setSelected} setInvalidSelection={setInvalidSelection}
-                                     setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged} viewOnly={true}/>
-                </EnlargedInspiration>
+                enlargedImage &&
+                <EnlargedInspiration isOpen={openEnlarged} setIsOpen={setOpenEnlarged} image={enlargedImage}/>
             }
 
             <LivModal>
@@ -209,27 +238,18 @@ const InspirationCard = ({
 
     return (
         <div className="relative">
-
-
-            {
-                viewOnly ?
-                    <div className="w-screen h-screen bg-url bg-no-repeat bg-center bg-contain" style={{backgroundImage: `url(${image})`}}>
-
-                    </div>
-                    :
-                    <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
-                        "cursor-pointer": !viewOnly
-                    })} onClick={() => {
-                        if (!viewOnly) {
-                            setEnlargedCard(`${image}`);
-                            setIsOpen(true);
-                        }
-                    }}/>
-            }
+            <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
+                "cursor-pointer": !viewOnly
+            })} onClick={() => {
+                if (!viewOnly) {
+                    setEnlargedCard(`${image}`);
+                    setIsOpen(true);
+                }
+            }}/>
 
             {/*TODO Ayman try to find a different way for the counter to center vertically on mobile inside the white circle */}
             <div
-                className={clsx('absolute top-2 right-2 z-10 cursor-pointer w-4 h-4 sm:w-5 sm:h-5 border border-black rounded-full', {
+                className={clsx('absolute top-2 right-2 z-10 cursor-pointer w-5 h-5 border border-black rounded-full', {
                     'bg-liv-green': active,
                     'bg-white': !active
                 })} onClick={handleClick}>
@@ -242,12 +262,39 @@ const InspirationCard = ({
     )
 }
 
-const EnlargedInspiration = ({isOpen, setIsOpen, children}: {
+const EnlargedInspiration = ({isOpen, setIsOpen, image}: {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
-    children: ReactNode
+    image: string
 }) => {
+    const initialHeight = window.innerHeight - 100;
+    const initialWidth = (window.innerWidth <= 640) ? window.innerWidth : window.innerWidth - 100
+
     const [isClosing, setIsClosing] = useState<boolean>(false)
+    const [contentHeight, setContentHeight] = useState<number>(initialHeight);
+    const [contentWidth, setContentWidth] = useState<number>(initialWidth);
+
+    const updateContentDimensions = () => {
+        setContentHeight(window.innerHeight - 100);
+
+        if(window.innerWidth <= 640) {
+            setContentWidth(window.innerWidth);
+        } else {
+            setContentWidth(window.innerWidth - 100);
+        }
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            updateContentDimensions();
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div onAnimationEnd={() => {
@@ -265,9 +312,7 @@ const EnlargedInspiration = ({isOpen, setIsOpen, children}: {
 
             <button className={clsx("absolute right-6 top-5 z-50 uppercase text-white border-0 border-b border-b-white text-xs leading-3")} onClick={() => setIsClosing(true)}>close</button>
 
-            <div className={clsx('fixed overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 top-1/2 left-0 translate-x-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 w-full h-auto sm:w-4/5 lg:w-auto')}>
-                {children}
-            </div>
+            <div className="fixed z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-url bg-no-repeat bg-center bg-contain" style={{backgroundImage: `url(${image})`, height: contentHeight, width: contentWidth}}></div>
         </div>
     )
 }

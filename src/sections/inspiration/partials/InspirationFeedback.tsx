@@ -98,7 +98,7 @@ const InspirationDetail = ({image, index, formik, form, setForm}: {
     return (
         <div className="w-full">
             <div
-                className={`w-full h-72 bg-cover bg-no-repeat bg-center mb-4`}
+                className={`w-full aspect-[4/5] bg-cover bg-no-repeat bg-center mb-4`}
                 style={{backgroundImage: `url(${image})`}}></div>
 
             <Select name={`preference${index}`}
