@@ -12,6 +12,7 @@ interface LivButtonProps {
     borderColor: string,
     bgColor: string,
     textColor?: 'text-black' | 'text-white',
+    textSize?: string,
     hasArrow?: boolean,
     arrowIcon?: boolean,
     arrowIconDirection?: string,
@@ -44,6 +45,7 @@ export const LivButton = ({
                               borderColor,
                               bgColor,
                               textColor = 'text-black',
+                              textSize = 'text-sm sm:text-base',
                               textIcon,
                               className = '',
                               arrowIconDirection = 'right',
@@ -80,7 +82,7 @@ export const LivButton = ({
                         <img src={toAbsoluteUrl(textIcon)} alt="Text Icon" className="me-2 w-4"/>
                     }
 
-                    {!isSubmitting && <span className="text-sm sm:text-base">{text}</span>}
+                    {!isSubmitting && <span className={`${textSize}`}>{text}</span>}
                     {isSubmitting && <span className="block">Please wait...</span>}
 
                     {
@@ -102,7 +104,7 @@ export const LivButton = ({
                         <img src={toAbsoluteUrl(textIcon)} alt="Text Icon" className="me-2 w-4"/>
                     }
 
-                    <span className="text-sm sm:text-base">{text}</span>
+                    <span className={`${textSize}`}>{text}</span>
 
                     {
                         hasArrow && <ButtonArrow arrowIconDirection={arrowIconDirection} arrowIcon={arrowIcon} textColor={textColor}/>
