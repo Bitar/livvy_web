@@ -9,6 +9,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/free-regular-svg-icons";
 import {faHeart as faSolidHeart} from "@fortawesome/free-solid-svg-icons";
 import {similarProductsSlider, thumbnailProduct} from "../../../data/product.ts";
+import clsx from "clsx";
 
 export const ProductDetailPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
@@ -17,6 +18,9 @@ export const ProductDetailPage = () => {
     const [heroImageStyle, setHeroImageStyle] = useState({})
 
     const [quantity, setQuantity] = useState<number>(1)
+
+    const [colorOne, setColorOne] = useState<boolean>(false)
+    const [colorTwo, setColorTwo] = useState<boolean>(false)
 
     useEffect(() => {
         setBackgroundType('color')
@@ -113,9 +117,21 @@ export const ProductDetailPage = () => {
 
                     <div className="price text-xl italic font-extralight mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
 
-                    <div className="colors flex flex-row gap-4 mb-4">
-                        <div className='bg-[#EFEDE7] rounded-full w-6 h-6 cursor-pointer'/>
-                        <div className='bg-[#986954] rounded-full w-6 h-6 cursor-pointer'/>
+                    <div className="colors flex flex-row gap-3 mb-4">
+                        <div className={clsx('rounded-full p-0.5', {
+                            'border border-black': colorOne,
+                            'border border-transparent': !colorOne
+                        })}
+                             onClick={() => setColorOne(!colorOne)}>
+                            <div className='bg-[#EFEDE7] rounded-full w-6 h-6 cursor-pointer'/>
+                        </div>
+                        <div className={clsx('rounded-full p-0.5', {
+                            'border border-black': colorTwo,
+                            'border border-transparent': !colorTwo
+                        })}
+                             onClick={() => setColorTwo(!colorTwo)}>
+                            <div className='bg-[#986954] rounded-full w-6 h-6 cursor-pointer'/>
+                        </div>
                     </div>
                     <div className="counter mb-6">
 
@@ -179,7 +195,7 @@ export const ProductDetailPage = () => {
                             bgColor={'white'}
                             text={"Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined radiance."}
                             title={"Dimensions"}
-                        isLast={true}
+                            isLast={true}
                         />
                     </div>
                 </div>
