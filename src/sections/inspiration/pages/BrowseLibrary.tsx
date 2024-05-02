@@ -4,8 +4,6 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import clsx from "clsx";
 import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
 import {LivvyToastType} from "../../../helpers/variables.ts";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {LivModal} from "../../../components/modals/LivModal.tsx";
 import {defaultInspirationPreferenceFields, InspirationPreferenceFormFields} from "../core/form.ts";
@@ -51,7 +49,7 @@ export const BrowseLibrary = () => {
     }, [selected]);
 
     useEffect(() => {
-        if(!isOpen) {
+        if (!isOpen) {
             // if we have selected then we need to update the preference form total
             setPreferenceForm({...defaultInspirationPreferenceFields, totalInspirations: selected.length});
         }
@@ -67,7 +65,7 @@ export const BrowseLibrary = () => {
 
     const handleNext = () => {
         // check if there are any images selected
-        if(selected.length > 0) {
+        if (selected.length > 0) {
             setIsOpen(true);
         } else {
             livApp.setAlert({
@@ -205,14 +203,23 @@ const InspirationCard = ({
 
     return (
         <div className="relative">
-            <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
-                "cursor-pointer": !viewOnly
-            })} onClick={() => {
-                if (!viewOnly) {
-                    setEnlargedCard(`${image}`);
-                    setIsOpen(true);
-                }
-            }}/>
+
+
+            {
+                viewOnly ?
+                    <div className="w-screen h-screen bg-url bg-no-repeat bg-center bg-contain" style={{backgroundImage: `url(${image})`}}>
+
+                    </div>
+                    :
+                    <img src={`${image}`} alt="home interior" className={clsx("w-full h-auto", {
+                        "cursor-pointer": !viewOnly
+                    })} onClick={() => {
+                        if (!viewOnly) {
+                            setEnlargedCard(`${image}`);
+                            setIsOpen(true);
+                        }
+                    }}/>
+            }
 
             {/*TODO Ayman try to find a different way for the counter to center vertically on mobile inside the white circle */}
             <div
@@ -249,12 +256,10 @@ const EnlargedInspiration = ({isOpen, setIsOpen, children}: {
                  'animate__fadeOut': isClosing,
                  'animate__fadeIn': isOpen
              })}>
-            <div
-                className={clsx('fixed overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 top-1/2 left-0 translate-x-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 w-full h-auto sm:w-4/5 lg:w-auto')}>
-                <button className={clsx("absolute left-1.5 top-1.5 z-50 bg-white px-1")}
-                        onClick={() => setIsClosing(true)}>
-                    <FontAwesomeIcon icon={faXmark}/></button>
 
+            <button className={clsx("absolute right-6 top-5 z-50 uppercase text-white border-0 border-b border-b-white text-xs leading-3")} onClick={() => setIsClosing(true)}>close</button>
+
+            <div className={clsx('fixed overflow-y-scroll sm:overflow-y-hidden sm:absolute z-40 top-1/2 left-0 translate-x-0 sm:left-1/2 sm:-translate-x-1/2 -translate-y-1/2 w-full h-auto sm:w-4/5 lg:w-auto')}>
                 {children}
             </div>
         </div>
