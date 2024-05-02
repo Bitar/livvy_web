@@ -234,13 +234,21 @@ const EnlargedInspiration = ({isOpen, setIsOpen, image}: {
     setIsOpen: Dispatch<SetStateAction<boolean>>,
     image: string
 }) => {
+    const initialHeight = window.innerHeight - 100;
+    const initialWidth = (window.innerWidth <= 640) ? window.innerWidth : window.innerWidth - 100
+
     const [isClosing, setIsClosing] = useState<boolean>(false)
-    const [contentHeight, setContentHeight] = useState<number>(window.innerHeight - 100);
-    const [contentWidth, setContentWidth] = useState<number>(window.innerWidth - 100);
+    const [contentHeight, setContentHeight] = useState<number>(initialHeight);
+    const [contentWidth, setContentWidth] = useState<number>(initialWidth);
 
     const updateContentDimensions = () => {
         setContentHeight(window.innerHeight - 100);
-        setContentWidth(window.innerWidth - 100);
+
+        if(window.innerWidth <= 640) {
+            setContentWidth(window.innerWidth);
+        } else {
+            setContentWidth(window.innerWidth - 100);
+        }
     }
 
     useEffect(() => {
