@@ -28,11 +28,11 @@ export const BrowseLibrary = () => {
     const navigate = useNavigate();
     const {setIsOpen, isOpen} = useModal();
 
-    const gridSectionRef = useRef<HTMLDivElement>(null);
+    const buttonContainerRef = useRef<HTMLDivElement>(null);
 
     const updateButtonSticky = () => {
-        if (gridSectionRef.current) {
-            const gridRect = gridSectionRef.current.getBoundingClientRect();
+        if (buttonContainerRef.current) {
+            const gridRect = buttonContainerRef.current.getBoundingClientRect();
 
             if(gridRect.bottom >= window.innerHeight) {
                 // we are within and above grid section
@@ -105,7 +105,7 @@ export const BrowseLibrary = () => {
 
     return (
         <div>
-            <div className="container liv-container" ref={gridSectionRef}>
+            <div className="container liv-container">
                 <h1 className='text-xl sm:text-2xl italic capitalize font-thin sm:mb-7'
                     style={{fontFamily: "PP Editorial New"}}>Please choose up to 4 inspiration images</h1>
 
@@ -149,7 +149,7 @@ export const BrowseLibrary = () => {
                     </ResponsiveMasonry>
                 </div>
 
-                <div className="relative mt-10 h-[58px] w-full">
+                <div className="relative mt-10 h-[58px] w-full" ref={buttonContainerRef}>
                     <div className={clsx({
                         "px-6 mobile-w-full left-0 fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20": isNextSticky,
                         "px-6 mobile-w-full top-0 absolute left-1/2 -translate-x-1/2 z-20": !isNextSticky
