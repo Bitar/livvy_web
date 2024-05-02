@@ -237,7 +237,7 @@ const InspirationCard = ({
                     'bg-liv-green': active,
                     'bg-white': !active
                 })} onClick={handleClick}>
-                <span className={clsx("text-xs absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white mt-px sm:mt-0", {
+                <span className={clsx("text-xs leading-3 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white mt-px sm:mt-0", {
                     'invisible': !active,
                     'visible': active
                 })}>{cardCount}</span>
