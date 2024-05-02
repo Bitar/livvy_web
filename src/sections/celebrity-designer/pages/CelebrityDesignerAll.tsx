@@ -61,7 +61,7 @@ export const CelebrityDesignerAll = () => {
             <div id="designers-list">
                 <div className="container liv-container sm:!py-16">
                     <div className="md:flex md:justify-between md:items-center mb-8 mb:mb-20">
-                        <h1 className={'text-4xl lg:text-5xl xl:text-7xl uppercase mb-2 md:mb-0'}>designer with <br/>
+                        <h1 className={'text-3xl md:text-4xl lg:text-5xl xl:text-7xl uppercase mb-2 md:mb-0'}>designer with <br/>
                             <span
                                 style={{fontFamily: "PP Editorial New"}}
                                 className="font-thin italic capitalize">an expert</span>
@@ -113,7 +113,7 @@ export const CelebrityDesignerAll = () => {
             <div id="how-it-works" className="bg-black">
                 <div className="container !pb-0 sm:!py-16 liv-container">
                     <div className="md:flex md:justify-between md:items-center mb-6">
-                        <h2 className={'text-5xl lg:text-7xl uppercase text-white mb-4 md:mb-0'}>how it <br/> <span
+                        <h2 className={'text-4xl md:text-5xl lg:text-7xl uppercase text-white mb-4 md:mb-0'}>how it <br/> <span
                             style={{fontFamily: "PP Editorial New"}}
                             className="font-thin italic capitalize">works</span>
                         </h2>
@@ -160,26 +160,12 @@ export const CelebrityDesignerAll = () => {
 
             <div id="featured-interiors">
                 <div className="container liv-container sm:!py-16">
-                    <h2 className={'text-5xl uppercase text-black text-center mb-6 md:mb-12'}>featured <span
+                    <h2 className={'text-4xl md:text-5xl uppercase text-black text-center mb-6 md:mb-12'}>featured <span
                         style={{fontFamily: "PP Editorial New"}}
                         className="font-thin italic capitalize">interiors</span>
                     </h2>
 
-                    <div className="relative mb-8">
-                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
-                        <button onClick={() => featuredSliderRef?.current?.slickNext()}
-                                className="w-12 h-12 absolute right-1 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 border border-black rounded-full">
-                            <img src="/assets/arrow-black.svg" alt="next nav arrow"
-                                 className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
-                        </button>
-
-                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
-                        <button onClick={() => featuredSliderRef?.current?.slickPrev()}
-                                className="w-12 h-12 absolute left-1 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full">
-                            <img src="/assets/arrow-black.svg" alt="prev nav arrow"
-                                 className={'w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
-                        </button>
-
+                    <div className="relative mb-0 md:mb-8">
                         {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <Slider {...featuredSettings} ref={featuredSliderRef}>
                             <FeaturedSlide image={'/assets/celebrities/featured-interior-1.webp'} title={'crest house'}
@@ -189,6 +175,22 @@ export const CelebrityDesignerAll = () => {
                             <FeaturedSlide image={'/assets/celebrities/featured-interior-3.jpeg'} title={'other house'}
                                            signature={'/assets/celebrities/signature.svg'}/>
                         </Slider>
+
+                        <div className="text-center mt-4 md:mt-0">
+                            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
+                            <button onClick={() => featuredSliderRef?.current?.slickPrev()}
+                                    className="w-10 h-10 md:w-12 md:h-12 relative md:absolute md:left-8 md:top-1/2 md:-translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full me-2 md:me-0">
+                                <img src="/assets/arrow-black.svg" alt="prev nav arrow"
+                                     className={'w-3.5 md:w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
+                            </button>
+
+                            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
+                            <button onClick={() => featuredSliderRef?.current?.slickNext()}
+                                    className="w-10 h-10 md:w-12 md:h-12 relative md:absolute md:right-8 md:top-1/2 md:-translate-y-1/2 z-10 border border-black rounded-full">
+                                <img src="/assets/arrow-black.svg" alt="next nav arrow"
+                                     className={'w-3.5 md:w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
