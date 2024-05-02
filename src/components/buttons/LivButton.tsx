@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 
+//TODO: Add a flag for arrow to show/hide?
 interface LivButtonProps {
     type?: "submit" | "reset" | "button" | undefined,
     text: string,

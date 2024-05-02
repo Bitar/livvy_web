@@ -7,6 +7,7 @@ import {CelebrityDesignerRoutes} from "./CelebrityDesignerRoutes.tsx";
 import {InspirationRoutes} from "./InspirationRoutes.tsx";
 import {Membership} from "../sections/membership/pages/Membership.tsx";
 import React from "react";
+import {ProductRoutes} from "./ProductRoutes.tsx";
 
 const PrivateRoutes = () => {
 
@@ -24,6 +25,8 @@ const PrivateRoutes = () => {
                 <Route path='/celebrity-designers/*' element={<CelebrityDesignerRoutes/>}/>
 
                 <Route path='/inspiration/*' element={<InspirationRoutes />}/>
+
+                <Route path='/product/*' element={<ProductRoutes/>}></Route>
 
                 <Route path='/test' element={<Test/>}/>
 

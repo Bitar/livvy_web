@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
 import {useCart} from "../../../layout/CartProvider.tsx";
 import {CartItem} from "../../../models/layout/Cart.ts";
+import {Collapse} from "../../../components/Collapse.tsx";
 
 export const CelebrityDesignerProfile = () => {
     const {addToCart} = useCart();
@@ -265,19 +266,34 @@ export const CelebrityDesignerProfile = () => {
                                 </div>
 
                                 <div>
-                                    <FAQ title={'Our AI learns from thousands of images of the designer’s work'}
+                                    <Collapse title={'Our AI learns from thousands of images of the designer’s work'}
+                                              borderColor={'white'}
+                                              textColor={'white'}
+                                              bgColor={'black'}
                                          text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                    <FAQ title={'Our technology takes those images and creates a curated design'}
+                                    <Collapse title={'Our technology takes those images and creates a curated design'}
+                                              borderColor={'white'}
+                                              textColor={'white'}
+                                              bgColor={'black'}
                                          text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                    <FAQ title={'The design is sent to the designer’s team'}
+                                    <Collapse title={'The design is sent to the designer’s team'}
+                                              borderColor={'white'}
+                                              textColor={'white'}
+                                              bgColor={'black'}
                                          text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                    <FAQ title={'Get the designer’s stamp of approval'}
+                                    <Collapse title={'Get the designer’s stamp of approval'}
+                                              borderColor={'white'}
+                                              textColor={'white'}
+                                              bgColor={'black'}
                                          text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}/>
 
-                                    <FAQ title={'Receive a beautiful space without breaking the bank'}
+                                    <Collapse title={'Receive a beautiful space without breaking the bank'}
+                                              borderColor={'white'}
+                                              textColor={'white'}
+                                              bgColor={'black'}
                                          text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dicta eaque enim excepturi ipsam nemo nulla, odit omnis possimus quae repellendus, tempore veniam. Accusamus, consequatur ipsa ipsam modi nemo numquam'}
                                          isLast={true}
                                     />
