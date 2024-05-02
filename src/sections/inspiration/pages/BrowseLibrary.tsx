@@ -216,7 +216,7 @@ const InspirationCard = ({
 
             {/*TODO Ayman try to find a different way for the counter to center vertically on mobile inside the white circle */}
             <div
-                className={clsx('absolute top-2 right-2 z-10 cursor-pointer w-4 h-4 sm:w-5 sm:h-5 border border-black rounded-full', {
+                className={clsx('absolute top-2 right-2 z-10 cursor-pointer w-5 h-5 border border-black rounded-full', {
                     'bg-liv-green': active,
                     'bg-white': !active
                 })} onClick={handleClick}>
