@@ -19,12 +19,3 @@
     width: 100%;
   }
 }
-
-
-.similar-product {
-  &:hover {
-    .like-btn {
-      @apply block
-    }
-  }
-}

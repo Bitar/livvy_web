@@ -214,7 +214,7 @@ const Slide = ({image, title, description, price}: {
 
     return (
         <div className="similar-product mt-4 max-w-52 text-xs relative">
-            <div className="like-btn absolute top-3 right-3 hidden cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
+            <div className="like-btn absolute top-3 right-3 cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
                 {hasLiked ? (
                     <FontAwesomeIcon icon={faSolidHeart} className='text-base text-red-500'/>
                 ) : (
