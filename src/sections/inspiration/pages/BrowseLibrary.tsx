@@ -1,5 +1,5 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
-import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
+import React, {Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import clsx from "clsx";
 import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
@@ -20,15 +20,43 @@ export const BrowseLibrary = () => {
     const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
     const [openEnlarged, setOpenEnlarged] = useState<boolean>(false);
 
+    const [isNextSticky, setIsNextSticky] = useState<boolean>(false);
+
     const [preferenceForm, setPreferenceForm] = useState<InspirationPreferenceFormFields>(defaultInspirationPreferenceFields);
 
     const livApp = useLivvyApp();
     const navigate = useNavigate();
     const {setIsOpen, isOpen} = useModal();
 
+    const gridSectionRef = useRef<HTMLDivElement>(null);
+
+    const updateButtonSticky = () => {
+        if (gridSectionRef.current) {
+            const gridRect = gridSectionRef.current.getBoundingClientRect();
+
+            if(gridRect.bottom >= window.innerHeight) {
+                // we are within and above grid section
+                setIsNextSticky(true);
+            } else {
+                // we are under grid section
+                setIsNextSticky(false);
+            }
+        }
+    }
+
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
+
+        const handleScroll = () => {
+            updateButtonSticky();
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -77,7 +105,7 @@ export const BrowseLibrary = () => {
 
     return (
         <div>
-            <div className="container liv-container">
+            <div className="container liv-container" ref={gridSectionRef}>
                 <h1 className='text-xl sm:text-2xl italic capitalize font-thin sm:mb-7'
                     style={{fontFamily: "PP Editorial New"}}>Please choose up to 4 inspiration images</h1>
 
@@ -121,15 +149,20 @@ export const BrowseLibrary = () => {
                     </ResponsiveMasonry>
                 </div>
 
-                <div className="mobile-w-full left-0 fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20 px-6">
-                    <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
-                               textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={"w-full"} onWhiteBg={true}/>
+                <div className="relative mt-10 h-[58px] w-full">
+                    <div className={clsx({
+                        "px-6 mobile-w-full left-0 fixed bottom-6 sm:left-1/2 sm:-translate-x-1/2 z-20": isNextSticky,
+                        "px-6 mobile-w-full top-0 absolute left-1/2 -translate-x-1/2 z-20": !isNextSticky
+                    })}>
+                        <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
+                                   textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={isNextSticky ? "w-full" : "m-auto"} onWhiteBg={true}/>
+                    </div>
                 </div>
             </div>
 
             {
                 enlargedImage &&
-                <EnlargedInspiration isOpen={openEnlarged} setIsOpen={setOpenEnlarged} image={enlargedImage} />
+                <EnlargedInspiration isOpen={openEnlarged} setIsOpen={setOpenEnlarged} image={enlargedImage}/>
             }
 
             <LivModal>
