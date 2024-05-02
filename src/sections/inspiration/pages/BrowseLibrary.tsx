@@ -111,6 +111,12 @@ export const BrowseLibrary = () => {
                             <InspirationCard image={'/assets/inspiration/pinterest/img9.jpg'} selected={selected}
                                              setSelected={setSelected} setInvalidSelection={setInvalidSelection}
                                              setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/test-small-1.jpg'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
+                            <InspirationCard image={'/assets/inspiration/pinterest/test-small-2.png'} selected={selected}
+                                             setSelected={setSelected} setInvalidSelection={setInvalidSelection}
+                                             setEnlargedCard={setEnlargedCard} setIsOpen={setOpenEnlarged}/>
                         </Masonry>
                     </ResponsiveMasonry>
                 </div>
