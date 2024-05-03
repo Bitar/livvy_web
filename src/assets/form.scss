@@ -194,6 +194,7 @@ input[type=number] {
     @apply z-50 w-32 mt-0 rounded-none border-none shadow-none;
 
     .liv-select__menu-list {
+
       .liv-select__option {
         @apply uppercase text-2xs text-black cursor-pointer transition-all;
 

@@ -1,22 +1,18 @@
-import {similarProductSortOptions, similarProductsSlider, thumbnailProduct} from "../../../data/product.ts";
+import {brandOptions, colorOptions, dimensionsOptions, materialOptions, priceOptions, similarProductSortOptions, similarProductsSlider, thumbnailProduct} from "../../../data/product.ts";
 import {Link} from "react-router-dom";
-import React, {useEffect, useRef, useState} from "react";
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
-import Select, {GroupBase, SelectInstance} from "react-select";
-import {SimilarProduct} from "./ProductDetailPage.tsx";
-
-interface SelectOptions {
-    id: number,
-    name: string
-}
+import {ProductThumbnail} from "../partials/ProductThumbnail.tsx";
+import clsx from "clsx";
+import {LivSelect} from "../../../components/form/LivSelect.tsx";
+import React, {useEffect, useState} from "react";
 
 
 export const SimilarProducts = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
     const [heroImageStyle, setHeroImageStyle] = useState({})
-    const selectRef = useRef<SelectInstance<SelectOptions, false, GroupBase<SelectOptions>>>(null);
+    const [showFilter, setShowFilter] = useState<boolean>(true)
 
     useEffect(() => {
         setBackgroundType('color')
@@ -69,68 +65,55 @@ export const SimilarProducts = () => {
                         <h2 className='uppercase text-xl lg:text-2xl'>Shop Similar Products</h2>
 
                         <div className='flex gap-3 items-center'>
-                            <button className='uppercase items-center flex'>
+                            <button className='uppercase items-center flex' onClick={() => setShowFilter(!showFilter)}>
                                 <span className='me-0.5'>Filter</span> <FontAwesomeIcon icon={faFilter} className='pl-2'/>
                             </button>
 
-                            <LivSelect/>
+                            <LivSelect placeholder={'Sort by'} name={'sort'} clearable={true} options={similarProductSortOptions}/>
                         </div>
                     </div>
+
+                    <div className={clsx("filter-container flex justify-between mb-1", {
+                        'hidden': !showFilter
+                    })}>
+                        <LivSelect placeholder={'Price'} name={'price'} clearable={true} options={priceOptions}/>
+                        <LivSelect placeholder={'Brand'} name={'brand'} clearable={true} options={brandOptions}/>
+                        <LivSelect placeholder={'Material'} name={'material'} clearable={true} options={materialOptions}/>
+                        <LivSelect placeholder={'Color'} name={'color'} clearable={true} options={colorOptions}/>
+                        <LivSelect placeholder={'Dimensions'} name={'dimensions'} clearable={true} options={dimensionsOptions}/>
+                    </div>
+
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 h-full max-h-screen overflow-y-auto mb-10">
                         {
                             similarProductsSlider.map((similarProduct, index) => (
-                                <SimilarProduct key={`similarProduct-${index}`}
-                                                title={similarProduct.title}
-                                                description={similarProduct.description}
-                                                image={similarProduct.image}
-                                                price={similarProduct.price}/>
+                                <ProductThumbnail key={`similarProduct-${index}`}
+                                                  title={similarProduct.title}
+                                                  description={similarProduct.description}
+                                                  image={similarProduct.image}
+                                                  price={similarProduct.price}/>
                             ))
                         }
                         {
                             similarProductsSlider.map((similarProduct, index) => (
-                                <SimilarProduct key={`similarProduct-${index}`}
-                                                title={similarProduct.title}
-                                                description={similarProduct.description}
-                                                image={similarProduct.image}
-                                                price={similarProduct.price}/>
+                                <ProductThumbnail key={`similarProduct-${index}`}
+                                                  title={similarProduct.title}
+                                                  description={similarProduct.description}
+                                                  image={similarProduct.image}
+                                                  price={similarProduct.price}/>
                             ))
                         }
                         {
                             similarProductsSlider.map((similarProduct, index) => (
-                                <SimilarProduct key={`similarProduct-${index}`}
-                                                title={similarProduct.title}
-                                                description={similarProduct.description}
-                                                image={similarProduct.image}
-                                                price={similarProduct.price}/>
+                                <ProductThumbnail key={`similarProduct-${index}`}
+                                                  title={similarProduct.title}
+                                                  description={similarProduct.description}
+                                                  image={similarProduct.image}
+                                                  price={similarProduct.price}/>
                             ))
                         }
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
-
-const LivSelect = () => {
-    const selectRef = useRef<SelectInstance<SelectOptions, false, GroupBase<SelectOptions>>>(null);
-
-    return (
-        <Select name={`sort`}
-                ref={selectRef}
-                className={'liv-select-new'}
-                classNamePrefix={'liv-select'}
-                isSearchable={false}
-                isClearable={true}
-                options={similarProductSortOptions}
-                getOptionLabel={(preference) => preference.name}
-                getOptionValue={(preference) => preference.id.toString()}
-                placeholder={'sort by'}
-                onChange={(e) => {
-                    console.log(e)
-                    // if (e) {
-                    //     setForm({...form, [`preference${index}`]: e.id});
-                    // }
-                }}
-        />
     )
 }

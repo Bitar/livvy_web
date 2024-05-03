@@ -10,6 +10,7 @@ import {faHeart} from "@fortawesome/free-regular-svg-icons";
 import {faHeart as faSolidHeart} from "@fortawesome/free-solid-svg-icons";
 import {similarProductsSlider, thumbnailProduct} from "../../../data/product.ts";
 import clsx from "clsx";
+import {ProductThumbnail} from "../partials/ProductThumbnail.tsx";
 
 export const ProductDetailPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
@@ -210,7 +211,7 @@ export const ProductDetailPage = () => {
                 <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef} className='mt-4'>
                     {
                         similarProductsSlider.map((similarProduct, index) => (
-                            <SimilarProduct key={`similarProduct-${index}`}
+                            <ProductThumbnail key={`similarProduct-${index}`}
                                             title={similarProduct.title}
                                             description={similarProduct.description}
                                             image={similarProduct.image}
@@ -220,32 +221,6 @@ export const ProductDetailPage = () => {
                     }
                 </Slider>
             </div>
-        </div>
-    )
-}
-
-export const SimilarProduct = ({image, title, description, price, className}: {
-    image: string,
-    title: string,
-    description: string,
-    price: number,
-    className?: string
-}) => {
-    const [hasLiked, setHasLiked] = useState<boolean>(false)
-
-    return (
-        <div className={`similar-product text-xs relative sm:me-0 ${className}`}>
-            <div className="like-btn absolute top-3 right-3 cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
-                {hasLiked ? (
-                    <FontAwesomeIcon icon={faSolidHeart} className='text-base text-red-500'/>
-                ) : (
-                    <FontAwesomeIcon icon={faHeart} className='text-base'/>
-                )}
-            </div>
-            <img src={image} alt="" className='aspect-square'/>
-            <div className="name">{title}</div>
-            <div className="description truncate">{description}</div>
-            <div className="price">${price}</div>
         </div>
     )
 }
