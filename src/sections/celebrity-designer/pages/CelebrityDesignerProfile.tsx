@@ -13,7 +13,7 @@ import {Collapse} from "../../../components/Collapse.tsx";
 
 export const CelebrityDesignerProfile = () => {
     const {addToCart} = useCart();
-    const {setBackgroundType, setBackgroundColor, setFooterVariant} = useMasterLayout()
+    const {setBackgroundType, setBackgroundColor, setFooterVariant} = useMasterLayout();
 
     const [showPlayButton, setShowPlayButton] = useState<boolean>(true);
     const [showPauseButton, setShowPauseButton] = useState<boolean>(false);
