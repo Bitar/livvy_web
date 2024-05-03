@@ -91,8 +91,8 @@ export const ProductDetailPage = () => {
                     <div className="hero-image">
                         <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
                     </div>
-                    <div className="hidden md:block thumbnails mt-7 ml-5">
-                        <div className="flex gap-2">
+                    <div className="hidden md:block thumbnails mt-7 ml-0 lg:ml-5">
+                        <div className="flex flex-wrap gap-2">
                             <div className="flex items-center gap-2">
                                 {
                                     thumbnailProduct.map((thumbnailProduct, index) => (
@@ -100,8 +100,8 @@ export const ProductDetailPage = () => {
                                     ))
                                 }
                             </div>
-                            <Link to={'#'} className='flex items-center ms-6'>
-                                <img src="/assets/product/view-space-icon.png" alt="View in your space." className='ms-6 me-2'/>
+                            <Link to={'#'} className='flex items-center xl:ms-6 mt-4 xl:mt-0'>
+                                <img src="/assets/product/view-space-icon.png" alt="View in your space." className='me-2'/>
                                 <span className='inline-block border-b border-b-black uppercase text-xs'>View in your space</span>
                             </Link>
                         </div>
@@ -154,7 +154,7 @@ export const ProductDetailPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center cta gap-4 mb-8 md:mb-16">
+                    <div className="lg:flex items-center cta gap-4 mb-8 md:mb-16">
                         <LivButton
                             as={'button'}
                             type={'submit'}
@@ -164,18 +164,18 @@ export const ProductDetailPage = () => {
                             bgColor={'bg-white'}
                             textColor={'text-black'}
                             onWhiteBg={true}
-                            className={'w-full md:max-w-56 xl:max-w-sm'}
+                            className={'w-full lg:max-w-56 xl:max-w-sm mb-4 lg:mb-0'}
                             fullWidth={true}
                         />
 
-                        <span className='hidden md:inline-block border-b border-b-black uppercase align-middle'><Link to={'/'}>See Similar Products</Link></span>
+                        <span className='hidden md:inline-block border-b border-b-black uppercase align-middle flex-wrap'><Link to={'/'}>See Similar Products</Link></span>
                     </div>
 
                     <div className="flex info-header justify-between">
                         <div className="uppercase text-sm">
                             Overview
                         </div>
-                        <div className='pb-7 ps-6 sm:ps-0'>
+                        <div className='pb-7 ps-6 lg:ps-0'>
                             <p className='text-sm max-w-sm'>
                                 Like a statue in a grand space, this stunning coffee table stands out with its monumental design and sophisticated aesthetic. The soft curves crafted from concrete bestows a refined
                                 radiance.
