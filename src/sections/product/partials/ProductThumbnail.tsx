@@ -18,12 +18,12 @@ export const ProductThumbnail = ({image, title, description, price, className}: 
         <div className={`similar-product text-xs relative sm:me-0 ${className}`}>
             <div className="like-btn absolute top-3 right-3 cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
                 {hasLiked ? (
-                    <FontAwesomeIcon icon={faSolidHeart} className='text-base text-red-500'/>
+                    <FontAwesomeIcon icon={faSolidHeart} className='text-base text-liv-green'/>
                 ) : (
                     <FontAwesomeIcon icon={faHeart} className='text-base'/>
                 )}
             </div>
-            <img src={image} alt="" className='aspect-square max-w-[200px] w-full'/>
+            <img src={image} alt="" className='aspect-square w-full'/>
             <div className="name">{title}</div>
             <div className="description truncate">{description}</div>
             <div className="price">${price}</div>
