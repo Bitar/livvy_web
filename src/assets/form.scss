@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .liv-select {
   .liv-select__control {
     cursor: pointer;
@@ -150,6 +152,66 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number]{
+input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+.liv-select-new {
+  .liv-select__control {
+    @apply border-none rounded-none cursor-pointer shadow-none;
+
+    .liv-select__single-value {
+      @apply uppercase text-xs text-black;
+
+      @media (max-width: 640px) {
+        @apply text-2xs;
+      }
+    }
+
+    .liv-select__indicator-separator {
+      @apply hidden;
+    }
+
+    .liv-select__indicator {
+      @apply text-black pl-1;
+
+      &.liv-select__clear-indicator {
+        @apply pr-0;
+      }
+    }
+
+    .liv-select__placeholder {
+      @apply uppercase text-sm text-black;
+    }
+
+    .liv-select__value-container {
+      @apply p-0;
+    }
+  }
+
+  .liv-select__menu {
+    @apply z-50 w-full xl:w-32 mt-0 rounded-none border-none shadow-none;
+
+    .liv-select__menu-list {
+
+      .liv-select__option {
+        @apply uppercase text-2xs text-black cursor-pointer transition-all;
+
+        &.liv-select__option--is-focused {
+          @apply text-white bg-liv-green;
+        }
+
+        &.liv-select__option--is-selected {
+          @apply text-white bg-liv-green;
+        }
+      }
+    }
+  }
+
+  &.border {
+    .liv-select__control {
+      @apply border-black
+    }
+  }
 }
