@@ -204,17 +204,18 @@ export const ProductDetailPage = () => {
                 </div>
             </div>
             <div className="similar-products mt-14 mb-16 mx-6 md:mx-0">
-                <h2 className='uppercase text-xl'>Shop Similar Products</h2>
+                <h2 className='uppercase text-2xl'>Shop Similar Products</h2>
 
                 {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
-                <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef}>
+                <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef} className='mt-4'>
                     {
                         similarProductsSlider.map((similarProduct, index) => (
-                            <Slide key={`similarProduct-${index}`}
-                                   title={similarProduct.title}
-                                   description={similarProduct.description}
-                                   image={similarProduct.image}
-                                   price={similarProduct.price}/>
+                            <SimilarProduct key={`similarProduct-${index}`}
+                                            title={similarProduct.title}
+                                            description={similarProduct.description}
+                                            image={similarProduct.image}
+                                            price={similarProduct.price}
+                                            className='max-w-52 me-4'/>
                         ))
                     }
                 </Slider>
@@ -223,16 +224,17 @@ export const ProductDetailPage = () => {
     )
 }
 
-const Slide = ({image, title, description, price}: {
+export const SimilarProduct = ({image, title, description, price, className}: {
     image: string,
     title: string,
     description: string,
-    price: number
+    price: number,
+    className?: string
 }) => {
     const [hasLiked, setHasLiked] = useState<boolean>(false)
 
     return (
-        <div className="similar-product mt-4 max-w-52 text-xs relative me-4 sm:me-0">
+        <div className={`similar-product text-xs relative sm:me-0 ${className}`}>
             <div className="like-btn absolute top-3 right-3 cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
                 {hasLiked ? (
                     <FontAwesomeIcon icon={faSolidHeart} className='text-base text-red-500'/>
@@ -240,7 +242,7 @@ const Slide = ({image, title, description, price}: {
                     <FontAwesomeIcon icon={faHeart} className='text-base'/>
                 )}
             </div>
-            <img src={image} alt=""/>
+            <img src={image} alt="" className='aspect-square'/>
             <div className="name">{title}</div>
             <div className="description truncate">{description}</div>
             <div className="price">${price}</div>
