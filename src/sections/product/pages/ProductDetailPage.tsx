@@ -5,11 +5,9 @@ import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
 import {Collapse} from "../../../components/Collapse.tsx";
 import Slider from "react-slick";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-regular-svg-icons";
-import {faHeart as faSolidHeart} from "@fortawesome/free-solid-svg-icons";
 import {similarProductsSlider, thumbnailProduct} from "../../../data/product.ts";
 import clsx from "clsx";
+import {ProductThumbnail} from "../partials/ProductThumbnail.tsx";
 
 export const ProductDetailPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
@@ -91,7 +89,7 @@ export const ProductDetailPage = () => {
                     <div className="hero-image">
                         <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
                     </div>
-                    <div className="hidden md:block thumbnails mt-7 ml-0 lg:ml-5">
+                    <div className="hidden md:block thumbnails mt-7">
                         <div className="flex flex-wrap gap-2">
                             <div className="flex items-center gap-2">
                                 {
@@ -116,7 +114,7 @@ export const ProductDetailPage = () => {
 
                     <h1 className='uppercase text-2xl md:text-4xl mb-2 xl:text-5xl xl:mt-2.5 xl:mb-3.5 max-w-sm'>Maria Coffee Table</h1>
 
-                    <div className="price text-xl italic font-extralight md:mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
+                    <div className="price text-xl italic font-extralight mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
 
                     <div className="colors flex flex-row gap-3 mb-4">
                         <div className={clsx('rounded-full p-0.5', {
@@ -181,7 +179,7 @@ export const ProductDetailPage = () => {
                                 radiance.
 
                             </p>
-                            <span className='inline-block border-b border-b-black uppercase align-middle mt-4'><Link to={'/'}>See More</Link></span>
+                            <span className='inline-block border-b border-b-black uppercase align-middle mt-4 text-sm'><Link to={'/'}>See More</Link></span>
                         </div>
                     </div>
 
@@ -204,46 +202,22 @@ export const ProductDetailPage = () => {
                 </div>
             </div>
             <div className="similar-products mt-14 mb-16 mx-6 md:mx-0">
-                <h2 className='uppercase text-xl'>Shop Similar Products</h2>
+                <h2 className='uppercase text-2xl'>Shop Similar Products</h2>
 
                 {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
-                <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef}>
+                <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef} className='mt-4'>
                     {
                         similarProductsSlider.map((similarProduct, index) => (
-                            <Slide key={`similarProduct-${index}`}
-                                   title={similarProduct.title}
-                                   description={similarProduct.description}
-                                   image={similarProduct.image}
-                                   price={similarProduct.price}/>
+                            <ProductThumbnail key={`similarProduct-${index}`}
+                                              title={similarProduct.title}
+                                              description={similarProduct.description}
+                                              image={similarProduct.image}
+                                              price={similarProduct.price}
+                                              className='max-w-52 me-4'/>
                         ))
                     }
                 </Slider>
             </div>
-        </div>
-    )
-}
-
-const Slide = ({image, title, description, price}: {
-    image: string,
-    title: string,
-    description: string,
-    price: number
-}) => {
-    const [hasLiked, setHasLiked] = useState<boolean>(false)
-
-    return (
-        <div className="similar-product mt-4 max-w-52 text-xs relative me-4 sm:me-0">
-            <div className="like-btn absolute top-3 right-3 cursor-pointer" onClick={() => setHasLiked(!hasLiked)}>
-                {hasLiked ? (
-                    <FontAwesomeIcon icon={faSolidHeart} className='text-base text-red-500'/>
-                ) : (
-                    <FontAwesomeIcon icon={faHeart} className='text-base'/>
-                )}
-            </div>
-            <img src={image} alt=""/>
-            <div className="name">{title}</div>
-            <div className="description truncate">{description}</div>
-            <div className="price">${price}</div>
         </div>
     )
 }
