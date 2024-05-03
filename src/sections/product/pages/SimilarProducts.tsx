@@ -52,7 +52,7 @@ export const SimilarProducts = () => {
                         </div>
                     </div>
 
-                    <div>
+                    <div className='mx-6 md:mx-0'>
                         <div className="mb-1 mt-6">
                             <span className='uppercase text-xs'>Rove Concepts</span>
                         </div>
@@ -64,19 +64,19 @@ export const SimilarProducts = () => {
                         <span className='hidden md:inline-block border-b border-b-black uppercase align-middle flex-wrap mt-4'><Link to={'/product'}>full product details</Link></span>
                     </div>
                 </div>
-                <div className="similar-products">
-                    <div className="flex header justify-between mt-9 mb-6">
-                        <h2 className='uppercase text-2xl'>Shop Similar Products</h2>
+                <div className="similar-products mx-6 md:mx-0">
+                    <div className="lg:flex header justify-between mt-9 mb-6">
+                        <h2 className='uppercase text-xl lg:text-2xl'>Shop Similar Products</h2>
 
                         <div className='flex gap-3 items-center'>
-                            <button className={'uppercase items-center flex'}>
+                            <button className='uppercase items-center flex'>
                                 <span className='me-0.5'>Filter</span> <FontAwesomeIcon icon={faFilter} className='pl-2'/>
                             </button>
 
                             <LivSelect/>
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-4 h-full max-h-screen overflow-y-auto mb-10">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 h-full max-h-screen overflow-y-auto mb-10">
                         {
                             similarProductsSlider.map((similarProduct, index) => (
                                 <SimilarProduct key={`similarProduct-${index}`}
