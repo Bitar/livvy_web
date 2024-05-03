@@ -61,10 +61,10 @@ export const SimilarProducts = () => {
                     </div>
                 </div>
                 <div className="similar-products mx-6 md:mx-0">
-                    <div className="lg:flex header justify-between mt-9 mb-6">
-                        <h2 className='uppercase text-xl lg:text-2xl'>Shop Similar Products</h2>
+                    <div className="xl:flex header justify-between items-center mt-9 mb-6">
+                        <h2 className='uppercase text-xl xl:text-2xl'>Shop Similar Products</h2>
 
-                        <div className='flex gap-3 items-center'>
+                        <div className='flex gap-3 items-center text-sm'>
                             <button className='uppercase items-center flex' onClick={() => setShowFilter(!showFilter)}>
                                 <span className='me-0.5'>Filter</span> <FontAwesomeIcon icon={faFilter} className='pl-2'/>
                             </button>
@@ -73,15 +73,15 @@ export const SimilarProducts = () => {
                         </div>
                     </div>
 
-                    <div className={clsx("filter-container flex justify-between mb-1", {
-                        'hidden': !showFilter
-                    })}>
-                        <LivSelect placeholder={'Price'} name={'price'} clearable={true} options={priceOptions}/>
-                        <LivSelect placeholder={'Brand'} name={'brand'} clearable={true} options={brandOptions}/>
-                        <LivSelect placeholder={'Material'} name={'material'} clearable={true} options={materialOptions}/>
-                        <LivSelect placeholder={'Color'} name={'color'} clearable={true} options={colorOptions}/>
-                        <LivSelect placeholder={'Dimensions'} name={'dimensions'} clearable={true} options={dimensionsOptions}/>
-                    </div>
+                    {showFilter && (
+                        <div className={clsx("filter-container xl:flex justify-between mb-1")}>
+                            <LivSelect placeholder={'Price'} name={'price'} clearable={true} options={priceOptions}/>
+                            <LivSelect placeholder={'Brand'} name={'brand'} clearable={true} options={brandOptions}/>
+                            <LivSelect placeholder={'Material'} name={'material'} clearable={true} options={materialOptions}/>
+                            <LivSelect placeholder={'Color'} name={'color'} clearable={true} options={colorOptions}/>
+                            <LivSelect placeholder={'Dimensions'} name={'dimensions'} clearable={true} options={dimensionsOptions}/>
+                        </div>
+                    )}
 
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 h-full max-h-screen overflow-y-auto mb-10">
                         {

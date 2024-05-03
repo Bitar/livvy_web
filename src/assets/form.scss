@@ -191,7 +191,7 @@ input[type=number] {
   }
 
   .liv-select__menu {
-    @apply z-50 w-32 mt-0 rounded-none border-none shadow-none;
+    @apply z-50 w-full xl:w-32 mt-0 rounded-none border-none shadow-none;
 
     .liv-select__menu-list {
 
