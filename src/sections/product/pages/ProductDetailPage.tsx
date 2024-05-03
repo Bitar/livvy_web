@@ -92,7 +92,7 @@ export const ProductDetailPage = () => {
                     <div className="hero-image">
                         <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
                     </div>
-                    <div className="hidden md:block thumbnails mt-7 ml-0 lg:ml-5">
+                    <div className="hidden md:block thumbnails mt-7">
                         <div className="flex flex-wrap gap-2">
                             <div className="flex items-center gap-2">
                                 {
@@ -117,7 +117,7 @@ export const ProductDetailPage = () => {
 
                     <h1 className='uppercase text-2xl md:text-4xl mb-2 xl:text-5xl xl:mt-2.5 xl:mb-3.5 max-w-sm'>Maria Coffee Table</h1>
 
-                    <div className="price text-xl italic font-extralight md:mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
+                    <div className="price text-xl italic font-extralight mb-4" style={{fontFamily: "PP Editorial New"}}><span className='ps-1'>$1,234</span></div>
 
                     <div className="colors flex flex-row gap-3 mb-4">
                         <div className={clsx('rounded-full p-0.5', {
@@ -182,7 +182,7 @@ export const ProductDetailPage = () => {
                                 radiance.
 
                             </p>
-                            <span className='inline-block border-b border-b-black uppercase align-middle mt-4'><Link to={'/'}>See More</Link></span>
+                            <span className='inline-block border-b border-b-black uppercase align-middle mt-4 text-sm'><Link to={'/'}>See More</Link></span>
                         </div>
                     </div>
 
@@ -212,11 +212,11 @@ export const ProductDetailPage = () => {
                     {
                         similarProductsSlider.map((similarProduct, index) => (
                             <ProductThumbnail key={`similarProduct-${index}`}
-                                            title={similarProduct.title}
-                                            description={similarProduct.description}
-                                            image={similarProduct.image}
-                                            price={similarProduct.price}
-                                            className='max-w-52 me-4'/>
+                                              title={similarProduct.title}
+                                              description={similarProduct.description}
+                                              image={similarProduct.image}
+                                              price={similarProduct.price}
+                                              className='max-w-52 me-4'/>
                         ))
                     }
                 </Slider>

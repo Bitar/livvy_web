@@ -24,7 +24,7 @@ export const ProductThumbnail = ({image, title, description, price, className}: 
                 )}
             </div>
             <img src={image} alt="" className='aspect-square w-full'/>
-            <div className="name">{title}</div>
+            <div className="name mt-2">{title}</div>
             <div className="description truncate">{description}</div>
             <div className="price">${price}</div>
         </div>
