@@ -18,7 +18,7 @@ export const Membership = () => {
                 </h1>
 
                 <div className="mt-2.5 sm:mt-0 sm:bg-black sm:rounded-full sm:w-44 sm:h-44 lg:w-48 lg:h-48 relative sm:inline-block">
-                    <p className="sm:absolute sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:text-white text-xs sm:text-center sm:w-3/5">
+                    <p className="sm:absolute sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:text-white text-sm sm:text-xs sm:text-center sm:w-3/5">
                         <span className="inline sm:block">Hiring an interior designer for a single room typically costs <span className="font-bold">$1,500
                             to $12,000</span>.</span> <span className="inline sm:block">At LIVVY we make designing your dream space accessible.</span>
                     </p>
