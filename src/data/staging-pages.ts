@@ -1,73 +1,79 @@
 export const stagingPages = [
     {
-        title: 'Homepage (Logged Out)',
-        image: '/assets/staging-pages-screenshots/homepage.png',
+        title: 'Homepage (Logged Out - Authentication Page)',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/homepage.png',
         link: '/',
         needAuth: false
     },
     {
         title: 'Login',
-        image: '/assets/staging-pages-screenshots/login.png',
-        link: '/login',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/login.png',
+        link: '/auth/login',
         needAuth: false
     },
     {
         title: 'Register',
-        image: '/assets/staging-pages-screenshots/register.png',
-        link: '/register',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/register.png',
+        link: '/auth/register',
         needAuth: false
     },
     {
         title: 'Homepage',
-        image: '/assets/staging-pages-screenshots/homepage.png',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/homepage.png',
         link: '/',
         needAuth: true
     },
     {
         title: 'Celebrity Designers',
-        image: '/assets/staging-pages-screenshots/celebrity-design-index.png',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/celebrity-design-index.png',
         link: '/celebrity-designers',
         needAuth: true
     },
     {
         title: 'Celebrity Designers Profile',
-        image: '/assets/staging-pages-screenshots/celebrity-design-profile.png',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/celebrity-design-profile.png',
         link: '/celebrity-designers/shea-mcgee',
         needAuth: true
     },
     {
+        title: 'Add Inspiration',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/add-inspiration.png',
+        link: '/inspiration',
+        needAuth: true
+    },
+    {
+        title: 'Inspiration Loading',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/inspiration-loading.png',
+        link: '/inspiration/loading',
+        needAuth: true
+    },
+    {
+        title: 'Inspiration Browse',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/inspiration-browse.png',
+        link: '/inspiration/browse',
+        needAuth: true
+    },
+    {
+        title: 'Membership',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/membership.png',
+        link: '/membership',
+        needAuth: true
+    },
+    {
+        title: 'Onboarding',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/onboarding.png',
+        link: '/onboarding',
+        needAuth: true
+    },
+    {
         title: 'Product Page',
-        image: '/assets/staging-pages-screenshots/product-page.png',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/product-page.png',
         link: '/product',
         needAuth: true
     },
     {
         title: 'Product Similar Page',
-        image: '/assets/staging-pages-screenshots/product-similar-page.png',
-        link: '/product/similar',
-        needAuth: true
-    },
-    {
-        title: 'Celebrity Designers',
-        image: '/assets/staging-pages-screenshots/celebrity-design-index.png',
-        link: '/celebrity-designers',
-        needAuth: true
-    },
-    {
-        title: 'Celebrity Designers Profile',
-        image: '/assets/staging-pages-screenshots/celebrity-design-profile.png',
-        link: '/celebrity-designers/shea-mcgee',
-        needAuth: true
-    },
-    {
-        title: 'Product Page',
-        image: '/assets/staging-pages-screenshots/product-page.png',
-        link: '/product',
-        needAuth: true
-    },
-    {
-        title: 'Product Similar Page',
-        image: '/assets/staging-pages-screenshots/product-similar-page.png',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/product-similar-page.png',
         link: '/product/similar',
         needAuth: true
     },
