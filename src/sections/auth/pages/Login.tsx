@@ -13,7 +13,6 @@ import {useNavigate} from "react-router-dom";
 import {useOutsideClick} from "../../../helpers/outsideClick.ts";
 import {BetaRegisterFormFields} from "../../beta-testers/core/form.ts";
 import {useAuth} from "../core/Auth.loader.ts";
-import {loginObject, user} from "../../../data/user.ts";
 
 export const Login = () => {
     const {closePanels, setIsPanelOpen} = useAuthLayout();
@@ -34,10 +33,9 @@ export const Login = () => {
 
     const handleLoginSubmit = async (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         try {
-            // TODO: Enable for Login APIs
             const {data: auth} = await login(e.email, e.password)
             saveAuth(auth)
-            //
+
             const {data: user} = await getUserByToken(auth.token)
             setCurrentUser(user)
             // saveAuth(loginObject)
