@@ -35,14 +35,14 @@ export const Login = () => {
     const handleLoginSubmit = async (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         try {
             // TODO: Enable for Login APIs
-            // const {data: auth} = await login(e.email, e.password)
-            // saveAuth(auth)
+            const {data: auth} = await login(e.email, e.password)
+            saveAuth(auth)
             //
-            // const {data: user} = await getUserByToken(auth.token)
-            // setCurrentUser(user)
-            saveAuth(loginObject)
-
+            const {data: user} = await getUserByToken(auth.token)
             setCurrentUser(user)
+            // saveAuth(loginObject)
+
+            // setCurrentUser(user)
         } catch (error) {
             saveAuth(undefined)
             setHasLoginErrors(true)
