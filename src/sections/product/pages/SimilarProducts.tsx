@@ -12,7 +12,7 @@ import React, {useEffect, useState} from "react";
 export const SimilarProducts = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
     const [heroImageStyle, setHeroImageStyle] = useState({})
-    const [showFilter, setShowFilter] = useState<boolean>(true)
+    const [showFilter, setShowFilter] = useState<boolean>(false)
 
     useEffect(() => {
         setBackgroundType('color')
