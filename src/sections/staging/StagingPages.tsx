@@ -9,14 +9,18 @@ import {useNavigate} from "react-router-dom";
 
 export const StagingPages = () => {
     const [show, setShow] = useState<boolean>(false)
+    const [showScroll, setShowScroll] = useState<boolean>(false)
     const {logout} = useAuth()
     const navigate = useNavigate()
 
+
     useEffect(() => {
         if(show) {
-            // document.body.classList.add('overflow-hidden');
+            document.body.classList.add('overflow-hidden');
+            setShowScroll(true)
         } else {
-            // document.body.classList.remove('overflow-hidden');
+            document.body.classList.remove('overflow-hidden');
+            setShowScroll(false)
         }
     }, [show])
     const handleNavigation = (link: string, needAuth: boolean) => {
@@ -32,8 +36,9 @@ export const StagingPages = () => {
     }
 
     return (
-        <div id='stagingPages' className={clsx(`fixed top-0 left-0 bg-black h-screen w-screen z-50`, {
-            show
+        <div id='stagingPages' className={clsx(`fixed top-0 left-0 bg-black h-screen w-full z-50 pb-20`, {
+            show,
+            'overflow-y-scroll': showScroll
         })}>
             <div className='absolute top-5 right-5'>
                 <button onClick={() => {
