@@ -36,7 +36,7 @@ export const StagingPages = () => {
     }
 
     return (
-        <div id='stagingPages' className={clsx(`fixed top-0 left-0 bg-black h-screen w-full z-50 pb-20`, {
+        <div id='stagingPages' className={clsx(`fixed top-0 left-0 bg-black h-screen w-full z-50 pb-20 sm:px-0 px-4`, {
             show,
             'overflow-y-scroll': showScroll
         })}>
@@ -48,13 +48,13 @@ export const StagingPages = () => {
                 </button>
             </div>
             <div className="container mt-10">
-                <h1 className='text-6xl uppercase text-white'>Staging Pages</h1>
-                <div className="mt-8 page-list grid grid-cols-4 gap-4">
+                <h1 className='text-2xl md:text-4xl xl:text-5xl uppercase text-white'>Staging Pages</h1>
+                <div className="mt-8 page-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {
                         stagingPages.map((stagingPage, index) => (
 
                                 <div key={`staging-page-${index}`} className='bg-white rounded-md overflow-hidden'>
-                                    <div className="image w-full h-[270px] relative bg-liv-tan">
+                                    <div className="image w-full aspect-video relative bg-liv-tan">
                                         <div className={`absolute top-0 left-0 w-full h-full bg-no-repeat bg-top bg-auto`}
                                              style={{
                                                  backgroundSize: '100% auto',
