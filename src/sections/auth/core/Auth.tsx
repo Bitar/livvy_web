@@ -13,6 +13,7 @@ import {AuthModel} from "../../../models/iam/Auth.tsx";
 import {getUserByToken} from "../../../requests/iam/auth.ts";
 import {AuthContext} from './AuthContext.tsx';
 import {useAuth} from "./Auth.loader.ts";
+import {user} from "../../../data/user.ts";
 
 const AuthProvider: FC<WithChildren> = ({children}) => {
     const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
@@ -88,11 +89,12 @@ const AuthInit: FC<WithChildren> = ({children}) => {
         const requestUser = async (apiToken: string) => {
             try {
                 if (!didRequest.current) {
-                    const {data} = await getUserByToken(apiToken)
-
-                    if (data) {
-                        setCurrentUser(data)
-                    }
+                    setCurrentUser(user)
+                    // const {data} = await getUserByToken(apiToken)
+                    //
+                    // if (data) {
+                    //     setCurrentUser(data)
+                    // }
                 }
             } catch (error) {
                 if (!didRequest.current) {

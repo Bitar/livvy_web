@@ -42,12 +42,6 @@ export const stagingPages = [
         needAuth: true
     },
     {
-        title: 'Inspiration Loading',
-        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/inspiration-loading.png',
-        link: '/inspiration/loading',
-        needAuth: true
-    },
-    {
         title: 'Inspiration Browse',
         image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/inspiration-browse.png',
         link: '/inspiration/browse',
