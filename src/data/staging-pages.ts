@@ -60,12 +60,6 @@ export const stagingPages = [
         needAuth: true
     },
     {
-        title: 'Onboarding',
-        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/onboarding.png',
-        link: '/onboarding',
-        needAuth: true
-    },
-    {
         title: 'Product Page',
         image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/product-page.png',
         link: '/product',
