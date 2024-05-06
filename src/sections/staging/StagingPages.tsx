@@ -1,20 +1,38 @@
 import {LivButton} from "../../components/buttons/LivButton.tsx";
-import React, {useState} from "react";
-import {stagingPages} from "../../data/staging-pages.ts";
+import React, {useEffect, useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
+import {stagingPages} from "../../data/staging-pages.ts";
+import {useAuth} from "../auth/core/Auth.loader.ts";
+import {useNavigate} from "react-router-dom";
 
 export const StagingPages = () => {
     const [show, setShow] = useState<boolean>(false)
-    const handleNavigation = (link: string) => {
+    const {logout} = useAuth()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(show) {
+            // document.body.classList.add('overflow-hidden');
+        } else {
+            // document.body.classList.remove('overflow-hidden');
+        }
+    }, [show])
+    const handleNavigation = (link: string, needAuth: boolean) => {
         // Navigate user to Link
         // Add Auth if need be.
-        console.log(link)
+        if(needAuth) {
+            navigate(link)
+            setShow(false)
+        } else {
+            logout();
+            document.location.reload();
+        }
     }
 
     return (
-        <div id='stagingPages' className={clsx(`absolute top-0 left-0 bg-black h-screen w-screen`, {
+        <div id='stagingPages' className={clsx(`fixed top-0 left-0 bg-black h-screen w-screen z-50`, {
             show
         })}>
             <div className='absolute top-5 right-5'>
@@ -49,7 +67,7 @@ export const StagingPages = () => {
                                             textColor={'text-white'}
                                             style={'thin'}
                                             className='rounded-xl'
-                                            onClickHandler={() => handleNavigation(stagingPage.link)}
+                                            onClickHandler={() => handleNavigation(stagingPage.link, stagingPage.needAuth)}
                                         />
                                     </div>
                                 </div>
