@@ -33,10 +33,11 @@ export const Home = () => {
                 <div className="flex flex-col md:flex-row items-center justify-center">
                     <LivButton as={'button'} onClickHandler={() => {
                     }} text={'Add Inspiration'} bgColor={'bg-white'} borderColor={'border-black'} style={'thin'}
-                               className={'md:me-4 me-0 mb-4 md:mb-0 text-xs xl:text-sm'}/>
+                               textSize={'text-xs xl:text-sm'}
+                               className={'md:me-4 me-0 mb-4 md:mb-0'}/>
 
                     <LivButton as={'button'} onClickHandler={() => {
-                    }} text={'Work with a designer'} bgColor={'bg-white'} borderColor={'border-black'} style={'thin'} className={'text-xs xl:text-sm'}/>
+                    }} text={'Work with a designer'} bgColor={'bg-white'} borderColor={'border-black'} style={'thin'} textSize={'text-xs xl:text-sm'}/>
                 </div>
             </div>
         </div>
