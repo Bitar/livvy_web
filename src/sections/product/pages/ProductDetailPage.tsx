@@ -166,7 +166,7 @@ export const ProductDetailPage = () => {
                             fullWidth={true}
                         />
 
-                        <span className='hidden md:inline-block border-b border-b-black uppercase align-middle flex-wrap'><Link to={'/'}>See Similar Products</Link></span>
+                        <span className='hidden md:inline-block border-b border-b-black uppercase align-middle flex-wrap'><Link to={'/product/similar'}>See Similar Products</Link></span>
                     </div>
 
                     <div className="flex info-header justify-between">

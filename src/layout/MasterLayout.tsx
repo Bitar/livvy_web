@@ -9,6 +9,7 @@ import {ModalProvider} from "./ModalProvider.tsx";
 import {CartProvider} from "./CartProvider.tsx";
 import {Cart as CartPanel} from "./Cart.tsx";
 import clsx from "clsx";
+import {StagingPages} from "../sections/staging/StagingPages.tsx";
 
 export const MasterLayout = () => {
     const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -23,6 +24,7 @@ export const MasterLayout = () => {
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
+    const APP_ENV = import.meta.env.VITE_APP_ENV;
 
     useEffect(() => {
         if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
@@ -82,6 +84,10 @@ export const MasterLayout = () => {
                             </div>
 
                             <CartPanel/>
+
+                            {
+                                APP_ENV !== 'production' && <StagingPages/>
+                            }
 
                             {showFooter && <Footer/>}
                         </div>
