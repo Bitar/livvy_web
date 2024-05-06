@@ -85,9 +85,9 @@ export const MasterLayout = () => {
 
                             <CartPanel/>
 
-                            {
-                                APP_ENV !== 'production' && <StagingPages/>
-                            }
+                            {/*{*/}
+                            {/*    APP_ENV !== 'production' && <StagingPages/>*/}
+                            {/*}*/}
 
                             {showFooter && <Footer/>}
                         </div>

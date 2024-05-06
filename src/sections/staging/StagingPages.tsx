@@ -6,8 +6,10 @@ import clsx from "clsx";
 import {stagingPages} from "../../data/staging-pages.ts";
 import {useAuth} from "../auth/core/Auth.loader.ts";
 import {useNavigate} from "react-router-dom";
+import {loginObject, user} from "../../data/user.ts";
 
 export const StagingPages = () => {
+    const {saveAuth, setCurrentUser} = useAuth();
     const [show, setShow] = useState<boolean>(false)
     const [showScroll, setShowScroll] = useState<boolean>(false)
     const {logout} = useAuth()
@@ -27,11 +29,14 @@ export const StagingPages = () => {
         // Navigate user to Link
         // Add Auth if need be.
         if(needAuth) {
+            saveAuth(loginObject)
+            setCurrentUser(user)
             navigate(link)
             setShow(false)
         } else {
             logout();
-            document.location.reload();
+            navigate(link)
+            setShow(false)
         }
     }
 
