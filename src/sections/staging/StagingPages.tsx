@@ -1,7 +1,7 @@
 import {LivButton} from "../../components/buttons/LivButton.tsx";
 import React, {useEffect, useState} from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import {stagingPages} from "../../data/staging-pages.ts";
 import {useAuth} from "../auth/core/Auth.loader.ts";
@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {loginObject, user} from "../../data/user.ts";
 
 export const StagingPages = () => {
-    const {saveAuth, setCurrentUser} = useAuth();
+    const {currentUser, saveAuth, setCurrentUser} = useAuth();
     const [show, setShow] = useState<boolean>(false)
     const [showScroll, setShowScroll] = useState<boolean>(false)
     const {logout} = useAuth()
@@ -17,7 +17,7 @@ export const StagingPages = () => {
 
 
     useEffect(() => {
-        if(show) {
+        if (show) {
             document.body.classList.add('overflow-hidden');
             setShowScroll(true)
         } else {
@@ -28,9 +28,11 @@ export const StagingPages = () => {
     const handleNavigation = (link: string, needAuth: boolean) => {
         // Navigate user to Link
         // Add Auth if need be.
-        if(needAuth) {
-            saveAuth(loginObject)
-            setCurrentUser(user)
+        if (needAuth) {
+            if (!currentUser) {
+                saveAuth(loginObject)
+                setCurrentUser(user)
+            }
             navigate(link)
             setShow(false)
         } else {
