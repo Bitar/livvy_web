@@ -10,7 +10,7 @@ import {ProductThumbnail} from "../partials/ProductThumbnail.tsx";
 import {ProductImageWrapper} from "../partials/ProductImageWrapper.tsx";
 import {ProductTags} from "../partials/ProductTags.tsx";
 
-export const ProductDetailPage = () => {
+export const ProductPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
 
     const similarProductsSliderRef: MutableRefObject<Slider> = useRef(null)
@@ -115,7 +115,7 @@ export const ProductDetailPage = () => {
                                     <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">-</span>
                                 </button>
                                 <input type='number'
-                                       className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm" value={quantity}
+                                       className="w-8 h-8 border-t border-b border-t-black border-b-black focus-visible:outline-0 p-1 text-center text-sm rounded-none" value={quantity}
                                        onChange={onChangeHandler}
                                        onFocus={(e) => e.target.select()}
                                        style={{lineHeight: 16}}
