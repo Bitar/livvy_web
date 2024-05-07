@@ -128,3 +128,30 @@ button.liv-white-hover, a.liv-white-hover {
     -webkit-transition: all 0.1s ease-in;
   }
 }
+
+// animate loop style quiz
+.waterfall-container {
+  height: 100vh; /* Set the container height to match the viewport height */
+  width: 100%; /* Set the container width to 100% */
+  margin-bottom: 80px;
+  overflow: hidden; /* Ensure images outside the container are hidden */
+
+  img {
+    display: block; /* Change to block to remove extra spacing */
+    margin-bottom: 20px;
+  }
+
+  /* Keyframe animations */
+  .first-image {
+    animation: bannermove 5s linear infinite;
+  }
+
+  @keyframes bannermove {
+    0% {
+      margin-top: 0px; /* Start with the first image at the top */
+    }
+    100% {
+      margin-top: -100vh; /* Move images up by the viewport height */
+    }
+  }
+}
