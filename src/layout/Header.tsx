@@ -12,7 +12,7 @@ export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
     const {setBlurContent} = useMasterLayout();
 
     return (
-        <div id="header" className={clsx('flex flex-wrap items-center justify-between mx-auto border-b px-10', {
+        <div id="header" className={clsx('flex flex-wrap items-center justify-between mx-auto border-b px-4', {
             'border-white/50': textColor == 'white',
             'border-black': textColor == 'black'
         })}>
