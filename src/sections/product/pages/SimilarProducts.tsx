@@ -28,7 +28,7 @@ export const SimilarProducts = () => {
     return (
         <div className="container">
             <div className="grid md:grid-cols-2 gap-6 xl:gap-12">
-                <div className="images-wrapper sticky self-start pb-6 top-0 left-0">
+                <div className="images-wrapper relative md:sticky md:self-start md:pb-6 md:top-0 md:left-0">
                     <div className="hero-image">
                         <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
                     </div>
