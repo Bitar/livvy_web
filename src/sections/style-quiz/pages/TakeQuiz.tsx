@@ -30,28 +30,129 @@ export const TakeQuiz = () => {
                 </div>
             </div>
 
-            {/*<div*/}
-            {/*    className="bg-[url('/assets/style-quiz/style-quiz-main.png')] bg-cover bg-no-repeat bg-center w-full aspect-[5/3] mb-6 sm:mb-0 sm:h-[calc(100vh-62px)]"></div>*/}
+            <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] bg-white overflow-y-hidden mb-6 sm:mb-0">
+                <div className="grid grid-cols-4 gap-x-4">
+                    <div className="waterfall-container bottom-to-top">
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                    </div>
 
-            <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] ">
-                <div className="waterfall-container">
-                    <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-[200px] first-image"/>
-                    <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-[200px]"/>
-                    <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-[200px]"/>
+                    <div className="waterfall-container top-to-bottom">
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                    </div>
+
+                    <div className="waterfall-container bottom-to-top">
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                    </div>
+
+                    <div className="waterfall-container top-to-bottom">
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
