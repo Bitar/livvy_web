@@ -1,0 +1,21 @@
+#thumbnailSlider {
+  @apply overflow-hidden;
+
+  .slick-slide {
+    @apply float-none;
+
+    &.slick-active {
+      @apply float-none;
+      width: 4rem !important;
+      @apply aspect-square h-16;
+    }
+  }
+
+  .slick-list {
+    @apply -ms-2;
+  }
+
+  .slick-track {
+    @apply flex items-center gap-2;
+  }
+}

@@ -1,5 +1,5 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
-import React, {useEffect, useRef} from "react";
+import React, {MutableRefObject, useEffect, useRef} from "react";
 import {Link} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import Slider from "react-slick";
@@ -7,12 +7,13 @@ import Slider from "react-slick";
 export const CelebrityDesignerAll = () => {
     const {setBackgroundType, setBackgroundColor} = useMasterLayout()
 
-    const howItWorksSliderRef = useRef<HTMLDivElement>(null);
-    const featuredSliderRef = useRef<HTMLDivElement>(null);
+    const howItWorksSliderRef: MutableRefObject<Slider> = useRef(null);
+    const featuredSliderRef: MutableRefObject<Slider> = useRef(null);
 
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const howItWorksSettings = {
@@ -125,19 +126,16 @@ export const CelebrityDesignerAll = () => {
                     </div>
 
                     <div className="relative">
-                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => howItWorksSliderRef?.current?.slickNext()}
                                 className="w-10 hidden sm:inline-block absolute sm:-right-4 min-[891px]:-right-14 xl:-right-20 top-1/2 -translate-y-1/2 z-10">
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
-                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <button onClick={() => howItWorksSliderRef?.current?.slickPrev()}
                                 className="w-10 absolute hidden sm:inline-block sm:-left-4 lg:-left-14 xl:-left-20 top-1/2 -translate-y-1/2 z-10 -scale-x-100">
                             <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                         </button>
 
-                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <Slider {...howItWorksSettings} ref={howItWorksSliderRef}>
                             <Slide title={'Discover Your Celebrity Inspiration'}
                                    image={'/assets/celebrities/interior-1.jpeg'}
@@ -166,7 +164,6 @@ export const CelebrityDesignerAll = () => {
                     </h2>
 
                     <div className="relative mb-0 md:mb-8">
-                        {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                         <Slider {...featuredSettings} ref={featuredSliderRef}>
                             <FeaturedSlide image={'/assets/celebrities/featured-interior-1.webp'} title={'crest house'}
                                            signature={'/assets/celebrities/signature.svg'}/>
@@ -177,14 +174,12 @@ export const CelebrityDesignerAll = () => {
                         </Slider>
 
                         <div className="text-center mt-4 md:mt-0">
-                            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                             <button onClick={() => featuredSliderRef?.current?.slickPrev()}
                                     className="w-10 h-10 md:w-12 md:h-12 relative md:absolute md:left-8 md:top-1/2 md:-translate-y-1/2 z-10 -scale-x-100 border border-black rounded-full me-2 md:me-0">
                                 <img src="/assets/arrow-black.svg" alt="prev nav arrow"
                                      className={'w-3.5 md:w-4 h-auth absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-20'}/>
                             </button>
 
-                            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                             <button onClick={() => featuredSliderRef?.current?.slickNext()}
                                     className="w-10 h-10 md:w-12 md:h-12 relative md:absolute md:right-8 md:top-1/2 md:-translate-y-1/2 z-10 border border-black rounded-full">
                                 <img src="/assets/arrow-black.svg" alt="next nav arrow"

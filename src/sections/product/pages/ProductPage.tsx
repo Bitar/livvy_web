@@ -1,19 +1,19 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
-import React, {ChangeEvent, useEffect, useRef, useState} from "react";
-import {LivTag} from "../../../components/tags/LivTag.tsx";
+import {ChangeEvent, MutableRefObject, useEffect, useRef, useState} from "react";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
 import {Collapse} from "../../../components/Collapse.tsx";
 import Slider from "react-slick";
-import {similarProductsSlider, thumbnailProduct} from "../../../data/product.ts";
+import {similarProductsSlider} from "../../../data/product.ts";
 import clsx from "clsx";
 import {ProductThumbnail} from "../partials/ProductThumbnail.tsx";
+import {ProductImageWrapper} from "../partials/ProductImageWrapper.tsx";
+import {ProductTags} from "../partials/ProductTags.tsx";
 
-export const ProductDetailPage = () => {
+export const ProductPage = () => {
     const {setBackgroundColor, setBackgroundType} = useMasterLayout()
 
-    const similarProductsSliderRef = useRef<HTMLDivElement>(null)
-    const [heroImageStyle, setHeroImageStyle] = useState({})
+    const similarProductsSliderRef: MutableRefObject<Slider> = useRef(null)
 
     const [quantity, setQuantity] = useState<number>(1)
 
@@ -58,10 +58,6 @@ export const ProductDetailPage = () => {
         ]
     };
 
-    const updateImage = (imgSrc: string) => {
-        setHeroImageStyle({backgroundImage: `url('${imgSrc}')`})
-    }
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
 
@@ -82,29 +78,8 @@ export const ProductDetailPage = () => {
 
     return (
         <div className="container">
-            <div className="grid md:grid-cols-2 gap-6 xl:gap-12">
-                <div className="images-wrapper relative">
-                    <ProductTags className={'flex md:hidden absolute top-4 right-6'}/>
-
-                    <div className="hero-image">
-                        <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
-                    </div>
-                    <div className="hidden md:block thumbnails mt-7">
-                        <div className="flex flex-wrap gap-2">
-                            <div className="flex items-center gap-2">
-                                {
-                                    thumbnailProduct.map((thumbnailProduct, index) => (
-                                        <img key={`thumbnailProduct-${index}`} src={thumbnailProduct.src} alt="Product Thumbnail" className='w-16 h-16 cursor-pointer' onClick={() => updateImage(thumbnailProduct.src)}/>
-                                    ))
-                                }
-                            </div>
-                            <Link to={'#'} className='flex items-center xl:ms-6 mt-4 xl:mt-0'>
-                                <img src="/assets/product/view-space-icon.png" alt="View in your space." className='me-2'/>
-                                <span className='inline-block border-b border-b-black uppercase text-xs'>View in your space</span>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-12">
+                <ProductImageWrapper/>
                 <div className="details md:mt-9 mx-6 md:mx-0">
                     <ProductTags className={'hidden md:flex'}/>
 
@@ -204,7 +179,6 @@ export const ProductDetailPage = () => {
             <div className="similar-products mt-14 mb-16 mx-6 md:mx-0">
                 <h2 className='uppercase text-2xl'>Shop Similar Products</h2>
 
-                {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                 <Slider {...similarProductsSliderSettings} ref={similarProductsSliderRef} className='mt-4'>
                     {
                         similarProductsSlider.map((similarProduct, index) => (
@@ -218,15 +192,6 @@ export const ProductDetailPage = () => {
                     }
                 </Slider>
             </div>
-        </div>
-    )
-}
-
-const ProductTags = ({className}: { className?: string }) => {
-    return (
-        <div className={`justify-end tag-list gap-1 ${className}`}>
-            <LivTag backgroundColor='bg-white' text="Coffee Table"/>
-            <LivTag backgroundColor='bg-white' text="Industrial"/>
         </div>
     )
 }
