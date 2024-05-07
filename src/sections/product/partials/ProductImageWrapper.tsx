@@ -89,7 +89,7 @@ export const ProductImageWrapper = () => {
     }
 
     return (
-        <div className="images-wrapper relative">
+            <div className="images-wrapper relative md:sticky md:self-start md:pb-6 md:top-0 md:left-0">
             <ProductTags className={'flex md:hidden absolute top-4 right-6'}/>
 
             <div className="md:hidden hero-image">
