@@ -28,7 +28,7 @@ export const SimilarProducts = () => {
     return (
         <div className="container">
             <div className="grid md:grid-cols-2 gap-6 xl:gap-12">
-                <div className="images-wrapper relative">
+                <div className="images-wrapper sticky self-start pb-6 top-0 left-0">
                     <div className="hero-image">
                         <div className="main-image aspect-square bg-[url('/assets/product/5c49d5ca8d85c9a11bb4d54838f901fa.jpeg')] bg-cover bg-center" style={heroImageStyle}/>
                     </div>
@@ -83,7 +83,8 @@ export const SimilarProducts = () => {
                         </div>
                     )}
 
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 h-full max-h-screen overflow-y-auto mb-10">
+                    {/*<div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-10 h-full max-h-screen overflow-y-auto no-scrollbar">*/}
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
                         {
                             similarProductsSlider.map((similarProduct, index) => (
                                 <ProductThumbnail key={`similarProduct-${index}`}
