@@ -62,7 +62,7 @@ export const MasterLayout = () => {
                     setIsOpen: setIsModalOpen
                 }}>
                     <CartProvider>
-                        <div id="wrapper">
+                        <div id="wrapper" className='relative'>
                             {
                                 backgroundType === "image" && <Background type={`${backgroundType}`} url={backgroundUrl}/>
                             }
@@ -77,10 +77,14 @@ export const MasterLayout = () => {
 
                             {showHeader && <Header textColor={headerTextColor}/>}
 
-                            <div id="content" className={clsx({
-                                "blur-md": blurContent
+                            <div id="content" className={clsx( 'items-center',{
+                                "blur-md": blurContent,
+                                "pt-16": showHeader,
+                                "pb-[710px] md:pb-[500px] lg:pb-80": showFooter
                             })}>
-                                <Outlet/>
+                                <div className='w-full flex flex-col'>
+                                    <Outlet/>
+                                </div>
                             </div>
 
                             <CartPanel/>

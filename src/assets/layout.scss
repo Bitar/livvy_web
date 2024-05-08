@@ -1,21 +1,25 @@
 .container.liv-container {
+  @apply relative;
   padding: 40px 24px;
-  position: relative;
 
   @media (max-width: 640px) {
-    padding: 24px;
+    @apply p-6;
   }
 }
 
 #wrapper {
+  //display: contents;
+  @apply flex flex-col min-h-screen justify-between;
+
   #content {
     -webkit-transition: filter 0.5s ease-in; //HERE
     transition: filter 0.5s ease-in; //HERE
+    @apply flex flex-grow;
   }
 }
 
 .mobile-w-full {
   @media (max-width: 640px) {
-    width: 100%;
+    @apply w-full;q
   }
 }
