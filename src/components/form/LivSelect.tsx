@@ -12,6 +12,7 @@ interface Props {
     options: SelectOptions[],
     searchable?: boolean,
     clearable?: boolean,
+    menuIsOpen?: boolean,
     className?: string
 }
 

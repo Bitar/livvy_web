@@ -4,7 +4,7 @@ import {useMasterLayout} from "./MasterLayoutContext.loader.ts";
 export const Footer = () => {
     const {footerVariant} = useMasterLayout();
     return (
-        <div id='footer' className={clsx({
+        <div id='footer' className={clsx('absolute bottom-0 w-full',{
             'footer-tan': footerVariant === 'tan',
             'footer-black': footerVariant === 'black',
         })}>

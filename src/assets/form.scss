@@ -182,7 +182,7 @@ input[type=number] {
     }
 
     .liv-select__placeholder {
-      @apply uppercase text-sm text-black;
+      @apply uppercase text-xs text-black;
     }
 
     .liv-select__value-container {
@@ -191,7 +191,7 @@ input[type=number] {
   }
 
   .liv-select__menu {
-    @apply z-50 w-full xl:w-32 mt-0 rounded-none border-none shadow-none;
+    @apply z-50 w-full min-w-32 mt-0 rounded-none border-none shadow-none;
 
     .liv-select__menu-list {
 

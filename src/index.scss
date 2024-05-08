@@ -5,6 +5,7 @@
 @import "../node_modules/animate.css/animate.css";
 @import "assets/fonts/neueHaasDisplay/neueHaasDisplay";
 @import "assets/fonts/ppEditorialNew/ppEditorialNew";
+
 @import "../node_modules/slick-carousel/slick/slick.css";
 @import "../node_modules/react-dropzone/examples/theme.css";
 
@@ -12,10 +13,24 @@
 @import "assets/animate";
 @import "assets/layout";
 @import "assets/form";
+@import "assets/product";
 @import "assets/footer";
+@import "assets/staging";
 
 @layer base {
   html, .container {
     font-family: 'Neue Haas Grotesk Display Pro', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }

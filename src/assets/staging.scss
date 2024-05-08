@@ -1,0 +1,8 @@
+#stagingPages {
+  left: -100%;
+  transition: all 1s;
+
+  &.show {
+    left: 0
+  }
+}

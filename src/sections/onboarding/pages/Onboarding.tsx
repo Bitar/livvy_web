@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, {FC, MutableRefObject, useEffect, useRef, useState} from "react";
 import {faPlayCircle, faPause, faCircle} from "@fortawesome/free-solid-svg-icons";
 import {faCircle as faCircleReg} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 
 export const Onboarding = () => {
-    const sliderRef = useRef<HTMLDivElement>(null);
+    const sliderRef: MutableRefObject<Slider> = useRef(null);
     const slideCount = 3
     const [currentIndex, setCurrentIndex] = useState<number>(0)
     const navigate = useNavigate()
@@ -50,7 +50,6 @@ export const Onboarding = () => {
         if (currentIndex + 1 >= slideCount) {
             navigate(`/`)
         } else {
-            {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
             sliderRef?.current?.slickNext()
         }
     }
@@ -77,7 +76,6 @@ export const Onboarding = () => {
                     <img src="/assets/arrow-white.svg" alt="" className={'w-full'}/>
                 </div>
 
-                {/*@ts-expect-error: Ref doesn't work when we assign HTMLDivElement to the Slider*/}
                 <Slider {...settings} ref={sliderRef} className={'relative'}>
                     <Slide index={1} title={'Capture'} subTitle={'Your Space'} video={'https://storage.googleapis.com/livvy-app/assets/demo_video_1.mp4'}
                            description={'Creating a digital twin is the first step towards converting your inspiration into a shoppable reality with LIVVY.'}/>

@@ -34,12 +34,13 @@ export const Login = () => {
     const handleLoginSubmit = async (e: BetaRegisterFormFields, fns: FormikHelpers<BetaRegisterFormFields>) => {
         try {
             const {data: auth} = await login(e.email, e.password)
-
             saveAuth(auth)
 
             const {data: user} = await getUserByToken(auth.token)
-
             setCurrentUser(user)
+            // saveAuth(loginObject)
+
+            // setCurrentUser(user)
         } catch (error) {
             saveAuth(undefined)
             setHasLoginErrors(true)
@@ -118,12 +119,12 @@ export const Login = () => {
                 </div>
 
                 <div className="block mt-[30%] mb-4 sm:hidden sm:mt-0 sm:mb-0">
-                    <CreateAccount />
+                    <CreateAccount/>
                 </div>
             </div>
 
             <div id="login-footer" className="hidden sm:block absolute z-60 left-0 bottom-3 sm:bottom-7 w-full">
-                <CreateAccount />
+                <CreateAccount/>
             </div>
 
             <button className="absolute z-60 right-3 top-2" onClick={triggerClosePanel}>
