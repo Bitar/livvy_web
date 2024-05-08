@@ -17,7 +17,7 @@ interface LivButtonProps {
     arrowIcon?: boolean,
     arrowIconDirection?: string,
     rounded?: boolean,
-    fullWidth?: boolean
+    width?: 'full' | 'restricted' | 'custom',
     textIcon?: string
     className?: string
     isSubmitting?: boolean
@@ -52,7 +52,7 @@ export const LivButton = ({
                               hasArrow = true,
                               arrowIcon = true,
                               rounded = false,
-                              fullWidth = false,
+                              width = 'restricted',
                               isSubmitting = false,
                               isValid = true,
                               onClickHandler,
@@ -68,9 +68,10 @@ export const LivButton = ({
         <>
             {as == 'button' && (
                 <button type={type}
-                        className={clsx(`flex items-center justify-center uppercase px-5 border min-w-32 md:min-w-40 disabled:opacity-45 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
+                        className={clsx(`flex items-center justify-center uppercase px-5 border disabled:opacity-45 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
                             'rounded-full': rounded,
-                            'w-full': fullWidth,
+                            'w-full': width == 'full',
+                            'min-w-32 md:min-w-40': width == 'restricted',
                             'py-4': style == 'thick',
                             'py-3': style == 'mid',
                             'py-2': style == 'thin'
@@ -93,9 +94,10 @@ export const LivButton = ({
 
             {as == 'a' && url && (
                 <Link to={url}
-                      className={clsx(`inline-flex items-center justify-center uppercase px-5 border min-w-32 md:min-w-40 ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
+                      className={clsx(`inline-flex items-center justify-center uppercase px-5 border ${bgColor} ${textColor} ${borderColor} ${hoverAnimation} ${hoverBorder} ${className}`, {
                           'rounded-full': rounded,
-                          'w-full': fullWidth,
+                          'w-full': width == 'full',
+                          'min-w-32 md:min-w-40': width == 'restricted',
                           'py-4': style == 'thick',
                           'py-2': style == 'thin',
                           'py-3': style == 'mid'

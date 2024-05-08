@@ -45,7 +45,7 @@ const Plan = ({name, perMonth, perYear, perks}: { name: string, perMonth: string
             </div>
 
             <div>
-                <LivButton as="button" text={'get started'} borderColor={'border-black'} bgColor={'bg-black'} onClickHandler={() => console.log('chose membership')} textColor={'text-white'} fullWidth={true} onWhiteBg={true}/>
+                <LivButton as="button" text={'get started'} borderColor={'border-black'} bgColor={'bg-black'} onClickHandler={() => console.log('chose membership')} textColor={'text-white'} width={'full'} onWhiteBg={true}/>
             </div>
 
             <ul className="py-5 sm:py-7">

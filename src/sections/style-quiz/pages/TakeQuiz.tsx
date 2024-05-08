@@ -25,12 +25,12 @@ export const TakeQuiz = () => {
                     </p>
 
                     <div className="w-full max-w-60">
-                        <LivButton as={'a'} text={'take the quiz'} borderColor={'border-black'} bgColor={'bg-black'} textColor={'text-white'} url={"#"} style={"mid"} fullWidth={true}/>
+                        <LivButton as={'a'} text={'take the quiz'} borderColor={'border-black'} bgColor={'bg-black'} textColor={'text-white'} url={"#"} style={"mid"} width={'full'}/>
                     </div>
                 </div>
             </div>
 
-            <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] bg-white overflow-y-hidden mb-6 sm:mb-0">
+            <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] bg-white overflow-y-hidden mb-6">
                 <div className="grid grid-cols-4 gap-x-4">
                     <div className="waterfall-container bottom-to-top">
                         <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
@@ -152,7 +152,6 @@ export const TakeQuiz = () => {
                         <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
                     </div>
                 </div>
-
             </div>
         </div>
     )

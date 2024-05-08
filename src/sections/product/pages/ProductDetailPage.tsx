@@ -163,7 +163,7 @@ export const ProductDetailPage = () => {
                             textColor={'text-black'}
                             onWhiteBg={true}
                             className={'w-full lg:max-w-56 xl:max-w-sm mb-4 lg:mb-0'}
-                            fullWidth={true}
+                            width={'custom'}
                         />
 
                         <span className='hidden md:inline-block border-b border-b-black uppercase align-middle flex-wrap'><Link to={'/'}>See Similar Products</Link></span>

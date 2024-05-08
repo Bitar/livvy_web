@@ -155,7 +155,7 @@ export const BrowseLibrary = () => {
                         "px-6 mobile-w-full top-0 absolute left-1/2 -translate-x-1/2 z-20": !isNextSticky
                     })}>
                         <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
-                                   textColor={'text-white'} style={'thick'} onClickHandler={handleNext} className={isNextSticky ? "w-full" : "m-auto"} onWhiteBg={true}/>
+                                   textColor={'text-white'} style={'thick'} onClickHandler={handleNext} width={'custom'} className={isNextSticky ? "w-full" : "m-auto"} onWhiteBg={true}/>
                     </div>
                 </div>
             </div>

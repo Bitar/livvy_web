@@ -20,7 +20,7 @@ import {useNavigate} from "react-router-dom";
 import {InspirationFeedback} from "../partials/InspirationFeedback.tsx";
 
 export const AddInspiration = () => {
-    const {setBackgroundType, setBackgroundColor, setShowFooter} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor} = useMasterLayout();
     const {setIsOpen, isOpen} = useModal();
 
     const [step, setStep] = useState<'upload' | 'details'>('upload');
@@ -145,6 +145,7 @@ export const AddInspiration = () => {
                                                    borderColor={'border-black'} bgColor={'bg-black'}
                                                    textColor={'text-white'} onWhiteBg={true}
                                                    className={'w-full sm:w-auto'}
+                                                   width={'custom'}
                                                    isSubmitting={formik.isSubmitting}
                                                    isValid={formik.isValid}
                                         />
