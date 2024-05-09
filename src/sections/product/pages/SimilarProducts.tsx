@@ -16,6 +16,7 @@ import {LivSelect} from "../../../components/form/LivSelect.tsx";
 import React, {useEffect, useState} from "react";
 import {ProductImageWrapper} from "../partials/ProductImageWrapper.tsx";
 import {Link} from "react-router-dom";
+import {StickyContainer} from "../../../components/StickyContainer.tsx";
 
 
 export const SimilarProducts = () => {
@@ -32,8 +33,9 @@ export const SimilarProducts = () => {
     return (
         <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-12">
-                <div>
+                <StickyContainer>
                     <ProductImageWrapper/>
+
                     <div className='mx-6 md:mx-0'>
                         <div className="mb-1 mt-6">
                             <span className='uppercase text-xs'>Rove Concepts</span>
@@ -48,7 +50,7 @@ export const SimilarProducts = () => {
                             className='hidden md:inline-block border-b border-b-black uppercase align-middle flex-wrap mt-4'><Link
                             to={'/product'}>full product details</Link></span>
                     </div>
-                </div>
+                </StickyContainer>
                 <div className="similar-products mx-6 md:mx-0">
                     <div className="xl:flex header justify-between items-center md:mt-9">
                         <h2 className='uppercase text-sm'>Shop Similar Products</h2>

@@ -4,8 +4,9 @@ import React, {MutableRefObject, useEffect, useRef, useState} from "react";
 import {ProductTags} from "./ProductTags.tsx";
 import Slider from "react-slick";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { faCircle as faCircleReg} from "@fortawesome/free-regular-svg-icons";
+import {faCircle} from "@fortawesome/free-solid-svg-icons";
+import {faCircle as faCircleReg} from "@fortawesome/free-regular-svg-icons";
+import {StickyContainer} from "../../../components/StickyContainer.tsx";
 
 export const ProductImageWrapper = () => {
     const heroSliderRef: MutableRefObject<Slider | null> = useRef(null);
@@ -89,7 +90,7 @@ export const ProductImageWrapper = () => {
     }
 
     return (
-            <div className="images-wrapper relative md:sticky md:self-start md:pb-6 md:top-0 md:left-0">
+        <div className="images-wrapper relative">
             <ProductTags className={'flex md:hidden absolute top-4 right-6'}/>
 
             <div className="md:hidden hero-image">
@@ -124,21 +125,23 @@ export const ProductImageWrapper = () => {
                 </Slider>
             </div>
 
-
             <div className="hidden md:block thumbnails mt-7">
                 <div className="flex flex-wrap gap-2">
                     <div id='thumbnailSlider'>
                         <Slider  {...thumbnailSettings} ref={thumbnailSliderRef} asNavFor={nav1} className={'relative'}>
                             {
                                 thumbnailProduct.map((thumbnailProduct, index) => (
-                                    <img key={`thumbnailProduct-${index}`} src={thumbnailProduct.src} alt="Product Thumbnail" className='w-16 h-16 cursor-pointer' onClick={() => updateImage(index)}/>
+                                    <img key={`thumbnailProduct-${index}`} src={thumbnailProduct.src}
+                                         alt="Product Thumbnail" className='w-16 h-16 cursor-pointer'
+                                         onClick={() => updateImage(index)}/>
                                 ))
                             }
                         </Slider>
                     </div>
                     <Link to={'#'} className='flex items-center xl:ms-6 mt-4 xl:mt-0'>
                         <img src="/assets/product/view-space-icon.png" alt="View in your space." className='me-2'/>
-                        <span className='inline-block border-b border-b-black uppercase text-xs'>View in your space</span>
+                        <span
+                            className='inline-block border-b border-b-black uppercase text-xs'>View in your space</span>
                     </Link>
                 </div>
             </div>
