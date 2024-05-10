@@ -13,7 +13,7 @@ import {useNavigate} from "react-router-dom";
 
 
 export const BrowseLibrary = () => {
-    const {setBackgroundType, setBackgroundColor} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setHeaderBGColor} = useMasterLayout();
     const [selected, setSelected] = useState<string[]>([]);
     const [invalidSelection, setInvalidSelection] = useState<boolean>(false);
 
@@ -45,6 +45,7 @@ export const BrowseLibrary = () => {
     }
 
     useEffect(() => {
+        setHeaderBGColor('white');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
 

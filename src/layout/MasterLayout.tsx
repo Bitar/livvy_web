@@ -9,7 +9,6 @@ import {ModalProvider} from "./ModalProvider.tsx";
 import {CartProvider} from "./CartProvider.tsx";
 import {Cart as CartPanel} from "./Cart.tsx";
 import clsx from "clsx";
-import {StagingPages} from "../sections/staging/StagingPages.tsx";
 
 export const MasterLayout = () => {
     const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -21,10 +20,10 @@ export const MasterLayout = () => {
     const [backgroundPoster, setBackgroundPoster] = useState<string | null>(null);
     const [backgroundColor, setBackgroundColor] = useState<string | null>(null);
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
+    const [headerBgColor, setHeaderBGColor] = useState<string | null>(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
-    const APP_ENV = import.meta.env.VITE_APP_ENV;
 
     useEffect(() => {
         if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
@@ -42,6 +41,8 @@ export const MasterLayout = () => {
                 setShowHeader,
                 headerTextColor,
                 setHeaderTextColor,
+                headerBgColor,
+                setHeaderBGColor,
                 showFooter,
                 setShowFooter,
                 footerVariant,
@@ -75,7 +76,7 @@ export const MasterLayout = () => {
                                 backgroundType === "color" && <Background type={`${backgroundType}`} color={backgroundColor}/>
                             }
 
-                            {showHeader && <Header textColor={headerTextColor}/>}
+                            {showHeader && <Header textColor={headerTextColor} bgColor={headerBgColor}/>}
 
                             <div id="content" className={clsx( 'items-center',{
                                 "blur-md": blurContent,

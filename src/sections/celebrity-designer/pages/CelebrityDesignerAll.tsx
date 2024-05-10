@@ -5,12 +5,13 @@ import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import Slider from "react-slick";
 
 export const CelebrityDesignerAll = () => {
-    const {setBackgroundType, setBackgroundColor} = useMasterLayout()
+    const {setBackgroundType, setBackgroundColor, setHeaderBGColor} = useMasterLayout()
 
     const howItWorksSliderRef: MutableRefObject<Slider> = useRef(null);
     const featuredSliderRef: MutableRefObject<Slider> = useRef(null);
 
     useEffect(() => {
+        setHeaderBGColor('liv-tan');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         // eslint-disable-next-line react-hooks/exhaustive-deps

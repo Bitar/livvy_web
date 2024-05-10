@@ -3,9 +3,10 @@ import { useMasterLayout } from "../../../layout/MasterLayoutContext.loader.ts";
 import {useEffect} from "react";
 
 export const Membership = () => {
-    const {setBackgroundType, setBackgroundColor} = useMasterLayout()
+    const {setBackgroundType, setBackgroundColor, setHeaderBGColor} = useMasterLayout()
 
     useEffect(() => {
+        setHeaderBGColor('liv-tan');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
     }, []);

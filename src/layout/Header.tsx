@@ -6,13 +6,13 @@ import clsx from "clsx";
 import {useCart} from "./CartProvider.tsx";
 import {useMasterLayout} from "./MasterLayoutContext.loader.ts";
 
-export const Header = ({textColor}: { textColor: 'white' | 'black' }) => {
+export const Header = ({textColor, bgColor = 'transparent'}: { textColor: 'white' | 'black', bgColor?: string }) => {
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
     const {setIsCartOpen} = useCart();
     const {setBlurContent} = useMasterLayout();
 
     return (
-        <div id="header" className={clsx('fixed w-full bg-liv-tan flex flex-wrap items-center justify-between mx-auto border-b px-4 lg:px-10 z-50', {
+        <div id="header" className={clsx(`fixed w-full flex flex-wrap items-center justify-between mx-auto border-b px-4 lg:px-10 z-50 bg-${bgColor}`, {
             'border-white/50': textColor == 'white',
             'border-black': textColor == 'black'
         })}>
