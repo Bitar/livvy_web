@@ -2,10 +2,10 @@ import {useEffect} from "react";
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {Link} from "react-router-dom";
+import {questions, StyleQuizAnswer, StyleQuizQuestion} from "../../../data/style-quiz.ts";
 
-export const QuizQuestion = () => {
+export const Quiz = () => {
     const {setBackgroundType, setBackgroundColor, setFooterVariant} = useMasterLayout();
-
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
@@ -13,24 +13,25 @@ export const QuizQuestion = () => {
     }, []);
 
     return (
-        <Question idx={1} question={'How do you want your space to feel?'} />
+        <></>
+        // <Question idx={index} question={question} key={`question-${question.id}`}/>
     )
 }
 
-const Question = ({idx, question} : {idx: number, question: string}) => {
+const Question = ({idx, question} : {idx: number, question: StyleQuizQuestion}) => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
     return (
         <div className="container liv-container">
             <div className="inline-block m-auto">
-                <h1 className="text-2xl italic font-extralight mb-8 text-center" style={{fontFamily: "PP Editorial New"}}>{idx}. {question}</h1>
+                <h1 className="text-2xl italic font-extralight mb-8 text-center" style={{fontFamily: "PP Editorial New"}}>{idx}. {question.text}</h1>
 
                 <div className="ps-3.5">
-                    <Answer idx={'A'} answer={'Welcoming and warm'}/>
-                    <Answer idx={'B'} answer={'Airy and minimal'}/>
-                    <Answer idx={'c'} answer={'Unique and vintage'}/>
-                    <Answer idx={'d'} answer={'Cool and modern'}/>
-                    <Answer idx={'e'} answer={'Relaxing and cozy'}/>
-                    <Answer idx={'f'} answer={'Glamorous and feminine'}/>
-                    <Answer idx={'g'} answer={'Rustic and warm'}/>
+                    {
+                        question.answers.map((answer: StyleQuizAnswer, index: number) => (
+                            <Answer idx={alphabet[index]} answer={answer.text} key={`answer-${answer.id}`}/>
+                        ))
+                    }
 
                     <div className="text-right">
                         <div className="inline-flex justify-between items-center mt-6">
@@ -42,8 +43,6 @@ const Question = ({idx, question} : {idx: number, question: string}) => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     )

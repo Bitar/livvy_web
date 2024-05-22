@@ -1,14 +1,14 @@
 import {Route, Routes} from "react-router-dom";
 import {TakeQuiz} from "../sections/style-quiz/pages/TakeQuiz.tsx";
 
-import {QuizQuestion} from "../sections/style-quiz/pages/QuizQuestion.tsx";
+import {Quiz} from "../sections/style-quiz/pages/Quiz.tsx";
 
 export const StyleQuizRoutes = () => {
     return (
         <Routes>
             <Route index element={<TakeQuiz/>}/>
 
-            <Route path={'/question'} element={<QuizQuestion/>}/>
+            <Route path={'/question'} element={<Quiz/>}/>
         </Routes>
     )
 }
