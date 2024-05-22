@@ -21,6 +21,7 @@ export const MasterLayout = () => {
     const [backgroundPoster, setBackgroundPoster] = useState<string | null>(null);
     const [backgroundColor, setBackgroundColor] = useState<string | null>(null);
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
+    const [headerBgColor, setHeaderBgColor] = useState<'tan' | 'transparent'>('tan');
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
@@ -42,6 +43,8 @@ export const MasterLayout = () => {
                 setShowHeader,
                 headerTextColor,
                 setHeaderTextColor,
+                headerBgColor,
+                setHeaderBgColor,
                 showFooter,
                 setShowFooter,
                 footerVariant,
@@ -75,7 +78,7 @@ export const MasterLayout = () => {
                                 backgroundType === "color" && <Background type={`${backgroundType}`} color={backgroundColor}/>
                             }
 
-                            {showHeader && <Header textColor={headerTextColor}/>}
+                            {showHeader && <Header textColor={headerTextColor} bgColor={headerBgColor}/>}
 
                             <div id="content" className={clsx( 'items-center',{
                                 "blur-md": blurContent,
