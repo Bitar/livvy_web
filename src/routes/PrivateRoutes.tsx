@@ -28,9 +28,9 @@ const PrivateRoutes = () => {
 
                 <Route path='/inspiration/*' element={<InspirationRoutes />}/>
 
-                <Route path='/product/*' element={<ProductRoutes/>}></Route>
+                <Route path='/product/*' element={<ProductRoutes/>}/>
 
-                <Route path='/style-quiz/*' element={<StyleQuizRoutes/>}></Route>
+                <Route path='/style-quiz/*' element={<StyleQuizRoutes/>}/>
 
                 <Route path='/test' element={<Test/>}/>
 

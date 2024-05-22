@@ -35,11 +35,11 @@ export const questions : StyleQuizQuestion[] = [
                 'text': 'Relaxing and cozy'
             },
             {
-                'id': 5,
+                'id': 6,
                 'text': 'Glamorous and feminine'
             },
             {
-                'id': 6,
+                'id': 7,
                 'text': 'Rustic and warm'
             }
         ]
@@ -49,15 +49,15 @@ export const questions : StyleQuizQuestion[] = [
         'text': 'What are the primary functions of the space?',
         'answers': [
             {
-                'id': 7,
+                'id': 8,
                 'text': 'Relaxation'
             },
             {
-                'id': 8,
+                'id': 9,
                 'text': 'Entertaining Guests'
             },
             {
-                'id': 9,
+                'id': 10,
                 'text': 'Working'
             }
         ]
@@ -67,15 +67,15 @@ export const questions : StyleQuizQuestion[] = [
         'text': 'How often do you entertain guests, and do you need the space to cater to a specific number of people?',
         'answers': [
             {
-                'id': 10,
+                'id': 11,
                 'text': 'Occasionally'
             },
             {
-                'id': 11,
+                'id': 12,
                 'text': 'Frequently'
             },
             {
-                'id': 12,
+                'id': 13,
                 'text': 'Rarely'
             }
         ]
