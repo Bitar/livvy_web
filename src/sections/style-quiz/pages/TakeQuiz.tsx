@@ -25,7 +25,7 @@ export const TakeQuiz = () => {
                     </p>
 
                     <div className="w-full max-w-60">
-                        <LivButton as={'a'} text={'take the quiz'} borderColor={'border-black'} bgColor={'bg-black'} textColor={'text-white'} url={"#"} style={"mid"} width={'full'}/>
+                        <LivButton as={'a'} text={'take the quiz'} borderColor={'border-black'} bgColor={'bg-black'} textColor={'text-white'} url={"/style-quiz/quiz"} style={"mid"} width={'full'}/>
                     </div>
                 </div>
             </div>
