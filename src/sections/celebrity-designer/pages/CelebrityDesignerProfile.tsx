@@ -13,7 +13,7 @@ import {Collapse} from "../../../components/Collapse.tsx";
 
 export const CelebrityDesignerProfile = () => {
     const {addToCart} = useCart();
-    const {setBackgroundType, setBackgroundColor, setFooterVariant, setHeaderBGColor} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setFooterVariant, setHeaderBgColor} = useMasterLayout();
 
     const [showPlayButton, setShowPlayButton] = useState<boolean>(true);
     const [showPauseButton, setShowPauseButton] = useState<boolean>(false);
@@ -64,7 +64,7 @@ export const CelebrityDesignerProfile = () => {
     };
 
     useEffect(() => {
-        setHeaderBGColor('liv-tan');
+        setHeaderBgColor('liv-tan');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setFooterVariant('tan');

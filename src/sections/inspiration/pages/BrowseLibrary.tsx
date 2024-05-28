@@ -15,7 +15,7 @@ import {EnlargedInspiration} from "../../../components/pinterest/EnlargedInspira
 
 
 export const BrowseLibrary = () => {
-    const {setBackgroundType, setBackgroundColor, setHeaderBGColor} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setHeaderBgColor} = useMasterLayout();
     const [selected, setSelected] = useState<string[]>([]);
     const [invalidSelection, setInvalidSelection] = useState<boolean>(false);
 
@@ -47,7 +47,7 @@ export const BrowseLibrary = () => {
     }
 
     useEffect(() => {
-        setHeaderBGColor('white');
+        setHeaderBgColor('white');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
 

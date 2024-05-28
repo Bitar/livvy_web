@@ -11,7 +11,7 @@ import {ProductImageWrapper} from "../partials/ProductImageWrapper.tsx";
 import {ProductTags} from "../partials/ProductTags.tsx";
 
 export const ProductPage = () => {
-    const {setBackgroundColor, setBackgroundType, setHeaderBGColor} = useMasterLayout()
+    const {setBackgroundColor, setBackgroundType, setHeaderBgColor} = useMasterLayout()
 
     const similarProductsSliderRef: MutableRefObject<Slider> = useRef(null)
 
@@ -21,7 +21,7 @@ export const ProductPage = () => {
     const [colorTwo, setColorTwo] = useState<boolean>(false)
 
     useEffect(() => {
-        setHeaderBGColor('white');
+        setHeaderBgColor('white');
         setBackgroundType('color')
         setBackgroundColor('white')
         // eslint-disable-next-line react-hooks/exhaustive-deps

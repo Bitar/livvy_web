@@ -2,10 +2,10 @@ import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import {useEffect} from "react";
 
 export const InspirationLoading = () => {
-    const {setBackgroundType, setBackgroundColor, setShowFooter, setHeaderBGColor} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setShowFooter, setHeaderBgColor} = useMasterLayout();
 
     useEffect(() => {
-        setHeaderBGColor('white');
+        setHeaderBgColor('white');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);

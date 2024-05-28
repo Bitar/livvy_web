@@ -20,11 +20,11 @@ import {StickyContainer} from "../../../components/StickyContainer.tsx";
 
 
 export const SimilarProducts = () => {
-    const {setBackgroundColor, setBackgroundType, setHeaderBGColor} = useMasterLayout()
+    const {setBackgroundColor, setBackgroundType, setHeaderBgColor} = useMasterLayout()
     const [showFilter, setShowFilter] = useState<boolean>(false)
 
     useEffect(() => {
-        setHeaderBGColor('white');
+        setHeaderBgColor('white');
         setBackgroundType('color')
         setBackgroundColor('white')
         // eslint-disable-next-line react-hooks/exhaustive-deps
