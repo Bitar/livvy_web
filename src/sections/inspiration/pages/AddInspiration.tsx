@@ -20,7 +20,7 @@ import {useNavigate} from "react-router-dom";
 import {InspirationFeedback} from "../partials/InspirationFeedback.tsx";
 
 export const AddInspiration = () => {
-    const {setBackgroundType, setBackgroundColor, setHeaderBGColor} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setHeaderBgColor} = useMasterLayout();
     const {setIsOpen, isOpen} = useModal();
 
     const [step, setStep] = useState<'upload' | 'details'>('upload');
@@ -31,7 +31,7 @@ export const AddInspiration = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setHeaderBGColor('white');
+        setHeaderBgColor('white');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -146,6 +146,7 @@ export const AddInspiration = () => {
                                                    borderColor={'border-black'} bgColor={'bg-black'}
                                                    textColor={'text-white'} onWhiteBg={true}
                                                    className={'w-full sm:w-auto'}
+                                                   width={'custom'}
                                                    isSubmitting={formik.isSubmitting}
                                                    isValid={formik.isValid}
                                         />

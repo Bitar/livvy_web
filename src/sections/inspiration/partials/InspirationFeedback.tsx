@@ -47,6 +47,7 @@ export const InspirationFeedback = ({form, setForm, handleSubmit, files, urls}: 
                                            borderColor={'border-black'} bgColor={'bg-black'}
                                            textColor={'text-white'} onWhiteBg={true}
                                            className={'w-full sm:w-auto'}
+                                           width={'custom'}
                                            isSubmitting={formik.isSubmitting}
                                            isValid={formik.isValid}
                                 />

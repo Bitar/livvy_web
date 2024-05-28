@@ -1,21 +1,20 @@
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import React, {useEffect, useRef, useState} from "react";
-import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
-import clsx from "clsx";
-import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
-import {LivvyToastType} from "../../../helpers/variables.ts";
-import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {LivModal} from "../../../components/modals/LivModal.tsx";
-import {defaultInspirationPreferenceFields, InspirationPreferenceFormFields} from "../core/form.ts";
-import {useModal} from "../../../layout/ModalProvider.loader.ts";
-import {InspirationFeedback} from "../partials/InspirationFeedback.tsx";
-import {useNavigate} from "react-router-dom";
 import {InspirationCard} from "../../../components/pinterest/InspirationCard.tsx";
+import clsx from "clsx";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
+import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import {EnlargedInspiration} from "../../../components/pinterest/EnlargedInspiration.tsx";
+import {LivvyToastType} from "../../../helpers/variables.ts";
+import {useLivvyApp} from "../../auth/core/LivvyAppContext.loader.ts";
+import {useNavigate} from "react-router-dom";
 
+export const VisualQuiz = () => {
+    const livApp = useLivvyApp();
+    const navigate = useNavigate();
 
-export const BrowseLibrary = () => {
-    const {setBackgroundType, setBackgroundColor, setHeaderBGColor} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor} = useMasterLayout();
+
     const [selected, setSelected] = useState<string[]>([]);
     const [invalidSelection, setInvalidSelection] = useState<boolean>(false);
 
@@ -24,19 +23,13 @@ export const BrowseLibrary = () => {
 
     const [isNextSticky, setIsNextSticky] = useState<boolean>(false);
 
-    const [preferenceForm, setPreferenceForm] = useState<InspirationPreferenceFormFields>(defaultInspirationPreferenceFields);
-
-    const livApp = useLivvyApp();
-    const navigate = useNavigate();
-    const {setIsOpen, isOpen} = useModal();
-
     const buttonContainerRef = useRef<HTMLDivElement>(null);
 
     const updateButtonSticky = () => {
         if (buttonContainerRef.current) {
             const gridRect = buttonContainerRef.current.getBoundingClientRect();
 
-            if(gridRect.bottom >= window.innerHeight) {
+            if (gridRect.bottom >= window.innerHeight) {
                 // we are within and above grid section
                 setIsNextSticky(true);
             } else {
@@ -47,7 +40,6 @@ export const BrowseLibrary = () => {
     }
 
     useEffect(() => {
-        setHeaderBGColor('white');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
 
@@ -74,30 +66,11 @@ export const BrowseLibrary = () => {
         }
     }, [invalidSelection, livApp]);
 
-    useEffect(() => {
-        setPreferenceForm({...preferenceForm, totalInspirations: selected.length})
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selected]);
-
-    useEffect(() => {
-        if (!isOpen) {
-            // if we have selected then we need to update the preference form total
-            setPreferenceForm({...defaultInspirationPreferenceFields, totalInspirations: selected.length});
-        }
-    }, [isOpen, selected]);
-
     const handleSubmit = () => {
         // TODO handle submit
-        // mark the modal as closed
-        setIsOpen(false);
-
-        navigate('/inspiration/loading')
-    }
-
-    const handleNext = () => {
         // check if there are any images selected
         if (selected.length > 0) {
-            setIsOpen(true);
+            navigate('/style-quiz/results')
         } else {
             livApp.setAlert({
                 message: "You need to select at least 1 image before proceeding",
@@ -110,7 +83,7 @@ export const BrowseLibrary = () => {
         <div>
             <div className="container liv-container">
                 <h1 className='text-xl sm:text-2xl italic capitalize font-thin sm:mb-7'
-                    style={{fontFamily: "PP Editorial New"}}>Please choose up to 4 inspiration images</h1>
+                    style={{fontFamily: "PP Editorial New"}}>4. Which of these design styles resonate most with you? Choose up to 4.</h1>
 
                 <div className="mt-6">
                     <ResponsiveMasonry columnsCountBreakPoints={{640: 2, 1024: 3, 1280: 4}}>
@@ -158,7 +131,7 @@ export const BrowseLibrary = () => {
                         "px-6 mobile-w-full top-0 absolute left-1/2 -translate-x-1/2 z-20": !isNextSticky
                     })}>
                         <LivButton as={'button'} text={'next'} borderColor={'border-black'} bgColor={'bg-black'}
-                                   textColor={'text-white'} style={'thick'} onClickHandler={handleNext} width={'custom'} className={isNextSticky ? "w-full" : "m-auto"} onWhiteBg={true}/>
+                                   textColor={'text-white'} style={'thick'} onClickHandler={handleSubmit} width={'custom'} className={isNextSticky ? "w-full" : "m-auto"} onWhiteBg={true}/>
                     </div>
                 </div>
             </div>
@@ -167,11 +140,6 @@ export const BrowseLibrary = () => {
                 enlargedImage &&
                 <EnlargedInspiration isOpen={openEnlarged} setIsOpen={setOpenEnlarged} image={enlargedImage}/>
             }
-
-            <LivModal>
-                <InspirationFeedback form={preferenceForm} setForm={setPreferenceForm} urls={selected}
-                                     handleSubmit={handleSubmit}/>
-            </LivModal>
         </div>
     )
 }

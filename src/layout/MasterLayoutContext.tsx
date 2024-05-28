@@ -6,7 +6,7 @@ interface MasterLayoutContextProps {
     headerTextColor?: 'white' | 'black',
     setHeaderTextColor?: Dispatch<SetStateAction<'white' | 'black'>>,
     headerBgColor: string | null,
-    setHeaderBGColor: Dispatch<SetStateAction<string | null>>,
+    setHeaderBgColor: Dispatch<SetStateAction<string | null>>,
     showFooter?: boolean,
     setShowFooter?: (show: boolean) => void,
     footerVariant?: 'tan' | 'black',
@@ -31,7 +31,7 @@ export const MasterLayoutContext = createContext<MasterLayoutContextProps>({
     setHeaderTextColor: () => {
     },
     headerBgColor: null,
-    setHeaderBGColor: () => {
+    setHeaderBgColor: () => {
     },
     showFooter: true,
     setShowFooter: () => {

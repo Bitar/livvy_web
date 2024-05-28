@@ -96,7 +96,7 @@ export const ResetPassword = () => {
                                                    textColor={'text-white'} bgColor={'bg-black'}
                                                    borderColor={'border-black'}
                                                    isSubmitting={formik.isSubmitting}
-                                                   isValid={formik.isValid} fullWidth={true}
+                                                   isValid={formik.isValid} width={'full'}
                                                    className={'mb-4'}/>
                                     </div>
                                 </Form>

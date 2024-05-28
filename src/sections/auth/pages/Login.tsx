@@ -97,7 +97,7 @@ export const Login = () => {
                                                textColor={'text-white'} bgColor={'bg-black'}
                                                borderColor={'border-black'}
                                                isSubmitting={formik.isSubmitting}
-                                               isValid={formik.isValid} fullWidth={true}
+                                               isValid={formik.isValid} width={'full'}
                                                className={'mb-4'}/>
                                 </div>
                             </Form>
@@ -107,11 +107,11 @@ export const Login = () => {
                     <LivButton text={'continue with google'} borderColor={'border-black'}
                                bgColor={'bg-transparent'} arrowIcon={false}
                                textIcon={'assets/google-icon.svg'}
-                               fullWidth={true} className={'mb-4'}/>
+                               width={'full'} className={'mb-4'}/>
 
                     <LivButton text={'continue with pinterest'} borderColor={'border-black'}
                                bgColor={'bg-transparent'} arrowIcon={false}
-                               textIcon={'assets/pinterest-icon.svg'} fullWidth={true} className={'mb-4'}/>
+                               textIcon={'assets/pinterest-icon.svg'} width={'full'} className={'mb-4'}/>
 
                     <div>
                         <button className="uppercase text-xs border-0 border-b border-b-black" onClick={() => navigate('/auth/reset-password')}>reset password</button>

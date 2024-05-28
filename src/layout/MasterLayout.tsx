@@ -20,7 +20,7 @@ export const MasterLayout = () => {
     const [backgroundPoster, setBackgroundPoster] = useState<string | null>(null);
     const [backgroundColor, setBackgroundColor] = useState<string | null>(null);
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
-    const [headerBgColor, setHeaderBGColor] = useState<string | null>(null);
+    const [headerBgColor, setHeaderBgColor] = useState<string | null>(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
@@ -42,7 +42,7 @@ export const MasterLayout = () => {
                 headerTextColor,
                 setHeaderTextColor,
                 headerBgColor,
-                setHeaderBGColor,
+                setHeaderBgColor,
                 showFooter,
                 setShowFooter,
                 footerVariant,

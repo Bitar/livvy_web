@@ -126,7 +126,7 @@ export const BetaRegister = () => {
                                                    textColor={'text-white'} bgColor={'bg-black'}
                                                    borderColor={'border-black'}
                                                    isSubmitting={formik.isSubmitting}
-                                                   isValid={formik.isValid} fullWidth={true}/>
+                                                   isValid={formik.isValid} width={'full'}/>
 
                                         <div className="text-center">
                                             <span className="text-xs">Already have an account? <Link
