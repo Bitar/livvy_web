@@ -71,7 +71,7 @@ export const StagingPages = () => {
                                     <div className='p-4'>
                                         <p className='uppercase text-xl mb-4'>{stagingPage.title}</p>
                                         <LivButton
-                                            fullWidth={true}
+                                            width={"full"}
                                             as={'button'}
                                             text={'View Page'}
                                             borderColor={'border-white'}

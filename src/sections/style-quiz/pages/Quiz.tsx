@@ -29,7 +29,7 @@ export const Quiz = () => {
     }, []);
 
     const handleSubmit = () => {
-        navigate('/style-quiz/results')
+        navigate('/style-quiz/confirm-style')
     }
 
     const handleOnChange = (e: FormEvent<HTMLFormElement>) => {
