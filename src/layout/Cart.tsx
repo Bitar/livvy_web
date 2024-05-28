@@ -162,7 +162,7 @@ export const Cart = () => {
 
                 <div>
                     <LivButton as={'button'} text={'checkout'} borderColor={'border-black'}
-                               bgColor={'bg-black'} hasArrow={false} textColor={'text-white'} fullWidth={true} onWhiteBg={true}
+                               bgColor={'bg-black'} hasArrow={false} textColor={'text-white'} width={'full'} onWhiteBg={true}
                     />
                 </div>
             </div>
