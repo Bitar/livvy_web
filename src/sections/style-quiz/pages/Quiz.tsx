@@ -3,13 +3,15 @@ import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import {questions, StyleQuizAnswer, StyleQuizQuestion} from "../../../data/style-quiz.ts";
 import {useWizard, Wizard} from 'react-use-wizard';
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import clsx from "clsx";
 import {QuestionForm, QuestionSchema} from "../core/form.ts";
 import toast from "react-hot-toast";
 
 export const Quiz = () => {
+    const navigate = useNavigate();
+
     const {setBackgroundType, setBackgroundColor, setFooterVariant} = useMasterLayout();
 
     const [form, setForm] = useState<QuestionForm[]>([])
@@ -27,7 +29,7 @@ export const Quiz = () => {
     }, []);
 
     const handleSubmit = () => {
-        console.log(form);
+        navigate('/style-quiz/results')
     }
 
     const handleOnChange = (e: FormEvent<HTMLFormElement>) => {
@@ -109,7 +111,7 @@ const Question = ({idx, question, form, handleSubmit}: {
     }
 
     return (
-        <div className="max-w-lg">
+        <div className="max-w-2xl">
             <h1 className="text-xl md:text-2xl italic font-extralight mb-8 text-center"
                 style={{fontFamily: "PP Editorial New"}}>{idx + 1}. {question.text}</h1>
 
@@ -152,7 +154,7 @@ const Answer = ({questionIndex, answerIndex, answer, form}: {
     return (
         <div className="mb-2" key={`answer-${answer.id}`} onClick={() => radioRef.current.click()}>
             <div
-                className={clsx("inline-flex justify-start items-center p-2.5 bg-opacity-50 rounded-3xl border border-black border-opacity-50 w-60 cursor-pointer hover:bg-liv-green hover:bg-opacity-50", {
+                className={clsx("inline-flex justify-start items-center p-2.5 bg-opacity-50 rounded-3xl border border-black border-opacity-50 w-full cursor-pointer hover:bg-liv-green hover:bg-opacity-50", {
                     'bg-liv-green': form[questionIndex].answer == answer.id.toString(),
                     'bg-white': form[questionIndex].answer != answer.id.toString()
                 })}>
@@ -166,7 +168,7 @@ const Answer = ({questionIndex, answerIndex, answer, form}: {
                        className={'invisible'}/>
 
                 <ErrorMessage name={`[${questionIndex}].answer`}/>
-                <div>{answer.text}</div>
+                <div className="text-sm lg:text-base">{answer.text}</div>
             </div>
         </div>
     )

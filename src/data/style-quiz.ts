@@ -16,67 +16,91 @@ export const questions : StyleQuizQuestion[] = [
         'answers': [
             {
                 'id': 1,
-                'text': 'Welcoming and warm'
+                'text': 'Classic and elegant'
             },
             {
                 'id': 2,
-                'text': 'Airy and minimal'
+                'text': 'Modern and minimal'
             },
             {
                 'id': 3,
-                'text': 'Unique and vintage'
+                'text': 'Eclectic and colorful'
             },
             {
                 'id': 4,
-                'text': 'Cool and modern'
+                'text': 'Airy and minimal'
             },
             {
                 'id': 5,
-                'text': 'Relaxing and cozy'
-            },
-            {
-                'id': 6,
                 'text': 'Glamorous and feminine'
             },
             {
+                'id': 6,
+                'text': 'Rustic and cozy'
+            },
+            {
                 'id': 7,
-                'text': 'Rustic and warm'
+                'text': 'Industrial and raw'
+            },
+            {
+                'id': 8,
+                'text': 'Beachy and natural'
             }
         ]
     },
     {
         'id': 2,
-        'text': 'What are the primary functions of the space?',
+        'text': 'Which colors typically catch your eye?',
         'answers': [
             {
                 'id': 8,
-                'text': 'Relaxation'
+                'text': 'Neutral shades such as beige, cream, brown, and black'
             },
             {
                 'id': 9,
-                'text': 'Entertaining Guests'
+                'text': 'Vibrant colors like purple, yellow, and bold jewel tones'
             },
             {
                 'id': 10,
-                'text': 'Working'
+                'text': 'Deep earthy tones  like olive, caramel, and red ochre'
+            },
+            {
+                'id': 11,
+                'text': 'Pastel colors like blush pink, lavender, and baby blue'
+            },
+            {
+                'id': 12,
+                'text': 'Coastal colors like sand, seafoam, and sky blue'
             }
         ]
     },
     {
         'id': 3,
-        'text': 'How often do you entertain guests, and do you need the space to cater to a specific number of people?',
+        'text': 'What kinds of decor do you typically gravitate toward?',
         'answers': [
             {
-                'id': 11,
-                'text': 'Occasionally'
-            },
-            {
                 'id': 12,
-                'text': 'Frequently'
+                'text': 'Sleek and minimalist pieces that use elements like metal, glass, and concrete'
             },
             {
                 'id': 13,
-                'text': 'Rarely'
+                'text': 'Ornate, yet classic items featuring rich colors and intricate patterns'
+            },
+            {
+                'id': 14,
+                'text': 'Soft, modern elements using organic shapes  and materials'
+            },
+            {
+                'id': 15,
+                'text': 'Pieces inspired by warehouses using steels and unfinished wood'
+            },
+            {
+                'id': 16,
+                'text': 'Colorful and eclectic pieces often with patterns from around the world'
+            },
+            {
+                'id': 17,
+                'text': 'Items that feel rustic and vintage'
             }
         ]
     }
