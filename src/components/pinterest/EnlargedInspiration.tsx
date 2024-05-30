@@ -51,7 +51,7 @@ export const EnlargedInspiration = ({isOpen, setIsOpen, image}: {
 
             <button className={clsx("absolute right-6 top-5 z-50 uppercase text-white border-0 border-b border-b-white text-xs leading-3")} onClick={() => setIsClosing(true)}>close</button>
 
-            <div className="fixed z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-url bg-no-repeat bg-center bg-contain" style={{backgroundImage: `url(${image})`, height: contentHeight, width: contentWidth}}></div>
+            <div className="fixed z-40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-no-repeat bg-center bg-contain" style={{backgroundImage: `url(${image})`, height: contentHeight, width: contentWidth}}></div>
         </div>
     )
 }

@@ -18,6 +18,11 @@
 @import "assets/staging";
 
 @layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
   html, .container {
     font-family: 'Neue Haas Grotesk Display Pro', system-ui, sans-serif;
   }

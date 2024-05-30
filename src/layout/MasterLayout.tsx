@@ -19,6 +19,7 @@ export const MasterLayout = () => {
     const [backgroundUrl, setBackgroundUrl] = useState<string | null>(null);
     const [backgroundPoster, setBackgroundPoster] = useState<string | null>(null);
     const [backgroundColor, setBackgroundColor] = useState<string | null>(null);
+    const [backgroundOverlayOpacity, setBackgroundOverlayOpacity] = useState<string>('opacity-50');
     const [headerTextColor, setHeaderTextColor] = useState<'white' | 'black'>('white');
     const [headerBgColor, setHeaderBgColor] = useState<string | null>(null);
 
@@ -49,6 +50,8 @@ export const MasterLayout = () => {
                 setFooterVariant,
                 backgroundType,
                 setBackgroundType,
+                backgroundOverlayOpacity,
+                setBackgroundOverlayOpacity,
                 backgroundUrl,
                 setBackgroundUrl,
                 backgroundColor,
@@ -65,11 +68,11 @@ export const MasterLayout = () => {
                     <CartProvider>
                         <div id="wrapper" className='relative'>
                             {
-                                backgroundType === "image" && <Background type={`${backgroundType}`} url={backgroundUrl}/>
+                                backgroundType === "image" && <Background type={`${backgroundType}`} url={backgroundUrl} backgroundOverlayOpacity={backgroundOverlayOpacity}/>
                             }
 
                             {
-                                backgroundType == "video" && <Background type={`${backgroundType}`} url={backgroundUrl} poster={backgroundPoster}/>
+                                backgroundType == "video" && <Background type={`${backgroundType}`} url={backgroundUrl} poster={backgroundPoster} backgroundOverlayOpacity={backgroundOverlayOpacity}/>
                             }
 
                             {
@@ -78,7 +81,7 @@ export const MasterLayout = () => {
 
                             {showHeader && <Header textColor={headerTextColor} bgColor={headerBgColor}/>}
 
-                            <div id="content" className={clsx( 'items-center',{
+                            <div id="content" className={clsx('items-center', {
                                 "blur-md": blurContent,
                                 "pt-16": showHeader,
                                 "pb-[710px] md:pb-[500px] lg:pb-80": showFooter

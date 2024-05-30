@@ -1,23 +1,26 @@
 import {FC} from "react";
+import clsx from "clsx";
 
 type BackgroundProps = | {
     type?: "video" | "image"
     url?: string,
     poster?: string,
-    color?: never
+    color?: never,
+    backgroundOverlayOpacity?: string
 } | {
     type?: "color",
     color?: string,
     url?: never
-    poster?: never
+    poster?: never,
+    backgroundOverlayOpacity?: never
 }
 
-export const Background: FC<BackgroundProps> = ({type, url, poster, color}) => {
+export const Background: FC<BackgroundProps> = ({type, url, poster, color, backgroundOverlayOpacity = 'opacity-50'}) => {
     return (
         <div className="fixed min-w-full min-h-full -z-10 overflow-hidden">
             {
                 (type == 'video' || type == 'image') &&
-                <div className="h-full w-full bg-black opacity-50 absolute top-0 left-0"/>
+                <div className={clsx("h-full w-full bg-black absolute top-0 left-0", backgroundOverlayOpacity)}/>
             }
 
             {type == 'video' && url !== null && (

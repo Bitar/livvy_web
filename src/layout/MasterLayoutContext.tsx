@@ -13,6 +13,8 @@ interface MasterLayoutContextProps {
     setFooterVariant?: Dispatch<SetStateAction<'tan' | 'black'>>
     backgroundType: 'video' | 'image' | 'color',
     setBackgroundType: Dispatch<SetStateAction<'video' | 'image' | 'color'>>,
+    backgroundOverlayOpacity: string,
+    setBackgroundOverlayOpacity: Dispatch<SetStateAction<string>>,
     backgroundUrl: string | null,
     setBackgroundUrl: Dispatch<SetStateAction<string | null>>,
     backgroundColor: string | null,
@@ -41,6 +43,9 @@ export const MasterLayoutContext = createContext<MasterLayoutContextProps>({
     },
     backgroundType: 'video',
     setBackgroundType: () => {
+    },
+    backgroundOverlayOpacity: 'opacity-50',
+    setBackgroundOverlayOpacity: () => {
     },
     backgroundUrl: null,
     setBackgroundUrl: () => {

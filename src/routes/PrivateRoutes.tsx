@@ -8,8 +8,8 @@ import {InspirationRoutes} from "./InspirationRoutes.tsx";
 import {Membership} from "../sections/membership/pages/Membership.tsx";
 import React from "react";
 import {ProductRoutes} from "./ProductRoutes.tsx";
-import {TakeQuiz} from "../sections/style-quiz/pages/TakeQuiz.tsx";
 import {StyleQuizRoutes} from "./StyleQuizRoutes.tsx";
+import {Chatbot} from "../sections/chatbot/pages/Chatbot.tsx";
 
 const PrivateRoutes = () => {
 
@@ -31,6 +31,8 @@ const PrivateRoutes = () => {
                 <Route path='/product/*' element={<ProductRoutes/>}/>
 
                 <Route path='/style-quiz/*' element={<StyleQuizRoutes/>}/>
+
+                <Route path='/chatbot' element={<Chatbot/>}/>
 
                 <Route path='/test' element={<Test/>}/>
 
