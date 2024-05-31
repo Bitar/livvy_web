@@ -54,6 +54,10 @@ export const LivvyChatbot = () => {
         setForm(defaultMessageFormFields);
         setIsPendingReply(true);
 
+        setTimeout(() => {
+            endOfChatRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 1000);
+
         // TODO add a flag to show the bot loading messages instead of adding it to the chat messages because if we add it to chat messages we'll have to worry about removing it
 
         setTimeout(() => {
