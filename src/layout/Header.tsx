@@ -12,9 +12,7 @@ export const Header = ({textColor, bgColor = 'transparent'}: { textColor: 'white
     const {setBlurContent} = useMasterLayout();
 
     return (
-        <div id="header" className={clsx('fixed w-full flex flex-wrap items-center justify-between mx-auto border-b px-4 lg:px-10 z-40', {
-            'bg-liv-tan': bgColor == 'tan',
-            'bg-transparent': bgColor == 'transparent',
+        <div id="header" className={clsx(`fixed w-full flex flex-wrap items-center justify-between mx-auto border-b px-4 lg:px-10 z-40 bg-${bgColor}`, {
             'border-white/50': textColor == 'white',
             'border-black': textColor == 'black'
         })}>

@@ -1,7 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faComment} from "@fortawesome/free-regular-svg-icons";
 import {faChevronRight, faMinus} from "@fortawesome/free-solid-svg-icons";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import clsx from "clsx";
 import {genericOnChangeHandler} from "../helpers/form.ts";
 import {Field, Form, Formik} from "formik";
@@ -28,6 +28,9 @@ export const LivvyChatbot = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
     const [showToggle, setShowToggle] = useState<boolean>(true);
+    const [isPendingReply, setIsPendingReply] = useState<boolean>(false);
+
+    const endOfChatRef = useRef<HTMLDivElement>(null);
 
     // TODO below functionality
     // On first land we have the text so they know what it is
@@ -41,37 +44,22 @@ export const LivvyChatbot = () => {
         // TODO reset the form + clear the message input field
         const oldForm = {...form};
 
-        console.log([...chatMessages, {
-            source: 'user',
-            timestamp: '9:00 AM',
-            text: oldForm.message,
-            isLoading: false
-        }]);
-
         setChatMessages([...chatMessages, {
             source: 'user',
             timestamp: '9:00 AM',
             text: oldForm.message,
             isLoading: false
-        }]);
+        }])
 
         setForm(defaultMessageFormFields);
+        setIsPendingReply(true);
 
         // TODO add a flag to show the bot loading messages instead of adding it to the chat messages because if we add it to chat messages we'll have to worry about removing it
 
-        // setTimeout(() => {
-        //     console.log(chatMessages);
-        //
-        //     setChatMessages([...chatMessages, {
-        //         source: 'bot',
-        //         text: '',
-        //         timestamp: '',
-        //         isLoading: true
-        //     }]);
-        // }, 5000);
-
-        console.log(form);
-        console.log("message sent");
+        setTimeout(() => {
+            setIsPendingReply(false);
+            endOfChatRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 5000);
     }
 
     useEffect(() => {
@@ -127,16 +115,15 @@ export const LivvyChatbot = () => {
                     {
                         chatMessages.map((chatMessage, index) => (
                             chatMessage.source == 'bot' ?
-                                (
-                                    chatMessage.isLoading ?
-                                        <BotMessage isLoading={true} key={`chat-message-${index}`}/>
-                                        :
-                                        <BotMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
-                                )
+                                <BotMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
                                 :
                                 <UserMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
                         ))
                     }
+                    {
+                        isPendingReply && <BotMessage text="" timestamp="" isLoading={true}/>
+                    }
+                    <div style={{float: "left", clear: "both"}} ref={endOfChatRef}></div>
                 </div>
                 {/*-------------------- Body --------------------*/}
 
