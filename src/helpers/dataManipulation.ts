@@ -25,3 +25,14 @@ export const formatKpiTarget = (target: string) => {
 export const onlyUnique = (value: any, index: number, array: any[]) => {
     return array.indexOf(value) === index;
 }
+
+export const convertEpoch = (value) => {
+    if (!value) {
+        return ''
+    }
+    const time = new Date(Number(value));
+    if (isNaN(time.valueOf())) {
+        return '';
+    }
+    return time.toLocaleString("en-US", {hour: "numeric", minute: "numeric", hour12: true});
+}
