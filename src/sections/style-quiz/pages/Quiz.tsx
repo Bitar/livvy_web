@@ -2,7 +2,7 @@ import {FormEvent, useEffect, useRef, useState} from "react";
 import {useMasterLayout} from "../../../layout/MasterLayoutContext.loader.ts";
 import {questions, StyleQuizAnswer, StyleQuizQuestion} from "../../../data/style-quiz.ts";
 import {useWizard, Wizard} from 'react-use-wizard';
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 import clsx from "clsx";
@@ -160,7 +160,7 @@ const Answer = ({questionIndex, answerIndex, answer, form}: {
                     'bg-white': form[questionIndex].answer != answer.id.toString()
                 })}>
                 <div
-                    className="w-6 h-6 bg-liv-green text-white rounded-full relative border border-black me-2.5 flex-none">
+                    className="w-6 h-6 bg-liv-green text-white rounded-full relative border border-black flex-none">
                                 <span
                                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 uppercase">{alphabet[answerIndex]}</span>
                 </div>
