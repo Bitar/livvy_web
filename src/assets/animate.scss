@@ -188,10 +188,10 @@ button.liv-white-hover, a.liv-white-hover {
 .chat-container {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.6s ease-out;
+  transition: max-height 0.4s ease-out;
 }
 
 .chat-container.expanded {
   max-height: 800px; /* Adjust based on the content's height */
-  transition: max-height 0.6s ease-in;
+  transition: max-height 0.4s ease-in;
 }

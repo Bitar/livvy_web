@@ -210,13 +210,18 @@ export const LivvyChatbot = () => {
             })}>
                 {/*-------------------- Header --------------------*/}
                 <div className="chat-header bg-liv-green bg-opacity-70 text-white p-4 md:rounded-t-lg flex-none text-left">
-                    <div className="text-right mb-0.5">
-                        <button type="button" onClick={() => setIsCollapsed(true)}><FontAwesomeIcon icon={faMinus}/></button>
+                    <div className="flex justify-around items-start">
+                        <div>
+                            <h6 style={{fontFamily: "PP Editorial New"}} className="italic font-extralight text-lg mb-1">Shea McGee AI</h6>
+
+                            <p className="text-xs w-full">Description here regarding how Livvy can adjust the items in their space via chat.</p>
+                        </div>
+
+                        <div className="text-right">
+                            <button type="button" onClick={() => setIsCollapsed(true)}><FontAwesomeIcon icon={faMinus}/></button>
+                        </div>
                     </div>
 
-                    <h6 style={{fontFamily: "PP Editorial New"}} className="italic font-extralight text-lg mb-1">Shea McGee AI</h6>
-
-                    <p className="text-xs w-full">Description here regarding how Livvy can adjust the items in their space via chat.</p>
                 </div>
                 {/*-------------------- Header --------------------*/}
 

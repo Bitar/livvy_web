@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 export const Quiz = () => {
     const navigate = useNavigate();
 
-    const {setBackgroundType, setBackgroundColor, setFooterVariant} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setFooterVariant, setHeaderBgColor} = useMasterLayout();
 
     const [form, setForm] = useState<QuestionForm[]>([])
 
@@ -20,6 +20,7 @@ export const Quiz = () => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setFooterVariant('black');
+        setHeaderBgColor('liv-tan');
 
         setForm(questions.map((current) => (
             {id: current.id, answer: ""}
@@ -50,7 +51,7 @@ export const Quiz = () => {
     }
 
     return (
-        <div className="container liv-container">
+        <div className="container liv-container h-[calc(100vh-62px)]">
             <div className="inline-block m-auto">
                 <Formik
                     initialValues={form}
@@ -159,7 +160,7 @@ const Answer = ({questionIndex, answerIndex, answer, form}: {
                     'bg-white': form[questionIndex].answer != answer.id.toString()
                 })}>
                 <div
-                    className="w-6 h-6 bg-liv-green text-white rounded-full relative border border-black me-2.5">
+                    className="w-6 h-6 bg-liv-green text-white rounded-full relative border border-black me-2.5 flex-none">
                                 <span
                                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 uppercase">{alphabet[answerIndex]}</span>
                 </div>
@@ -167,7 +168,7 @@ const Answer = ({questionIndex, answerIndex, answer, form}: {
                        checked={form[questionIndex].answer == answer.id.toString()} innerRef={radioRef}
                        className={'invisible'}/>
 
-                <ErrorMessage name={`[${questionIndex}].answer`}/>
+                {/*<ErrorMessage name={`[${questionIndex}].answer`}/>*/}
                 <div className="text-sm lg:text-base">{answer.text}</div>
             </div>
         </div>
