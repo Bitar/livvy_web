@@ -51,7 +51,7 @@ export const LivvyChatbot = () => {
     const [token, setToken] = useState<string>(null);
     const [tokenRegistrationErrors, setTokenRegistrationErrors] = useState<string[]>([]);
 
-    const [notificationsAccepted, setNotificationsAccepted] = useState<boolean>(true);
+    const [notificationsAccepted, setNotificationsAccepted] = useState<boolean>(false);
     // end: firebase state
 
     const endOfChatRef = useRef<HTMLDivElement>(null);
