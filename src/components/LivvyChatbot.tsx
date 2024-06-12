@@ -44,7 +44,7 @@ export const LivvyChatbot = () => {
 
     const endOfChatRef = useRef<HTMLDivElement>(null);
 
-    const connection = new WebSocket('ws://localhost:9010');
+    const [connection, setConnection] = useState<WebSocket>(null);
 
     const addMessage = (message: DesignerChatMessage) => {
         const oldMessages = [...chatMessages];
@@ -56,6 +56,14 @@ export const LivvyChatbot = () => {
 
     useEffect(() => {
         if (connection) {
+            connection.onopen = () => {
+                connection.send(JSON.stringify({
+                    type: 'init'
+                }));
+
+                openChat()
+            }
+
             connection.onmessage = evt => {
                 console.log(chatMessages);
 
@@ -88,19 +96,12 @@ export const LivvyChatbot = () => {
                 setIsPendingReply(false);
             };
         }
-    }, [connection]);
 
-
-    const waitForConnection = (callback) => {
-        if (connection.readyState === 1) {
-            callback();
-        } else {
-            // optional: implement backoff for interval here
-            setTimeout(function () {
-                waitForConnection(callback);
-            }, 1000);
+        return () => {
+            if (connection) connection.close();
         }
-    };
+
+    }, [connection]);
 
     // TODO below functionality
     // On first land we have the text so they know what it is
@@ -164,14 +165,16 @@ export const LivvyChatbot = () => {
     }
 
     useEffect(() => {
-        // create a new thread with openai
-        waitForConnection(() => {
-            connection.send(JSON.stringify({
-                type: 'init'
-            }));
-        });
+        const webSocket = new WebSocket('ws://localhost:9010');
+        setConnection(webSocket);
 
-        openChat();
+        // waitForConnection(() => {
+        //     connection.send(JSON.stringify({
+        //         type: 'init'
+        //     }));
+        // });
+        //
+        // openChat();
     }, []);
 
     useEffect(() => {
