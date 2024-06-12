@@ -165,6 +165,7 @@ export const LivvyChatbot = () => {
     useEffect(() => {
         if (!("Notification" in window)) {
             setNotificationsAccepted(false);
+            alert("browser doesn't support notifications");
             console.log("browser doesn't support notifications")
         } else {
             setNotificationsAccepted(Notification.permission === 'granted');

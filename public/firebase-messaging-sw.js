@@ -27,6 +27,3 @@ messaging.onBackgroundMessage(function (payload) {
     console.log('Received background message');
     console.log(payload);
 });
-
-console.log("In service worker");
-console.log(Notification.permission);
