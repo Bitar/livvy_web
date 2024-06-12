@@ -7,16 +7,10 @@ import {genericOnChangeHandler} from "../helpers/form.ts";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {DesignerChatMessage} from "../models/designer-chat/DesignerChatMessage.ts";
-import {initializeApp} from "firebase/app";
-import {getMessaging, getToken, onMessage} from "firebase/messaging";
 import {submitRequest} from "../helpers/requests.ts";
-import {registerUserToken} from "../requests/iam/Firebase.ts";
-import toast from "react-hot-toast";
-import {sendMessage, startChat} from "../requests/chatbot/DesignerChat.ts";
+import {sendMessage} from "../requests/chatbot/DesignerChat.ts";
 import {DesignerChat} from "../models/designer-chat/DesignerChat.ts";
-import {LivModal} from "./modals/LivModal.tsx";
-import {useModal} from "../layout/ModalProvider.loader.ts";
-import {LivButton} from "./buttons/LivButton.tsx";
+import {useAuth} from "../sections/auth/core/Auth.loader.ts";
 
 interface MessageFormFields {
     message: string
@@ -31,7 +25,9 @@ const MessageValidationSchema = Yup.object().shape({
 });
 
 export const LivvyChatbot = () => {
-    const {setIsOpen, isOpen} = useModal();
+    const {currentUser} = useAuth();
+
+    const [threadId, setThreadId] = useState<string | null>(null);
 
     const [chat, setChat] = useState<DesignerChat | null>(null);
     const [chatMessages, setChatMessages] = useState<DesignerChatMessage[]>([]);
@@ -46,79 +42,65 @@ export const LivvyChatbot = () => {
     const [showToggle, setShowToggle] = useState<boolean>(true);
     const [isPendingReply, setIsPendingReply] = useState<boolean>(false);
 
-    // start: firebase states
-    const [isTokenFound, setTokenFound] = useState<boolean>(false);
-    const [token, setToken] = useState<string>(null);
-    const [tokenRegistrationErrors, setTokenRegistrationErrors] = useState<string[]>([]);
-
-    const [notificationsAccepted, setNotificationsAccepted] = useState<boolean>(false);
-    // end: firebase state
-
     const endOfChatRef = useRef<HTMLDivElement>(null);
 
-    // START FIREBASE
-    const firebaseConfig = {
-        apiKey: "AIzaSyA_Qwl9-5Vjlr3AHh5piiPDsMJZFeXHPrw",
-        authDomain: "livvy-791d3.firebaseapp.com",
-        projectId: "livvy-791d3",
-        storageBucket: "livvy-791d3.appspot.com",
-        messagingSenderId: "508730217674",
-        appId: "1:508730217674:web:ea232c83fd5a6cf2c25033",
-        measurementId: "G-45XDPH3GZN"
-    };
+    const connection = new WebSocket('ws://localhost:9010');
 
-    // Initialize Firebase
-    const firebaseApp = initializeApp(firebaseConfig);
-    const messaging = getMessaging(firebaseApp);
+    const addMessage = (message: DesignerChatMessage) => {
+        const oldMessages = [...chatMessages];
 
-    const getAppToken = () => {
-        return getToken(messaging, {vapidKey: 'BPePZxodyaclbumEEGyOR-ydl9OW1TeF0o16nUustBIgFv6T-Wwanni1Ni_5BYYBYMcVi623sJmThR2_gFPU9vI'}).then((currentToken) => {
-            if (currentToken) {
-                submitRequest(registerUserToken, [{'platform': 3, 'token': currentToken}], () => {
-                }, setTokenRegistrationErrors);
+        oldMessages.push(message);
 
-                setTokenFound(true);
-                setToken(currentToken);
-                // Track the token -> client mapping, by sending to backend server
-                // show on the UI that permission is secured
-            } else {
-                toast.error('Failure to establish connection with designer chat. Make sure notifications are enabled for browser.', {
-                    duration: 5000
-                });
-
-                setTokenFound(false);
-                // shows on the UI that permission is required
-            }
-        }).catch((err) => {
-            console.log(err);
-            toast.error('Failure to establish connection with designer chat. Make sure you\'re not in incognito mode.', {
-                duration: 5000
-            });
-            // catch error while creating client token
-        });
+        setChatMessages(oldMessages);
     }
 
-    const onMessageListener = () =>
-        new Promise((resolve) => {
-            onMessage(messaging, (payload) => {
-                resolve(payload);
-            });
-        });
+    useEffect(() => {
+        if (connection) {
+            connection.onmessage = evt => {
+                console.log(chatMessages);
 
-    onMessageListener().then((payload: { notification: { title: string, body: string } }) => {
-        console.log(payload);
+                console.log("message from websocket");
+                console.log(evt.data);
 
-        setChatMessages([...chatMessages, {
-            source: 'bot',
-            timestamp: '9:00 AM', // TODO integrate the time to show the user
-            text: payload.notification.body,
-            isLoading: false
-        }]);
+                const data = JSON.parse(evt.data);
 
-        setIsPendingReply(false);
-    }).catch(err => console.log('failed: ', err));
+                console.log(data);
 
-    // END FIREBASE
+                addMessage({
+                    source: 'bot',
+                    timestamp: '9:00 AM', // TODO integrate the time to show the user
+                    text: data.message,
+                    isLoading: false
+                });
+
+                // const oldMessages = [...chatMessages];
+                //
+                // oldMessages.push({
+                //     source: 'bot',
+                //     timestamp: '9:00 AM', // TODO integrate the time to show the user
+                //     text: data.message,
+                //     isLoading: false
+                // });
+                //
+                // setChatMessages(oldMessages);
+
+                setThreadId(data.threadId);
+                setIsPendingReply(false);
+            };
+        }
+    }, [connection]);
+
+
+    const waitForConnection = (callback) => {
+        if (connection.readyState === 1) {
+            callback();
+        } else {
+            // optional: implement backoff for interval here
+            setTimeout(function () {
+                waitForConnection(callback);
+            }, 1000);
+        }
+    };
 
     // TODO below functionality
     // On first land we have the text so they know what it is
@@ -126,21 +108,40 @@ export const LivvyChatbot = () => {
 
     // TODO add pagination (scroll top) for messages
     const handleSendMessage = () => {
+        connection.send(JSON.stringify({
+            type: 'message',
+            threadId: threadId,
+            message: form.message
+        }));
+
         // TODO send message through API
         // TODO when the API acknowledges receipt, we show the message in the chat window
         // TODO add the bot loading message until we receive a reply
         // TODO reset the form + clear the message input field
-        submitRequest(sendMessage, [chat.id, form], (response) => {
-            setChatMessages([...chatMessages, {
-                source: 'user',
-                timestamp: '9:00 AM', // TODO add timestamp
-                text: form.message,
-                isLoading: false
-            }])
+        // submitRequest(sendMessage, [chat.id, form], (response) => {
+        // const oldMessages = [...chatMessages];
+        //
+        // oldMessages.push({
+        //     source: 'user',
+        //     timestamp: '9:00 AM', // TODO add timestamp
+        //     text: form.message,
+        //     isLoading: false
+        // });
+        //
+        // setChatMessages(oldMessages);
 
-            setForm(defaultMessageFormFields);
-            setIsPendingReply(true);
+        addMessage({
+            source: 'user',
+            timestamp: '9:00 AM', // TODO add timestamp
+            text: form.message,
+            isLoading: false
         });
+
+        console.log(chatMessages);
+
+        setForm(defaultMessageFormFields);
+        setIsPendingReply(true);
+        // });
 
         //
         // // TODO add a flag to show the bot loading messages instead of adding it to the chat messages because if we add it to chat messages we'll have to worry about removing it
@@ -163,44 +164,19 @@ export const LivvyChatbot = () => {
     }
 
     useEffect(() => {
-        if (!("Notification" in window)) {
-            setNotificationsAccepted(false);
-            alert("browser doesn't support notifications");
-            console.log("browser doesn't support notifications")
-        } else {
-            setNotificationsAccepted(Notification.permission === 'granted');
-        }
+        // create a new thread with openai
+        waitForConnection(() => {
+            connection.send(JSON.stringify({
+                type: 'init'
+            }));
+        });
+
+        openChat();
     }, []);
 
     useEffect(() => {
-        if (notificationsAccepted) {
-            getAppToken();
-            setIsOpen(false);
-        } else {
-            setIsOpen(true);
-        }
-    }, [notificationsAccepted]);
-
-    useEffect(() => {
-        if (tokenRegistrationErrors.length > 0) {
-            toast.error(tokenRegistrationErrors[0], {
-                duration: 3000
-            });
-        }
-    }, [tokenRegistrationErrors]);
-
-    useEffect(() => {
-        if (isTokenFound && token && !isChatRequested) {
-            // initiate chat
-            submitRequest(startChat, [], (response) => {
-                console.log(response);
-                setChat(response);
-                setIsChatRequested(true);
-            })
-        }
-    }, [token, isTokenFound]);
-
-    useEffect(() => {
+        console.log("CHART MESSAGES");
+        console.log(chatMessages);
         if (chatMessages.length >= 1 && !isChatLaunched) {
             const {innerWidth: width} = window;
 
@@ -289,32 +265,6 @@ export const LivvyChatbot = () => {
                     {/*-------------------- Footer --------------------*/}
                 </div>
             </div>
-
-            {
-                isOpen &&
-                <LivModal bgColor={'bg-liv-tan'} showClose={false}>
-                    <div className="bg-liv-tan py-4 px-8 absolute top-1/2 -translate-y-1/2 left-0 w-full sm:static sm:translate-y-0">
-                        <h2 style={{fontFamily: "PP Editorial New"}} className="text-4xl font-thin italic capitalize text-center mb-4">Notifications</h2>
-
-                        <p className="text-center max-w-xs mb-7">Our app uses notifications to let you chat with our celebrity designers.</p>
-
-                        <div className="mb-2.5">
-                            <LivButton as={'button'} text={'Allow Notifications'} borderColor={'border-black'} bgColor={'bg-white'} onClickHandler={() => {
-                                setNotificationsAccepted(true);
-                                setIsOpen(false);
-                            }} style={'mid'} width={'full'}/>
-                        </div>
-
-                        <div className="text-center">
-                            <button type="button" onClick={() => {
-                                setNotificationsAccepted(false);
-                                setIsOpen(false);
-                            }} className="uppercase border-b border-b-black text-xs m-auto outline-0">No thanks
-                            </button>
-                        </div>
-                    </div>
-                </LivModal>
-            }
         </>
     )
 }
