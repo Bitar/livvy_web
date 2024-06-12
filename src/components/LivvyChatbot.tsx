@@ -51,7 +51,7 @@ export const LivvyChatbot = () => {
     const [token, setToken] = useState<string>(null);
     const [tokenRegistrationErrors, setTokenRegistrationErrors] = useState<string[]>([]);
 
-    const [notificationsAccepted, setNotificationsAccepted] = useState<boolean>(Notification.permission === 'granted');
+    const [notificationsAccepted, setNotificationsAccepted] = useState<boolean>(true);
     // end: firebase state
 
     const endOfChatRef = useRef<HTMLDivElement>(null);
@@ -163,7 +163,15 @@ export const LivvyChatbot = () => {
     }
 
     useEffect(() => {
-        if(notificationsAccepted) {
+        if (!("Notification" in window)) {
+            console.log("browser doesn't support notifications")
+        } else {
+            setNotificationsAccepted(Notification.permission === 'granted');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (notificationsAccepted) {
             getAppToken();
             setIsOpen(false);
         } else {
@@ -299,7 +307,8 @@ export const LivvyChatbot = () => {
                             <button type="button" onClick={() => {
                                 setNotificationsAccepted(false);
                                 setIsOpen(false);
-                            }} className="uppercase border-b border-b-black text-xs m-auto outline-0">No thanks</button>
+                            }} className="uppercase border-b border-b-black text-xs m-auto outline-0">No thanks
+                            </button>
                         </div>
                     </div>
                 </LivModal>
