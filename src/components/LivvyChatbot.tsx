@@ -7,8 +7,6 @@ import {genericOnChangeHandler} from "../helpers/form.ts";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {DesignerChatMessage} from "../models/designer-chat/DesignerChatMessage.ts";
-import {submitRequest} from "../helpers/requests.ts";
-import {sendMessage} from "../requests/chatbot/DesignerChat.ts";
 import {DesignerChat} from "../models/designer-chat/DesignerChat.ts";
 import {useAuth} from "../sections/auth/core/Auth.loader.ts";
 
@@ -46,13 +44,13 @@ export const LivvyChatbot = () => {
 
     const [connection, setConnection] = useState<WebSocket>(null);
 
-    const addMessage = (message: DesignerChatMessage) => {
-        const oldMessages = [...chatMessages];
-
-        oldMessages.push(message);
-
-        setChatMessages(oldMessages);
-    }
+    // const addMessage = (message: DesignerChatMessage) => {
+    //     const oldMessages = [...chatMessages];
+    //
+    //     oldMessages.push(message);
+    //
+    //     setChatMessages(oldMessages);
+    // }
 
     useEffect(() => {
         if (connection) {
@@ -60,37 +58,20 @@ export const LivvyChatbot = () => {
                 connection.send(JSON.stringify({
                     type: 'init'
                 }));
-
-                openChat()
             }
 
             connection.onmessage = evt => {
-                console.log(chatMessages);
-
-                console.log("message from websocket");
-                console.log(evt.data);
-
                 const data = JSON.parse(evt.data);
 
-                console.log(data);
-
-                addMessage({
-                    source: 'bot',
-                    timestamp: '9:00 AM', // TODO integrate the time to show the user
-                    text: data.message,
-                    isLoading: false
-                });
-
-                // const oldMessages = [...chatMessages];
-                //
-                // oldMessages.push({
-                //     source: 'bot',
-                //     timestamp: '9:00 AM', // TODO integrate the time to show the user
-                //     text: data.message,
-                //     isLoading: false
-                // });
-                //
-                // setChatMessages(oldMessages);
+                setChatMessages((prevMessages) => [
+                    ...prevMessages,
+                    {
+                        source: 'bot',
+                        timestamp: '9:00 AM', // TODO integrate the time to show the user
+                        text: data.message,
+                        isLoading: false
+                    }
+                ]);
 
                 setThreadId(data.threadId);
                 setIsPendingReply(false);
@@ -115,42 +96,18 @@ export const LivvyChatbot = () => {
             message: form.message
         }));
 
-        // TODO send message through API
-        // TODO when the API acknowledges receipt, we show the message in the chat window
-        // TODO add the bot loading message until we receive a reply
-        // TODO reset the form + clear the message input field
-        // submitRequest(sendMessage, [chat.id, form], (response) => {
-        // const oldMessages = [...chatMessages];
-        //
-        // oldMessages.push({
-        //     source: 'user',
-        //     timestamp: '9:00 AM', // TODO add timestamp
-        //     text: form.message,
-        //     isLoading: false
-        // });
-        //
-        // setChatMessages(oldMessages);
-
-        addMessage({
-            source: 'user',
-            timestamp: '9:00 AM', // TODO add timestamp
-            text: form.message,
-            isLoading: false
-        });
-
-        console.log(chatMessages);
+        setChatMessages((prevMessages) => [
+            ...prevMessages,
+            {
+                source: 'user',
+                timestamp: '9:00 AM', // TODO add timestamp
+                text: form.message,
+                isLoading: false
+            }
+        ]);
 
         setForm(defaultMessageFormFields);
         setIsPendingReply(true);
-        // });
-
-        //
-        // // TODO add a flag to show the bot loading messages instead of adding it to the chat messages because if we add it to chat messages we'll have to worry about removing it
-        //
-        // setTimeout(() => {
-        //     setIsPendingReply(false);
-        //     endOfChatRef.current?.scrollIntoView({behavior: "smooth"});
-        // }, 5000);
     }
 
     const showChatToggle = () => {
@@ -166,20 +123,11 @@ export const LivvyChatbot = () => {
 
     useEffect(() => {
         const webSocket = new WebSocket('ws://localhost:9010');
-        setConnection(webSocket);
 
-        // waitForConnection(() => {
-        //     connection.send(JSON.stringify({
-        //         type: 'init'
-        //     }));
-        // });
-        //
-        // openChat();
+        setConnection(webSocket);
     }, []);
 
     useEffect(() => {
-        console.log("CHART MESSAGES");
-        console.log(chatMessages);
         if (chatMessages.length >= 1 && !isChatLaunched) {
             const {innerWidth: width} = window;
 
@@ -194,6 +142,13 @@ export const LivvyChatbot = () => {
         // everytime the chatmessages array gets updated, we scroll to the end of the chat
         endOfChatRef.current?.scrollIntoView({behavior: "smooth"});
     }, [chatMessages]);
+
+    useEffect(() => {
+        if(!isCollapsed) {
+            // everytime we open the chat, we need to scroll to last message
+            endOfChatRef.current?.scrollIntoView({behavior: "smooth"});
+        }
+    }, [isCollapsed]);
 
     return (
         <>
