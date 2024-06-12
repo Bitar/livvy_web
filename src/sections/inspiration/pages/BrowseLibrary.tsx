@@ -47,7 +47,7 @@ export const BrowseLibrary = () => {
     }
 
     useEffect(() => {
-        setHeaderBgColor('white');
+        setHeaderBgColor('liv-tan');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
 

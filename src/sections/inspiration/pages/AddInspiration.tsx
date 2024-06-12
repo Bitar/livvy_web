@@ -31,7 +31,7 @@ export const AddInspiration = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setHeaderBgColor('white');
+        setHeaderBgColor('liv-tan');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         // eslint-disable-next-line react-hooks/exhaustive-deps

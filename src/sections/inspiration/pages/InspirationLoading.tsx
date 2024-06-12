@@ -5,7 +5,7 @@ export const InspirationLoading = () => {
     const {setBackgroundType, setBackgroundColor, setShowFooter, setHeaderBgColor} = useMasterLayout();
 
     useEffect(() => {
-        setHeaderBgColor('white');
+        setHeaderBgColor('liv-tan');
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setShowFooter(false);
