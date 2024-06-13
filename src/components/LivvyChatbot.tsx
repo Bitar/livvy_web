@@ -7,8 +7,7 @@ import {genericOnChangeHandler} from "../helpers/form.ts";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {DesignerChatMessage} from "../models/designer-chat/DesignerChatMessage.ts";
-import {DesignerChat} from "../models/designer-chat/DesignerChat.ts";
-import {useAuth} from "../sections/auth/core/Auth.loader.ts";
+import {convertEpoch} from "../helpers/dataManipulation.ts";
 
 interface MessageFormFields {
     message: string
@@ -23,34 +22,20 @@ const MessageValidationSchema = Yup.object().shape({
 });
 
 export const LivvyChatbot = () => {
-    const {currentUser} = useAuth();
-
-    const [threadId, setThreadId] = useState<string | null>(null);
-
-    const [chat, setChat] = useState<DesignerChat | null>(null);
-    const [chatMessages, setChatMessages] = useState<DesignerChatMessage[]>([]);
-
-    const [form, setForm] = useState<MessageFormFields>(defaultMessageFormFields);
-    const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
-    // set true when the startchat API returns a chat object so that we don't request more than one in a single session
-    const [isChatRequested, setIsChatRequested] = useState<boolean>(false);
-    // this is set to true when we receive the welcome message from the chatbot
-    const [isChatLaunched, setIsChatLaunched] = useState<boolean>(false);
-
-    const [showToggle, setShowToggle] = useState<boolean>(true);
-    const [isPendingReply, setIsPendingReply] = useState<boolean>(false);
-
-    const endOfChatRef = useRef<HTMLDivElement>(null);
-
     const [connection, setConnection] = useState<WebSocket>(null);
 
-    // const addMessage = (message: DesignerChatMessage) => {
-    //     const oldMessages = [...chatMessages];
-    //
-    //     oldMessages.push(message);
-    //
-    //     setChatMessages(oldMessages);
-    // }
+    const [threadId, setThreadId] = useState<string | null>(null);
+    const [chatMessages, setChatMessages] = useState<DesignerChatMessage[]>([]);
+    const [form, setForm] = useState<MessageFormFields>(defaultMessageFormFields);
+    const [isUnread, setIsUnread] = useState<boolean>(false);
+    const [isPendingReply, setIsPendingReply] = useState<boolean>(false);
+
+    const [isChatLaunched, setIsChatLaunched] = useState<boolean>(false);
+    const [isChatClosed, setIsChatClosed] = useState<boolean>(true);
+    // this is set to true when we receive the welcome message from the chatbot
+    const [showToggle, setShowToggle] = useState<boolean>(false);
+
+    const endOfChatRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (connection) {
@@ -67,7 +52,7 @@ export const LivvyChatbot = () => {
                     ...prevMessages,
                     {
                         source: 'bot',
-                        timestamp: '9:00 AM', // TODO integrate the time to show the user
+                        timestamp: convertEpoch(Date.now()),
                         text: data.message,
                         isLoading: false
                     }
@@ -84,11 +69,6 @@ export const LivvyChatbot = () => {
 
     }, [connection]);
 
-    // TODO below functionality
-    // On first land we have the text so they know what it is
-    // And then after than when they minimize, it shows just the icon
-
-    // TODO add pagination (scroll top) for messages
     const handleSendMessage = () => {
         connection.send(JSON.stringify({
             type: 'message',
@@ -100,7 +80,7 @@ export const LivvyChatbot = () => {
             ...prevMessages,
             {
                 source: 'user',
-                timestamp: '9:00 AM', // TODO add timestamp
+                timestamp: convertEpoch(Date.now()), // TODO add timestamp
                 text: form.message,
                 isLoading: false
             }
@@ -110,21 +90,20 @@ export const LivvyChatbot = () => {
         setIsPendingReply(true);
     }
 
-    const showChatToggle = () => {
-        if (isCollapsed) {
-            setShowToggle(true);
-        }
-    }
-
     const openChat = () => {
-        setIsCollapsed(false);
+        setIsChatClosed(false);
         setShowToggle(false);
+        // if there are unread messages, mark them as read
+        setIsUnread(false);
     }
 
     useEffect(() => {
-        const webSocket = new WebSocket('ws://localhost:9010');
+        const webSocket = new WebSocket(import.meta.env.VITE_CHAT_WEBSOCKET);
 
         setConnection(webSocket);
+
+        // when the page resets we want to reset the chat messages too because a new chat would be starting
+        setChatMessages([]);
     }, []);
 
     useEffect(() => {
@@ -137,6 +116,9 @@ export const LivvyChatbot = () => {
             }
 
             setIsChatLaunched(true);
+        } else if (chatMessages.length >= 1 && isChatClosed) {
+            // the user has the chat hidden so he can't see the new message that came in
+            setIsUnread(true);
         }
 
         // everytime the chatmessages array gets updated, we scroll to the end of the chat
@@ -144,27 +126,41 @@ export const LivvyChatbot = () => {
     }, [chatMessages]);
 
     useEffect(() => {
-        if(!isCollapsed) {
+        if (!isChatClosed) {
             // everytime we open the chat, we need to scroll to last message
             endOfChatRef.current?.scrollIntoView({behavior: "smooth"});
+        } else if (isChatLaunched) {
+            // show the toggle is the chat launched and the chat is closed
+            setShowToggle(true);
         }
-    }, [isCollapsed]);
+    }, [isChatClosed]);
+
+    useEffect(() => {
+        // this gets once at the beginning when the chat is set to launched
+        if (isChatLaunched && isChatClosed) {
+            setShowToggle(true);
+        }
+    }, [isChatLaunched]);
 
     return (
         <>
             <div className="fixed bottom-0 right-0 md:bottom-8 md:right-8 z-40 text-right">
                 <button type="button" className={clsx("mb-4 me-4 md:m-0 w-12 h-12 bg-liv-green text-white rounded-full bg-opacity-70 backdrop-blur-md overflow-visible", {
-                    "animate__animated animate__fadeIn": showToggle,
+                    "animate__animated animate__zoomIn animate__faster": showToggle,
                     "hidden": !showToggle
                 })} onClick={openChat}>
                     <FontAwesomeIcon icon={faComment} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-                    <span className="absolute -top-1.5 -right-1.5 bg-black rounded-full w-6 h-6">
-                    <span className="text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">3</span>
-                </span>
+                    {
+                        isUnread &&
+                        <span className="absolute -top-1.5 -right-1.5 bg-black rounded-full w-6 h-6">
+                            <span className="text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">1</span>
+                        </span>
+                    }
                 </button>
 
-                <div onTransitionEnd={showChatToggle} className={clsx("chat-container backdrop-blur-md w-full md:w-96 md:rounded-t-lg h-screen md:h-auto flex flex-col", {
-                    'expanded': !isCollapsed
+                <div className={clsx("chat-container backdrop-blur-md w-full md:w-96 md:rounded-t-lg h-screen md:h-auto flex flex-col", {
+                    'animate__animated animate__fadeIn animate__faster': !isChatClosed,
+                    'hidden': isChatClosed
                 })}>
                     {/*-------------------- Header --------------------*/}
                     <div className="chat-header bg-liv-green bg-opacity-70 text-white p-4 md:rounded-t-lg flex-none text-left">
@@ -176,7 +172,7 @@ export const LivvyChatbot = () => {
                             </div>
 
                             <div className="text-right">
-                                <button type="button" onClick={() => setIsCollapsed(true)}><FontAwesomeIcon icon={faMinus}/></button>
+                                <button type="button" onClick={() => setIsChatClosed(true)}><FontAwesomeIcon icon={faMinus}/></button>
                             </div>
                         </div>
 
@@ -210,7 +206,7 @@ export const LivvyChatbot = () => {
                                         <Field type={'text'}
                                                name={'message'}
                                                placeholder={'Reply ...'}
-                                               className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 px-6 py-4 md:rounded-b-lg ring-0 outline-0"/>
+                                               className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0"/>
 
                                         <button type="submit" className="absolute top-1/2 -translate-y-1/2 right-6 h-6 w-6 bg-black rounded-full">
                                             <FontAwesomeIcon icon={faChevronRight} className="text-white text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
