@@ -157,7 +157,7 @@ export const LivvyChatbot = () => {
                 }
             </button>
 
-            <div className={clsx("chat-container backdrop-blur-md w-full md:w-96 md:rounded-t-lg h-[100dvh] md:h-auto flex flex-col", {
+            <div className={clsx("chat-container backdrop-blur-md w-full md:w-96 md:rounded-t-lg h-[100dvh] md:h-auto flex flex-col overflow-y-auto", {
                 'animate__animated animate__fadeIn animate__faster': !isChatClosed,
                 'hidden': isChatClosed
             })}>
