@@ -113,6 +113,9 @@ export const LivvyChatbot = () => {
             // open the chat only if we're not on mobile
             if (width > 768) {
                 openChat();
+            } else {
+                // On mobile the chat stays hidden when we receive the first message so we need to set the number of unread to 1
+                setIsUnread(true);
             }
 
             setIsChatLaunched(true);
@@ -205,7 +208,7 @@ export const LivvyChatbot = () => {
                                     <Field type={'text'}
                                            name={'message'}
                                            placeholder={'Reply ...'}
-                                           className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0 rounded-none"/>
+                                           className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0 rounded-none" disabled={isPendingReply}/>
 
                                     <button type="submit" className="absolute top-1/2 -translate-y-1/2 right-6 h-6 w-6 bg-black rounded-full">
                                         <FontAwesomeIcon icon={faChevronRight} className="text-white text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
