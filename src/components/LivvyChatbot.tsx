@@ -143,83 +143,81 @@ export const LivvyChatbot = () => {
     }, [isChatLaunched]);
 
     return (
-        <>
-            <div className="fixed bottom-0 right-0 md:bottom-8 md:right-8 z-40 text-right">
-                <button type="button" className={clsx("mb-4 me-4 md:m-0 w-12 h-12 bg-liv-green text-white rounded-full bg-opacity-70 backdrop-blur-md overflow-visible", {
-                    "animate__animated animate__zoomIn animate__faster": showToggle,
-                    "hidden": !showToggle
-                })} onClick={openChat}>
-                    <FontAwesomeIcon icon={faComment} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-                    {
-                        isUnread &&
-                        <span className="absolute -top-1.5 -right-1.5 bg-black rounded-full w-6 h-6">
+        <div className="fixed bottom-0 right-0 md:bottom-8 md:right-8 z-40 text-right">
+            <button type="button" className={clsx("mb-4 me-4 md:m-0 w-12 h-12 bg-liv-green text-white rounded-full bg-opacity-70 backdrop-blur-md overflow-visible", {
+                "animate__animated animate__zoomIn animate__faster": showToggle,
+                "hidden": !showToggle
+            })} onClick={openChat}>
+                <FontAwesomeIcon icon={faComment} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+                {
+                    isUnread &&
+                    <span className="absolute -top-1.5 -right-1.5 bg-black rounded-full w-6 h-6">
                             <span className="text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">1</span>
                         </span>
-                    }
-                </button>
+                }
+            </button>
 
-                <div className={clsx("chat-container backdrop-blur-md w-full md:w-96 md:rounded-t-lg h-screen md:h-auto flex flex-col", {
-                    'animate__animated animate__fadeIn animate__faster': !isChatClosed,
-                    'hidden': isChatClosed
-                })}>
-                    {/*-------------------- Header --------------------*/}
-                    <div className="chat-header bg-liv-green bg-opacity-70 text-white p-4 md:rounded-t-lg flex-none text-left">
-                        <div className="flex justify-around items-start">
-                            <div>
-                                <h6 style={{fontFamily: "PP Editorial New"}} className="italic font-extralight text-lg mb-1">Shea McGee AI</h6>
+            <div className={clsx("chat-container backdrop-blur-md w-full md:w-96 md:rounded-t-lg h-screen md:h-auto flex flex-col", {
+                'animate__animated animate__fadeIn animate__faster': !isChatClosed,
+                'hidden': isChatClosed
+            })}>
+                {/*-------------------- Header --------------------*/}
+                <div className="chat-header bg-liv-green bg-opacity-70 text-white p-4 md:rounded-t-lg flex-none text-left">
+                    <div className="flex justify-around items-start">
+                        <div>
+                            <h6 style={{fontFamily: "PP Editorial New"}} className="italic font-extralight text-lg mb-1">Shea McGee AI</h6>
 
-                                <p className="text-xs w-full">Description here regarding how Livvy can adjust the items in their space via chat.</p>
-                            </div>
-
-                            <div className="text-right">
-                                <button type="button" onClick={() => setIsChatClosed(true)}><FontAwesomeIcon icon={faMinus}/></button>
-                            </div>
+                            <p className="text-xs w-full">Description here regarding how Livvy can adjust the items in their space via chat.</p>
                         </div>
 
+                        <div className="text-right">
+                            <button type="button" onClick={() => setIsChatClosed(true)}><FontAwesomeIcon icon={faMinus}/></button>
+                        </div>
                     </div>
-                    {/*-------------------- Header --------------------*/}
 
-                    {/*-------------------- Body --------------------*/}
-                    <div className="chat-body bg-white bg-opacity-40 p-6 flex-grow overflow-auto md:max-h-[500px]">
-                        {
-                            chatMessages.map((chatMessage, index) => (
-                                chatMessage.source == 'bot' ?
-                                    <BotMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
-                                    :
-                                    <UserMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
-                            ))
-                        }
-                        {
-                            isPendingReply && <BotMessage text="" timestamp="" isLoading={true}/>
-                        }
-                        <div style={{float: "left", clear: "both"}} ref={endOfChatRef}></div>
-                    </div>
-                    {/*-------------------- Body --------------------*/}
-
-                    {/*-------------------- Footer --------------------*/}
-                    <div className="chat-reply md:rounded-b-lg flex-none">
-                        <Formik initialValues={form} onSubmit={handleSendMessage}
-                                validationSchema={MessageValidationSchema} enableReinitialize>
-                            {
-                                () => (
-                                    <Form onChange={(e) => genericOnChangeHandler(e, form, setForm)} className="md:rounded-b-lg relative">
-                                        <Field type={'text'}
-                                               name={'message'}
-                                               placeholder={'Reply ...'}
-                                               className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0"/>
-
-                                        <button type="submit" className="absolute top-1/2 -translate-y-1/2 right-6 h-6 w-6 bg-black rounded-full">
-                                            <FontAwesomeIcon icon={faChevronRight} className="text-white text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-                                        </button>
-                                    </Form>
-                                )
-                            }
-                        </Formik>
-                    </div>
-                    {/*-------------------- Footer --------------------*/}
                 </div>
+                {/*-------------------- Header --------------------*/}
+
+                {/*-------------------- Body --------------------*/}
+                <div className="chat-body bg-white bg-opacity-40 p-6 flex-grow overflow-auto md:max-h-[500px]">
+                    {
+                        chatMessages.map((chatMessage, index) => (
+                            chatMessage.source == 'bot' ?
+                                <BotMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
+                                :
+                                <UserMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
+                        ))
+                    }
+                    {
+                        isPendingReply && <BotMessage text="" timestamp="" isLoading={true}/>
+                    }
+                    <div style={{float: "left", clear: "both"}} ref={endOfChatRef}></div>
+                </div>
+                {/*-------------------- Body --------------------*/}
+
+                {/*-------------------- Footer --------------------*/}
+                <div className="chat-reply md:rounded-b-lg flex-none">
+                    <Formik initialValues={form} onSubmit={handleSendMessage}
+                            validationSchema={MessageValidationSchema} enableReinitialize>
+                        {
+                            () => (
+                                <Form onChange={(e) => genericOnChangeHandler(e, form, setForm)} className="rounded-none md:rounded-b-lg relative">
+                                    <Field type={'text'}
+                                           name={'message'}
+                                           placeholder={'Reply ...'}
+                                           className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0 rounded-none"/>
+
+                                    <button type="submit" className="absolute top-1/2 -translate-y-1/2 right-6 h-6 w-6 bg-black rounded-full">
+                                        <FontAwesomeIcon icon={faChevronRight} className="text-white text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+                                    </button>
+                                </Form>
+                            )
+                        }
+                    </Formik>
+                </div>
+                {/*-------------------- Footer --------------------*/}
             </div>
-        </>
+        </div>
     )
 }
 
