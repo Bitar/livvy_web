@@ -204,11 +204,11 @@ export const LivvyChatbot = () => {
                             validationSchema={MessageValidationSchema} enableReinitialize>
                         {
                             () => (
-                                <Form onChange={(e) => genericOnChangeHandler(e, form, setForm)} className="rounded-none md:rounded-b-lg relative">
+                                <Form onChange={(e) => genericOnChangeHandler(e, form, setForm)} className="rounded-none md:rounded-b-lg relative border-t border-t-white">
                                     <Field type={'text'}
                                            name={'message'}
                                            placeholder={'Reply ...'}
-                                           className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0 rounded-none border-t border-t-white" disabled={isPendingReply}/>
+                                           className="w-full placeholder-black placeholder:text-sm placeholder:opacity-60 ps-6 pe-14 py-4 md:rounded-b-lg ring-0 outline-0 rounded-none" disabled={isPendingReply}/>
 
                                     <button type="submit" className="absolute top-1/2 -translate-y-1/2 right-6 h-6 w-6 bg-black rounded-full">
                                         <FontAwesomeIcon icon={faChevronRight} className="text-white text-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
