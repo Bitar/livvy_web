@@ -18,7 +18,7 @@ const defaultMessageFormFields: MessageFormFields = {
 }
 
 const MessageValidationSchema = Yup.object().shape({
-    message: Yup.string().min(3, 'minimum 3 characters').required()
+    message: Yup.string().min(1, 'minimum 1 characters').required()
 });
 
 export const LivvyChatbot = () => {
