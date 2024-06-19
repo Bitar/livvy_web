@@ -8,6 +8,7 @@ import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {DesignerChatMessage} from "../models/designer-chat/DesignerChatMessage.ts";
 import {convertEpoch} from "../helpers/dataManipulation.ts";
+import {Designer} from "../models/designer/Designer.ts";
 
 interface MessageFormFields {
     message: string
@@ -21,7 +22,7 @@ const MessageValidationSchema = Yup.object().shape({
     message: Yup.string().min(1, 'minimum 1 characters').required()
 });
 
-export const LivvyChatbot = () => {
+export const LivvyChatbot = ({designer}: { designer: Designer }) => {
     const [connection, setConnection] = useState<WebSocket>(null);
 
     const [threadId, setThreadId] = useState<string | null>(null);
@@ -41,7 +42,8 @@ export const LivvyChatbot = () => {
         if (connection) {
             connection.onopen = () => {
                 connection.send(JSON.stringify({
-                    type: 'init'
+                    type: 'init',
+                    assistantId: designer.openai_assistant_id
                 }));
             }
 
@@ -73,7 +75,8 @@ export const LivvyChatbot = () => {
         connection.send(JSON.stringify({
             type: 'message',
             threadId: threadId,
-            message: form.message
+            message: form.message,
+            assistantId: designer.openai_assistant_id
         }));
 
         setChatMessages((prevMessages) => [
@@ -168,7 +171,7 @@ export const LivvyChatbot = () => {
                 <div className="chat-header bg-liv-green bg-opacity-70 text-white p-4 md:rounded-t-lg flex-none text-left">
                     <div className="flex justify-around items-start">
                         <div>
-                            <h6 style={{fontFamily: "PP Editorial New"}} className="italic font-extralight text-lg mb-1">Shea McGee AI</h6>
+                            <h6 style={{fontFamily: "PP Editorial New"}} className="italic font-extralight text-lg mb-1">{designer.name} AI</h6>
 
                             <p className="text-xs w-full">Description here regarding how Livvy can adjust the items in their space via chat.</p>
                         </div>
@@ -186,13 +189,13 @@ export const LivvyChatbot = () => {
                     {
                         chatMessages.map((chatMessage, index) => (
                             chatMessage.source == 'bot' ?
-                                <BotMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
+                                <BotMessage designer={designer} text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
                                 :
                                 <UserMessage text={chatMessage.text} timestamp={chatMessage.timestamp} key={`chat-message-${index}`}/>
                         ))
                     }
                     {
-                        isPendingReply && <BotMessage text="" timestamp="" isLoading={true}/>
+                        isPendingReply && <BotMessage designer={designer} text="" timestamp="" isLoading={true}/>
                     }
                     <div style={{float: "left", clear: "both"}} ref={endOfChatRef}></div>
                 </div>
@@ -236,14 +239,14 @@ const UserMessage = ({text, timestamp}: { text: string, timestamp: string }) => 
     )
 }
 
-const BotMessage = ({text, timestamp, isLoading = false}: { text?: string, timestamp?: string, isLoading?: boolean }) => {
+const BotMessage = ({designer, text, timestamp, isLoading = false}: { designer: Designer, text?: string, timestamp?: string, isLoading?: boolean }) => {
     return (
         <div className="mb-8 text-left last:mb-0">
             <div className="flex justify-between items-start gap-x-2.5">
-                <div className="w-8 h-8 rounded-full bg-no-repeat bg-center bg-cover bg-[url('/assets/celebrities/shea-mcgee-headshot.png')] flex-none"></div>
+                <div className="w-8 h-8 rounded-full bg-no-repeat bg-center bg-cover flex-none" style={{backgroundImage: `url(${designer.image})`}}></div>
 
                 <div className="flex-auto">
-                    <div className="text-sm mb-1">Shea McGee AI</div>
+                    <div className="text-sm mb-1">{designer.name} AI</div>
 
 
                     <div className="rounded-b-lg px-4 py-2 text-sm inline-block relative bg-liv-green text-white rounded-tr-lg">

@@ -32,7 +32,7 @@ const PrivateRoutes = () => {
 
                 <Route path='/style-quiz/*' element={<StyleQuizRoutes/>}/>
 
-                <Route path='/chatbot' element={<Chatbot/>}/>
+                <Route path='/chatbot/:id' element={<Chatbot/>}/>
 
                 <Route path='/test' element={<Test/>}/>
 
