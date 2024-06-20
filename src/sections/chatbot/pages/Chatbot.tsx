@@ -17,14 +17,14 @@ export const Chatbot = () => {
     useEffect(() => {
         setHeaderBgColor('transparent')
         setShowFooter(false);
+
         setBackgroundType('image');
-        setBackgroundUrl('/assets/designer-chat.png');
         setBackgroundOverlayOpacity('opacity-20');
 
         // get the designer to fetch its openai assistant ID
         submitRequest(getDesigner, [id], (response) => {
-            if(response instanceof AxiosError) {
-                if(response.response.status == 404) {
+            if (response instanceof AxiosError) {
+                if (response.response.status == 404) {
                     toast.error("The requested designer doesn't exist.", {
                         duration: 3000
                     });
@@ -33,8 +33,15 @@ export const Chatbot = () => {
                         duration: 3000
                     });
                 }
+                setBackgroundUrl('/assets/designer-chat.png');
             } else {
                 setDesigner(response);
+
+                if (response && response.id == 2) {
+                    setBackgroundUrl('/assets/designer-chat-kelly.png');
+                } else {
+                    setBackgroundUrl('/assets/designer-chat.png');
+                }
             }
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
