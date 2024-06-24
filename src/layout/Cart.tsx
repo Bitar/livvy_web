@@ -1,4 +1,4 @@
-import {ChangeEvent, useEffect, useRef, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import clsx from "clsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
@@ -14,32 +14,7 @@ export const Cart = () => {
     const [subtotal, setSubtotal] = useState<number>(0);
 
     const [isClosing, setIsClosing] = useState<boolean>(false);
-    const [cartContentHeight, setCartContentHeight] = useState<number>(0);
 
-    const cartHeader = useRef<HTMLDivElement>(null);
-    const cartFooter = useRef<HTMLDivElement>(null);
-
-    const updateCartContentHeight = () => {
-        if(cartHeader && cartFooter) {
-            setCartContentHeight(window.innerHeight - (cartHeader.current?.offsetHeight + cartFooter.current?.offsetHeight));
-        }
-    }
-
-    useEffect(() => {
-        const handleResize = () => {
-            updateCartContentHeight();
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    useEffect(() => {
-        updateCartContentHeight();
-    }, [isCartOpen, cartHeader, cartFooter]);
 
     useEffect(() => {
         let total = 0;
@@ -105,13 +80,13 @@ export const Cart = () => {
                      setIsClosing(false);
                  }
              }}
-             className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full lg:w-4/5 xl:w-3/5 h-full bg-white animate__animated", {
+             className={clsx("liv-side-panel fixed z-50 right-0 top-0 w-full lg:w-4/5 xl:w-3/5 h-screen flex flex-col bg-white animate__animated", {
                  "animate__slideInRight": !isClosing,
                  "animate__slideOutRight": isClosing,
                  "hidden": !isCartOpen
              })}>
 
-            <div id="cart-header" className="p-5 xl:p-10 flex justify-between items-center border-b border-b-black" ref={cartHeader}>
+            <div id="cart-header" className="p-5 xl:p-10 flex justify-between items-center border-b border-b-black flex-none">
                 <div>
                     <h6 className="uppercase text-black text-2xl lg:text-4xl mb-2.5">your cart</h6>
 
@@ -139,7 +114,7 @@ export const Cart = () => {
                 </button>
             </div>
 
-            <div id="cart-content" style={{height: cartContentHeight}} className={clsx(`p-5 xl:p-10 relative overflow-y-auto overflow-x-hidden`)}>
+            <div id="cart-content" className={clsx(`p-5 xl:p-10 relative overflow-y-auto overflow-x-hidden flex-grow`)}>
                 {
                     cart.sections.map((cartSection: CartItemSection) => {
                         if (cartSection.items.length > 0) {
@@ -154,7 +129,7 @@ export const Cart = () => {
             </div>
 
             <div id="cart-footer"
-                 className="p-5 xl:p-10 border-t border-t-black absolute w-full bottom-0 left-0 z-10 bg-white" ref={cartFooter}>
+                 className="p-5 xl:p-10 border-t border-t-black bg-white flex-none">
                 <div className="flex justify-between items-center mb-5">
                     <span className="uppercase text-xl">subtotal</span>
                     <span className="text-xl">$ {subtotal.toLocaleString(undefined, {maximumFractionDigits:2})}</span>
