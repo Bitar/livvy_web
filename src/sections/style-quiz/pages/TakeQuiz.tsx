@@ -30,7 +30,7 @@ export const TakeQuiz = () => {
                 </div>
             </div>
 
-            <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] bg-white overflow-y-hidden mb-6">
+            <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] bg-transparent overflow-y-hidden mb-6">
                 <div className="grid grid-cols-4 gap-x-4">
                     <div className="waterfall-container bottom-to-top">
                         <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
