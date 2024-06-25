@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {BrowserRouter, createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider, Routes, ScrollRestoration} from 'react-router-dom'
+import {createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider} from 'react-router-dom'
 import {useAuth} from "../sections/auth/core/Auth.loader.ts";
 import {ErrorsPage} from "../layout/errors/ErrorsPage.tsx";
 import {App} from "../App.tsx";
