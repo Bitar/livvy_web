@@ -58,7 +58,7 @@ export const VisualQuiz = () => {
     useEffect(() => {
         if (invalidSelection) {
             livApp.setAlert({
-                message: "You can select up to 4 images",
+                message: "You can select up to four images",
                 type: LivvyToastType.ERROR
             });
 
@@ -82,8 +82,8 @@ export const VisualQuiz = () => {
     return (
         <div>
             <div className="container liv-container">
-                <h1 className='text-xl sm:text-2xl italic capitalize font-thin sm:mb-7'
-                    style={{fontFamily: "PP Editorial New"}}>4. Which of these design styles resonate most with you? Choose up to 4.</h1>
+                <h1 className='text-xl sm:text-2xl italic font-thin sm:mb-7'
+                    style={{fontFamily: "PP Editorial New"}}>4. Which of these design styles resonate most with you? Choose up to four.</h1>
 
                 <div className="mt-6">
                     <ResponsiveMasonry columnsCountBreakPoints={{640: 2, 1024: 3, 1280: 4}}>
