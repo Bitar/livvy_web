@@ -33,120 +33,90 @@ export const TakeQuiz = () => {
             <div className="w-full aspect-[5/3] sm:mb-0 sm:h-[calc(100vh-62px)] bg-transparent overflow-y-hidden mb-6">
                 <div className="grid grid-cols-4 gap-x-4">
                     <div className="waterfall-container bottom-to-top">
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-1.jpg'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/style-quiz/quiz-2.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-3.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-4.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-5.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-6.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-7.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-8.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-9.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-10.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-11.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-12.jpg'} alt={"image"} className="w-full"/>
                     </div>
 
                     <div className="waterfall-container top-to-bottom">
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-13.jpg'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/style-quiz/quiz-14.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-15.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-16.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-17.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-18.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-19.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-20.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-21.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-22.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-23.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-24.jpg'} alt={"image"} className="w-full"/>
                     </div>
 
                     <div className="waterfall-container bottom-to-top">
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-1.jpg'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/style-quiz/quiz-2.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-3.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-4.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-5.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-6.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-7.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-8.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-9.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-10.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-11.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-12.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-13.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-14.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-15.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-16.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-17.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-18.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-19.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-20.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-21.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-22.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-23.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-24.jpg'} alt={"image"} className="w-full"/>
                         <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
                         <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
                         <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
                     </div>
 
                     <div className="waterfall-container top-to-bottom">
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full first-image"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
-                        <img src={'/assets/celebrities/featured-interior-4.jpeg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-1.jpg'} alt={"image"} className="w-full first-image"/>
+                        <img src={'/assets/style-quiz/quiz-2.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-3.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-4.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-5.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-6.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-7.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-8.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-9.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-10.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-11.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-12.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-13.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-14.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-15.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-16.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-17.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-18.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-19.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-20.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-21.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-22.jpg'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-23.webp'} alt={"image"} className="w-full"/>
+                        <img src={'/assets/style-quiz/quiz-24.jpg'} alt={"image"} className="w-full"/>
                         <img src={'/assets/celebrities/featured-interior-1.webp'} alt={"image"} className="w-full"/>
                         <img src={'/assets/celebrities/featured-interior-2.jpeg'} alt={"image"} className="w-full"/>
                         <img src={'/assets/celebrities/featured-interior-3.jpeg'} alt={"image"} className="w-full"/>
