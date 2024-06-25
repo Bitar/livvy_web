@@ -43,11 +43,11 @@ export const EnlargedInspiration = ({isOpen, setIsOpen, image}: {
                 setIsClosing(false)
             }
         }}
-             className={clsx('fixed w-full h-full z-50 top-0 left-0 bg-black bg-opacity-50 animate__animated backdrop-blur-md', {
+             className={clsx('fixed w-full h-full z-50 top-0 left-0 bg-black bg-opacity-50 animate__animated animate__faster backdrop-blur-md', {
                  'hidden': !isOpen,
                  'animate__fadeOut': isClosing,
                  'animate__fadeIn': isOpen
-             })}>
+             })} onClick={() => setIsClosing(true)}>
 
             <button className={clsx("absolute right-6 top-5 z-50 uppercase text-white border-0 border-b border-b-white text-xs leading-3")} onClick={() => setIsClosing(true)}>close</button>
 

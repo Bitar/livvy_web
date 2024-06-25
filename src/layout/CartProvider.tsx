@@ -10,7 +10,8 @@ interface CartProps {
     setIsCartOpen: Dispatch<SetStateAction<boolean>>,
     selected: number[],
     setSelected: Dispatch<SetStateAction<number[]>>,
-    addToCart: (item: CartItem) => void
+    addToCart: (item: CartItem) => void,
+    getCartCount: () => number
 }
 
 export const defaultCart = cartObject;
@@ -25,7 +26,11 @@ const CartContext = createContext<CartProps>({
     selected: [],
     setSelected: () => {
     },
-    addToCart: () => {}
+    addToCart: () => {
+    },
+    getCartCount: () => {
+        return 0;
+    }
 });
 
 export const CartProvider: FC<WithChildren> = ({children}) => {
@@ -41,12 +46,12 @@ export const CartProvider: FC<WithChildren> = ({children}) => {
 
         const newCart = {...cart};
 
-        if(sectionIndex > -1) {
+        if (sectionIndex > -1) {
             // the section exists
             // check if the item is already in the section
             const itemIndex = cart.sections[sectionIndex].items.findIndex((itm) => itm.id === item.id);
 
-            if(itemIndex > -1) {
+            if (itemIndex > -1) {
                 // the item exists, update quantity
                 newCart.sections[sectionIndex].items[itemIndex].quantity += item.quantity;
             } else {
@@ -66,6 +71,18 @@ export const CartProvider: FC<WithChildren> = ({children}) => {
         setCart(newCart);
     }
 
+    const getCartCount = () => {
+        let count = 0;
+
+        cart.sections.forEach((section) => {
+            section.items.forEach((item) => {
+                count += item.quantity;
+            });
+        });
+
+        return count;
+    }
+
     return (
         <CartContext.Provider value={{
             cart,
@@ -74,7 +91,8 @@ export const CartProvider: FC<WithChildren> = ({children}) => {
             setIsCartOpen,
             selected,
             setSelected,
-            addToCart
+            addToCart,
+            getCartCount
         }}>
             {children}
         </CartContext.Provider>

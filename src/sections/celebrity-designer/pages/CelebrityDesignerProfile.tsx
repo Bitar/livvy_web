@@ -331,25 +331,3 @@ const Slide = ({image}: { image: string }) => {
 
     )
 }
-
-const FAQ = ({title, text, isLast = false}: { title: string, text: string, isLast?: boolean }) => {
-    const [show, setShow] = useState<boolean>(false);
-
-    return (
-        <div className={clsx("smooth-slide-down-container border-t border-t-white text-white py-4 xl:py-5", {
-            'border-b border-b-white': isLast
-        })}>
-            <div className="flex justify-between items-center">
-                <button type="button" className="text-left uppercase me-2.5 text-xs lg:text-sm" onClick={() => setShow(!show)}>{title}</button>
-                <button><FontAwesomeIcon icon={show ? faMinus : faPlus} onClick={() => setShow(!show)}/></button>
-            </div>
-
-            <p className={clsx("me-6 text-sm drop_container", {
-                'mt-0 hide': !show,
-                'mt-4 show': show
-            })}>
-                {text}
-            </p>
-        </div>
-    )
-}
