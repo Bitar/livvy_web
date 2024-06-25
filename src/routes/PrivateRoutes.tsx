@@ -10,6 +10,7 @@ import React from "react";
 import {ProductRoutes} from "./ProductRoutes.tsx";
 import {StyleQuizRoutes} from "./StyleQuizRoutes.tsx";
 import {Chatbot} from "../sections/chatbot/pages/Chatbot.tsx";
+import {About} from "../sections/about/pages/About.tsx";
 
 const PrivateRoutes = () => {
 
@@ -19,6 +20,8 @@ const PrivateRoutes = () => {
                 <Route path='auth/*' element={<Navigate to={'/'}/>}/>
 
                 <Route path='/' index element={<Home/>}/>
+
+                <Route path='about/' element={<About/>}/>
 
                 <Route path='/membership' element={<Membership/>}/>
 
