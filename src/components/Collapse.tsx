@@ -14,9 +14,9 @@ interface CollapseProps {
 
 export const Collapse: FC<CollapseProps> = ({text, title, borderColor, textColor, bgColor, isLast = false}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const contentRef = useRef<HTMLDivElement>(null)
-    const accordionItemRef = useRef<HTMLDivElement>(null)
-    const [height, setHeight] = useState<number>(0)
+    const contentRef = useRef<HTMLDivElement>(null);
+    const accordionItemRef = useRef<HTMLDivElement>(null);
+    const [height, setHeight] = useState<number>(0);
 
     const toggleAccordion = () => {
         contentRef.current.classList.remove('invisible')
