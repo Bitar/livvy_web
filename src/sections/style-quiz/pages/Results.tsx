@@ -4,12 +4,13 @@ import Slider from "react-slick";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
 
 export const Results = () => {
-    const {setBackgroundType, setBackgroundColor, setFooterVariant} = useMasterLayout();
+    const {setBackgroundType, setBackgroundColor, setFooterVariant, setHeaderBgColor} = useMasterLayout();
 
     useEffect(() => {
         setBackgroundType('color');
         setBackgroundColor('liv-tan');
         setFooterVariant('black');
+        setHeaderBgColor('liv-tan');
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
