@@ -8,8 +8,6 @@ import {AuthRoutes} from "./AuthRoutes.tsx";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
 import {AlphaRoutes} from "./AlphaRoutes.tsx";
 
-// const {BASE_URL} = import.meta.env
-
 const AppRoutes: FC = () => {
     const APP_ENV = import.meta.env.VITE_APP_ENV;
 
