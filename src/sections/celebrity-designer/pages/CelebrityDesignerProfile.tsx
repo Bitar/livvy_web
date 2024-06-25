@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInstagram, faPinterest, faTiktok} from "@fortawesome/free-brands-svg-icons";
 import {LivButton} from "../../../components/buttons/LivButton.tsx";
-import {faMinus, faPause, faPlay, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faPause, faPlay} from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import Slider from "react-slick";
 import {toAbsoluteUrl} from "../../../helpers/toAbsoluteUrl.ts";
