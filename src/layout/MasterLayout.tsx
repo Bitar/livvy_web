@@ -27,7 +27,7 @@ export const MasterLayout = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
 
-    const [showMenu, setShowMenu] = useState<boolean>(true)
+    const [showMenu, setShowMenu] = useState<boolean>(false)
 
     useEffect(() => {
         if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
