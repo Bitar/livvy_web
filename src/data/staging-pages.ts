@@ -94,5 +94,11 @@ export const stagingPages = [
         image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/chatbot.png',
         link: '/chatbot',
         needAuth: true
+    },
+    {
+        title: 'About',
+        image: 'https://storage.googleapis.com/livvy-app/staging-pages-screenshots/about.png',
+        link: '/about',
+        needAuth: true
     }
 ]
