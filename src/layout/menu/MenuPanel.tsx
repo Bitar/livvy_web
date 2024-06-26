@@ -15,11 +15,7 @@ export const MenuPanel = () => {
 
     return (
         <div id="menu-panel"
-             className={`absolute top-0 left-0 flex flex-col justify-between w-screen h-screen overflow-auto bg-liv-tan pt-28 sm:pt-36 px-6 md:px-10
-
- transform transition-transform duration-500 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'}
-
-                 `}>
+             className={`z-[39] fixed top-0 left-0 flex flex-col justify-between w-screen h-screen overflow-auto bg-liv-tan pt-28 sm:pt-36 px-6 md:px-10 transform transition-transform duration-500 ease-in-out ${showMenu ? 'translate-x-0' : '-translate-x-full'}`}>
 
             <div className='absolute top-20 sm:top-26 right-4 lg:right-10'>
                 <button onClick={() => setShowMenu(false)}>

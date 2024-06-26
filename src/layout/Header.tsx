@@ -14,14 +14,29 @@ interface HeaderProps {
 
 export const Header: FC<HeaderProps> = ({textColor, bgColor = 'transparent'}) => {
     const {setIsCartOpen, getCartCount} = useCart();
-    const {setBlurContent, showMenu, setShowMenu} = useMasterLayout();
+    const {setBlurContent, showMenu, setShowMenu, setHeaderBgColor, setHeaderTextColor} = useMasterLayout();
 
     const logo = textColor == 'white' ? 'livvy-logo-white.png' : 'livvy-logo-black.png';
     const [cartCount, setCartCount] = useState<number>(0);
 
+    const [originalBg, setOriginalBg] = useState<string>(bgColor)
+    const [originalText, setOriginalText] = useState<"white" | "black">(textColor)
+
     useEffect(() => {
         setCartCount(getCartCount());
     }, [getCartCount]);
+
+    useEffect(() => {
+        if(showMenu) {
+            setOriginalBg(bgColor)
+            setOriginalText(textColor)
+            setHeaderBgColor('liv-tan')
+            setHeaderTextColor('black')
+        } else {
+            setHeaderBgColor(originalBg)
+            setHeaderTextColor(originalText)
+        }
+    }, [showMenu]);
 
     return (
         <div id="header"

@@ -38,17 +38,6 @@ export const MasterLayout = () => {
         }
     }, [backgroundType, backgroundColor]);
 
-    useEffect(() => {
-        if (showMenu) {
-            // setHeaderBgColor('liv-tan')
-            setHeaderTextColor('black')
-        } else {
-            // setHeaderBgColor('transparent')
-            setHeaderTextColor('white')
-        }
-    }, [showMenu]);
-
-
     return (
         <PageDataProvider>
             <MasterLayoutContext.Provider value={{
