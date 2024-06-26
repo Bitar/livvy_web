@@ -23,3 +23,24 @@
     @apply w-full;
   }
 }
+
+// Menu
+#menu-panel {
+  .menu-link {
+    @apply leading-[1.1] flex relative overflow-hidden;
+
+    div {
+      @apply transition-transform duration-[400ms];
+    }
+
+    div:last-child {
+      @apply absolute top-full;
+    }
+
+    &:hover {
+      div {
+        @apply -translate-y-full;
+      }
+    }
+  }
+}

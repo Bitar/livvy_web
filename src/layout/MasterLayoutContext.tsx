@@ -23,6 +23,8 @@ interface MasterLayoutContextProps {
     setBackgroundPoster: Dispatch<SetStateAction<string | null>>,
     blurContent: boolean,
     setBlurContent: Dispatch<SetStateAction<boolean>>
+    showMenu: boolean,
+    setShowMenu: Dispatch<SetStateAction<boolean>>
 }
 
 export const MasterLayoutContext = createContext<MasterLayoutContextProps>({
@@ -58,6 +60,9 @@ export const MasterLayoutContext = createContext<MasterLayoutContextProps>({
     },
     blurContent: false,
     setBlurContent: () => {
+    },
+    showMenu: false,
+    setShowMenu: () => {
     },
 })
 

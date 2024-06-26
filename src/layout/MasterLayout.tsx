@@ -4,11 +4,12 @@ import {Header} from "./Header.tsx";
 import {Footer} from "./Footer.tsx";
 import {Background} from "../modules/background/Background.tsx";
 import {MasterLayoutContext} from "./MasterLayoutContext.tsx";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {ModalProvider} from "./ModalProvider.tsx";
 import {CartProvider} from "./CartProvider.tsx";
 import {Cart as CartPanel} from "./Cart.tsx";
 import clsx from "clsx";
+import {MenuPanel} from "./menu/MenuPanel.tsx";
 
 export const MasterLayout = () => {
     const [showHeader, setShowHeader] = useState<boolean>(true);
@@ -26,6 +27,8 @@ export const MasterLayout = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [blurContent, setBlurContent] = useState<boolean>(false);
 
+    const [showMenu, setShowMenu] = useState<boolean>(true)
+
     useEffect(() => {
         if (backgroundType == 'color' && (backgroundColor == 'white' || backgroundColor == 'liv-tan')) {
             // the header text should be black
@@ -34,6 +37,17 @@ export const MasterLayout = () => {
             setHeaderTextColor('white');
         }
     }, [backgroundType, backgroundColor]);
+
+    useEffect(() => {
+        if (showMenu) {
+            // setHeaderBgColor('liv-tan')
+            setHeaderTextColor('black')
+        } else {
+            // setHeaderBgColor('transparent')
+            setHeaderTextColor('white')
+        }
+    }, [showMenu]);
+
 
     return (
         <PageDataProvider>
@@ -59,7 +73,9 @@ export const MasterLayout = () => {
                 backgroundPoster,
                 setBackgroundPoster,
                 blurContent,
-                setBlurContent
+                setBlurContent,
+                showMenu,
+                setShowMenu
             }}>
                 <ModalProvider.Provider value={{
                     isOpen: isModalOpen,
@@ -68,18 +84,23 @@ export const MasterLayout = () => {
                     <CartProvider>
                         <div id="wrapper" className='relative'>
                             {
-                                backgroundType === "image" && <Background type={`${backgroundType}`} url={backgroundUrl} backgroundOverlayOpacity={backgroundOverlayOpacity}/>
+                                backgroundType === "image" && <Background type={`${backgroundType}`} url={backgroundUrl}
+                                                                          backgroundOverlayOpacity={backgroundOverlayOpacity}/>
                             }
 
                             {
-                                backgroundType == "video" && <Background type={`${backgroundType}`} url={backgroundUrl} poster={backgroundPoster} backgroundOverlayOpacity={backgroundOverlayOpacity}/>
+                                backgroundType == "video" &&
+                                <Background type={`${backgroundType}`} url={backgroundUrl} poster={backgroundPoster}
+                                            backgroundOverlayOpacity={backgroundOverlayOpacity}/>
                             }
 
                             {
-                                backgroundType === "color" && <Background type={`${backgroundType}`} color={backgroundColor}/>
+                                backgroundType === "color" &&
+                                <Background type={`${backgroundType}`} color={backgroundColor}/>
                             }
 
-                            {showHeader && <Header textColor={headerTextColor} bgColor={headerBgColor}/>}
+                            {showHeader &&
+                                <Header textColor={headerTextColor} bgColor={headerBgColor}/>}
 
                             <div id="content" className={clsx('items-center', {
                                 "blur-md": blurContent,
@@ -92,6 +113,9 @@ export const MasterLayout = () => {
                             </div>
 
                             <CartPanel/>
+
+                            <MenuPanel/>
+
 
                             {/*{*/}
                             {/*    APP_ENV !== 'production' && <StagingPages/>*/}
